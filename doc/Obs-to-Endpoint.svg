@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="544.67139"
+   height="170.6581"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="Obs-to-Endpoint.svg">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="Arrow1Send"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Send"
+       style="overflow:visible">
+      <path
+         id="path4230"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.2,0,0,-0.2,-1.2,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mend"
+       style="overflow:visible">
+      <path
+         id="path4224"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="272.57259"
+     inkscape:cy="98.950455"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1662"
+     inkscape:window-height="741"
+     inkscape:window-x="256"
+     inkscape:window-y="145"
+     inkscape:window-maximized="0"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:inline"
+     transform="translate(-3.1057472,-2.3097267)">
+    <use
+       height="1052.3622"
+       width="744.09448"
+       id="use3089"
+       xlink:href="#text_GFR"
+       y="0"
+       x="0"
+       style="display:inline"
+       transform="translate(0,12)" />
+    <use
+       style="display:inline"
+       x="0"
+       y="0"
+       xlink:href="#text_GFR_SCr"
+       id="use3092"
+       width="744.09448"
+       height="1052.3622"
+       transform="translate(0,12)" />
+    <use
+       style="display:inline"
+       x="0"
+       y="0"
+       xlink:href="#text_Transplant"
+       id="use3135"
+       width="744.09448"
+       height="1052.3622"
+       transform="translate(0,12)" />
+    <use
+       style="display:inline"
+       x="0"
+       y="0"
+       xlink:href="#g3139"
+       id="use3148"
+       transform="translate(0,12)"
+       width="744.09448"
+       height="1052.3622" />
+    <use
+       transform="translate(130,12)"
+       height="1052.3622"
+       width="744.09448"
+       id="use3151"
+       xlink:href="#text_GFR_SCr"
+       y="0"
+       x="0"
+       style="display:inline" />
+    <use
+       height="1052.3622"
+       width="744.09448"
+       transform="translate(120,12)"
+       id="use3153"
+       xlink:href="#g3139"
+       y="0"
+       x="0"
+       style="display:inline" />
+    <use
+       style="display:inline"
+       x="0"
+       y="0"
+       xlink:href="#text_GFR_SCr"
+       id="use3155"
+       width="744.09448"
+       height="1052.3622"
+       transform="translate(244,12)" />
+    <use
+       transform="translate(210,0)"
+       height="1052.3622"
+       width="744.09448"
+       id="use3159"
+       xlink:href="#text_Outcome_Assessment"
+       y="0"
+       x="0"
+       style="display:inline" />
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline;font-family:Bitstream Vera Sans"
+       x="433.82004"
+       y="158.30972"
+       id="text_SCr_trend"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan9035"
+         x="433.82004"
+         y="158.30972">SCr trend</tspan></text>
+    <use
+       transform="translate(210,120)"
+       style="display:inline"
+       x="0"
+       y="0"
+       xlink:href="#text_Outcome_Assessment"
+       id="use3161"
+       width="744.09448"
+       height="1052.3622" />
+    <use
+       style="display:inline"
+       x="0"
+       y="0"
+       xlink:href="#text_Endpoint"
+       id="use3973"
+       transform="translate(120.91118,0.25253814)"
+       width="744.09448"
+       height="1052.3622" />
+    <use
+       style="display:inline"
+       x="0"
+       y="0"
+       xlink:href="#text_Biopsy"
+       id="use3272"
+       width="744.09448"
+       height="1052.3622" />
+    <use
+       style="display:inline"
+       x="0"
+       y="0"
+       xlink:href="#text_Biopsy_Assessment"
+       id="use3248"
+       width="744.09448"
+       height="1052.3622"
+       transform="translate(40,-4)" />
+    <use
+       style="display:inline"
+       x="0"
+       y="0"
+       xlink:href="#text_Organ"
+       id="useMe"
+       width="744.09448"
+       height="1052.3622"
+       transform="translate(0.42385594,2.0203051)" />
+    <use
+       style="display:inline"
+       x="0"
+       y="0"
+       xlink:href="#text_Assessment"
+       id="use3204"
+       transform="translate(100,32)"
+       width="744.09448"
+       height="1052.3622" />
+    <text
+       xml:space="preserve"
+       style="font-size:20px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="1.1428566"
+       y="17.505039"
+       id="text3304"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3306"
+         x="1.1428566"
+         y="17.505039">Patient</tspan></text>
+    <use
+       transform="translate(0,106)"
+       height="1052.3622"
+       width="744.09448"
+       id="use3308"
+       xlink:href="#text_GFR_SCr"
+       y="0"
+       x="0"
+       style="display:inline" />
+    <use
+       transform="translate(6,-12)"
+       height="1052.3622"
+       width="744.09448"
+       id="use3310"
+       xlink:href="#text_Extraction"
+       y="0"
+       x="0"
+       style="display:inline" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text3312"
+       y="141.50504"
+       x="1.1428566"
+       style="font-size:20px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       xml:space="preserve"><tspan
+         y="141.50504"
+         x="1.1428566"
+         id="tspan3314"
+         sodipodi:role="line">Donor</tspan></text>
+    <use
+       height="1052.3622"
+       width="744.09448"
+       transform="translate(214,32)"
+       id="use3431"
+       xlink:href="#text_Assessment"
+       y="0"
+       x="0"
+       style="display:inline" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
+       d="M 202.03051,38.674103 C 161.37186,23.774354 109.34901,16.198209 80.054589,52.563701"
+       id="path4657"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:none;marker-end:url(#Arrow1Mend)"
+       d="M 201.52543,41.452023 C 153.03811,26.299735 115.15739,28.32004 104.04571,42.714714 94.501916,55.07826 110.61171,74.787057 85.35789,76.049748"
+       id="path5211"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
+       d="m 201.27289,44.229942 c -14.52465,7.532816 -13.82832,10.040249 -8.58629,14.394674"
+       id="path5949"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
+       d="m 200.76782,42.967252 c -19.69798,6.565991 -23.73859,25.75889 -8.08122,31.314729"
+       id="path6135"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
+       d="M 202.53559,36.653798 C 154.55334,17.965976 79.044437,9.1271414 42.678945,51.048472"
+       id="path6321"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
+       d="M 315.83856,39.283785 C 283.76622,38.778709 234.86047,55.594158 219.45564,59.887307"
+       id="path6509"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
+       d="M 315.39476,41.495352 C 274.23104,43.01058 236.12316,62.665226 219.2031,73.776904"
+       id="path6697"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path6883"
+       d="m 314.5586,44.944228 c -15.23894,8.247101 -14.18546,10.397392 -7.872,13.680388"
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
+       sodipodi:nodetypes="cc" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path6885"
+       d="m 314.76782,42.967252 c -19.69798,6.565991 -23.73859,25.75889 -8.08122,31.314729"
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
+       d="M 399.63225,104.35505 C 366.89331,99.939341 347.09509,78.87843 374.71456,73.636404"
+       id="path6887"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
+       d="m 398.01242,106.79377 c -28.29734,-0.59481 -185.53631,5.40175 -233.09885,16.37292"
+       id="path7073"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
+       d="m 399.82352,25.585449 c -24.16444,0.815811 -63.16173,7.713564 -75.31201,27.23079"
+       id="path7259"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
+       d="M 400.38986,23.208 C 371.85667,23.684616 241.679,31.603036 212.63711,52.816239"
+       id="path7445"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
+       d="M 400.47652,21.353577 C 186.82926,17.818043 103.03556,12.915213 73.993674,51.553548"
+       id="path7631"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
+       d="M 397.26224,146.83965 C 278.00658,146.87554 119.03519,101.26459 84.095199,80.595434"
+       id="path7817"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
+       d="M 399.23921,144.67141 C 294.43589,136.33766 244.45692,116.20331 211.12188,81.605587"
+       id="path8003"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
+       d="M 400.10144,142.31191 C 326.64874,137.75444 286.67103,97.248083 306.5813,80.342896"
+       id="path8189"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
+       d="M 494.06357,55.34162 C 472.34529,43.21979 494.31611,37.411413 475.88082,26.804811"
+       id="path8375"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
+       d="m 494.06357,58.372078 c -20.13435,17.19054 1.86494,44.687462 -18.68782,48.962662"
+       id="path8561"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
+       d="m 494.82118,63.170303 c -18.18274,11.869288 10.85914,63.892147 -18.94036,80.307127"
+       id="path8747"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline;font-family:Bitstream Vera Sans"
+       x="433.82004"
+       y="38.309727"
+       id="text_GFR_trend"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan9089"
+         x="433.82004"
+         y="38.309727">GFR trend</tspan></text>
+    <use
+       style="display:inline"
+       x="0"
+       y="0"
+       xlink:href="#text_Outcome_Assessment"
+       id="use9123"
+       width="744.09448"
+       height="1052.3622"
+       transform="translate(210,82)" />
+    <text
+       sodipodi:linespacing="125%"
+       id="text_BPAR"
+       y="120.30972"
+       x="433.82004"
+       style="font-size:8px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline;font-family:Bitstream Vera Sans"
+       xml:space="preserve"
+       inkscape:label="#text9137"><tspan
+         y="120.30972"
+         x="433.82004"
+         id="tspan9139"
+         sodipodi:role="line">Graft Loss</tspan></text>
+    <path
+       inkscape:connector-curvature="0"
+       id="path3222"
+       d="m 70.767814,137.49263 c -14.16751,7.17567 -14.185464,9.68311 -8.58629,14.39468"
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
+       sodipodi:nodetypes="cc" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path3224"
+       d="m 70.262744,136.22994 c -19.69798,6.56599 -23.73859,25.75889 -8.08122,31.31473"
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)" />
+    <text
+       inkscape:label="#text9137"
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline;font-family:Bitstream Vera Sans"
+       x="407.82004"
+       y="84.309723"
+       id="text4309"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4311"
+         x="407.82004"
+         y="84.309723">BPAR</tspan></text>
+    <text
+       inkscape:label="#text9137"
+       xml:space="preserve"
+       style="font-size:8px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline;font-family:Bitstream Vera Sans"
+       x="433.82004"
+       y="120.30972"
+       id="text4313"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4315"
+         x="433.82004"
+         y="120.30972">Graft Loss</tspan></text>
+    <text
+       sodipodi:linespacing="125%"
+       id="text4317"
+       y="148.30972"
+       x="103.82004"
+       style="font-size:8px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline;font-family:Bitstream Vera Sans"
+       xml:space="preserve"
+       inkscape:label="#text9137"><tspan
+         y="148.30972"
+         x="103.82004"
+         id="tspan4319"
+         sodipodi:role="line">Normal Function</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="constellations"
+     style="display:none"
+     transform="translate(-3.1057472,-2.3097267)">
+    <g
+       id="g3139">
+      <use
+         height="1052.3622"
+         width="744.09448"
+         id="use3113"
+         xlink:href="#text_Med"
+         y="0"
+         x="0"
+         style="display:inline" />
+      <use
+         transform="translate(10,10)"
+         style="display:inline"
+         x="0"
+         y="0"
+         xlink:href="#text_Med"
+         id="use3121"
+         width="744.09448"
+         height="1052.3622" />
+      <use
+         height="1052.3622"
+         width="744.09448"
+         id="use3123"
+         xlink:href="#text_Med"
+         y="0"
+         x="0"
+         style="display:inline"
+         transform="translate(20,20)" />
+      <use
+         transform="translate(30,30)"
+         style="display:inline"
+         x="0"
+         y="0"
+         xlink:href="#text_Med"
+         id="use3125"
+         width="744.09448"
+         height="1052.3622" />
+      <use
+         height="1052.3622"
+         width="744.09448"
+         id="use3127"
+         xlink:href="#text_Med"
+         y="0"
+         x="0"
+         style="display:inline"
+         transform="translate(40,40)" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="sprites"
+     style="display:none"
+     transform="translate(-3.1057472,-2.3097267)">
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline;font-family:Bitstream Vera Sans"
+       x="20.714287"
+       y="50.219322"
+       id="text_GFR"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2987"
+         x="20.714287"
+         y="50.219322">GFR</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline;font-family:Bitstream Vera Sans"
+       x="64.285713"
+       y="51.647896"
+       id="text_GFR_SCr"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2991"
+         x="64.285713"
+         y="51.647896">GFR</tspan><tspan
+         sodipodi:role="line"
+         x="64.285713"
+         y="66.647896"
+         id="tspan2993">SCr</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ff00ff;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline;font-family:Bitstream Vera Sans"
+       x="113.57143"
+       y="48.076466"
+       id="text_Med"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan2997"
+         x="113.57143"
+         y="48.076466">Med</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline;font-family:Bitstream Vera Sans"
+       x="191.42857"
+       y="18.790753"
+       id="text_Outcome_Assessment"
+       sodipodi:linespacing="100%"><tspan
+         sodipodi:role="line"
+         id="tspan3001"
+         x="191.42857"
+         y="18.790753">Outcome</tspan><tspan
+         sodipodi:role="line"
+         x="191.42857"
+         y="28.790752"
+         id="tspan3003">Assessment</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline;font-family:Bitstream Vera Sans"
+       x="101.42857"
+       y="13.790753"
+       id="text_Assessment"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="101.42857"
+         y="13.790753"
+         id="tspan3198">Assessment</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ff00ff;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;font-family:Bitstream Vera Sans"
+       x="118.57143"
+       y="35.219326"
+       id="text_Transplant"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3131"
+         x="118.57143"
+         y="35.219326">Transplant</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ff00ff;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;font-family:Bitstream Vera Sans"
+       x="108.57143"
+       y="175"
+       id="text_Extraction"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3419"
+         x="108.57143"
+         y="175">Extraction</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline;font-family:Bitstream Vera Sans"
+       x="70"
+       y="127"
+       id="text_Organ"
+       sodipodi:linespacing="100%"><tspan
+         sodipodi:role="line"
+         id="tspan3298"
+         x="70"
+         y="127">Organ Function</tspan><tspan
+         sodipodi:role="line"
+         x="70"
+         y="137"
+         id="tspan3300">Assessment</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ff00ff;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;font-family:Bitstream Vera Sans"
+       x="336.57141"
+       y="59.219326"
+       id="text_Biopsy"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3315"
+         x="336.57141"
+         y="59.219326">Biopsy</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline;font-family:Bitstream Vera Sans"
+       x="338"
+       y="68.790752"
+       id="text_Biopsy_Assessment"
+       sodipodi:linespacing="100%"><tspan
+         sodipodi:role="line"
+         id="tspan3200"
+         x="338"
+         y="68.790752">Biopsy</tspan><tspan
+         sodipodi:role="line"
+         x="338"
+         y="78.790756"
+         id="tspan3202">Assessment</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline;font-family:Bitstream Vera Sans"
+       x="360"
+       y="95"
+       id="text_BPAR_Assessment"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3425"
+         x="360"
+         y="95">Assessment</tspan><tspan
+         sodipodi:role="line"
+         x="360"
+         y="110"
+         id="tspan3427">(BPAR)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#ffff00;fill-opacity:1;stroke:#000000;stroke-width:0.30000001;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;font-family:Bitstream Vera Sans"
+       x="373.57144"
+       y="61.647896"
+       id="text_Endpoint"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3165"
+         x="373.57144"
+         y="61.647896">Endpoint</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,1 @@
+find . -iname '*.png' -prune -o -path ./BRIDG -prune -o -path ./tests/RenalTransplantation/amy -prune -o -path ./tests/RenalTransplantation/bob -prune -o -path ./tests/RenalTransplantation/sue -prune -o -iname protege.ttl -prune -o -type f \! -iname '*~' \! -iname '[.#]*' \! -iname 'work.trig' -print0

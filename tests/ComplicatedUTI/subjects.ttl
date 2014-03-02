@@ -1,0 +1,33 @@
+
+
+
+
+# Each patient has a complicated UTI (cUTI).  Joe also has acute pyelonephritis.
+# 
+# Each is treated with a given StudyDrug.  Each as multiple urine cultures assessed by either Sponsor or Investigator.  In the case of Sponsor assessment, the opinion of the Investigator is overridden.
+# 
+# Each patient has a target microbial population that is the focus of treatment.  Population is classified via a) baseline pathogen (name); b) region of origin of pathogen; c) stratified infection category (ascending route of infection (ascending pyelonephritis), hematogenous route of infection (e.g. endocarditis)
+# 
+# Effect of treatment (microbiological outcome) is calculated based on a combination of presence of new infection, superinfection, persistent infection, and clinical outcome
+# 
+# Drug information:  dose, frequency, route of administration, concomitant antibiotics
+# 
+# Lab test info:  sample viability, pathogen species, pathogen count, WBC, nitrate concentration, urine nitrates, luekoesterase, pathogen genotype/phenotype, 
+# 
+# Joe :  
+# S/sx – malase, back pain, fever, dysuria, urinary urgency, urinary frequency
+# Complicating factors – indwelling catheter, neurogenic bladder
+# Has both blood and urine specimens send for culture and sensitivity
+# Clinical outcome -- indeterminate
+# 
+# Bill :
+# S/sx – chills, flank pain, groin pain, urinary urgency, urinary frequency
+# Complicating factors – male urinary retention
+# Has urine specimen send for culture and sensitivity
+# Clinical outcome -- indeterminate
+# 
+# Deb :
+# S/sx – chills, flank pain, vomiting, lower quadrant pain, CVA pain, change in mental status, suprapubic pain
+# Has both blood and urine specimens send for culture and sensitivity
+# Complicating factors – residual urine volume
+# Clinical outcome -- improved

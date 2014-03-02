@@ -1,0 +1,85 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+PREFIX dt: <http://www.hl7.org/owl/iso-dt-2.0#>
+PREFIX bridg: <http://www.bridgmodel.org/owl#>
+PREFIX : <http://www.w3.org/2013/12/FDA-TA/tests/RenalTransplantation/subject-bob#>
+PREFIX ucum: <http://unitsofmeasure.org/ucum-essence.xml#>
+PREFIX core: <http://www.w3.org/2013/12/FDA-TA/core#>
+PREFIX data: <http://www.w3.org/2013/12/FDA-TA/datatypes#>
+PREFIX RenalX: <http://www.w3.org/2013/12/FDA-TA/RenalTransplantation#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT ?who
+       (CONCAT(SUBSTR(STR(?time), 0, 10), ' ' ,SUBSTR(STR(?time), 12, 5)) AS ?eventTime)
+       ?medName ?dose ?outcome ?PN
+ WHERE {
+  { SELECT ?who ?time (substr(str(?med), 39) AS ?medName) ## !!delme
+           (CONCAT(STR(?qty), 'mg ', STR(?frq), ' per ', STR(?dur), ' ' , ?schedunit) AS ?dose)
+     WHERE {
+        ?subject foaf:name ?who ;
+                 core:hasIntervention [
+                     a RenalX:RenalTransplantProcedure ;
+                     core:hasInterventionTime ?procTime ] ;
+                 core:prescription [
+                     core:prescriptionTime ?time ;
+                     core:medication ?med ;
+                     core:hasDosagePlan [
+                         core:hasMedicationQuantity [
+                             data:value ?qty ; data:units ucum:mg ] ;
+                         core:hasMedicationSchedule [
+                             core:hasMedicationFrequency ?frq ;
+                             core:hasMedicationDuration ?dur ;
+                             core:hasMedicationUnits ?schedunit ]
+                     ]
+                 ] ;
+    }
+  } UNION { SELECT ?who ?time (substr(str(?med), 39) AS ?medName)
+           (CONCAT(STR(?qty), 'mg ', STR(?frq), ' per ', STR(?dur), ' ' , ?schedunit) AS ?dose)
+     WHERE {
+        ?subject foaf:name ?who ;
+                 core:hasIntervention [
+                     a RenalX:RenalTransplantProcedure ;
+                     core:hasInterventionTime ?procTime ] ;
+                 core:involvingScheduledSubstanceAdministration [
+                     bridg:ScheduledActivity.dateRange [ dt:IVL_TS.DATETIME.low ?time ] ;
+                     core:medication ?med ;
+                     core:hasDosagePlan [
+                         core:hasMedicationQuantity [
+                             data:value ?qty ; data:units ucum:mg ] ;
+                         core:hasMedicationSchedule [
+                             core:hasMedicationFrequency ?frq ;
+                             core:hasMedicationDuration ?dur ;
+                             core:hasMedicationUnits ?schedunit ]
+                     ]
+                 ] ;
+    }
+  } UNION {
+  SELECT ?who (STRAFTER(STR(?outcomeVal), '#') AS ?outcome) ?time
+           (IF(BOUND(?outcomeSense) , IF(?outcomeSense = core:PositiveOutcome , '+', '-'), '?') AS ?PN) 
+   WHERE {
+        ?subject foaf:name ?who ;
+                 core:hasOutcomeAssessment ?outcome .
+        ?outcome core:hasObservationTime ?time ;
+                 core:hasResultValue ?outcomeVal
+        OPTIONAL {
+          ?outcome a ?outcomeSense ;
+          FILTER ( ?outcomeSense = core:PositiveOutcome || ?outcomeSense = core:NegativeOutcome )
+        }
+    }
+  }
+#  FILTER (YEAR(?procTime) = YEAR(?time) && MONTH(?procTime) = MONTH(?time) && ?procTime < ?otcmTime)
+} ORDER BY ?who ?time
+
+# w/o inference:
+# +-------+--------------------+---------------------+----------------------+-----------------+
+# | ?who  | ?medicationTime    | ?medName            | ?dose                | ?hoursToFailure |
+# | "Amy" | "2013-10-16 07:03" | "ImmunosuppressantB" | "50.0mg 1 per 1.0 d" |              77 |
+# | "Bob" | "2013-08-26 07:05" | "ImmunosuppressantA" | "50.0mg 1 per 1.0 d" |              57 |
+# | "Bob" | "2013-08-27 19:33" | "ImmunosuppressantA" | "25.0mg 1 per 1.0 d" |              21 |
+# | "Bob" | "2013-08-28 14:35" | "ImmunosuppressantA" |  "0.0mg 1 per 1.0 d" |               2 |
+# | "Sue" | "2013-07-06 07:25" | "ImmunosuppressantB" | "50.0mg 1 per 1.0 d" |              57 |
+# | "Sue" | "2013-07-07 19:33" | "ImmunosuppressantB" | "75.0mg 1 per 1.0 d" |              21 |
+# +-------+--------------------+---------------------+----------------------+-----------------+

@@ -1,0 +1,47 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+PREFIX dt: <http://www.hl7.org/owl/iso-dt-2.0#>
+PREFIX bridg: <http://www.bridgmodel.org/owl#>
+PREFIX : <http://www.w3.org/2013/12/FDA-TA/tests/RenalTransplantation/subject-bob#>
+PREFIX ucum: <http://unitsofmeasure.org/ucum-essence.xml#>
+PREFIX core: <http://www.w3.org/2013/12/FDA-TA/core#>
+PREFIX data: <http://www.w3.org/2013/12/FDA-TA/datatypes#>
+PREFIX RenalX: <http://www.w3.org/2013/12/FDA-TA/RenalTransplantation#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+  SELECT ?who ?medName ?dose ?x
+         (STRAFTER(STR(?outcomeVal), '#') AS ?outcomeCode)
+         (CONCAT(SUBSTR(STR(?time), 0, 10), ' ' ,SUBSTR(STR(?time), 12, 5)) AS ?start)
+         (IF(BOUND(?outcomeSense) , IF(?outcomeSense = core:PositiveOutcome , '+', '-'), '?') AS ?PN)
+   WHERE {
+        ?subject foaf:name ?who ;
+                 core:hasOutcomeAssessment ?outcome .
+        ?outcome core:hasObservationTime ?time ;
+                 core:hasResultValue ?outcomeVal
+        OPTIONAL {
+          ?outcome a ?outcomeSense ;
+          FILTER ( ?outcomeSense = core:PositiveOutcome || ?outcomeSense = core:NegativeOutcome )
+        }
+	{
+	  SELECT ?outcome (substr(str(?med), 39) AS ?medName) (CONCAT(STR(?qty), 'mg ', STR(?frq), ' per ', STR(?dur), ' ' , ?schedunit) AS ?dose) (COUNT(*) AS ?x)
+	   WHERE {
+	     ?outcome core:hasIntervention [ bridg:PerformedActivity.instantiatedScheduledActivity [
+                     bridg:ScheduledActivity.dateRange [ dt:IVL_TS.DATETIME.low ?time ] ;
+                     core:medication ?med ;
+                     core:hasDosagePlan [
+                         core:hasMedicationQuantity [
+                             data:value ?qty ; data:units ucum:mg ] ;
+                         core:hasMedicationSchedule [
+                             core:hasMedicationFrequency ?frq ;
+                             core:hasMedicationDuration ?dur ;
+                             core:hasMedicationUnits ?schedunit ]
+                     ]
+                 ]
+             ]
+           } GROUP BY ?outcome
+	}
+    }
+

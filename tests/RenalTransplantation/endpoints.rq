@@ -1,0 +1,117 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX bridg: <http://www.bridgmodel.org/owl#>
+PREFIX core: <http://www.w3.org/2013/12/FDA-TA/core#>
+PREFIX xplant: <http://www.w3.org/2013/12/FDA-TA/transplant#>
+PREFIX renal: <http://www.w3.org/2013/12/FDA-TA/renal#>
+PREFIX data: <http://www.w3.org/2013/12/FDA-TA/datatypes#>
+
+SELECT ?endpoint ?count ?labels {
+  {
+    SELECT ("GraftSurvival" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?name) AS ?labels)
+    WHERE {
+      BIND (1 AS ?g)
+      [
+        bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
+        core:hasOutcomeAssessment [
+          a xplant:GraftSurvivalAssessment ]
+      ]
+    } GROUP BY ?g
+  }
+  UNION
+  {
+    SELECT ("GraftLoss" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?name) AS ?labels)
+    WHERE {
+      BIND (1 AS ?g)
+      [
+        bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
+        core:hasOutcomeAssessment [
+          a xplant:GraftLossAssessment ]
+      ]
+    } GROUP BY ?g
+  }
+  UNION
+  {
+    SELECT ("DecreasingGFR" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?label) AS ?labels)
+    WHERE {
+      BIND (1 AS ?g)
+      [ 
+        bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
+        core:hasOutcomeAssessment ?oa ] .
+          ?oa a renal:RenalFunctionOutcomeAssessment ; core:hasObservationTime ?when .
+	  BIND (CONCAT(?name, '(', STR(?when), ')') AS ?label)
+          { SELECT ?oa { ?oa core:hasObservation [ a renal:GfrFlowRateObservation ] } GROUP BY ?oa } # over GFRs
+          MINUS { # occurances of GFR increasing with date
+            ?oa core:hasObservation
+                    [ a renal:GfrFlowRateObservation ; core:hasObservationTime ?date1 ; core:hasResultValue [ data:value ?gfr1 ] ] ,
+                    [ a renal:GfrFlowRateObservation ; core:hasObservationTime ?date2 ; core:hasResultValue [ data:value ?gfr2 ] ]
+            FILTER (?date2 > ?date1 && ?gfr2 > ?gfr1)
+          }
+    } GROUP BY ?g
+  }
+  UNION
+  {
+    SELECT ("IncreasingSCr" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?label) AS ?labels)
+    WHERE {
+      BIND (1 AS ?g)
+      [ 
+        bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
+        core:hasOutcomeAssessment ?oa ] .
+          ?oa a renal:RenalFunctionOutcomeAssessment ; core:hasObservationTime ?when .
+	  BIND (CONCAT(?name, '(', STR(?when), ')') AS ?label)
+          { SELECT ?oa { ?oa core:hasObservation [ a renal:SerumCreatinineObservation ] } GROUP BY ?oa } # over SCrs
+          MINUS { # occurances of SCr decreasing with date
+            ?oa core:hasObservation
+                    [ a renal:SerumCreatinineObservation ; core:hasObservationTime ?date1 ; core:hasResultValue [ data:value ?scr1 ] ] ,
+                    [ a renal:SerumCreatinineObservation ; core:hasObservationTime ?date2 ; core:hasResultValue [ data:value ?scr2 ] ]
+            FILTER (?date2 > ?date1 && ?scr2 < ?scr1)
+          }
+    } GROUP BY ?g
+  }
+  UNION
+  {
+    SELECT ("AccuteRejection" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?label) AS ?labels)
+    WHERE {
+      BIND (1 AS ?g)
+      [
+        bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
+        core:hasOutcomeAssessment ?oa ] .
+          { SELECT ?oa ?l { ?oa core:afterIntervention [ bridg:PerformedActivity.instantiatedDefinedActivity [ rdfs:label ?l ] ] } GROUP BY ?oa ?l } # over SCrs
+          BIND (CONCAT(?name, '(', ?l, ")") AS ?label)
+
+          ?oa core:hasResultValue renal:CeasedToFunction .
+    } GROUP BY ?g
+  }
+  UNION
+  {
+    SELECT ("Death" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?name) AS ?labels)
+    WHERE {
+      BIND (1 AS ?g)
+      [
+        bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
+        core:hasDisposition [ core:hasResultValue core:Deceased ]
+      ]
+    } GROUP BY ?g
+  }
+  UNION
+  {
+    SELECT ("LTFU" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?name) AS ?labels)
+    WHERE {
+      BIND (1 AS ?g)
+      [
+        bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
+        core:hasDisposition [ core:hasResultValue core:LostToFollowUp ]
+      ]
+    } GROUP BY ?g
+  }
+}
+
+# ┌───────────────────┬────────┬─────────────────────────────────────────────────────────────┐
+# │ ?endpoint         │ ?count │ ?labels                                                     │
+# │   "GraftSurvival" │      1 │                                                       "Amy" │
+# │       "GraftLoss" │      1 │                                                       "Sue" │
+# │   "DecreasingGFR" │      2 │       "Sue(2013-07-08T14:51:00Z) Sue(2013-07-08T16:15:00Z)" │
+# │   "IncreasingSCr" │      2 │       "Sue(2013-07-08T14:51:00Z) Sue(2013-07-08T16:15:00Z)" │
+# │ "AccuteRejection" │      2 │ "Sue(calculated GFR flow rate) Sue(serum creatinine level)" │
+# │           "Death" │      1 │                                                       "Bob" │
+# └───────────────────┴────────┴─────────────────────────────────────────────────────────────┘

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="User Entered Import Resolution" name="http://www.w3.org/2013/12/FDA-TA/bridg-classes" uri="file:/home/eric/WWW/2013/12/FDA-TA/bridg-classes.ttl"/>
+    <uri id="User Entered Import Resolution" name="http://www.w3.org/2013/12/FDA-TA/transplant" uri="file:/home/eric/WWW/2013/12/FDA-TA/transplant.ttl"/>
+    <uri id="User Entered Import Resolution" name="http://www.w3.org/2013/12/FDA-TA/renal" uri="file:/home/eric/WWW/2013/12/FDA-TA/renal.ttl"/>
+    <uri id="User Entered Import Resolution" name="http://www.w3.org/2013/12/FDA-TA/datatypes" uri="../../datatypes.ttl"/>
+    <uri id="User Entered Import Resolution" name="http://www.w3.org/2013/12/FDA-TA/core" uri="../../core.ttl"/>
+    <uri id="User Entered Import Resolution" name="http://www.w3.org/2013/12/FDA-TA/RenalTransplantation" uri="../../RenalTransplantation.ttl"/>
+<!--
+    <uri id="User Entered Import Resolution" name="http://www.w3.org/2013/12/FDA-TA/tests/RenalTransplantation/subject-amy" uri="subject-amy.ttl"/>
+    <uri id="User Entered Import Resolution" name="http://www.w3.org/2013/12/FDA-TA/tests/RenalTransplantation/subject-sue" uri="subject-sue.ttl"/>
+    <uri id="User Entered Import Resolution" name="http://www.w3.org/2013/12/FDA-TA/tests/RenalTransplantation/subject-bob" uri="subject-bob.ttl"/>
+-->
+    <uri id="User Entered Import Resolution" name="http://www.w3.org/2013/12/FDA-TA/tests/RenalTransplantation/subject-amy" uri="amy/subject-amy.ttl"/>
+    <uri id="User Entered Import Resolution" name="http://www.w3.org/2013/12/FDA-TA/tests/RenalTransplantation/subject-sue" uri="sue/subject-sue.ttl"/>
+    <uri id="User Entered Import Resolution" name="http://www.w3.org/2013/12/FDA-TA/tests/RenalTransplantation/subject-bob" uri="bob/subject-bob.ttl"/>
+
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base=""/>
+</catalog>

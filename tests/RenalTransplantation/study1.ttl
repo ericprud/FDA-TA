@@ -1,0 +1,101 @@
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix bridg: <http://www.bridgmodel.org/owl#> .
+@prefix study1: <http://www.w3.org/2013/12/FDA-TA/tests/RenalTransplantation/study1#> .
+
+@prefix elig: <http://www.w3.org/2013/12/FDA-TA/Eligibility> . # @@ To be created.
+@prefix drugs: <http://www.w3.org/2013/12/FDA-TA/drugs#> .
+
+study1:version1 a bridg:StudyProtocolVersion ;
+    bridg:StudyProtocolVersion.intendedPlannedStudySubject study1:plannedSubjects ; # inv
+    bridg:StudyProtocolVersion.versionedStudyProtocol study1:protocol .
+
+# @@ study1:protocol ...
+
+study1:plannedSubjects a bridg:PlannedStudySubject ;
+    bridg:PlannedStudySubject.plannedForStudyProtocolVersion study1:version1 ;
+    bridg:PlannedStudySubject.quantityRange [ a dt:URG_INT.POS ] ;
+    bridg:PlannedStudySubject.constrainingDefinedEligibilityCriterion study1:eligibility_dialysis .
+
+study1:eligibility_dialysis a bridg:DefinedEligibilityCriterion ;
+    # bridg:DefinedEligibilityCriterion.constrainedPlannedStudySubject study1:plannedSubjects # inv
+    elig:effectiveDateRange [ a dt:IVL_TS.DATETIME ] ; # @@ 5-15 months
+    bridg:DefinedEligibilityCriterion.requiredResponse [ a dt:ANY ] .
+
+study1:arm0 a bridg:Arm ;
+    bridg:Arm.name [ a dt:ST ] ; # Control comparitor
+    bridg:Arm.containedPlannedActivity study1:prescribeImmunosuppressantA ;
+    bridg:Arm.randomizationWeight [ a dt:RTO_INT.NONNEG_INT.POS ] ; # 1(of 3)
+    bridg:Arm.targetAccrualNumberRange [ a dt:URG_INT.NONNEG ] ; # 30-35
+.
+
+study1:arm1 a bridg:Arm ;
+    bridg:Arm.name [ a dt:ST ] ; # Active comparitor
+    bridg:Arm.containedPlannedActivity study1:prescribeImmunosuppressantB ;
+    bridg:Arm.randomizationWeight [ a dt:RTO_INT.NONNEG_INT.POS ] ; # 2(of 3)
+    bridg:Arm.targetAccrualNumberRange [ a dt:URG_INT.NONNEG ] ; # 60-70
+.
+
+study1:prescribeImmunosuppressantA a bridg:PlannedActivity ;
+    bridg:PlannedActivity.name [ a dt:ST ] ; # prescribe drug A
+    bridg:PlannedActivity.purpose [ a dt:ST ] ; # suppress T-cell activity
+    bridg:PlannedActivity.usedStudyActivity study1:studyImmunosuppressantA ;
+    bridg:PlannedActivity.containingArm study1:arm0 ;
+    bridg:PlannedActivity.duration [ a dt:PQ.TIME ] ; # 5 days
+    bridg:PlannedActivity.reasonCode [ a dt:DSET_CD ] . # study efficacy of reference Drug A
+
+study1:prescribeImmunosuppressantB a bridg:PlannedActivity ;
+    bridg:PlannedActivity.name [ a dt:ST ] ; # prescribe drug B
+    bridg:PlannedActivity.purpose [ a dt:ST ] ; # suppress T-cell activity
+    bridg:PlannedActivity.usedStudyActivity study1:studyImmunosuppressantB ;
+    bridg:PlannedActivity.containingArm study1:arm1 ;
+    bridg:PlannedActivity.duration [ a dt:PQ.TIME ] ; # 5 days
+    bridg:PlannedActivity.reasonCode [ a dt:DSET_CD ] . # study efficacy of Drug B
+
+study1:studyImmunosuppressantA a bridg:StudyActivity ;
+    bridg:StudyActivity.studyFocusIndicator [ a dt:BL ] ; # false
+    bridg:StudyActivity.usedDefinedActivity study1:generalPrescriptionOfImmunosuppressantA ;
+    bridg:StudyActivity.usingStudyProtocolVersion study1:version1 .
+
+study1:studyImmunosuppressantB a bridg:StudyActivity ;
+    bridg:StudyActivity.studyFocusIndicator [ a dt:BL ] ; # true
+    bridg:StudyActivity.usedDefinedActivity study1:generalPrescriptionOfImmunosuppressantB ;
+    bridg:StudyActivity.usingStudyProtocolVersion study1:version1 .
+
+study1:generalPrescriptionOfImmunosuppressantA a bridg:DefinedSubstanceAdministration ;
+    bridg:DefinedProcedure.usedProduct drugs:ImmunosuppressantA ;
+    bridg:DefinedSubstanceAdministration.doseFrequencyCode [ a dt:CD ] ; # 4/1.0d
+    bridg:DefinedSubstanceAdministration.routeOfAdministrationCode [ a dt:CD ] ; # IV
+    bridg:DefinedSubstanceAdministration.usedDefinedExpressionVariableRelationship study1:varQtyOfImmunosuppressantA . # inv
+
+study1:generalPrescriptionOfImmunosuppressantB a bridg:DefinedSubstanceAdministration ;
+    bridg:DefinedProcedure.usedProduct drugs:ImmunosuppressantB ;
+    bridg:DefinedSubstanceAdministration.doseFrequencyCode [ a dt:CD ] ; # 6/1.0d
+    bridg:DefinedSubstanceAdministration.routeOfAdministrationCode [ a dt:CD ] ; # IV
+    bridg:DefinedSubstanceAdministration.usedDefinedExpressionVariableRelationship study1:varQtyOfImmunosuppressantB . # inv
+
+drugs:ImmunosuppressantA a bridg:Drug ;
+    . # @@ lots to fill in.
+
+drugs:ImmunosuppressantB a bridg:Drug ;
+    . # @@ lots to fill in.
+
+study1:varQtyOfImmunosuppressantA a bridg:DefinedExpressionVariableRelationship ; # @@ where to put ".6mg/kg"?
+    bridg:DefinedExpressionVariableRelationship.usingDefinedSubstanceAdministration study1:generalPrescriptionOfImmunosuppressantA ;
+    bridg:DefinedExpressionVariableRelationship.localVariableName "quantity" ;
+    bridg:DefinedExpressionVariableRelationship.referencedDefinedObservation study1:weight .
+
+study1:varQtyOfImmunosuppressantB a bridg:DefinedExpressionVariableRelationship ; # @@ where to put ".9mg/kg"?
+    bridg:DefinedExpressionVariableRelationship.usingDefinedSubstanceAdministration study1:generalPrescriptionOfImmunosuppressantB ;
+    bridg:DefinedExpressionVariableRelationship.localVariableName "quantity" ;
+    bridg:DefinedExpressionVariableRelationship.referencedDefinedObservation study1:weight .
+
+study1:weight a bridg:DefinedObservation ;
+    bridg:DefinedActivity.nameCode [ a dt:CD ] . # @@ snomed:weight
+

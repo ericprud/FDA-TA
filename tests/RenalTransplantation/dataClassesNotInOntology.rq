@@ -1,0 +1,23 @@
+# sparql -d work.trig dataClassesNotInOntology.rq -L text/raw
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+SELECT DISTINCT ?class
+       ("\n" AS ?EOL)
+ WHERE
+{
+  {
+    ?w a           ?class
+    FILTER (!isBlank(?class) && !strstarts(str(?class), str(owl:)))
+  }
+  MINUS 
+  {
+        { ?x rdfs:domain ?class }
+  UNION { ?x rdfs:range  ?class }
+  UNION { ?x rdfs:subClassOf ?class }
+  UNION { ?class rdfs:subClassOf ?x }
+  UNION { ?class a    owl:class }
+  }
+} ORDER BY ?class
+

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Outcome Assessments</title>
+    <meta name="generator" content="emacs 23.3.1; htmlfontify 0.21" />
+    <style type="text/css"><!-- 
+	body                 { color: #000000;  background: #ffffff; }
+	pre.code             { border-left: medium solid #393;
+                               padding-left: 1em; }
+	span.default         { color: #000000;  text-decoration: none; }
+	span.default a       { color: #000000;  text-decoration: underline; }
+	span.string          { color: #8b2252;  text-decoration: none; }
+	span.string a        { color: #8b2252;  text-decoration: underline; }
+	span.comment         { color: #b22222;  text-decoration: none; }
+	span.comment a       { color: #b22222;  text-decoration: underline; }
+	span.function-name   { color: #0000ff;  text-decoration: none; }
+	span.function-name a { color: #0000ff;  text-decoration: underline; }
+	span.constant        { color: #008b8b;  text-decoration: none; }
+	span.constant a      { color: #008b8b;  text-decoration: underline; }
+	.p_operator          { color: #008b8b;  text-decoration: none; font-weight:bold; }
+	span.type            { color: #228b22;  text-decoration: none; }
+	span.type a          { color: #228b22;  text-decoration: underline; }
+	span.keyword         { color: #a020f0;  text-decoration: none; }
+	.p_keyword           { color: #a020f0;  text-decoration: none; font-weight:bold; }
+	span.keyword a       { color: #a020f0;  text-decoration: underline; }
+
+	pre.sparql           { color: #000000;  background: #ddf; display:table; border-left: medium solid #339; padding-left: 1em; }
+
+
+table.sparqlres {
+	border: medium solid blue;
+	# border-collapse: collapse;
+}
+table.sparqlres th {
+	padding: 1px;
+	border-style: inset;
+	border: 1px solid gray;
+	background-color: white;
+}
+table.sparqlres td {
+	border-width: 1px;
+	padding: 1px;
+	border-style: inset;
+	border-color: gray;
+	background-color: #ddf;
+}
+
+.issue {
+    padding: 1em 1em .4em;
+    margin: 1em 0em 0em;
+    border: 1px solid #f00;
+    background: #ffc;
+}
+
+.issue::before {
+    content:    "Issue";
+    display:    block;
+    width:  3em;
+    margin: -1.5em 0 0.5em 0;
+    font-weight:    bold;
+    border: 1px solid #f00;
+    background: #fff;
+    padding:    3px 1em;
+}
+
+.note {
+    margin: 1em 0em 0em;
+    padding:    1em;
+    border: 2px solid #dee;
+    background: #eff;
+}
+
+.note::before {
+    content:    "Note";
+    display:    block;
+    width:  150px;
+    margin: -1.5em 0 0.5em 0;
+    font-weight:    bold;
+    border: 1px solid #dee;
+    background: #fff;
+    padding:    3px 1em;
+}
+
+   --></style>
+
+    <script type="text/javascript">/*<![CDATA[*/
+    /*]]>*/</script>
+
+  </head>
+  <body onload="stripe('index'); return true;">
+    <h1>Outcome Assessments</h1>
+
+    <p>
+      The <span class="type">core:</span><span class="constant">FunctionOutcomeAssessment</span> class is a <em>documentation of an outcome</em> which captures an initial state, an intervention and a final state.
+      The states are expressed as one or more observations.
+      Here is <a href="../subject-bob.ttl">subject Bob</a>'s death from other causes:
+    </p>
+
+    <pre>
+<span class="type">:</span><span class="constant">subjectsDeathOutcome</span> <span class="keyword">a</span> <span class="type">core:</span><span class="constant">DeathOtherReasons</span> ;
+    <span class="type">core:</span><span class="constant">hasObservationTime</span> <span class="string">"2013-08-28T16:15:00Z"</span><span class="constant">^^xsd:dateTime</span> ;
+    <span class="type">core:</span><span class="constant">beforeIntervention</span> <span class="type">:</span><span class="constant">subjectsOutpatientGFR52</span> , <span class="type">:</span><span class="constant">subjectsGFRpreOp</span> ;
+    <span class="type">core:</span><span class="constant">hasIntervention</span> <span class="type">:</span><span class="constant">subjectOnImmunosuppressantA</span> , <span class="type">:</span><span class="constant">subjectsTransplant</span> ;
+    <span class="type">core:</span><span class="constant">afterIntervention</span> <span class="type">:</span><span class="constant">subjectsDeath</span> ;
+    <span class="type">core:</span><span class="constant">hasResultValue</span> <span class="type">core:</span><span class="constant">PatientDeath</span> .
+    </pre>
+
+    <p>
+      Bob's death outcome is not explicitly asserted to be a <span class="type">core:</span><span class="constant">FunctionOutcomeAssessment</span>, but instead a subclass, <span class="type">core:</span><span class="constant">DeathOtherReasons</span>.
+      <span class="type">core:</span><span class="constant">NegativeOutcome</span> and <span class="type">core:</span><span class="constant">PositiveOutcome</span> are convenient classifications of outcomes to help substantiate claims of safety and efficacy.
+      While <span class="type">core:</span><span class="constant">DeathOtherReasons</span> is certainly negative for the patient, it does not necessarily reflect negatively on the safety or efficacy of the study drug.
+      This organization is visible in the class hierarchy:
+    </p>
+    <img src="mm_OutcomeAssessment-class.png" alt=""/>
+    <p>
+      All outcome assements also have a property <span class="type">core:</span><span class="constant">hasResultValue</span> which codifies the assessment, here <span class="type">core:</span><span class="constant">PatientDeath</span>.
+      While death and losses to follow up transend Therapeutic Areas, most codes will be area-specific.
+    </p>
+
+    <div class="section1">
+      <h2 id="BPAR">BPAR</h2>
+      <div>
+        <div style="float:left">
+        <p>
+          The <a href="../RenalTransplantation.ttl">Renal Rejection</a> Therapeutic Area codifies a set of assessments associated with kidney transplantation.
+          These capture the essential oucomes of a TA study.
+        </p>
+        <pre>
+<span class="type">RenalX:</span>GraftViability
+    <span class="type">rdfs:</span><span class="constant">subClassOf</span> <span class="type">core:</span><span class="constant">FunctionOutcomeAssessmentValue</span> ;
+    <span class="type">owl:</span><span class="constant">oneOf</span> (<span class="type">xplant:</span><span class="constant">NonFunctioningGraft</span> <span class="type">xplant:</span><span class="constant">SubFunctioningGraft</span> <span class="type">xplant:</span><span class="constant">NormalFunctioningGraft</span>) .</pre>
+
+        <p>
+          Each assessment code implies a classe of assessment outcome.
+          For instance, <code>core:hasResultValue <span class="p_keyword">value</span> xplant:NonFunctioningGraft</code> allows the reasoner to conclude that something is a <span class="type">RenalX:</span><span class="constant">GraftLoss</span>.
+          These inferred classes are the classes of outcome assessment specialized to the Renal Rejection Therapeutic Area:
+        </p>
+        </div>
+        <img src="rrej-KidneyGraftOutcomeAssessment-class.png" alt="Protégé class diagram of BPAR"/>
+      </div>
+      <div>
+        <p style="float:left">
+          These are also classified as <span class="type">core:</span><span class="constant">NegativeOutcome</span> and <span class="type">core:</span><span class="constant">PositiveOutcome</span>s. In Protégé, they appear twice in the class hierarcy:
+        </p>
+        <img src="rrej-Negative_Positive-Outcome.png" alt="Protégé class diagram of BPAR"/>
+      </div>
+
+      <p>
+        Axioms enable OWL to infer that certain events are <code>BPAR</code>s.
+        The axiom <code>core:afterIntervention <span class="p_keyword">some</span> (core:hasPathologyFinding <span class="p_keyword">value</span> RenalX:BanffIII) <span class="p_operator">and</span> core:hasResultValue <span class="p_keyword">value</span> xplant:NonFunctioningGraft</code> asserts that anything with an <span class="type">core:</span><span class="constant">hasResultValue</span> of <span class="type">RenalX:</span><span class="constant">NonFunctioningGraft</span> and an <span class="type">core:</span><span class="constant">afterIntervention</span> of something with an <span class="type">core:</span><span class="constant">hasPathologyFinding</span> of <span class="type">RenalX:</span><span class="constant">BanffIII</span> is a <span class="type">RenalX:</span><span class="constant">BPAR</span>.
+      </p>
+
+      <p>
+        As an example, consider <a href="../subject-sue.ttl">subject Sue</a>'s graft rejection:
+      </p>
+      <pre>
+<span class="type">:</span><span class="constant">subjectsRenalBiopsy1report</span> <span class="keyword">a</span> <span class="type">RenalX:</span><span class="constant">RenalBiopsyReport</span> ;
+    <span class="type">core:</span><span class="constant">hasObservationTime</span> <span class="string">"2013-07-08T16:10:00Z"</span><span class="constant">^^xsd:dateTime</span> ;
+    <span class="type">core:</span><span class="constant">hasPathologyFinding</span> <span class="type">RenalX:</span><span class="constant">BanffIII</span> . <span class="comment"># RenalX:BanfIII codes for
+    #  evidence of cell-mediated graft attack, T-cell infiltration.
+</span>
+<span class="type">:</span><span class="constant">subjectsKidneyBPAR</span> <span class="keyword">a</span> <span class="type">RenalX:</span><span class="constant">KidneyGraftOutcomeAssessment</span> ;
+    <span class="type">core:</span><span class="constant">hasObservationTime</span> <span class="string">"2013-07-08T16:15:00Z"</span><span class="constant">^^xsd:dateTime</span> ;
+    <span class="type">core:</span><span class="constant">beforeIntervention</span> <span class="type">:</span><span class="constant">subjectsOutpatientGFR23</span> , <span class="type">:</span><span class="constant">subjectsGFRpreOp</span> ;<span class="comment">
+</span>    <span class="type">core:</span><span class="constant">hasIntervention</span> <span class="type">:</span><span class="constant">subjectOnImmunosuppressantA</span> , <span class="type">:</span><span class="constant">subjectsTransplant</span> ;
+    <span class="type">core:</span><span class="constant">afterIntervention</span> <span class="type">:</span><span class="constant">subjectsRenalBiopsy1report</span> ;<span class="comment">
+</span>    <span class="type">core:</span><span class="constant">hasResultValue</span> <span class="type">xplant:</span><span class="constant">NonFunctioningGraft</span> .
+</pre>
+
+      <p>
+        From this, Protégé is able to infer that a node in Sue's study data called <code>subjectsKidneyBPAR</code> is a member of the class <span class="type">RenalX:</span><span class="constant">BPAR</span>.
+        (Note that there was no inference based on the name of the node; it was only named that way to help readers understand what that node indicated.)
+      </p>
+
+      <img src="BPAR-class.png" alt="Protégé class diagram of BPAR"/>
+
+      <p id="subsumption_GraftLoss" class="note">
+        OWL discovers that every <span class="type">RenalX:</span><span class="constant">BPAR</span> is also a <span class="type">RenalX:</span><span class="constant">GraftLoss</span> because and <span class="type">RenalX:</span><span class="constant">GraftLoss</span> is defined as <code>core:hasResultValue <span class="p_keyword">value</span> xplant:NonFunctioningGraft</code>.
+      </p>
+      <p id="duplication" class="issue">
+        It's not known why the interface shows <code>core:hasIntervention <span class="p_keyword">min</span> 1 owl:Thing</code> multiple times.
+      </p>      
+    </div>
+
+    <div class="section1">
+      <h2 id="misc">misc</h2>
+
+      <p id="judgement" class="issue">
+        The <span class="type">core:</span><span class="constant">Judgement</span> class is expressed here as a superclass of <span class="type">core:</span><span class="constant">Diagnosis</span> and <span class="type">core:</span><span class="constant">FunctionOutcomeAssessment</span>.
+        It's only purpose is to call out in the class hierarchy that both have a <span class="type">core:</span><span class="constant">hasResultValue</span> property.
+        Perhaps this distinction is unnecessary.
+      </p>
+
+      <p id="oucome-obs" class="issue">
+        The  <span class="type">core:</span><span class="constant">FunctionOutcomeAssessment</span> class is a subclass of <span class="type">core:</span><span class="constant">Observation</span> in case one <span class="type">core:</span><span class="constant">FunctionOutcomeAssessment</span> is used to supply the <span class="type">core:</span><span class="constant">beforeIntervention</span> or <span class="type">core:</span><span class="constant">afterIntervention</span> for a continuing <span class="type">core:</span><span class="constant">FunctionOutcomeAssessment</span>.
+      </p>
+    </div>
+
+    <hr/>
+
+    <p id="L822">$Revision: 1.11 $ of $Date: 2014-03-01 12:28:59 $ by
+    <!-- keep -->
+    $Author: eric $</p>
+    <!-- /keep -->
+
+  </body>
+</html>

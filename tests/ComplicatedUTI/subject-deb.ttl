@@ -1,0 +1,66 @@
+# $Id: subject-deb.ttl,v 1.3 2014-02-19 16:39:25 eric Exp $
+#
+# ericP at the keyboard
+
+@prefix : <http://www.w3.org/2013/12/FDA-TA/tests/ComplicatedUTI/subject-deb#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+@prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> .
+@prefix bridg: <http://www.bridgmodel.org/owl#> .
+@prefix bridg999: <http://www.bridgmodel.org/owl999#> .
+@prefix fma: <http://sig.uw.edu/fma#> .
+
+@prefix ucum: <http://unitsofmeasure.org/ucum-essence.xml#> .
+@prefix hl7-T70: <http://amisha.pragmaticdata.com/~gunther/oldhtml/tables.html#70> .
+@prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .
+@prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
+@prefix sys: <http://www.w3.org/2013/12/FDA-TA/systemic#> .
+@prefix renal: <http://www.w3.org/2013/12/FDA-TA/renal#> .
+@prefix cuti: <http://www.w3.org/2013/12/FDA-TA/ComplicatedUTI#> .
+
+@prefix study2: <http://www.w3.org/2013/12/FDA-TA/tests/ComplicatedUTI/study2#> .
+
+<http://www.w3.org/2013/12/FDA-TA/tests/ComplicatedUTI/subject-deb> a owl:Ontology ;
+    owl:imports <http://www.w3.org/2013/12/FDA-TA/core> ,
+               <http://www.w3.org/2013/12/FDA-TA/datatypes> ,
+               <http://www.w3.org/2013/12/FDA-TA/systemic> ,
+               <http://www.w3.org/2013/12/FDA-TA/renal> ,
+               <http://www.w3.org/2013/12/FDA-TA/ComplicatedUTI>  .
+
+:subject 
+    foaf:name "Deb" .
+
+    core:observation :subjectsInitialChills , :subjectsInitialFlankPain , :subjectsInitialVomiting ,
+                     :subjectsInitialLowerQuadrantPain , :subjectsInitialCVApain ,
+                     :subjectsInitialChangeinmentalStatus , :subjectsInitialSuprapubicPain ;
+
+    bridg:performedProcedure :collectBlood1 , :collectUrine1 ;
+    core:specimen :blood1 , :urine1 .
+
+    bridg:performedProcedure :collectBlood2 , :collectUrine2 ;
+    core:specimen :blood2 , :urine2 .
+
+.
+
+:subjectsInitialChills               a   sys:ChillsObservation               ; core:hasObservationtime "2012-08-26T19:57:00Z" ; core:hasResultValue [ data:value true ; data:units xsd:boolean ] ;
+:subjectsInitialFlankPain            a renal:FlankPainObservation            ; core:hasObservationtime "2012-08-26T19:57:00Z" ; core:hasResultValue [ data:value true ; data:units xsd:boolean ] ;
+:subjectsInitialVomiting             a   sys:VomitingObservation             ; core:hasObservationtime "2012-08-26T19:57:00Z" ; core:hasResultValue [ data:value true ; data:units xsd:boolean ] ;
+:subjectsInitialLowerQuadrantPain    a   sys:LowerQuadrantPainObservation    ; core:hasObservationtime "2012-08-26T19:57:00Z" ; core:hasResultValue [ data:value true ; data:units xsd:boolean ] ;
+:subjectsInitialCVApain              a   sys:CVApainObservation              ; core:hasObservationtime "2012-08-26T19:57:00Z" ; core:hasResultValue [ data:value true ; data:units xsd:boolean ] ;
+:subjectsInitialChangeInMentalStatus a   sys:ChangeInMentalStatusObservation ; core:hasObservationtime "2012-08-26T19:57:00Z" ; core:hasResultValue [ data:value true ; data:units xsd:boolean ] ;
+:subjectsInitialSuprapubicPain       a   sys:SuprapubicPainObservation       ; core:hasObservationtime "2012-08-26T19:57:00Z" ; core:hasResultValue [ data:value true ; data:units xsd:boolean ] ;
+
+
+:collectBlood1 a bridg:PerformedSpecimenCollectionq ;
+    core:hasObservationtime "2012-08-26T19:57:00Z"^^xsd:dateTime ;
+    bridg999:performedSpecimenCollection.material sys:Blood .
+    # bridg:performedSpecimenCollection.producedSpecimen :blood1 .
+
+:blood1 a bridg:Specimen , hl7-T70:ABLD ;
+    .
+
+# SpecimenCollection (Procedure) -> Specimen -> StudyConduct:Specimen -> co:Material ->> Product ->> Biologic ->> .code hl7 table
+

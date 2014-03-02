@@ -1,0 +1,336 @@
+# $Id: subject-amy.ttl,v 1.13 2014-03-02 20:40:54 eric Exp $
+#
+# ericP at the keyboard
+
+# RDF core ontologies
+@prefix : <http://www.w3.org/2013/12/FDA-TA/tests/RenalTransplantation/subject-amy#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# External ontologies
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> .
+@prefix bridg: <http://www.bridgmodel.org/owl#> .
+@prefix fma: <http://sig.uw.edu/fma#> .
+@prefix ucum: <http://unitsofmeasure.org/ucum-essence.xml#> .
+
+# TA foundational ontologies
+@prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
+@prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .
+@prefix renal: <http://www.w3.org/2013/12/FDA-TA/renal#> .
+@prefix xplant: <http://www.w3.org/2013/12/FDA-TA/transplant#> .
+@prefix sys: <http://www.w3.org/2013/12/FDA-TA/systemic#> .
+@prefix RenalX: <http://www.w3.org/2013/12/FDA-TA/RenalTransplantation#> .
+
+# Instance data ontologies
+@prefix drugs: <http://www.w3.org/2013/12/FDA-TA/drugs#> .
+@prefix study1: <http://www.w3.org/2013/12/FDA-TA/tests/RenalTransplantation/study1#> .
+
+<http://www.w3.org/2013/12/FDA-TA/tests/RenalTransplantation/subject-amy> a owl:Ontology ;
+    owl:imports <http://www.w3.org/2013/12/FDA-TA/drugs> ,
+                <http://www.w3.org/2013/12/FDA-TA/RenalTransplantation> .
+
+:asSubject a bridg:StudySubject ;
+    bridg:StudySubject.assignedStudySubjectProtocolVersionRelationship 1 ;
+    bridg:Subject.performingBiologicEntity [
+        a bridg:Person ;
+        foaf:name "Amy";
+	# example demographics: age sex weight height region
+	bridg:Person.primaryOccupationCode [ a dt:CD ] ;
+	bridg:Person.raceCode [ a dt:CD ] ;
+    ] ;
+
+    # Amy has a baseline state: low GFR (40 ml/hr) and elevated serum creatinine and time on dialysis of 6 months.
+    core:observation :subjectsOutpatientGFR10 , :subjectsOutpatientSCr50 ;
+
+    # Amy has a transplant and is treated with anti-rejection ImmunosuppressantB.
+    # core:prescription :subjectOnImmunosuppressantB ;
+    core:involvingScheduledSubstanceAdministration :subjectOnImmunosuppressantB ;
+    core:observation :subjectsGFRpreOp ;
+    core:hasIntervention :adminImmunosuppressantB-2013-10-16T07-05 ;
+    # bridg:Subject.involvingActivity :@@1 ; # inv
+    core:hasIntervention :subjectsTransplant ;
+    core:hasIntervention :adminImmunosuppressantB-2013-10-16T11-01 ,
+                         :adminImmunosuppressantB-2013-10-16T14-50 ,
+                         :adminImmunosuppressantB-2013-10-16T18-55 ;
+
+    # Post-Op, she has SCr and 24 hour urine output measurements done daily for five days.
+    core:observation :subjectsPostOpHour12UrineOutput , :subjectsPostOpHour12Temperature , :subjectsPostOpHour12SiteTenderness , :subjectsPostOpHour12SCr , :subjectsPostOpHour12GFR ;
+
+    core:hasIntervention :adminImmunosuppressantB-2013-10-16T22-58 ,
+                         :adminImmunosuppressantB-2013-10-17T02-56 ,
+                         :adminImmunosuppressantB-2013-10-17T06-51 ,
+                         :adminImmunosuppressantB-2013-10-17T10-53 ,
+                         :adminImmunosuppressantB-2013-10-17T14-57 ;
+
+    core:observation :subjectsPostOpHour36UrineOutput , :subjectsPostOpHour36Temperature , :subjectsPostOpHour36SiteTenderness , :subjectsPostOpHour36SCr ;
+
+    core:hasIntervention :adminImmunosuppressantB-2013-10-17T18-58 ,
+                         :adminImmunosuppressantB-2013-10-17T23-01 ,
+                         :adminImmunosuppressantB-2013-10-18T03-01 ,
+                         :adminImmunosuppressantB-2013-10-18T07-05 ,
+                         :adminImmunosuppressantB-2013-10-18T11-04 ;
+
+    core:observation :subjectsPostOpDay3UrineOutput , :subjectsPostOpDay3Temperature , :subjectsPostOpDay3SiteTenderness , :subjectsPostOpDay3SCr ;
+
+    core:hasIntervention :adminImmunosuppressantB-2013-10-18T15-03 ,
+                         :adminImmunosuppressantB-2013-10-18T19-06 ,
+                         :adminImmunosuppressantB-2013-10-18T23-02 ,
+                         :adminImmunosuppressantB-2013-10-19T02-55 ,
+                         :adminImmunosuppressantB-2013-10-19T07-05 ,
+                         :adminImmunosuppressantB-2013-10-19T11-10 ;
+
+    core:observation :subjectsPostOpDay4UrineOutput , :subjectsPostOpDay4Temperature , :subjectsPostOpDay4SiteTenderness , :subjectsPostOpDay4SCr ;
+
+    core:hasIntervention :adminImmunosuppressantB-2013-10-18T15-03 ,
+                         :adminImmunosuppressantB-2013-10-18T19-06 ,
+                         :adminImmunosuppressantB-2013-10-18T23-02 ,
+                         :adminImmunosuppressantB-2013-10-19T02-55 ,
+                         :adminImmunosuppressantB-2013-10-19T07-05 ;
+
+    core:observation :subjectsPostOpDay5UrineOutput , :subjectsPostOpDay5Temperature , :subjectsPostOpDay5SiteTenderness , :subjectsPostOpDay5SCr , :subjectsPostOpDay5GFR ;
+
+    # Given the all-clear
+    core:hasOutcomeAssessment :subjectsGFRTrend , :subjectsSCrTrend , :subjectsKidneyGraftWithNormalFunction .
+
+:subjectsRightKidney a bridg:ExperimentalUnit ; a fma:Kidney ;
+    :BiologicEntityPart.anatomicSiteLateralityCode [ a dt:CD ] ; # right
+    bridg:ExperimentalUnit.performedArm study1:arm1 .
+
+:identifier a bridg:SubjectIdentifier ;
+    bridg:SubjectIdentifier.identifiedSubject :asSubject ;
+    bridg:SubjectIdentifier.identifier [ a dt:II ] ;
+    bridg:SubjectIdentifier.typeCode [ a dt:CD ] .
+
+[ a bridg:StudySubjectProtocolVersionRelationship ;
+    bridg:StudySubjectProtocolVersionRelationship.assigningStudySubject :asSubject ;
+    bridg:StudySubjectProtocolVersionRelationship.effectiveDateRange [ a dt:IVL_TS.DATETIME ] ;
+    bridg:StudySubjectProtocolVersionRelationship.assigningStudySiteProtocolVersionRelationship [
+        a bridg:StudySiteProtocolVersionRelationship ;
+        bridg:StudySiteProtocolVersionRelationship.executedStudyProtocolVersion study1:version1
+    ]
+] .
+
+
+###############################################################################
+# Observations and Assessments:
+
+# background state
+:subjectsOutpatientGFR10 a renal:GfrFlowRateObservation ;
+    core:hasObservationTime "2013-10-14T19:34:00Z"^^xsd:dateTime ;
+    core:hasResultValue [ data:value 21.0 ; data:units ucum:mL-per-minute ] .
+
+:subjectsOutpatientSCr50 a renal:SerumCreatinineObservation ;
+    core:hasObservationTime "2013-10-14T19:41:00Z"^^xsd:dateTime ;
+    core:hasResultValue [ data:value 4.5 ; data:units ucum:mg_dL ].
+
+# pre-op diagnostics
+:subjectsGFRpreOp a renal:GfrFlowRateObservation ;
+    core:hasObservationTime "2013-10-16T07:06:00Z"^^xsd:dateTime ;
+    core:hasResultValue [ data:value 20.0 ; data:units ucum:mL-per-minute ] .
+
+# interventions
+# :subjectOnImmunosuppressantB a core:MedicationPrescription ; core:prescriptionTime "2013-10-16T07:03:00Z"^^xsd:dateTime ;
+:subjectOnImmunosuppressantB a bridg:ScheduledSubstanceAdministration ; # a core:ScheduledMedicationAdministration ;
+    bridg:ScheduledActivity.instantiatedPlannedActivity study1:prescribeImmunosuppressantB ;
+    bridg:ScheduledActivity.dateRange [ a dt:IVL_TS.DATETIME ; dt:IVL_TS.DATETIME.low "2013-10-16T07:03:00Z"^^xsd:dateTime ] ;
+    bridg:Activity.involvedSubject :asSubject ;
+    bridg:Activity.involvedExperimentalUnit :subjectsRightKidney ;
+    core:medication drugs:ImmunosuppressantB ;
+    core:hasDosagePlan [ 
+        core:hasMedicationQuantity [ data:value 50.0 ; data:units ucum:mg ] ;
+        core:hasMedicationSchedule [ core:hasMedicationFrequency 6 ; core:hasMedicationDuration 1.0 ; core:hasMedicationUnits "d" ]
+    ] .
+
+:adminImmunosuppressantB-2013-10-16T07-05 core:date "2013-10-16T07:05:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
+
+:organExtraction a bridg:PerformedSubstanceExtraction ;
+    bridg:PerformedSubstanceExtraction.producedBiologic [
+        a bridg:Biologic ;
+        bridg:Biologic.handlingCode [ a dt:CD ] # @@ "4C 90 minutes"
+	# bridg:Material.producingDefinedMaterialProcessStep ...
+    ] ;
+    bridg:PerformedSubstanceExtraction.usedSubstanceExtractionAdministrationRelationship [
+        bridg:SubstanceExtractionAdministrationRelationship.usingPerformedSubstanceAdministration :subjectsTransplant ;
+        bridg:SubstanceExtractionAdministrationRelationship.donorTypeCode "Unrelated donor" ; # ... ABO and HLA compatibility
+        bridg:SubstanceExtractionAdministrationRelationship.relationCode "Living Unrelated" # could use some coded values for this.
+    ] .
+
+:subjectsTransplant a RenalX:RenalTransplantProcedure ;
+    core:hasInterventionTime "2013-10-16T07:18:00Z"^^xsd:dateTime .
+
+:adminImmunosuppressantB-2013-10-16T11-01 core:date "2013-10-16T11:01:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
+:adminImmunosuppressantB-2013-10-16T14-50 core:date "2013-10-16T14:50:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
+:adminImmunosuppressantB-2013-10-16T18-55 core:date "2013-10-16T18:55:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
+
+# 12 hours post-op: urine output, temperature, site tenderness (for diffuse tenderness), serum creatinine, GFR
+:subjectsPostOpHour12UrineOutput a renal:UrineVolume24hourObservation ;
+    core:hasObservationTime "2013-10-16T19:37:00Z"^^xsd:dateTime ;
+    core:hasResultValue [ data:value 2.1 ; data:units ucum:L ].
+
+:subjectsPostOpHour12Temperature a sys:CoreTemperatureObservation ;
+    core:hasObservationTime "2013-10-16T19:38:00Z"^^xsd:dateTime ;
+    core:hasResultValue [ data:value 37.0 ; data:units ucum:C ].
+
+:subjectsPostOpHour12SiteTenderness a sys:SiteTendernessObservation ;
+    core:hasObservationTime "2013-10-16T19:39:00Z"^^xsd:dateTime ;
+    core:hasResultValue [ data:value "2+" ; data:units data:subjectiveScale1_4 ].
+
+:subjectsPostOpHour12SCr a renal:SerumCreatinineObservation ;
+    core:hasObservationTime "2013-10-16T19:41:00Z"^^xsd:dateTime ;
+    core:hasResultValue [ data:value 2.5 ; data:units ucum:mg_dL ].
+
+:subjectsPostOpHour12GFR a renal:GfrFlowRateObservation ;
+    core:hasObservationTime "2013-10-16T20:10:00Z"^^xsd:dateTime ;
+    core:hasResultValue [ data:value 25.0 ; data:units ucum:mL-per-minute ].
+
+:adminImmunosuppressantB-2013-10-16T22-58 core:date "2013-10-16T22:58:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
+:adminImmunosuppressantB-2013-10-17T02-56 core:date "2013-10-17T02:56:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
+:adminImmunosuppressantB-2013-10-17T06-51 core:date "2013-10-17T06:51:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
+:adminImmunosuppressantB-2013-10-17T10-53 core:date "2013-10-17T10:53:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
+:adminImmunosuppressantB-2013-10-17T14-57 core:date "2013-10-17T14:57:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
+
+# 36 hours post-op: urine output, temperature, site tenderness (for diffuse tenderness), serum creatinine
+:subjectsPostOpHour36UrineOutput a renal:UrineVolume24hourObservation ;
+    core:hasObservationTime "2013-10-17T18:28:00Z"^^xsd:dateTime ;
+    core:hasResultValue [ data:value 2.2 ; data:units ucum:L ].
+
+:subjectsPostOpHour36Temperature a sys:CoreTemperatureObservation ;
+    core:hasObservationTime "2013-10-17T18:29:00Z"^^xsd:dateTime ;
+    core:hasResultValue [ data:value 37.9 ; data:units ucum:C ].
+
+:subjectsPostOpHour36SiteTenderness a sys:SiteTendernessObservation ;
+    core:hasObservationTime "2013-10-17T18:30:00Z"^^xsd:dateTime ;
+    core:hasResultValue [ data:value "3+" ; data:units data:subjectiveScale1_4 ].
+
+:subjectsPostOpHour36SCr a renal:SerumCreatinineObservation ;
+    core:hasObservationTime "2013-10-17T19:32:00Z"^^xsd:dateTime ;
+    core:hasResultValue [ data:value 2.4 ; data:units ucum:mg_dL ].
+
+:adminImmunosuppressantB-2013-10-17T18-58 core:date "2013-10-17T18:58:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
+:adminImmunosuppressantB-2013-10-17T23-01 core:date "2013-10-17T23:01:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
+:adminImmunosuppressantB-2013-10-18T03-01 core:date "2013-10-18T03:01:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
+:adminImmunosuppressantB-2013-10-18T07-05 core:date "2013-10-18T07:05:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
+:adminImmunosuppressantB-2013-10-18T11-04 core:date "2013-10-18T11:04:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
+
+# 3 days post-op: urine output, temperature, site tenderness (for diffuse tenderness), serum creatinine, GFR
+:subjectsPostOpDay3UrineOutput a renal:UrineVolume24hourObservation ;
+    core:hasObservationTime "2013-10-18T14:18:00Z"^^xsd:dateTime ;
+    core:hasResultValue [ data:value 2.4 ; data:units ucum:L ].
+
+:subjectsPostOpDay3Temperature a sys:CoreTemperatureObservation ;
+    core:hasObservationTime "2013-10-18T14:19:00Z"^^xsd:dateTime ;
+    core:hasResultValue [ data:value 37.1 ; data:units ucum:C ].
+
+:subjectsPostOpDay3SiteTenderness a sys:SiteTendernessObservation ;
+    core:hasObservationTime "2013-10-18T14:20:00Z"^^xsd:dateTime ;
+    core:hasResultValue [ data:value "2+" ; data:units data:subjectiveScale1_4 ].
+
+:subjectsPostOpDay3SCr a renal:SerumCreatinineObservation ;
+    core:hasObservationTime "2013-10-18T14:22:00Z"^^xsd:dateTime ;
+    core:hasResultValue [ data:value 1.9 ; data:units ucum:mg_dL ].
+
+:adminImmunosuppressantB-2013-10-18T15-03 core:date "2013-10-18T15:03:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
+:adminImmunosuppressantB-2013-10-18T19-06 core:date "2013-10-18T19:06:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
+:adminImmunosuppressantB-2013-10-18T23-02 core:date "2013-10-18T23:02:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
+:adminImmunosuppressantB-2013-10-19T02-55 core:date "2013-10-19T02:55:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
+:adminImmunosuppressantB-2013-10-19T07-05 core:date "2013-10-19T07:05:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
+:adminImmunosuppressantB-2013-10-19T11-10 core:date "2013-10-19T11:10:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
+
+# 4 days post-op: urine output, temperature, site tenderness (for local tenderness), serum creatinine
+:subjectsPostOpDay4UrineOutput a renal:UrineVolume24hourObservation ;
+    core:hasObservationTime "2013-10-19T14:38:00Z"^^xsd:dateTime ;
+    core:hasResultValue [ data:value 2.2 ; data:units ucum:L ].
+
+:subjectsPostOpDay4Temperature a sys:CoreTemperatureObservation ;
+    core:hasObservationTime "2013-10-19T14:39:00Z"^^xsd:dateTime ;
+    core:hasResultValue [ data:value 36.9 ; data:units ucum:C ].
+
+:subjectsPostOpDay4SiteTenderness a sys:SiteTendernessObservation ;
+    core:hasObservationTime "2013-10-19T14:40:00Z"^^xsd:dateTime ;
+    core:hasResultValue [ data:value "1+" ; data:units data:subjectiveScale1_4 ].
+
+:subjectsPostOpDay4SCr a renal:SerumCreatinineObservation ;
+    core:hasObservationTime "2013-10-19T14:42:00Z"^^xsd:dateTime ;
+    core:hasResultValue [ data:value 1.7 ; data:units ucum:mg_dL ].
+
+:adminImmunosuppressantB-2013-10-19T15-10 core:date "2013-10-19T15:10:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
+:adminImmunosuppressantB-2013-10-19T19-14 core:date "2013-10-19T19:14:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
+:adminImmunosuppressantB-2013-10-19T23-11 core:date "2013-10-19T23:11:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
+:adminImmunosuppressantB-2013-10-20T03-15 core:date "2013-10-20T03:15:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
+:adminImmunosuppressantB-2013-10-20T07-13 core:date "2013-10-20T07:13:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
+
+# 5 days post-op: urine output, temperature, site tenderness (for local tenderness), serum creatinine, GFR
+:subjectsPostOpDay5UrineOutput a renal:UrineVolume24hourObservation ;
+    core:hasObservationTime "2013-10-20T10:42:00Z"^^xsd:dateTime ;
+    core:hasResultValue [ data:value 2.2 ; data:units ucum:L ].
+
+:subjectsPostOpDay5Temperature a sys:CoreTemperatureObservation ;
+    core:hasObservationTime "2013-10-20T10:43:00Z"^^xsd:dateTime ;
+    core:hasResultValue [ data:value 37.0 ; data:units ucum:C ].
+
+:subjectsPostOpDay5SiteTenderness a sys:SiteTendernessObservation ;
+    core:hasObservationTime "2013-10-20T10:44:00Z"^^xsd:dateTime ;
+    core:hasResultValue [ data:value "1+" ; data:units data:subjectiveScale1_4 ].
+
+:subjectsPostOpDay5SCr a renal:SerumCreatinineObservation ;
+    core:hasObservationTime "2013-10-20T10:46:00Z"^^xsd:dateTime ;
+    core:hasResultValue [ data:value 1.7 ; data:units ucum:mg_dL ].
+
+:subjectsPostOpDay5GFR a renal:GfrFlowRateObservation ;
+    core:hasObservationTime "2013-10-20T11:30:00Z"^^xsd:dateTime ;
+    core:hasResultValue [ data:value 103.0 ; data:units ucum:mL-per-minute ].
+
+
+# Positive outcome
+:subjectsGFRTrend a renal:RenalFunctionOutcomeAssessment ; # a RenalX:GraftSurvival ;
+    core:hasObservationTime "2013-10-19T12:34:00Z"^^xsd:dateTime ;
+    core:beforeIntervention :subjectsOutpatientGFR10 , :subjectsGFRpreOp ;
+    core:prescription :subjectOnImmunosuppressantB ;
+    core:hasIntervention :subjectsTransplant ;
+    core:afterIntervention :subjectsPostOpHour12GFR , :subjectsPostOpDay5GFR ;
+    core:hasResultValue renal:ImprovedToNormal .
+
+:subjectsSCrTrend a renal:RenalFunctionOutcomeAssessment ; # a RenalX:GraftSurvival ;
+    core:hasObservationTime "2013-10-19T12:34:00Z"^^xsd:dateTime ;
+    core:beforeIntervention :subjectsOutpatientSCr50 ;
+    core:prescription :subjectOnImmunosuppressantB ;
+    core:hasIntervention :subjectsTransplant ;
+    core:afterIntervention :subjectsPostOpHour12SCr , :subjectsPostOpHour36SCr ,
+                           :subjectsPostOpDay3SCr , :subjectsPostOpDay4SCr , :subjectsPostOpDay5SCr ;
+    core:hasResultValue renal:ImprovedToNormal .
+
+:subjectsKidneyGraftWithNormalFunction a RenalX:KidneyGraftOutcomeAssessment ; # a RenalX:GraftSurvival ;
+    core:hasObservationTime "2013-10-19T12:34:00Z"^^xsd:dateTime ;
+    core:beforeIntervention :subjectsOutpatientGFR10 , :subjectsGFRpreOp ;
+    core:prescription :subjectOnImmunosuppressantB ;
+    # core:hasIntervention :subjectsTransplant ;
+    core:hasIntervention :adminImmunosuppressantB-2013-10-16T07-05 ,
+                         :adminImmunosuppressantB-2013-10-16T11-01 ,
+                         :adminImmunosuppressantB-2013-10-16T14-50 ,
+                         :adminImmunosuppressantB-2013-10-16T18-55 ,
+                         :adminImmunosuppressantB-2013-10-16T22-58 ,
+                         :adminImmunosuppressantB-2013-10-17T02-56 ,
+                         :adminImmunosuppressantB-2013-10-17T06-51 ,
+                         :adminImmunosuppressantB-2013-10-17T10-53 ,
+                         :adminImmunosuppressantB-2013-10-17T14-57 ,
+                         :adminImmunosuppressantB-2013-10-17T18-58 ,
+                         :adminImmunosuppressantB-2013-10-17T23-01 ,
+                         :adminImmunosuppressantB-2013-10-18T03-01 ,
+                         :adminImmunosuppressantB-2013-10-18T07-05 ,
+                         :adminImmunosuppressantB-2013-10-18T11-04 ,
+                         :adminImmunosuppressantB-2013-10-18T15-03 ,
+                         :adminImmunosuppressantB-2013-10-18T19-06 ,
+                         :adminImmunosuppressantB-2013-10-18T23-02 ,
+                         :adminImmunosuppressantB-2013-10-19T02-55 ,
+                         :adminImmunosuppressantB-2013-10-19T07-05 ,
+                         :adminImmunosuppressantB-2013-10-19T11-10 ,
+                         :adminImmunosuppressantB-2013-10-18T15-03 ,
+                         :adminImmunosuppressantB-2013-10-18T19-06 ,
+                         :adminImmunosuppressantB-2013-10-18T23-02 ,
+                         :adminImmunosuppressantB-2013-10-19T02-55 ,
+                         :adminImmunosuppressantB-2013-10-19T07-05 ;
+    core:afterIntervention :subjectsPostOpDay5GFR ;
+    core:hasResultValue xplant:NormalFunctioningGraft .
+

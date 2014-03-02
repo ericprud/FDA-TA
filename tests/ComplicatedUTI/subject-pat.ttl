@@ -1,0 +1,31 @@
+# $Id: subject-pat.ttl,v 1.2 2014-02-17 10:16:38 eric Exp $
+#
+# ericP at the keyboard
+
+@prefix : <http://www.w3.org/2013/12/FDA-TA/tests/ComplicatedUTI/subject-pat#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+@prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> .
+@prefix bridg: <http://www.bridgmodel.org/owl#> .
+@prefix fma: <http://sig.uw.edu/fma#> .
+
+@prefix ucum: <http://unitsofmeasure.org/ucum-essence.xml#> .
+@prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .
+@prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
+@prefix renal: <http://www.w3.org/2013/12/FDA-TA/renal#> .
+@prefix RenalX: <http://www.w3.org/2013/12/FDA-TA/ComplicatedUTI#> .
+
+@prefix study2: <http://www.w3.org/2013/12/FDA-TA/tests/ComplicatedUTI/study2#> .
+
+<http://www.w3.org/2013/12/FDA-TA/tests/ComplicatedUTI/subject-pat> a owl:Ontology ;
+    owl:imports <http://www.w3.org/2013/12/FDA-TA/core> ,
+               <http://www.w3.org/2013/12/FDA-TA/datatypes> ,
+               <http://www.w3.org/2013/12/FDA-TA/renal> ,
+               <http://www.w3.org/2013/12/FDA-TA/ComplicatedUTI>  .
+
+:subject 
+    foaf:name "Pat" .
+

@@ -1,0 +1,3 @@
+<Files ~ "\.rq">
+   ForceType 'application/sparql-query; charset=utf-8'
+</Files>
