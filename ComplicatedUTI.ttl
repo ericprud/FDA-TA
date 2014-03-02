@@ -1,0 +1,323 @@
+# $Id: ComplicatedUTI.ttl,v 1.5 2014-03-02 20:39:04 eric Exp $
+#
+# ericP at the keyboard
+
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+@prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> .
+@prefix bridg: <http://www.bridgmodel.org/owl#> .
+# @prefix fma: <http://sig.uw.edu/fma#> .
+
+@prefix sys: <http://www.w3.org/2013/12/FDA-TA/systemic#> .
+@prefix renal: <http://www.w3.org/2013/12/FDA-TA/renal#> .
+@prefix : <http://www.w3.org/2013/12/FDA-TA/ComplicatedUTI#> .
+@prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .
+@prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
+
+<http://www.w3.org/2013/12/FDA-TA/ComplicatedUTI> a owl:Ontology ;
+    owl:imports <http://www.w3.org/2013/12/FDA-TA/core> ,
+        <http://www.w3.org/2013/12/FDA-TA/renal> .
+
+# Hang all of our meds off of cuti:Drug{Prescription,Administration} .
+:DrugPrescription rdfs:subClassOf bridg:ScheduledSubstanceAdministration .
+:DrugAdministration rdfs:subClassOf bridg:PerformedSubstanceAdministration .
+
+:ClinicalOutcomeValue owl:oneOf ( :Indeterminate :Cured :Failed :Improved ) .
+:Indeterminate rdfs:subClassOf dt:CD .
+:Cured rdfs:subClassOf dt:CD .
+:Failed rdfs:subClassOf dt:CD .
+:Improved rdfs:subClassOf dt:CD .
+
+# infection route
+:RouteOfInfection owl:oneOf ( :Ascending :Hematogenous ) .
+:Ascending rdfs:subClassOf dt:CD ; skos:example "Ascending Pyelonephritis" .
+:AscendingPyelonephritis rdfs:subClassOf :Ascending . # example 
+:Hematogenous rdfs:subClassOf dt:CD ; skos:example "Endocarditis" .
+:Endocarditis rdfs:subClassOf :Hematogenous . # example
+
+# infection type
+:TypeOfInfection owl:oneOf ( :cUTI :AcutePyelonephritis ) .
+:cUTI rdfs:subClassOf dt:CD ,
+    [ owl:onProperty :complicatingFactor ; owl:hasValue :IndwellingCatheter ] . # minCard 0 
+:complicatingFactor a owl:ObjectProperty .
+
+:ComplicatingFactor owl:oneOf ( :Obstructive_Uropathy :Azotemia :Male_with_Urinary_Retention 
+                                :Urine_Residual_Volume :Neurogenic_Bladder :IndwellingCatheter ) .
+
+##### subject stratification
+# route
+:RouteStratificationCriterion a bridg:DefinedStratificationCriterion ;
+    bridg:DefinedObservation.focusingDefinedObservationResult 
+        :AscendingRouteStratificationCriterion , :HematogenousRouteStratificationCriterion .
+:AscendingRouteStratificationCriterion a bridg:DefinedStratificationCriterionPermissibleResult .
+:HematogenousRouteStratificationCriterion a bridg:DefinedStratificationCriterionPermissibleResult .
+
+# type
+:typeStratificationCriterion a bridg:DefinedStratificationCriterion ;
+    bridg:DefinedObservation.focusingDefinedObservationResult 
+        :CUTIRouteStratificationCriterion , :AcutePyelonephritisRouteStratificationCriterion .
+:CUTITypeStratificationCriterion a bridg:DefinedStratificationCriterionPermissibleResult .
+:AcutePyelonephritisTypeStratificationCriterion a bridg:DefinedStratificationCriterionPermissibleResult .
+
+# strata (2x2)
+:_Ascending_cUTI_Stratum a bridg:StratumGroup ;
+    bridg:StratumGroup.characterizingDefinedStratificationCriterionPermissibleResult 
+        :AscendingRouteStratificationCriterion , :CUTITypeStratificationCriterion ;
+    bridg:StratumGroup.describingStudyProtocolVersion :Ascending_cUTI_Protocol .
+:_Hematogenous_cUTI_Stratum a bridg:StratumGroup ;
+    bridg:StratumGroup.characterizingDefinedStratificationCriterionPermissibleResult 
+        :HematogenousRouteStratificationCriterion , :CUTITypeStratificationCriterion ;
+    bridg:StratumGroup.describingStudyProtocolVersion :Hematogenous_cUTI_Protocol .
+:_Ascending_AcutePyelonephritis_Stratum a bridg:StratumGroup ;
+    bridg:StratumGroup.characterizingDefinedStratificationCriterionPermissibleResult 
+        :AscendingRouteStratificationCriterion , :AcutePyelonephritisTypeStratificationCriterion ;
+    bridg:StratumGroup.describingStudyProtocolVersion :Ascending_AcutePyelonephritis_Protocol .
+:_Hematogenous_AcutePyelonephritis_Stratum a bridg:StratumGroup ;
+    bridg:StratumGroup.characterizingDefinedStratificationCriterionPermissibleResult 
+        :HematogenousRouteStratificationCriterion , :AcutePyelonephritisTypeStratificationCriterion ;
+    bridg:StratumGroup.describingStudyProtocolVersion :Hematogenous_AcutePyelonephritis_Protocol .
+:MicrobErad_ProtocolVersion owl:oneOf ( :Ascending_cUTI_Protocol :Hematogenous_cUTI_Protocol 
+                                 :Ascending_AcutePyelonephritis_Protocol :Hematogenous_AcutePyelonephritis_Protocol ).
+
+# :ClinicalCureRate rdfs:subClassOf :EfficacyEndpoint .
+
+:DefinedClinicalEradicationRateEndpoints owl:oneOf
+    ( :DefnClinEradicationRateEndpoint_CE_TOC :DefnClinEradicationRateEndpoint_CE_EOT 
+      :DefnClinEradicationRateEndpoint_MITT_TOC :DefnClinEradicationRateEndpoint_MITT_EOT ) .
+
+:DefinedClinicalEradicationRateEndpoint rdfs:subClassOf core:DefinedEfficacyEndpoint .
+:DefnClinEradicationRateEndpoint_CE_TOC rdfs:subClassOf :DefinedClinicalEradicationRateEndpoint .
+:DefnClinEradicationRateEndpoint_CE_EOT rdfs:subClassOf :DefinedClinicalEradicationRateEndpoint .
+:DefnClinEradicationRateEndpoint_MITT_TOC rdfs:subClassOf :DefinedClinicalEradicationRateEndpoint .
+:DefnClinEradicationRateEndpoint_MITT_EOT rdfs:subClassOf :DefinedClinicalEradicationRateEndpoint .
+
+# :ClinicalCureRate
+# :Efficacy_Endpoints :includes :ClinicalCureRate .
+### :ClinicalEradicationRateEndpoint 
+###     rdfs:subClassOf :EfficacyEndpoint ,
+###         [ owl:onProperty core:hasObservation ; owl:someValuesFrom :ClinicalOutcome ] ,
+###         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:SomeValuesFrom :DefinedClinicalEradicationRateEndpoints ] .
+
+#  :ClinicalCureRate :calculated_by :ClinicalCureRateFormula .
+# ----
+
+# cUTI's :DefinedClinicalOutcome - bridg:isAbstract true ;
+:DefinedClinicalOutcome rdfs:subClassOf core:DefinedSingleOutcomeAssessment ,
+    [ owl:onProperty :hasObservationType  ; owl:someValuesFrom :SSXofcUTIandAP ] ,
+    [ owl:onProperty :hasInterventionType ; owl:someValuesFrom :DrugAdministration ] ,
+    [ owl:onProperty :lastInterventionToAfterDuration ; owl:hasValue [ owl:oneOf ( :TreatmentDay3 :EOTVisit :TOCVisit :LTFUVisit ) ] ].
+# instantiate these classes in protocol definition, all have bridg:isAbstract false ;
+:DefinedClinicalDay3Outcome rdfs:subClassOf :DefinedClinicalOutcome ; :lastInterventionToAfterDuration :TreatmentDay3 .
+:DefinedClinicalEOTOutcome rdfs:subClassOf :DefinedClinicalOutcome ; :lastInterventionToAfterDuration :TreatmentEOT .
+:DefinedClinicalTOCOutcome rdfs:subClassOf :DefinedClinicalOutcome ; :lastInterventionToAfterDuration :TreatmentTOC .
+:DefinedClinicalLTFUOutcome rdfs:subClassOf :DefinedClinicalOutcome ; :lastInterventionToAfterDuration :TreatmentLTFU .
+
+# changed :ClinicalCureRateFormula :calculated_from :ClinicalOutcome . # ...
+# to :ClinicalCureRate :calculated_from :ClinicalOutcome . # ...
+
+# maybe rename to something like :cUTI_signsAndSymptoms
+:SSXofcUTIandAP owl:equivalentClass [ owl:unionOf  
+  ( sys:Lower_Quadrant_Pain sys:Abdominal_Pain sys:Groin_Pain sys:Vomiting sys:Dysuria sys:Nausia sys:Fever 
+    sys:Tenderness sys:Back_Pain sys:Malaise sys:Flank_Pain sys:Chills sys:Costo-Vertibral_Angle_Pain 
+    sys:Urinary_Frequency sys:Urinary_Urgency sys:Suprapubic_Pain sys:Change_In_Mental_Status 
+  ) ].
+### # :SSXofcUTIandAP
+### # :ClinicalOutcome :assessed_from :SSXofcUTIandAP .
+### # :Clinical_Cure :of :SSXofcUTIandAP .
+### # :Resolution :of :SSXofcUTIandAP .
+
+
+# :ClinicalOutcome
+:ClinicalOutcome 
+    rdfs:subClassOf :SingleOutcomeAssessment ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:SomeValuesFrom :DefinedClinicalOutcome ] ,
+	[ owl:onProperty bridg:PerformedObservation.reportingAssessor ; owl:someValuesFrom [
+            owl:intersectionOf ( bridg:StudyInvestigator bridg:StudyLegalSponsor )
+        ] ] ,
+        # @@   :Sponsor :supercedes_assessment_of :Investigator .
+        [ owl:onProperty core:beforeIntervention ; owl:allValuesFrom :SSXofcUTIandAP ] ,
+        [ owl:onProperty core:prescription ; owl:allValuesFrom :DrugPrescription ] ,
+        [ owl:onProperty core:hasIntervention ; owl:allValuesFrom :DrugAdministration ] ,
+        [ owl:onProperty core:afterIntervention ; owl:allValuesFrom :SSXofcUTIandAP ] ,
+        [ owl:onProperty core:hasResultValue ; owl:allValuesFrom [
+            rdfs:subClassOf bridg:PerformedObservationResult ,
+                [ owl:onProperty core:typeCode ; owl:allValuesFrom :ClinicalOutcomeValue ]
+        ] ] .
+#  :ClinicalOutcome :assessed_from :SSXofcUTIandAP . # ...
+#  :ClinicalOutcome :assessed_for :Patient . # ...
+
+# :MicrobiologicalEradicationRate
+# :Efficacy_Endpoints :includes :MicrobiologicalEradicationRate .
+
+:MicrobErad_StudyActivity rdfs:subClassOf bridg:StudyActivity ,
+    [ owl:onProperty bridg:StudyActivity.usedDefinedActivity ; owl:someValuesFrom :DefinedMicrobiologicalEradicationRateEndpoints ] ,
+    [ owl:onProperty bridg:StudyActivity.usingStudyProtocolVersion ; owl:someValuesFrom :MicrobErad_ProtocolVersion ] .
+
+:DefinedMicrobiologicalEradicationRateEndpoints owl:oneOf
+    ( :DefnMicrobEradicationRateEndpoint_ME_TOC :DefnMicrobEradicationRateEndpoint_ME_EOT 
+      :DefnMicrobEradicationRateEndpoint_MITT_TOC :DefnMicrobEradicationRateEndpoint_MITT_EOT ) .
+
+:DefinedMicrobiologicalEradicationRateEndpoint rdfs:subClassOf core:DefinedEfficacyEndpoint .
+:DefnMicrobEradicationRateEndpoint_ME_TOC rdfs:subClassOf :DefinedMicrobiologicalEradicationRateEndpoint .
+:DefnMicrobEradicationRateEndpoint_ME_EOT rdfs:subClassOf :DefinedMicrobiologicalEradicationRateEndpoint .
+:DefnMicrobEradicationRateEndpoint_MITT_TOC rdfs:subClassOf :DefinedMicrobiologicalEradicationRateEndpoint .
+:DefnMicrobEradicationRateEndpoint_MITT_EOT rdfs:subClassOf :DefinedMicrobiologicalEradicationRateEndpoint .
+
+### :MicrobiologicalEradicationRateEndpoint 
+###     rdfs:subClassOf :EfficacyEndpoint ,
+###         [ owl:onProperty core:hasObservation ; owl:someValuesFrom :MicrobiologicalOutcome ] ,
+###         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:SomeValuesFrom :DefinedMicrobiologicalEradicationRateEndpoints ] .
+#  :MicrobiologicalEradicationRate :measured_in :Microbiologically_Evaluable_Population_(ME) .
+#    :Microbiologically_Evaluable_Population_(ME) :classified_by :Baseline_Pathogen .
+#    :Microbiologically_Evaluable_Population_(ME) :classified_by :Country_or_Region .
+#  :MicrobiologicalEradicationRate :calculated_by :MicrobiologicalEradicationRate_Formula . # ...
+
+:MicrobiologicalOutcomeValue owl:oneOf ( :NewInfection :Superinfection :Indeterminate :Eradication :Persistence ) .
+:NewInfection rdfs:subClassOf dt:CD .
+:Superinfection rdfs:subClassOf dt:CD .
+:Indeterminate rdfs:subClassOf dt:CD .
+:Eradication rdfs:subClassOf dt:CD .
+:Persistence rdfs:subClassOf dt:CD .
+
+
+# cUTI's :DefinedMicrobiologicalOutcome - bridg:isAbstract true ;
+:DefinedMicrobiologicalOutcome rdfs:subClassOf core:DefinedSingleOutcomeAssessment ,
+    [ owl:onProperty :hasObservationType  ; owl:someValuesFrom owl:Thing ] , # !! lab type analogous to :SSXofcUTIandAP
+    [ owl:onProperty :hasInterventionType ; owl:someValuesFrom :DrugAdministration ] ,
+    [ owl:onProperty :lastInterventionToAfterDuration ; owl:hasValue [ owl:oneOf ( :TreatmentDay1 :EOTVisit :TOCVisit :LTFUVisit ) ] ].
+# instantiate these classes in protocol definition, all have bridg:isAbstract false ;
+:DefinedMicrobiologicalDay3Outcome rdfs:subClassOf :DefinedMicrobiologicalOutcome ; :lastInterventionToAfterDuration :TreatmentDay1 .
+:DefinedMicrobiologicalEOTOutcome rdfs:subClassOf :DefinedMicrobiologicalOutcome ; :lastInterventionToAfterDuration :TreatmentEOT .
+:DefinedMicrobiologicalTOCOutcome rdfs:subClassOf :DefinedMicrobiologicalOutcome ; :lastInterventionToAfterDuration :TreatmentTOC .
+:DefinedMicrobiologicalLTFUOutcome rdfs:subClassOf :DefinedMicrobiologicalOutcome ; :lastInterventionToAfterDuration :TreatmentLTFU .
+
+:cUTI_LabTests owl:equivalentClass [ owl:unionOf 
+  ( sys:WhiteBloodCellObservation sys:NitrateInUrine sys:Luekoestrearase 
+    sys:CultureSusceptaibilityTesting sys:CultureConfirmatoryTesting sys:CultureColonyFormingUnitValue 
+  ) ].
+
+# :MicrobiologicalOutcome
+# :MicrobiologicalEradicationRate_Formula :calculated_from :MicrobiologicalOutcome .
+:MicrobiologicalOutcome 
+    rdfs:subClassOf :SingleOutcomeAssessment ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:SomeValuesFrom :DefinedMicrobiologicalOutcome ] ,
+	[ owl:onProperty bridg:PerformedObservation.reportingAssessor ; owl:hasValue bridg:StudyLegalSponsor ], # @@ classified by
+#    bridg:StudyLegalSponsor :assigns :PathogenOutcome . @@ need Assignment Relationship or some such
+        [ owl:onProperty core:beforeIntervention ; owl:allValuesFrom :cUTI_LabTests ] ,
+        [ owl:onProperty core:prescription ; owl:allValuesFrom :DrugPrescription ] ,
+        [ owl:onProperty core:hasIntervention ; owl:allValuesFrom :DrugAdministration ] ,
+        [ owl:onProperty core:afterIntervention ; owl:allValuesFrom :cUTI_LabTests ] ,
+        [ owl:onProperty core:hasResultValue ; owl:allValuesFrom [
+            owl:intersectionOf ( bridg:PerformedObservationResult 
+                [ owl:onProperty bridg:PerformedObservationResult.typeCode ; owl:allValuesFrom :MicrobiologicalOutcomeValue ] )
+        ] ] .
+  :MicrobiologicalOutcome :assessed_from :Specimen . # ...
+#  :MicrobiologicalOutcome :assessed_by :Laboratory . # ...
+#  :MicrobiologicalOutcome :assessed_for :Patient . # ...
+
+# bridg.DefinedSpecimenCollection.
+# bridg:PerformedSpecimenCollection.performingCollectingLaboratory
+#                                  .producedSpecimen :urine1 .
+#                                  bridg:PerformedActivity.instantiatedDefinedActivity :defUrineCollection .
+# my_sys:WhiteBloodCellObservation a bridg:PerformedObservation ;
+#     bridg:PerformedProcedure bridg:usedProduct :urine1 .
+# 
+
+
+### # :Time_from_Baseline
+### :Efficacy_Endpoints :includes :Time_from_Baseline .
+###   :Time_from_Baseline :determine_for :Defervescence .
+###     :Defervescence :of :Fever . # ...
+###   :Time_from_Baseline :determine_for :Clinical_Cure .
+###     :Clinical_Cure :of :SSXofcUTIandAP . # ...
+###   :Time_from_Baseline :determine_for :Resolution .
+###     :Resolution :of :SSXofcUTIandAP . # ...
+### 
+### # :Rate
+### :Efficacy_Endpoints :includes :Rate .
+###   :Rate :determine_for :Recurrence .
+###     :Recurrence :measured_at :Defined_Time_Point .
+###   :Rate :determine_for :Superinfection .
+###     :Superinfection :measured_at :Defined_Time_Point .
+###   :Rate :determine_for :Relapse .
+###     :Relapse :measured_at :Defined_Time_Point .
+###       :Defined_Time_Point :includes :LTFUVisit .
+### 
+### # :Patient
+### # :ClinicalOutcome :assessed_for :Patient .
+### # :MicrobiologicalOutcome :assessed_for :Patient .
+###   :Patient :assigned :Disposition .
+###   :Patient rdfs:subClassOf [ owl:onProperty :complicatingFactor ; owl:someValuesFrom :ComplicatingFactor ] .
+###   :Patient :can_experience :TypeOfInfection .
+###   :Patient :described_by :Demographics .
+###     :Demographics :includes :Country_or_Region .
+###     :Demographics :includes :Weight .
+###     :Demographics :includes :Height .
+###     :Demographics :includes :Sex .
+###     :Demographics :includes :Age .
+###   :Patient :can_exhibit :SSXofcUTIandAP .
+###   :Patient :provides_n :Specimen . # ...
+### 
+### # :Specimen
+### # :MicrobiologicalOutcome :assessed_from :Specimen .
+### # :Patient :provides_n :Specimen .
+###   :Specimen :as :Blood .
+###     :Blood :taken_at :Defined_Time_Point .
+###       :Defined_Time_Point :includes :TreatmentDay1 .
+###         :TreatmentDay1 :serves_as :Baseline ; rdfs:label "Randomization Visit (Treatment Day 1)".
+###           :Baseline :assess_if_required :Blood_Culture_Tests .
+###       :Defined_Time_Point :includes :IV_Treatment_Visits_Day2_to_Day5 .
+###       :Defined_Time_Point :includes :TOCVisit .
+###   :Specimen :as :Urine .
+###     :Urine :taken_at :Defined_Time_Point .
+###       :Defined_Time_Point :includes :TreatmentDay1 .
+###       :Defined_Time_Point :includes :IV_Treatment_Visits_Day2_to_Day5 .
+###       :Defined_Time_Point :includes :TOCVisit .
+###       :Defined_Time_Point :includes :EOTVisit .
+###       :Defined_Time_Point :includes :LTFUVisit .
+###   :Specimen :sent_to :Laboratory . # ...
+### 
+### # :Laboratory
+### # :Specimen :sent_to :Laboratory .
+###   :Laboratory :determines :Sample_Validity .
+###     :Sample_Validity :invokes :Pathogen_Count_Sample_Contamination_Algorithm .
+###       :Pathogen_Count_Sample_Contamination_Algorithm :assesses_contamination :Number_of_Pathogens .
+###     :Sample_Validity :assesses :White_Blood_Cell_Count .
+###       :White_Blood_Cell_Count :may_provide_evidence_of :Pyuria .
+###     :Sample_Validity :assesses :Nitrate_Concentration .
+###   :Laboratory :includes :Local .
+###     :Local :measures :White_Blood_Cell .
+###       :White_Blood_Cell :has_result :White_Blood_Cell_Count .
+###     :Local :measures :Nitrate_in_Urine .
+###       :Nitrate_in_Urine :has_result :Nitrate_Concentration .
+###     :Local :measures :Luekoestearase .
+###       :Luekoestearase :may_provide_evidence_of :Pyuria .
+###         :Pyuria :may_lead_to :Further_Evaluation .
+###     :Local :measures :Colony_Forming_Unit_Value .
+###     :Local :identifies :Pathogen_Species .
+###       :Pathogen_Species :has_count :Number_of_Pathogens .
+###     :Local :identifies :Pathogen_Genotype_or_Phenotype .
+###   :Laboratory :includes :Central .
+###     :Central :performs :Confirmatory_Testing .
+###     :Central :performs :Susceptibility_Testing .
+### 
+### # Disposition
+### # :Patient :assigned :Disposition .
+###   :Disposition :includes :CE_Population .
+###   :Disposition :includes :ME_Population .
+###   :Disposition :includes :MITT_Population .
+###   :Disposition :includes :Randomized .
+### 
+### # :Study_Drug_or_Comparator
+### :Efficacy_Endpoints :evaluated_for :Study_Drug_or_Comparator .
+###   :Study_Drug_or_Comparator :subjected_to :Susceptibility_Testing . # ...
+###   :Study_Drug_or_Comparator :may_be_administered_with :Concomitant_Antibiotic .
+###     :Concomitant_Antibiotic :subjected_to :Susceptibility_Testing . # ...
+###   :Study_Drug_or_Comparator :has :Formulation .
+###   :Study_Drug_or_Comparator :applied_by :Route_of_Administration .
+###   :Study_Drug_or_Comparator :has_value_for :Frequency .
+###   :Study_Drug_or_Comparator :has_value_for :Dosage .
+

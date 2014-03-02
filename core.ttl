@@ -1,0 +1,347 @@
+# $Id: core.ttl,v 1.5 2014-03-02 20:38:34 eric Exp $
+#
+# ericP at the keyboard
+
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix bridg: <http://www.bridgmodel.org/owl#> .
+
+@prefix : <http://www.w3.org/2013/12/FDA-TA/core#> .
+@prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
+
+<http://www.w3.org/2013/12/FDA-TA/core> a owl:Ontology ;
+    owl:imports <http://www.w3.org/2013/12/FDA-TA/datatypes> ,
+                <http://www.w3.org/2013/12/FDA-TA/systemic> .
+
+###############################################################################
+# primitives
+#
+
+# clinical trial subject or clinical care patient
+# bridg:StudySubject is a participation of an individual (in this case) in a trial
+
+
+# TemporalProfile is one of: :Acute :Subacute :Chronic
+# @@ separated out 'cause it appeared thrice in MetaModel, but maybe they are different beasts.
+# :PrognosisProfile owl:disjointUnionOf ( # administrative, clinical, prognosisProfile
+#     :Acute :Subacute :Chronic
+# ) .
+# :Acute    rdfs:subClassOf :TemporalProfile .
+# :Subacute rdfs:subClassOf :TemporalProfile .
+# :Chronic  rdfs:subClassOf :TemporalProfile .
+
+# :temporalProfile a owl:ObjectProperty ;
+#     rdfs:range :TemporalProfile .
+
+
+###############################################################################
+# Therapeutic Interventions (left, purple)
+#
+
+# TherapeuticIntervention is one of :BehaviorModification :TherapeuticProcedure :MedicationAdministration
+:TherapeuticIntervention 
+    owl:disjointUnionOf (
+        :BehaviorModification :TherapeuticProcedure :MedicationAdministration 
+    ) ;
+#     rdfs:subClassOf [
+#         owl:onProperty :temporalProfile ;
+# 	owl:allValuesFrom :TemporalProfile
+#     ] 
+.
+
+:hasInterventionTime a owl:DatatypeProperty ;
+    rdfs:domain :TherapeuticIntervention ;
+    rdfs:range xsd:dateTime ;
+    rdfs:subPropertyOf bridg:PerformedActivity.dateRange .
+
+:BehaviorModification     rdfs:subClassOf :TherapeuticIntervention .
+:TherapeuticProcedure	  rdfs:subClassOf :TherapeuticIntervention , bridg:PerformedProcedure .
+:MedicationAdministration rdfs:subClassOf :TherapeuticIntervention ,
+        bridg:PerformedSubstanceAdministration ,
+        [ owl:onProperty :hasMedication ; owl:cardinality 1 ] .
+
+# :Prescription is a bridg:ScheduledSubstanceAdministration\
+# bridg:ConcomitantAgent
+:MedicationPrescription 
+    rdfs:subClassOf [ owl:onProperty :hasDosagePlan ; owl:cardinality 1 ] ;
+    rdfs:subClassOf [ owl:onProperty :hasMedication ; owl:cardinality 1 ] .
+
+# TI properties
+:hasIntervention a owl:ObjectProperty ;
+    rdfs:range :TherapeuticIntervention .
+
+:hasMedication a owl:ObjectProperty ;
+    # rdfs:domain :MedicationAdministration ; # :MedicationAdministration or :MedicationPrescription
+    rdfs:range :Medication .
+
+:hasActiveIngredient a owl:ObjectProperty ;
+    rdfs:domain :Medication ;
+    rdfs:range :ActiveIngredient .
+
+:ActiveIngredient a owl:Class . # see drugs.ttl for members
+
+:hasConsentForIntervention a owl:ObjectProperty ;
+    rdfs:domain :TherapeuticIntervention ;
+    rdfs:range :ConsentForIntervention .
+
+:hasEncounterProfile a owl:ObjectProperty ;
+    rdfs:domain :TherapeuticIntervention ;
+    rdfs:range :EncounterProfile .
+
+
+:hasDosagePlan a owl:ObjectProperty ;
+    rdfs:domain :MedicationAdministration ;
+    rdfs:range :DosagePlan .
+:hasMedicationSchedule a owl:ObjectProperty ;
+     rdfs:domain :DosagePlan ;
+     rdfs:range :MedicationSchedule .
+# :medicationRoute a owl:ObjectProperty ; # ignoring route elides coded concept for now.
+#     rdfs:domain :Dosage ;
+#     rdfs:range :MedicationRoute .
+# :MedicationRoute rdfs:subClassOf :CodedConcept.
+:hasMedicationQuantity a owl:ObjectProperty ;
+    rdfs:domain :Dosage ;
+    rdfs:range :MedicationQuantity .
+:MedicationQuantity rdfs:subClassOf data:PhysicalQuantity.
+
+:DosagePlan 
+    rdfs:subClassOf 
+        [ owl:onProperty :hasMedicationSchedule ; owl:cardinality 1 ] ,
+        # [ owl:onProperty :medicationRoute ; owl:cardinality 1 ] ,
+        [ owl:onProperty :hasMedicationQuantity ; owl:cardinality 1 ] .
+
+:hasMedicationFrequency a owl:DatatypeProperty ;
+    rdfs:domain :Dosage ;
+    rdfs:range xsd:integer .
+:hasMedicationDuration a owl:DatatypeProperty ;
+    rdfs:domain :Dosage ;
+    rdfs:range xsd:float .
+:hasMedicationUnits a owl:DatatypeProperty ;
+    rdfs:domain :Dosage ;
+    rdfs:range xsd:string .
+:MedicationSchedule
+    rdfs:subClassOf
+        [ owl:onProperty :hasMedicationFrequency ; owl:cardinality 1 ] ,
+        [ owl:onProperty :hasMedicationDuration ; owl:cardinality 1 ] ,
+        [ owl:onProperty :hasMedicationUnits ; owl:cardinality 1 ] .
+
+:EncounterProfile a owl:Class . # @@ elided schedule and emergency status
+
+
+###############################################################################
+# Observations (middle, yellow)
+#
+
+:Observation 
+    owl:disjointUnionOf (
+        :AdministrativeObservation :ClinicalObservation 
+    ) ;
+    rdfs:subClassOf bridg:PerformedObservation ,
+        [ owl:onProperty :hasObservationTime ; owl:cardinality 1 ] . # ,
+
+        # Don't apply cardinality constraints to properties defined as property
+        # chains or you'll get a "reasoner died" dialgo with e.g. (from Fact++):
+        # org.semanticweb.owlapi.reasoner.OWLReasonerRuntimeException: Non-simple object property 'http://www.w3.org/2013/12/FDA-TA/core#hasResultValue' is used as a simple one
+        # [ owl:onProperty :hasResultValue ; owl:cardinality 1 ] .
+
+:AdministrativeObservation a owl:Class .
+:Disposition rdfs:subClassOf :AdministrativeObservation ,
+    [ owl:onProperty :hasResultValue ; owl:someValuesFrom :DispositionValue ] .
+:DispositionValue owl:equivalentClass [
+            owl:oneOf ( :Deceased :LostToFollowup :AdministrativeWithdrawl :ConsentWithdrawl ) ] .
+# @@ Will we use this hierarchy from cUTI?
+###   :Disposition :includes :Prematurely_Withdrawn_from_Treatment .
+###     :Prematurely_Withdrawn_from_Treatment :includes :Unacceptable_or_Intolerable_AE .
+###     :Prematurely_Withdrawn_from_Treatment :includes :Lack_of_Efficacy .
+###     :Prematurely_Withdrawn_from_Treatment :includes :Investigator_Decision .
+###   :Disposition :includes :Prematurely_Withdrawn_from_Study .
+###     :Prematurely_Withdrawn_from_Study :includes :Lost_to_Follow-Up .
+###     :Prematurely_Withdrawn_from_Study :includes :Administrative_Reasons .
+###     :Prematurely_Withdrawn_from_Study :includes :Consent_Withdrawn .
+
+# A couple standard outcome queries for all TA-protocols to use:
+:Death a :EfficacyEndpoint ;
+    :sparqlQuery """
+    SELECT ("Death" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?name) AS ?labels)
+    WHERE {
+      BIND (1 AS ?g)
+      [
+        bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
+        :hasDisposition [ :hasResultValue :Deceased ]
+      ]
+    } GROUP BY ?g
+""" .
+
+:LTFU a :EfficacyEndpoint ;
+    :sparqlQuery """
+    SELECT ("LTFU" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?name) AS ?labels)
+    WHERE {
+      BIND (1 AS ?g)
+      [
+        bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
+        :hasDisposition [ :hasResultValue :LostToFollowUp ]
+      ]
+    } GROUP BY ?g
+""" .
+
+
+# ClinicalObservation is one of: :Assessment :DiagnosticProcedure :QuantitativeMeasurement :SignsAndSymptoms
+:ClinicalObservation 
+    owl:disjointUnionOf (
+        :Assessment :SingleObservation :InferrableDiagnosis 
+    ) .
+# :Assessment described below
+:SingleObservation       rdfs:subClassOf :ClinicalObservation ;
+    owl:unionOf (
+        :DiagnosticProcedure :QuantitativeMeasurement :SignsAndSymptoms 
+    ) .
+# :DiagnosticProcedure     rdfs:subClassOf :SingleObservation .
+# :QuantitativeMeasurement rdfs:subClassOf :SingleObservation .
+:isJustifiedBy a owl:ObjectProperty ; # @@reasonCode
+    rdfs:domain :DiagnosticProcedure ;
+    rdfs:range :ClinicalObservation .
+:hasLabReport a owl:ObjectProperty ;
+    rdfs:domain :DiagnosticProcedure ;
+    rdfs:range :LabReport .
+:LabReport a :DiagnosticProcedure ;
+    rdfs:domain :QuantitativeMeasurement ;
+    rdfs:range :QuantitativeMeasurement . # @@ subclass QuantitativeMeasurement for lab reports?
+
+:PathologyReport rdfs:subClassOf :QuantitativeMeasurement .
+:hasPathologyFinding a owl:ObjectProperty ;
+    rdfs:domain :PathologyReport . # can have any value .
+:SignsAndSymptoms        rdfs:subClassOf :SingleObservation .
+# [] rdf:type owl:AllDisjointClasses ; # @@ needed?
+#     owl:members ( :Assessment :DiagnosticProcedure :QuantitativeMeasurement :SignsAndSymptoms ) .
+
+# Observation properties
+:monitorsEffectivenessOf a owl:ObjectProperty ;
+    rdfs:domain :SingleOutcomeAssessment ;
+    rdfs:range :TherapeuticIntervention .
+
+# Observation properties
+:monitorsStateOf a owl:ObjectProperty ;
+    rdfs:domain :SingleOutcomeAssessment ;
+    rdfs:range :PhysiologicalProcess .
+
+:hasPlaceOfMeasurement a owl:ObjectProperty ;
+    rdfs:domain :ClinicalObservation ;
+    rdfs:range :PlaceOfMeasurement .
+:PlaceOfMeasurement a owl:Class .
+
+:hasMeasurementMethodology a owl:ObjectProperty ;
+    rdfs:domain :ClinicalObservation ;
+    rdfs:range :MeasurementMethodology .
+:MeasurementMethodology a owl:Class .
+
+# Information Model imposed on Observation.
+:hasObservationTime a owl:DatatypeProperty ;
+    rdfs:domain :Observation ;
+    rdfs:range xsd:dateTime .
+
+:Assessment 
+    rdfs:subClassOf 
+        :ClinicalObservation ,
+        [ owl:onProperty :hasObservation ; owl:minCardinality 2 ] .
+
+:hasObservation a owl:ObjectProperty ;
+    rdfs:domain :Assessment ;
+    rdfs:range :ClinicalObservation .
+
+# Outcome Assessment - a conclusions (disposition) based on a set of
+# observations before and after a clinical intervention. Outcome
+# assessments are themselves observations, permitting them to provide
+# (before/after) evidence for further assessments.
+
+:beforeIntervention a owl:ObjectProperty ;
+    rdfs:subPropertyOf :hasObservation ;
+    rdfs:domain :SingleOutcomeAssessment ;
+    rdfs:range :ClinicalObservation .
+:afterIntervention a owl:ObjectProperty ;
+    rdfs:subPropertyOf :hasObservation ;
+    rdfs:domain :SingleOutcomeAssessment ;
+    rdfs:range :ClinicalObservation .
+
+:hasResultValue a owl:ObjectProperty ;
+    # BRIDG structure is
+    #   ?r a bridg:PerformedObservationResults ;
+    #       bridg:PerformedObservationResult.producingPerformedObservation ?o .
+    #   ?o a bridg:PerformedObservation ;
+    #       bridg:PerformedObservation.resultedPerformedObservationResult ?r . # !inv
+    #
+    # per DL Query: bridg:PerformedObservation.resultedPerformedObservationResult some bridg:PerformedClinicalResult
+    # !!! uncomment for mapping to BRIDG ObservationResults.
+    # commented because it makes Fact++ crawl.
+    #owl:propertyChainAxiom ( bridg:PerformedObservation.resultedPerformedObservationResult bridg:PerformedObservationResult.value ) ;
+    rdfs:domain :Observation ;
+    rdfs:range :SingleOutcomeAssessmentValue .
+
+:lastInterventionToAfterDuration a owl:DatatypeProperty ;
+    rdfs:range xsd:string . # P10DT15H !! xsd:duration
+
+:hasOutcomeAssessment a owl:ObjectProperty ;
+    # rdfs:domain :Subject ; or :EfficacyEndpoint
+    rdfs:range :SingleOutcomeAssessment .
+
+:hasEndpoint a owl:ObjectProperty ;
+    rdfs:domain :TAProtocol ;
+    rdfs:range :EfficacyEndpoint .
+:TAProtocol rdfs:subClassOf bridg:StudyProtocol .
+
+:hasObservationType a owl:ObjectProperty .
+:hasInterventionType a owl:ObjectProperty .
+
+:DefinedSingleOutcomeAssessment rdfs:subClassOf 
+    bridg:DefinedObservation ,
+    [ owl:onProperty :hasObservationType ; owl:minCardinality 1 ] ,
+    [ owl:onProperty :hasInterventionType ; owl:minCardinality 1 ] ,
+    [ owl:onProperty :lastInterventionToAfterDuration ; owl:maxCardinality 1 ] .
+:SingleOutcomeAssessment rdfs:subClassOf 
+    :Assessment ,
+    [ owl:onProperty :beforeIntervention ; owl:minCardinality 1 ] ,
+    [ owl:onProperty :hasIntervention ; owl:minCardinality 1 ] ,
+    [ owl:onProperty :afterIntervention ; owl:minCardinality 1 ] .
+
+:FunctionOutcomeAssessment rdfs:subClassOf :SingleOutcomeAssessment .
+
+:DefinedEfficacyEndpoint rdfs:subClassOf bridg:DefinedObservation .
+:EfficacyEndpoint rdfs:subClassOf 
+    :Assessment ,
+    [ owl:onProperty :hasObservation ; owl:allValuesFrom :SingleOutcomeAssessment ] .
+    [ owl:onProperty :sparqlQuery ; owl:cardinality 1 ] .
+:sparqlQuery a owl:DatatypeProperty ;
+    rdfs:range xsd:string .
+
+
+:PositiveOutcome   rdfs:subClassOf :SingleOutcomeAssessment .
+:NegativeOutcome   rdfs:subClassOf :SingleOutcomeAssessment .
+#:DeathOtherReasons rdfs:subClassOf :EfficacyEndpoint .
+
+:OutcomeAssessmentValue a owl:Class . # This is xtended by TA-specific ontologies,
+
+
+# Diagnosis
+:InferrableDiagnosis rdfs:subClassOf :ClinicalObservation .
+
+
+###############################################################################
+# PhysiologicalProcess (right, blue)
+#
+
+:PhysiologicalProcess a owl:Class .
+
+# PhysiologicalProcess is one of: :NormalPhysiologicalProcess :PathoPhysiologicalProcess
+:PhysiologicalProcess
+    owl:disjointUnionOf (
+        :NormalPhysiologicalProcess :PathoPhysiologicalProcess
+    ) ;
+#     rdfs:subClassOf [
+#         owl:onProperty :temporalProfile ;
+# 	owl:allValuesFrom :TemporalProfile
+#     ] 
+.
+:NormalPhysiologicalProcess     rdfs:subClassOf :PhysiologicalProcess .
+:PathoPhysiologicalProcess rdfs:subClassOf :PhysiologicalProcess .
+

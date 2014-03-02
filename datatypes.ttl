@@ -1,0 +1,23 @@
+# $Id: datatypes.ttl,v 1.2 2014-03-01 12:28:59 eric Exp $
+#
+# ericP at the keyboard
+
+###############################################################################
+# Datatype library
+#
+# well, not really, we're just using UCUM, but stuff around datatypes...
+
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix : <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
+
+<http://www.w3.org/2013/12/FDA-TA/datatypes> a owl:Ontology .
+
+:PhysicalQuantity a owl:Class .
+:value a owl:DatatypeProperty ;
+    rdfs:domain :PhysicalQuantity .
+:units a owl:ObjectProperty  ;
+    rdfs:domain :PhysicalQuantity .
+

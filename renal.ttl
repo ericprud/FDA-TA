@@ -1,0 +1,91 @@
+# $Id: renal.ttl,v 1.7 2014-03-02 20:38:34 eric Exp $
+#
+# Renal Genitourinary function and morphology
+
+# ericP at the keyboard
+
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix bridg: <http://www.bridgmodel.org/owl#> .
+
+@prefix : <http://www.w3.org/2013/12/FDA-TA/renal#> .
+@prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .
+@prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
+
+<http://www.w3.org/2013/12/FDA-TA/renal> a owl:Ontology ;
+    owl:imports <http://www.w3.org/2013/12/FDA-TA/core> .
+
+:RenalFunctionOutcomeAssessmentValue 
+    rdfs:subClassOf core:OutcomeAssessmentValue ;
+    owl:oneOf (:CeasedToFunction :Deteriorating :NoChange :ImprovedToNormal) .
+
+# Renal Function Diagnoses
+:RenalFunctionOutcomeAssessment rdfs:subClassOf core:FunctionOutcomeAssessment .
+
+# Restriction: { ?x a core:RenalFunctionOutcomeAssessment }:: { ?x core:hasResultValue ?d . ?d a :RenalFunctionOutcomeAssessmentValue }
+:RenalFunctionOutcomeAssessment a owl:Class ;
+    rdfs:subClassOf 
+        core:FunctionOutcomeAssessment ,
+        [ a owl:Restriction ;
+          owl:onProperty core:hasResultValue ;
+          owl:allValuesFrom :RenalFunctionOutcomeAssessmentValue ] .
+
+:RenalBiopsy 
+    rdfs:subClassOf 
+        core:DiagnosticProcedure ,
+        [ owl:onProperty core:isJustifiedBy ; owl:minCardinality 1 ] , # @@ Some diagnostic procedures require justification.
+        [ owl:onProperty core:hasLabReport ; owl:cardinality 1 ] .
+
+
+# Observation types have results that are either bridg:PerformedObservationResult
+# or a subclass: bridg:Performed{ClinicalInterpretation,ClinicalResult,ConditionResult,Diagnosis}
+
+# Each class of PerformedObservation subclass identifies a DefinedObservation which is an individual.
+:CVApainObservation 
+    rdfs:subClassOf core:SignsAndSymptoms        ,
+	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+  	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ;
+    rdfs:label "cvapain"                         ; skos:definition "@@" .
+
+:FlankPainObservation 
+    rdfs:subClassOf core:SignsAndSymptoms        ,
+	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+  	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ;
+    rdfs:label "flankpain"                       ; skos:definition "@@" .
+
+:UrineVolume24hourObservation 
+    rdfs:subClassOf 
+        core:QuantitativeMeasurement ,
+	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+  	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ;
+    rdfs:label "urine volue over 24 hrs" ; skos:definition "@@" .
+
+:SerumCreatinineObservation 
+    rdfs:subClassOf 
+        core:QuantitativeMeasurement             ,
+	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+  	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+	[ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedSerumCreatinineLevel ] ;
+    rdfs:label "serum creatinine level"          ; skos:definition "@@" .
+:DefinedSerumCreatinineLevel a bridg:DefinedObservation ;
+    rdfs:label "serum creatinine level" .
+
+:GfrFlowRateObservation 
+    rdfs:subClassOf 
+        core:QuantitativeMeasurement             ,
+	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+  	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+	[ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedGfrFlowRateObservation ] ;
+    rdfs:label "calculated GFR flow rate"        ; skos:definition "@@" .
+:DefinedGfrFlowRateObservation a bridg:DefinedObservation ;
+    rdfs:label "calculated GFR flow rate" .
+
+:SuprapubicPainObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms                    ,
+	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+  	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ;
+    rdfs:label "suprapubic Pain"                 ; skos:definition "@@" .
+

@@ -1,0 +1,99 @@
+# $Id: transplant.ttl,v 1.5 2014-03-02 20:38:34 eric Exp $
+#
+# Transplant function
+
+# ericP at the keyboard
+
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+#@prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> .
+@prefix bridg: <http://www.bridgmodel.org/owl#> .
+#@prefix fma: <http://sig.uw.edu/fma#> .
+
+@prefix : <http://www.w3.org/2013/12/FDA-TA/transplant#> .
+#@prefix ucum: <http://unitsofmeasure.org/ucum-essence.xml#> .
+@prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .
+@prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
+
+
+<http://www.w3.org/2013/12/FDA-TA/transplant> a owl:Ontology ;
+    owl:imports <http://www.w3.org/2013/12/FDA-TA/core> .
+
+:TransplantProcedure rdfs:subClassOf core:TherapeuticProcedure , bridg:PerformedSubstanceAdministration .
+
+:GraftViability 
+    rdfs:subClassOf core:OutcomeAssessmentValue ;
+    owl:oneOf (:NonFunctioningGraft :SubFunctioningGraft :NormalFunctioningGraft) .
+
+:TransplantBiopsyReport # peculiar to allograft transplantation or does this go near core?
+    rdfs:subClassOf 
+        core:PathologyReport ,
+        [ a owl:Restriction ;
+          owl:onProperty :hasPathologyFinding ;
+          owl:someValuesFrom [ owl:oneOf ( :BanffI :BanffII :BanffIII ) ] ] .
+
+# Axiom: { ?x core:hasResultValue :NormalFunctioningGraft } => { ?x a core:PositiveOutcome }
+:GraftSurvivalAssessment a owl:Class ; # rename to GraftWithNormalFunction ?
+    rdfs:subClassOf core:PositiveOutcome ;
+    owl:equivalentClass [ a owl:Restriction ;
+                          owl:onProperty core:hasResultValue ;
+                          owl:hasValue :NormalFunctioningGraft ] .
+
+:GraftLossAssessment a owl:Class ; # rename to NonFunctioningGraft ?
+    rdfs:subClassOf core:NegativeOutcome ;
+    owl:equivalentClass [ a owl:Restriction ;
+                          owl:onProperty core:hasResultValue ;
+                          owl:hasValue :NonFunctioningGraft ] .
+
+:GraftBPARAssessment a owl:Class ;      
+    rdfs:subClassOf core:NegativeOutcome ;
+    owl:equivalentClass [
+        a owl:Class ;
+        owl:intersectionOf (
+          [ a owl:Restriction ;
+            owl:onProperty core:afterIntervention ;
+            owl:someValuesFrom [
+                a owl:Restriction ;
+                owl:onProperty core:hasPathologyFinding ;
+                owl:hasValue :BanffIII
+            ]
+          ]
+          [ a owl:Restriction ;
+            owl:onProperty core:hasResultValue ;
+            owl:hasValue :NonFunctioningGraft
+          ]
+        )
+    ]
+.
+
+:_endpoint_GraftSurvivalAssessment 
+    rdfs:subClassOf core:InferrableDiagnosis ,
+        [
+            owl:onProperty core:hasDiagnosis ; # !! undefined (as of migration from hasOutome)
+            owl:someValuesFrom [
+                owl:onProperty core:hasResultValue ;
+                owl:hasValue :NormalFunctioningGraft 
+            ]
+        ] ;
+    # =     core:hasIntervention some :TransplantProcedure
+    #   and core:hasOutcomeAssessment some (    core:OrganFunctionOutcomeAssessment
+    #                                       and core:hasResultValue value renal:ImprovedToNormal)
+    owl:equivalentClass [
+        owl:intersectionOf (
+            [ owl:onProperty core:hasIntervention ; owl:someValuesFrom :TransplantProcedure ]
+            [ owl:onProperty core:hasOutcomeAssessment ;
+                owl:someValuesFrom [
+                   # produces error classes in Protégé:
+                   #   rdfs:subClassOf core:OrganFunctionOutcomeAssessment ,
+                   #       [ owl:onProperty core:hasResultValue ; owl:hasValue renal:ImprovedToNormal ]
+                    owl:intersectionOf (
+                        core:OrganFunctionOutcomeAssessment 
+                        [ owl:onProperty core:hasResultValue ; owl:hasValue :ImprovedToNormal ]
+                    )
+                ]
+            ]
+        )
+    ] .
+

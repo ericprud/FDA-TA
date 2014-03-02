@@ -1,0 +1,433 @@
+@prefix bridg: <http://www.bridgmodel.org/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> .
+
+<http://www.bridgmodel.org/owl#>
+    a owl:Ontology .
+bridg:Activity a owl:Class ;
+    rdfs:label "Activity"^^<xs:string> ;
+    rdfs:subClassOf bridg:DataEntity .
+bridg:Activity.involvedExperimentalUnit a owl:ObjectProperty ;
+    rdfs:label "be participated in by"^^<xs:string> ;
+    rdfs:domain bridg:Activity ;
+    rdfs:range bridg:ExperimentalUnit ;
+    rdfs:subPropertyOf bridg:associationProperty .
+bridg:Activity.involvedSubject a owl:ObjectProperty ;
+    rdfs:label "be participated in by"^^<xs:string> ;
+    rdfs:domain bridg:Activity ;
+    rdfs:range bridg:Subject ;
+    rdfs:subPropertyOf bridg:associationProperty ;
+    owl:inverseOf bridg:Subject.involvingActivity .
+ bridg:Subject.involvingActivity a owl:ObjectProperty ;
+     rdfs:label "participate in"^^<xs:string> ;
+     rdfs:subPropertyOf bridg:associationProperty .
+
+bridg:Biologic a owl:Class ;
+    rdfs:label "Biologic"^^<xs:string> ;
+    rdfs:subClassOf bridg:Product .
+ bridg:Product a owl:Class ;
+     rdfs:label "Product"^^<xs:string> ;
+     rdfs:subClassOf bridg:Material .
+  bridg:Material a owl:Class ;
+      rdfs:label "Material"^^<xs:string> ;
+      rdfs:subClassOf bridg:DataEntity .
+bridg:Biologic.handlingCode a owl:ObjectProperty ;
+    rdfs:label "handlingCode"^^<xs:string> ;
+    rdfs:domain bridg:Biologic ; rdfs:range dt:CD ;
+    rdfs:subPropertyOf bridg:attributeProperty .
+
+bridg:DefinedAdverseEvent a owl:Class ;
+    rdfs:label "DefinedAdverseEvent"^^<xs:string> ;
+    rdfs:subClassOf bridg:DefinedObservationResult .
+bridg:DefinedAdverseEvent.categoryCode a owl:ObjectProperty ;
+    rdfs:label "categoryCode"^^<xs:string> ;
+    rdfs:domain bridg:DefinedAdverseEvent ;
+    rdfs:range dt:CD ;
+    rdfs:subPropertyOf bridg:attributeProperty .
+bridg:DefinedAdverseEvent.severityCode a owl:ObjectProperty ;
+    rdfs:label "severityCode"^^<xs:string> ;
+    rdfs:domain bridg:DefinedAdverseEvent ;
+    rdfs:range dt:CD ;
+    rdfs:subPropertyOf bridg:attributeProperty .
+
+bridg:DefinedObservation a owl:Class ;
+    rdfs:label "DefinedObservation"^^<xs:string> ;
+    rdfs:subClassOf bridg:DefinedActivity .
+ bridg:DefinedActivity a owl:Class ;
+     rdfs:label "DefinedActivity"^^<xs:string> ;
+     rdfs:subClassOf bridg:Activity .
+bridg:DefinedObservation.focusingDefinedObservationResult a owl:ObjectProperty ;
+    rdfs:label "have as focal context"^^<xs:string> ;
+    rdfs:domain bridg:DefinedObservation ;
+    rdfs:range bridg:DefinedObservationResult ;
+    rdfs:subPropertyOf bridg:associationProperty ;
+    owl:inverseOf bridg:DefinedObservationResult.focusedDefinedObservation .
+bridg:DefinedObservation.methodCode a owl:ObjectProperty ;
+    rdfs:label "methodCode"^^<xs:string> ;
+    rdfs:domain bridg:DefinedObservation ;
+    rdfs:range dt:CD ;
+    rdfs:subPropertyOf bridg:attributeProperty .
+
+bridg:DefinedObservationResult a owl:Class ;
+    rdfs:label "DefinedObservationResult"^^<xs:string> ;
+    rdfs:subClassOf bridg:DataEntity .
+bridg:DefinedObservationResult.focusedDefinedObservation a owl:ObjectProperty ;
+    rdfs:label "be the focal context for"^^<xs:string> ;
+    rdfs:subPropertyOf bridg:associationProperty .
+bridg:DefinedObservationResult.producingDefinedObservation a owl:ObjectProperty ;
+    rdfs:label "is a result of"^^<xs:string> ;
+    rdfs:domain bridg:DefinedObservationResult ;
+    rdfs:range bridg:DefinedObservation ;
+    rdfs:subPropertyOf bridg:associationProperty ;
+    owl:inverseOf bridg:DefinedObservation.producedDefinedObservationResult .
+ bridg:DefinedObservation.producedDefinedObservationResult a owl:ObjectProperty ;
+     rdfs:label "result in"^^<xs:string> ;
+     rdfs:subPropertyOf bridg:associationProperty .
+bridg:DefinedObservationResult.typeCode a owl:ObjectProperty ;
+    rdfs:label "typeCode"^^<xs:string> ;
+    rdfs:domain bridg:DefinedObservationResult ;
+    rdfs:range dt:CD ;
+    rdfs:subPropertyOf bridg:attributeProperty .
+bridg:DefinedObservationResult.value a owl:ObjectProperty ;
+    rdfs:label "value"^^<xs:string> ;
+    rdfs:domain bridg:DefinedObservationResult ;
+    rdfs:range dt:ANY ;
+    rdfs:subPropertyOf bridg:attributeProperty .
+
+bridg:DefinedObservation a owl:Class ;
+    rdfs:label "DefinedObservation"^^<xs:string> ;
+    rdfs:subClassOf bridg:DefinedActivity .
+bridg:DefinedObservation.targetAnatomicSiteCode a owl:ObjectProperty ;
+    rdfs:label "targetAnatomicSiteCode"^^<xs:string> ;
+    rdfs:domain bridg:DefinedObservation ;
+    rdfs:range dt:CD ;
+    rdfs:subPropertyOf bridg:attributeProperty .
+
+bridg:DefinedStratificationCriterion a owl:Class ;
+    rdfs:label "DefinedStratificationCriterion"^^<xs:string> ;
+    rdfs:subClassOf bridg:DefinedObservation .
+
+bridg:DefinedStratificationCriterionPermissibleResult a owl:Class ;
+    rdfs:label "DefinedStratificationCriterionPermissibleResult"^^<xs:string> ;
+    rdfs:subClassOf bridg:DefinedObservationResult .
+
+bridg:ExperimentalUnit a owl:Class ;
+    rdfs:label "ExperimentalUnit"^^<xs:string> ;
+    rdfs:subClassOf bridg:DataEntity .
+bridg:ExperimentalUnit.performedArm a owl:ObjectProperty ;
+    rdfs:label "have performed"^^<xs:string> ;
+    rdfs:domain bridg:ExperimentalUnit ;
+    rdfs:range bridg:Arm ;
+    rdfs:subPropertyOf bridg:associationProperty .
+ bridg:Arm a owl:Class ;
+     rdfs:label "Arm"^^<xs:string> ;
+     rdfs:subClassOf bridg:DataEntity .
+
+bridg:PerformedActivity a owl:Class ;
+    rdfs:label "PerformedActivity"^^<xs:string> ;
+    rdfs:subClassOf bridg:Activity .
+bridg:PerformedActivity.dateRange a owl:ObjectProperty ;
+    rdfs:label "dateRange"^^<xs:string> ;
+    rdfs:domain bridg:PerformedActivity ;
+    rdfs:range dt:IVL_TS.DATETIME ;
+    rdfs:subPropertyOf bridg:attributeProperty .
+bridg:PerformedActivity.instantiatedDefinedActivity a owl:ObjectProperty ;
+    rdfs:label "instantiate"^^<xs:string> ;
+    rdfs:domain bridg:PerformedActivity ;
+    rdfs:range bridg:DefinedActivity ;
+    rdfs:subPropertyOf bridg:associationProperty ;
+    owl:inverseOf bridg:DefinedActivity.instantiatingPerformedActivity .
+ bridg:DefinedActivity.instantiatingPerformedActivity a owl:ObjectProperty ;
+     rdfs:label "be instantiated by"^^<xs:string> ;
+     rdfs:subPropertyOf bridg:associationProperty .
+bridg:PerformedActivity.instantiatedScheduledActivity a owl:ObjectProperty ;
+    rdfs:label "instantiate"^^<xs:string> ;
+    rdfs:domain bridg:PerformedActivity ;
+    rdfs:range bridg:ScheduledActivity ;
+    rdfs:subPropertyOf bridg:associationProperty ;
+    owl:inverseOf bridg:ScheduledActivity.instantiatingPerformedActivity .
+ bridg:ScheduledActivity.instantiatingPerformedActivity a owl:ObjectProperty ;
+     rdfs:label "be instantiated by"^^<xs:string> ;
+     rdfs:subPropertyOf bridg:associationProperty .
+bridg:PerformedActivity.studyDayRange a owl:ObjectProperty ;
+    rdfs:label "studyDayRange"^^<xs:string> ;
+    rdfs:domain bridg:PerformedActivity ;
+    rdfs:range dt:IVL_INT ;
+    rdfs:subPropertyOf bridg:attributeProperty .
+bridg:PerformedActivity.versionStudyProtocolVersion a owl:ObjectProperty ;
+    rdfs:label "execute under"^^<xs:string> ;
+    rdfs:domain bridg:PerformedActivity ;
+    rdfs:range bridg:StudyProtocolVersion ;
+    rdfs:subPropertyOf bridg:associationProperty .
+
+bridg:PerformedClinicalResult a owl:Class ;
+    rdfs:label "PerformedClinicalResult"^^<xs:string> ;
+    rdfs:subClassOf bridg:PerformedObservationResult .
+bridg:PerformedObservation a owl:Class ;
+    rdfs:label "PerformedObservation"^^<xs:string> ;
+    rdfs:subClassOf bridg:PerformedActivity .
+bridg:PerformedObservation.reportingAssessor a owl:ObjectProperty ;
+    rdfs:label "be reported by"^^<xs:string> ;
+    rdfs:domain bridg:PerformedObservation ;
+    rdfs:range bridg:Assessor ;
+    rdfs:subPropertyOf bridg:associationProperty ;
+    owl:inverseOf bridg:Assessor.reportedPerformedObservation .
+ bridg:Assessor a owl:Class ;
+     rdfs:label "Assessor"^^<xs:string> ;
+     rdfs:subClassOf bridg:DataEntity .
+ bridg:Assessor.reportedPerformedObservation a owl:ObjectProperty ;
+     rdfs:label "report"^^<xs:string> ;
+     rdfs:subPropertyOf bridg:associationProperty .
+bridg:PerformedObservation.resultedPerformedObservationResult a owl:ObjectProperty ;
+    rdfs:label "result in"^^<xs:string> ;
+    rdfs:subPropertyOf bridg:associationProperty ;
+    owl:inverseOf bridg:PerformedObservationResult.producingPerformedObservation .
+
+bridg:PerformedObservationResult a owl:Class ;
+    rdfs:label "PerformedObservationResult"^^<xs:string> ;
+    rdfs:subClassOf bridg:DataEntity .
+bridg:PerformedObservationResult.producingPerformedObservation a owl:ObjectProperty ;
+    rdfs:label "is a result of"^^<xs:string> ;
+    rdfs:domain bridg:PerformedObservationResult ;
+    rdfs:range bridg:PerformedObservation ;
+    rdfs:subPropertyOf bridg:associationProperty .
+bridg:PerformedObservationResult.typeCode a owl:ObjectProperty ;
+    rdfs:label "typeCode"^^<xs:string> ;
+    rdfs:domain bridg:PerformedObservationResult ;
+    rdfs:range dt:CD ;
+    rdfs:subPropertyOf bridg:attributeProperty .
+bridg:PerformedObservationResult.value a owl:ObjectProperty ;
+    rdfs:label "value"^^<xs:string> ;
+    rdfs:domain bridg:PerformedObservationResult ;
+    rdfs:range dt:ANY ;
+    rdfs:subPropertyOf bridg:attributeProperty .
+
+# :TherapeuticProcedure	  rdfs:subClassOf :TherapeuticIntervention , bridg:PerformedProcedure .
+bridg:PerformedProcedure a owl:Class ;
+    rdfs:label "PerformedProcedure"^^<xs:string> ;
+    rdfs:subClassOf bridg:PerformedActivity .
+
+bridg:PerformedSubstanceAdministration a owl:Class ;
+    rdfs:label "PerformedSubstanceAdministration"^^<xs:string> ;
+    rdfs:subClassOf bridg:PerformedProcedure .
+bridg:PerformedSubstanceAdministration.startRelativeToReferenceCode a owl:ObjectProperty ;
+    rdfs:label "startRelativeToReferenceCode"^^<xs:string> ;
+    rdfs:domain bridg:PerformedSubstanceAdministration ;
+    rdfs:range dt:CD ;
+    rdfs:subPropertyOf bridg:attributeProperty .
+
+bridg:PerformedSubstanceExtraction a owl:Class ;
+    rdfs:label "PerformedSubstanceExtraction"^^<xs:string> ;
+    rdfs:subClassOf bridg:PerformedProcedure .
+bridg:PerformedSubstanceExtraction.producedBiologic a owl:ObjectProperty ;
+    rdfs:label "produces"^^<xs:string> ;
+    rdfs:domain bridg:PerformedSubstanceExtraction ;
+    rdfs:range bridg:Biologic ;
+    rdfs:subPropertyOf bridg:associationProperty ;
+    owl:inverseOf bridg:Biologic.producingPerformedSubstanceExtraction .
+ bridg:Biologic.producingPerformedSubstanceExtraction a owl:ObjectProperty ;
+     rdfs:label "be produced by"^^<xs:string> ;
+     rdfs:subPropertyOf bridg:associationProperty .
+bridg:PerformedSubstanceExtraction.usedSubstanceExtractionAdministrationRelationship a owl:ObjectProperty ;
+    rdfs:label "be producing a substance later used in"^^<xs:string> ;
+    rdfs:subPropertyOf bridg:associationProperty .
+
+bridg:Person a owl:Class ;
+    rdfs:label "Person"^^<xs:string> ;
+    rdfs:subClassOf bridg:BiologicEntity .
+ bridg:BiologicEntity a owl:Class ;
+     rdfs:label "BiologicEntity"^^<xs:string> ;
+     rdfs:subClassOf bridg:DataEntity .
+bridg:Person.primaryOccupationCode a owl:ObjectProperty ;
+    rdfs:label "primaryOccupationCode"^^<xs:string> ;
+    rdfs:domain bridg:Person ;
+    rdfs:range dt:CD ;
+    rdfs:subPropertyOf bridg:attributeProperty .
+bridg:Person.raceCode a owl:ObjectProperty ;
+    rdfs:label "raceCode"^^<xs:string> ;
+    rdfs:domain bridg:Person ;
+    rdfs:range dt:DSET_CD ;
+    rdfs:subPropertyOf bridg:attributeProperty .
+
+bridg:ScheduledActivity a owl:Class ;
+    rdfs:label "ScheduledActivity"^^<xs:string> ;
+    rdfs:subClassOf bridg:Activity .
+bridg:ScheduledActivity.dateRange a owl:ObjectProperty ;
+    rdfs:label "dateRange"^^<xs:string> ;
+    rdfs:domain bridg:ScheduledActivity ;
+    rdfs:range dt:IVL_TS.DATETIME ;
+    rdfs:subPropertyOf bridg:attributeProperty .
+bridg:ScheduledActivity.instantiatedPlannedActivity a owl:ObjectProperty ;
+    rdfs:label "instantiates"^^<xs:string> ;
+    rdfs:domain bridg:ScheduledActivity ;
+    rdfs:range bridg:PlannedActivity ;
+    rdfs:subPropertyOf bridg:associationProperty .
+ bridg:PlannedActivity a owl:Class ;
+     rdfs:label "PlannedActivity"^^<xs:string> ;
+     rdfs:subClassOf bridg:Activity .
+
+bridg:ScheduledSubstanceAdministration a owl:Class ;
+    rdfs:label "ScheduledSubstanceAdministration"^^<xs:string> ;
+    rdfs:subClassOf bridg:ScheduledActivity .
+
+bridg:StratumGroup a owl:Class ;
+    rdfs:label "StratumGroup"^^<xs:string> ;
+    rdfs:subClassOf bridg:DataEntity .
+bridg:StratumGroup.characterizingDefinedStratificationCriterionPermissibleResult a owl:ObjectProperty ;
+    rdfs:label "is characterized by"^^<xs:string> ;
+    rdfs:domain bridg:StratumGroup ;
+    rdfs:range bridg:DefinedStratificationCriterionPermissibleResult ;
+    rdfs:subPropertyOf bridg:associationProperty ;
+    owl:inverseOf bridg:DefinedStratificationCriterionPermissibleResult.characterizedStratumGroup .
+ bridg:DefinedStratificationCriterionPermissibleResult.characterizedStratumGroup a owl:ObjectProperty ;
+     rdfs:label "characterizes"^^<xs:string> ;
+     rdfs:subPropertyOf bridg:associationProperty .
+bridg:StratumGroup.describingStudyProtocolVersion a owl:ObjectProperty ;
+    rdfs:label "is defined by"^^<xs:string> ;
+    rdfs:domain bridg:StratumGroup ;
+    rdfs:range bridg:StudyProtocolVersion ;
+    rdfs:subPropertyOf bridg:associationProperty .
+
+bridg:StudyActivity a owl:Class ;
+    rdfs:label "StudyActivity"^^<xs:string> ;
+    rdfs:subClassOf bridg:DataEntity .
+bridg:StudyActivity.usedDefinedActivity a owl:ObjectProperty ;
+    rdfs:label "uses"^^<xs:string> ;
+    rdfs:domain bridg:StudyActivity ;
+    rdfs:range bridg:DefinedActivity ;
+    rdfs:subPropertyOf bridg:associationProperty .
+bridg:StudyActivity.usingStudyProtocolVersion a owl:ObjectProperty ;
+    rdfs:label "is used by"^^<xs:string> ;
+    rdfs:domain bridg:StudyActivity ;
+    rdfs:range bridg:StudyProtocolVersion ;
+    rdfs:subPropertyOf bridg:associationProperty .
+
+# ComplicateUTI:ClinicalOutcome bridg:PerformedObservation.reportingAssessor bridg:StudyInvestigator | bridg:StudyLegalSponsor
+bridg:StudyInvestigator a owl:Class ;
+    rdfs:label "StudyInvestigator"^^<xs:string> ;
+    rdfs:subClassOf bridg:StudyPersonnel .
+ bridg:StudyPersonnel a owl:Class ;
+     rdfs:label "StudyPersonnel"^^<xs:string> ;
+     rdfs:subClassOf bridg:DataEntity .
+bridg:StudyLegalSponsor a owl:Class ;
+    rdfs:label "StudyLegalSponsor"^^<xs:string> ;
+    rdfs:subClassOf bridg:DataEntity .
+
+bridg:StudyProtocol a owl:Class ;
+    rdfs:label "StudyProtocol"^^<xs:string> ;
+    rdfs:subClassOf bridg:DataEntity .
+
+bridg:StudySiteProtocolVersionRelationship a owl:Class ;
+    rdfs:label "StudySiteProtocolVersionRelationship"^^<xs:string> ;
+    rdfs:subClassOf bridg:DataEntity .
+bridg:StudySiteProtocolVersionRelationship.executedStudyProtocolVersion a owl:ObjectProperty ;
+    rdfs:label "executes"^^<xs:string> ;
+    rdfs:domain bridg:StudySiteProtocolVersionRelationship ;
+    rdfs:range bridg:StudyProtocolVersion ;
+    rdfs:subPropertyOf bridg:associationProperty .
+ bridg:StudyProtocolVersion a owl:Class ;
+     rdfs:label "StudyProtocolVersion"^^<xs:string> ;
+     rdfs:subClassOf bridg:DataEntity .
+
+bridg:StudySubject a owl:Class ;
+                   rdfs:label "StudySubject"^^<xs:string> ;
+                   rdfs:subClassOf bridg:Subject .
+bridg:StudySubject.assignedStudySubjectProtocolVersionRelationship a owl:ObjectProperty ;
+    rdfs:label "be assigned to"^^<xs:string> ;
+    rdfs:subPropertyOf bridg:associationProperty .
+
+bridg:StudySubjectProtocolVersionRelationship a owl:Class ;
+    rdfs:label "StudySubjectProtocolVersionRelationship"^^<xs:string> ;
+    rdfs:subClassOf bridg:DataEntity .
+bridg:StudySubjectProtocolVersionRelationship.assigningStudySiteProtocolVersionRelationship a owl:ObjectProperty ;
+    rdfs:label "is assigned to"^^<xs:string> ;
+    rdfs:domain bridg:StudySubjectProtocolVersionRelationship ;
+    rdfs:range bridg:StudySiteProtocolVersionRelationship ;
+    rdfs:subPropertyOf bridg:associationProperty .
+bridg:StudySubjectProtocolVersionRelationship.assigningStudySubject a owl:ObjectProperty ;
+    rdfs:label "is the assigned version for"^^<xs:string> ;
+    rdfs:domain bridg:StudySubjectProtocolVersionRelationship ;
+    rdfs:range bridg:StudySubject ;
+    rdfs:subPropertyOf bridg:associationProperty ;
+    owl:inverseOf bridg:StudySubject.assignedStudySubjectProtocolVersionRelationship .
+bridg:StudySubjectProtocolVersionRelationship.effectiveDateRange a owl:ObjectProperty ;
+    rdfs:label "effectiveDateRange"^^<xs:string> ;
+    rdfs:domain bridg:StudySubjectProtocolVersionRelationship ;
+    rdfs:range dt:IVL_TS.DATETIME ;
+    rdfs:subPropertyOf bridg:attributeProperty .
+
+bridg:SubjectIdentifier a owl:Class ;
+    rdfs:label "SubjectIdentifier"^^<xs:string> ;
+    rdfs:subClassOf bridg:DataEntity .
+bridg:SubjectIdentifier.identifiedSubject a owl:ObjectProperty ;
+    rdfs:label "identifies"^^<xs:string> ;
+    rdfs:domain bridg:SubjectIdentifier ;
+    rdfs:range bridg:Subject ;
+    rdfs:subPropertyOf bridg:associationProperty .
+bridg:SubjectIdentifier.identifier a owl:ObjectProperty ;
+    rdfs:label "identifier"^^<xs:string> ;
+    rdfs:domain bridg:SubjectIdentifier ;
+    rdfs:range dt:II ;
+    rdfs:subPropertyOf bridg:attributeProperty .
+bridg:SubjectIdentifier.typeCode a owl:ObjectProperty ;
+    rdfs:label "typeCode"^^<xs:string> ;
+    rdfs:domain bridg:SubjectIdentifier ;
+    rdfs:range dt:CD ;
+    rdfs:subPropertyOf bridg:attributeProperty .
+
+bridg:Subject a owl:Class ;
+    rdfs:label "Subject"^^<xs:string> ;
+    rdfs:subClassOf bridg:DataEntity .
+bridg:Subject.performingBiologicEntity a owl:ObjectProperty ;
+    rdfs:label "be a function performed by"^^<xs:string> ;
+    rdfs:domain bridg:Subject ;
+    rdfs:range bridg:BiologicEntity ;
+    rdfs:subPropertyOf bridg:associationProperty .
+
+bridg:SubstanceExtractionAdministrationRelationship a owl:Class ;
+    rdfs:label "SubstanceExtractionAdministrationRelationship"^^<xs:string> ;
+    rdfs:subClassOf bridg:DataEntity .
+bridg:SubstanceExtractionAdministrationRelationship.donorTypeCode a owl:ObjectProperty ;
+    rdfs:label "donorTypeCode"^^<xs:string> ;
+    rdfs:domain bridg:SubstanceExtractionAdministrationRelationship ;
+    rdfs:range dt:CD ;
+    rdfs:subPropertyOf bridg:attributeProperty .
+bridg:SubstanceExtractionAdministrationRelationship.relationCode a owl:ObjectProperty ;
+    rdfs:label "relationCode"^^<xs:string> ;
+    rdfs:domain bridg:SubstanceExtractionAdministrationRelationship ;
+    rdfs:range dt:CD ;
+    rdfs:subPropertyOf bridg:attributeProperty .
+bridg:SubstanceExtractionAdministrationRelationship.usingPerformedSubstanceAdministration a owl:ObjectProperty ;
+    rdfs:label "be producing a substance later used in "^^<xs:string> ;
+    rdfs:domain bridg:SubstanceExtractionAdministrationRelationship ;
+    rdfs:range bridg:PerformedSubstanceAdministration ;
+    rdfs:subPropertyOf bridg:associationProperty .
+
+
+# old junk:
+# subset of bridg classes which we use:
+# recipe:
+# sparql -d ../BRIDG/bridgemodel-3.2.ttl -e 'PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> CONSTRUCT {?c1 rdfs:subClassOf ?c2} { {?c1 rdfs:subClassOf ?c2 FILTER (!isBlank(?c1) && !isBlank(?c2)) } UNION { ?c1 rdfs:subClassOf [ owl:intersectionOf [ rdf:first ?c2 ] ] FILTER (!isBlank(?c1) && !isBlank(?c2))} }'
+# grep \\#\\\(Biologic\\\|DefinedAdverseEvent\\\|DefinedObservation\\\|DefinedObservationResult\\\|ExperimentalUnit\\\|Observation\\\|PerformedSubstanceAdministration\\\|PerformedSubstanceExtraction\\\|Person\\\|ScheduledSubstanceAdministration\\\|StudySiteProtocolVersionRelationship\\\|StudySubject\\\|StudySubjectProtocolVersionRelationship\\\|SubjectIdentifier\\\)\\b
+
+#  <http://www.bridgmodel.org/owl#DefinedMedicalConditionResult> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.bridgmodel.org/owl#DefinedObservationResult> .
+#  <http://www.bridgmodel.org/owl#DefinedStratificationCriterion> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.bridgmodel.org/owl#DefinedObservation> .
+#  <http://www.bridgmodel.org/owl#DefinedObservationResult> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.bridgmodel.org/owl#DataEntity> .
+#  <http://www.bridgmodel.org/owl#ExperimentalUnit> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.bridgmodel.org/owl#DataEntity> .
+#  <http://www.bridgmodel.org/owl#StudySiteProtocolVersionRelationship> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.bridgmodel.org/owl#DataEntity> .
+#  <http://www.bridgmodel.org/owl#StudySubjectProtocolVersionRelationship> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.bridgmodel.org/owl#DataEntity> .
+#  <http://www.bridgmodel.org/owl#SubjectIdentifier> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.bridgmodel.org/owl#DataEntity> .
+#  <http://www.bridgmodel.org/owl#StudySubject> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.bridgmodel.org/owl#Subject> .
+#  <http://www.bridgmodel.org/owl#Person> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.bridgmodel.org/owl#BiologicEntity> .
+#  <http://www.bridgmodel.org/owl#Biologic> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.bridgmodel.org/owl#Product> .
+#  <http://www.bridgmodel.org/owl#PerformedSubstanceAdministration> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.bridgmodel.org/owl#PerformedProcedure> .
+#  <http://www.bridgmodel.org/owl#PerformedSubstanceExtraction> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.bridgmodel.org/owl#PerformedProcedure> .
+#  <http://www.bridgmodel.org/owl#DefinedObservation> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.bridgmodel.org/owl#DefinedActivity> .
+#  <http://www.bridgmodel.org/owl#DefinedAdverseEvent> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.bridgmodel.org/owl#DefinedObservationResult> .
+#  <http://www.bridgmodel.org/owl#DefinedEligibilityCriterionAnswer> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.bridgmodel.org/owl#DefinedObservationResult> .
+#  <http://www.bridgmodel.org/owl#DefinedStratificationCriterionPermissibleResult> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.bridgmodel.org/owl#DefinedObservationResult> .
+#  <http://www.bridgmodel.org/owl#DefinedEligibilityCriterion> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.bridgmodel.org/owl#DefinedObservation> .
+#  <http://www.bridgmodel.org/owl#DefinedImaging> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.bridgmodel.org/owl#DefinedObservation> .
+#  <http://www.bridgmodel.org/owl#ScheduledSubstanceAdministration> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.bridgmodel.org/owl#ScheduledActivity> .
+

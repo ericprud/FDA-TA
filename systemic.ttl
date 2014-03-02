@@ -1,0 +1,36 @@
+# $Id: systemic.ttl,v 1.5 2014-03-02 20:38:34 eric Exp $
+#
+# Signs, symptoms, tests, procedures not specific to any organ system or TA.
+# Fever, Chills, Vomiting, Confusion
+
+# ericP at the keyboard
+
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+@prefix bridg: <http://www.bridgmodel.org/owl#> .
+
+@prefix : <http://www.w3.org/2013/12/FDA-TA/systemic#> .
+@prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .
+@prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
+
+<http://www.w3.org/2013/12/FDA-TA/systemic> a owl:Ontology ;
+    owl:imports <http://www.w3.org/2013/12/FDA-TA/core> .
+
+# Observation types
+:ChillsObservation               rdfs:subClassOf core:SignsAndSymptoms        ; rdfs:label "chills"                  ; skos:definition "@@" .
+:VomitingObservation             rdfs:subClassOf core:SignsAndSymptoms        ; rdfs:label "vomiting"                ; skos:definition "@@" .
+:LowerQuadrantPainObservation    rdfs:subClassOf core:SignsAndSymptoms        ; rdfs:label "lower Quadrant Pain"     ; skos:definition "@@" .
+:ChangeInMentalStatusObservation rdfs:subClassOf core:SignsAndSymptoms        ; rdfs:label "change In Mental Status" ; skos:definition "@@" .
+:CoreTemperatureObservation      rdfs:subClassOf core:QuantitativeMeasurement ; rdfs:label "core temperature"        ; skos:definition "@@" .
+:SiteTendernessObservation       rdfs:subClassOf core:QuantitativeMeasurement ; rdfs:label "site tenderness"         ; skos:definition "@@" . # @@ subjectiveScale1_4
+
+:CultureSusceptaibilityTesting   rdfs:subClassOf core:SignsAndSymptoms        ; rdfs:label "Culture Susceptaibility" ; skos:definition "@@" .
+:CultureConfirmatoryTesting      rdfs:subClassOf core:SignsAndSymptoms        ; rdfs:label "Culture Confirmatory"                  ; skos:definition "@@" .
+:CultureColonyFormingUnitValue   rdfs:subClassOf core:SignsAndSymptoms        ; rdfs:label "Culture Colony Forming Unit Value"     ; skos:definition "@@" .
+
+# Anatomical terms
+:Blood rdfs:subClassOf core:AnatomicalTerm ; rdfs:label "blood"         ; skos:definition "@@" .
+

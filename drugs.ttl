@@ -1,0 +1,16 @@
+# $Id: drugs.ttl,v 1.1 2014-03-01 12:28:59 eric Exp $
+#
+# ericP at the keyboard
+
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .
+@prefix : <http://www.w3.org/2013/12/FDA-TA/drugs#> .
+
+:ActiveIngredientA a core:ActiveIngredient .
+:ActiveIngredientB a core:ActiveIngredient .
+:ImmunosuppressantA a core:Medication ; core:hasActiveIngredient :ActiveIngredientA .
+:ImmunosuppressantB a core:Medication ; core:hasActiveIngredient :ActiveIngredientB .
+

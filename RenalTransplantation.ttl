@@ -1,0 +1,134 @@
+# $Id: RenalTransplantation.ttl,v 1.11 2014-03-02 20:39:04 eric Exp $
+#
+# ericP at the keyboard
+
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix renal: <http://www.w3.org/2013/12/FDA-TA/renal#> .
+@prefix xplant: <http://www.w3.org/2013/12/FDA-TA/transplant#> .
+@prefix : <http://www.w3.org/2013/12/FDA-TA/RenalTransplantation#> .
+@prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .
+@prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
+
+<http://www.w3.org/2013/12/FDA-TA/RenalTransplantation> a owl:Ontology ;
+    owl:imports <http://www.w3.org/2013/12/FDA-TA/core> ,
+                <http://www.w3.org/2013/12/FDA-TA/renal> ,
+                <http://www.w3.org/2013/12/FDA-TA/transplant> .
+
+:RenalTransplantProcedure rdfs:subClassOf xplant:TransplantProcedure .
+
+# Restriction: { ?x a :KidneyGraftOutcomeAssessment }:: { ?x core:hasResultValue ?d . ?d a xplant:GraftViability }
+:KidneyGraftOutcomeAssessment a owl:Class ;
+    rdfs:subClassOf 
+        core:FunctionOutcomeAssessment ,
+        [ a owl:Restriction ;
+          owl:onProperty core:hasResultValue ;
+          owl:allValuesFrom xplant:GraftViability ] .
+
+:KidneyGraftSurvivalAssessment a owl:Class ; # rename to KidneyGraftWithNormalFunction ?
+    rdfs:subClassOf :KidneyGraftOutcomeAssessment , xplant:GraftSurvivalAssessment , core:PositiveOutcome .
+
+:KidneyGraftLossAssessment a owl:Class ; # rename to NonFunctioningKidneyGraft ?
+    rdfs:subClassOf :KidneyGraftOutcomeAssessment , xplant:GraftLossAssessment , core:NegativeOutcome .
+
+:KidneyGraftBPARAssessment a owl:Class ;      
+    rdfs:subClassOf :KidneyGraftOutcomeAssessment , xplant:GraftBPARAssessment , core:NegativeOutcome .
+
+
+
+:DeathDueToRejection rdfs:subClassOf core:FunctionOutcomeAssessment .
+
+# DefinedObservations are all in renal.ttl
+
+:GraftSurvival a core:EfficacyEndpoint ;
+    core:sparqlQuery """
+    SELECT ("GraftSurvival" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?name) AS ?labels)
+    WHERE {
+      BIND (1 AS ?g)
+      [
+        bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
+        core:hasOutcomeAssessment [
+          a xplant:GraftSurvivalAssessment ]
+      ]
+    } GROUP BY ?g
+""" .
+
+:GraftLoss a core:EfficacyEndpoint ;
+    core:sparqlQuery """
+    SELECT ("GraftLoss" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?name) AS ?labels)
+    WHERE {
+      BIND (1 AS ?g)
+      [
+        bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
+        core:hasOutcomeAssessment [
+          a xplant:GraftLossAssessment ]
+      ]
+    } GROUP BY ?g
+""" .
+
+:DecreasingGFR a core:EfficacyEndpoint ;
+    core:sparqlQuery """
+    SELECT ("DecreasingGFR" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?label) AS ?labels)
+    WHERE {
+      BIND (1 AS ?g)
+      [ 
+        bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
+        core:hasOutcomeAssessment ?oa ] .
+          ?oa a renal:RenalFunctionOutcomeAssessment ; core:hasObservationTime ?when .
+	  BIND (CONCAT(?name, '(', STR(?when), ')') AS ?label)
+          { SELECT ?oa { ?oa core:hasObservation [ a renal:GfrFlowRateObservation ] } GROUP BY ?oa } # over GFRs
+          MINUS { # occurances of GFR increasing with date
+            ?oa core:hasObservation
+                    [ a renal:GfrFlowRateObservation ; core:hasObservationTime ?date1 ; core:hasResultValue [ data:value ?gfr1 ] ] ,
+                    [ a renal:GfrFlowRateObservation ; core:hasObservationTime ?date2 ; core:hasResultValue [ data:value ?gfr2 ] ]
+            FILTER (?date2 > ?date1 && ?gfr2 > ?gfr1)
+          }
+    } GROUP BY ?g
+""" .
+
+:IncreasingSCr a core:EfficacyEndpoint ;
+    core:sparqlQuery """
+    SELECT ("IncreasingSCr" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?label) AS ?labels)
+    WHERE {
+      BIND (1 AS ?g)
+      [ 
+        bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
+        core:hasOutcomeAssessment ?oa ] .
+          ?oa a renal:RenalFunctionOutcomeAssessment ; core:hasObservationTime ?when .
+	  BIND (CONCAT(?name, '(', STR(?when), ')') AS ?label)
+          { SELECT ?oa { ?oa core:hasObservation [ a renal:SerumCreatinineObservation ] } GROUP BY ?oa } # over SCrs
+          MINUS { # occurances of SCr decreasing with date
+            ?oa core:hasObservation
+                    [ a renal:SerumCreatinineObservation ; core:hasObservationTime ?date1 ; core:hasResultValue [ data:value ?scr1 ] ] ,
+                    [ a renal:SerumCreatinineObservation ; core:hasObservationTime ?date2 ; core:hasResultValue [ data:value ?scr2 ] ]
+            FILTER (?date2 > ?date1 && ?scr2 < ?scr1)
+          }
+    } GROUP BY ?g
+""" .
+
+:AccuteRejection a core:EfficacyEndpoint ;
+    core:sparqlQuery """
+    SELECT ("AccuteRejection" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?label) AS ?labels)
+    WHERE {
+      BIND (1 AS ?g)
+      [
+        bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
+        core:hasOutcomeAssessment ?oa ] .
+          { SELECT ?oa ?l { ?oa core:afterIntervention [ bridg:PerformedActivity.instantiatedDefinedActivity [ rdfs:label ?l ] ] } GROUP BY ?oa ?l } # over SCrs
+          BIND (CONCAT(?name, '(', ?l, ")") AS ?label)
+
+          ?oa core:hasResultValue renal:CeasedToFunction .
+    } GROUP BY ?g
+""" .
+
+
+:AllEndpoints owl:equivalentClass [ owl:unionOf (
+        :GraftSurvival :GraftLoss :DecreasingGFR :IncreasingSCr :AccuteRejection core:Death core:LTFU 
+    ) ] .
+
+:Protocol a core:TAProtocol ;
+    rdfs:subClassOf 
+        [ owl:onProperty :hasEndpoint ; owl:someValuesFrom :AllEndpoints ] .
+    
