@@ -56,7 +56,7 @@
 
 :collectBlood1 a bridg:PerformedSpecimenCollectionq ;
     core:hasObservationtime "2012-08-26T19:57:00Z"^^xsd:dateTime ;
-    bridg999:performedSpecimenCollection.material sys:Blood .
+    bridg999:performedSpecimenCollection.material fma:Portion_of_blood .
     # bridg:performedSpecimenCollection.producedSpecimen :blood1 .
 
 :blood1 a bridg:Specimen , hl7-T70:ABLD ;
