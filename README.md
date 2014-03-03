@@ -1,8 +1,5 @@
-WebProtégé
-==========
-
 FDA Therapeutic Area Ontologies
--------------------------------
+===============================
 
 Collaborative space for TA development.
 
