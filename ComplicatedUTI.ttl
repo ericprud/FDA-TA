@@ -195,7 +195,7 @@
 :DefinedMicrobiologicalLTFUOutcome rdfs:subClassOf :DefinedMicrobiologicalOutcome ; :lastInterventionToAfterDuration :TreatmentLTFU .
 
 :cUTI_LabTests owl:equivalentClass [ owl:unionOf 
-  ( sys:WhiteBloodCellObservation sys:NitrateInUrine sys:Luekoestrearase 
+  ( sys:WhiteBloodCellLabTest sys:NitrateInUrineLabTest sys:Luekoestrearase 
     sys:CultureSusceptaibilityTesting sys:CultureConfirmatoryTesting sys:CultureColonyFormingUnitValue 
   ) ].
 
@@ -321,3 +321,81 @@
 ###   :Study_Drug_or_Comparator :has_value_for :Frequency .
 ###   :Study_Drug_or_Comparator :has_value_for :Dosage .
 
+#
+# Endpoints
+#
+:ClinicalCureRate a core:EfficacyEndpoint ;
+    core:sparqlQuery """
+    SELECT ("ClinicalCureRate" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?name) AS ?labels)
+    WHERE {
+      BIND (1 AS ?g)
+      [
+        bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
+        core:hasOutcomeAssessment [
+          a sys:ClinicalCureAssessment ]
+      ]
+    } GROUP BY ?g
+""" .
+
+:MicrobiologicalEradicationRate a core:EfficacyEndpoint ;
+    core:sparqlQuery """
+    SELECT ("MicrobiologicalEradicationRate" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?name) AS ?labels)
+    WHERE {
+      BIND (1 AS ?g)
+      [
+        bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
+        core:hasOutcomeAssessment [
+          a sys:MicrobiologicalEradicationAssessment ]
+      ]
+    } GROUP BY ?g
+""" .
+
+:IncreasingWBC a core:EfficacyEndpoint ;
+    core:sparqlQuery """
+    SELECT ("IncreasingWBC" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?label) AS ?labels)
+    WHERE {
+      BIND (1 AS ?g)
+      [ 
+        bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
+        core:hasOutcomeAssessment ?oa ] .
+          ?oa a renal:RenalFunctionOutcomeAssessment ; core:hasObservationTime ?when .
+	  BIND (CONCAT(?name, '(', STR(?when), ')') AS ?label)
+          { SELECT ?oa { ?oa core:hasObservation [ a renal:GfrFlowRateObservation ] } GROUP BY ?oa } # over GFRs
+          MINUS { # occurances of GFR increasing with date
+            ?oa core:hasObservation
+                    [ a renal:GfrFlowRateObservation ; core:hasObservationTime ?date1 ; core:hasResultValue [ data:value ?gfr1 ] ] ,
+                    [ a renal:GfrFlowRateObservation ; core:hasObservationTime ?date2 ; core:hasResultValue [ data:value ?gfr2 ] ]
+            FILTER (?date2 > ?date1 && ?gfr2 > ?gfr1)
+          }
+    } GROUP BY ?g
+""" .
+
+:IncreasingNitrate a core:EfficacyEndpoint ;
+    core:sparqlQuery """
+    SELECT ("IncreasingNitrate" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?label) AS ?labels)
+    WHERE {
+      BIND (1 AS ?g)
+      [ 
+        bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
+        core:hasOutcomeAssessment ?oa ] .
+          ?oa a renal:RenalFunctionOutcomeAssessment ; core:hasObservationTime ?when .
+	  BIND (CONCAT(?name, '(', STR(?when), ')') AS ?label)
+          { SELECT ?oa { ?oa core:hasObservation [ a renal:SerumCreatinineObservation ] } GROUP BY ?oa } # over SCrs
+          MINUS { # occurances of SCr decreasing with date
+            ?oa core:hasObservation
+                    [ a renal:SerumCreatinineObservation ; core:hasObservationTime ?date1 ; core:hasResultValue [ data:value ?scr1 ] ] ,
+                    [ a renal:SerumCreatinineObservation ; core:hasObservationTime ?date2 ; core:hasResultValue [ data:value ?scr2 ] ]
+            FILTER (?date2 > ?date1 && ?scr2 < ?scr1)
+          }
+    } GROUP BY ?g
+""" .
+
+
+:AllEndpoints owl:equivalentClass [ owl:unionOf (
+        :ClinicalCureRate :MicrobiologicalEradicationRage :IncreasingWBC :IncreasingNitrate core:Death core:LTFU 
+    ) ] .
+
+:Protocol a core:TAProtocol ;
+    rdfs:subClassOf 
+        [ owl:onProperty :hasEndpoint ; owl:someValuesFrom :AllEndpoints ] .
+    
