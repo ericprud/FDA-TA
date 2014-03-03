@@ -7,12 +7,12 @@ Collaborative space for TA development.
 File Structure
 --------------
 
-./TAongology - marked by initial capitol letter
-./sharedModeules - marked by initial lower-case letter
-./docs - documentation
-./util - utility functions
-./tests/TAongology/ - data to test endpoint queries and inferences
-./tests/TAongology/Makefile - $(make test) and a few other goodies
+- ./TAongology - marked by initial capitol letter
+- ./sharedModeules - marked by initial lower-case letter
+- ./docs - documentation
+- ./util - utility functions
+- ./tests/TAongology/ - data to test endpoint queries and inferences
+- ./tests/TAongology/Makefile - $(make test) and a few other goodies
 
 
 Issues
