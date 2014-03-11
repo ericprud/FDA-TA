@@ -1,0 +1,186 @@
+# Mike DiGiantomasso 
+#    primary authoring        - Komodo Edit 8.5 with Turtle plugin
+#    validation               - Protege 4.3
+#    navigation/visualization - Protege 4.3, TopBraid Composer Free
+#    Query/SPARQL             - Protege 4.3
+
+# Background notes:
+# http://www.remicade.com/hcp/rheumatoid-arthritis/efficacy
+# http://www.ncbi.nlm.nih.gov/pubmed/7823314
+# http://www.clinexprheumatol.org/article.asp?a=2695
+# preliminary core set of 8 endpoints to be used as a minimum in every rheumatoid arthritis (RA) clinical trial of > or = 1 year:
+
+# 1.) acute phase reactants levels (CRP or ESR),
+# 2.) physical function / disability
+# 3.) pain             - patient assessment
+# 4.) disease activity - patient global assessment 
+# 5.) disease activity - physician global assessment
+# 6.) swollen joint count
+# 7.) tender  joint count
+# 8.) radiographic studies of joints
+
+# aggregation of outcome measures into indices/scores:
+# 1.) ACR20/50/70
+# 2.) DAS28
+# 3.) HAQ-DI
+# 4.) VAS
+# 5.) SF-36
+
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix bridg: <http://www.bridgmodel.org/owl#> .
+@prefix data:  <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
+@prefix core:  <http://www.w3.org/2013/12/FDA-TA/core#> .
+@prefix ra:    <http://www.w3.org/2013/12/FDA-TA/RheumatoidArthritis#> .
+@prefix :      <http://www.w3.org/2013/12/FDA-TA/RheumatoidArthritis#> .
+@base          <http://www.w3.org/2013/12/FDA-TA/RheumatoidArthritis> .
+
+<http://www.w3.org/2013/12/FDA-TA/RheumatoidArthritis> a owl:Ontology ;
+owl:imports  <file:///C:/Users/mike/git/FDA-TA/bridg-classes.ttl>       # this avoids errors when i only load this ontology with Protege 4.3
+# <http://www.w3.org/2013/12/FDA-TA/core>                               # importing core still causes errors related to BRIDG
+.
+# #####################################################################################################################
+# metadata and general vocabulary - should be bound to Controlled terminologies
+# should any of these names be used in punning ?
+# These data elements should correspond to eCRFs and SDTM submssions values and may help CPATH in creating TA standars
+# #####################################################################################################################
+
+:Biomarker                      a owl:Class .
+:AcutePhaseReactant             a owl:Class .
+:CReactivePeptide               a :AcutePhaseReactant, :Biomarker .
+:ErythrocyteSedimentationRate   a :AcutePhaseReactant, :Biomarker .
+
+:VASMethod    a core:MeasurementMethodology ; rdfs:label "Visual Analog Score" . 
+:SF36         a core:MeasurementMethodology ; rdfs:label "Short Form 36 Question Health Survey" .
+:HAQDI        a core:MeasurementMethodology ; rdfs:label "Health Assessment Questionaire Disability Index" .
+:ErosionScore a core:MeasurementMethodology ; rdfs:label "Radiographic Erosion SCore" .                     
+:JSNCore      a core:MeasurementMethodology ; rdfs:label "Radiographic Joint Narrowing Score" .
+
+:PooledIndex a owl:Class ; owl:oneOf ( :RADAI
+                                       :RADAR
+                                       :CDAI
+                                       :SDAI
+                                       :DAS28
+                                    
+                                       :ACR_ResponseCriteria
+                                       :PaulusCriteria
+                                       :MallyaMace
+                                       :LansburySystemicManifestation
+                                       :SteinbrockerTherapeuticScorecard
+                                       ) .
+
+:ACRCoreSetComponent            a owl:Class ; owl:oneOf (:AcutePhaseReactant
+                                                         :SwollenJointCount
+                                                         :TenderJointCount
+                                                         :Pain
+                                                         :RadiographicResponse
+                                                         :PhysicalFunction
+                                                         :GlobalDiseaseStatusByPatient
+                                                         :GlobalDiseaseStatusByPhysician) .
+
+:DAS28IndexComponent            a owl:Class ; owl:oneOf (:AcutePhaseReactant
+                                                         :SwollenJointCount
+                                                         :TenderJointCount
+                                                         :GlobalDiseaseStatusbyPatient) .
+
+:DAS28Assessmentvalue                   rdfs:subClassOf core:SingleOutcomeAssessmentValue . #best way to limit values from 1 to 10 ?
+
+:PhysicalFunctionOutcomeAssessmentValue rdfs:subClassOf core:SingleOutcomeAssessmentValue ;
+                                        owl:oneOf ( :NoDifficulty
+                                                    :SomeDifficulty
+                                                    :MuchDifficulty
+                                                    :UnableToDo ) .
+
+:PhysicalFunction               rdfs:subClassOf core:NormalPhysiologicalProcess  ;
+                                                    owl:disjointUnionOf (:GroomingFunction
+                                                                         :DressingFunction
+                                                                         :Arising
+                                                                         :Activity
+                                                                         :Walking
+                                                                         :Hygene
+                                                                         :Grip
+                                                                         :Eating ) .
+
+:EvaluationTimePoint            rdfs:subClassOf bridg:DefinedSubjectActivityGroup ;
+                                              owl:unionOf (:DAS28EvaluationTimePoint
+                                                           :JointCountEvaluationTimePoint ) .
+
+:BaselineVisit                  a :EvaluationTimePoint .
+:EarlyWithDrawalDate            a :EvaluationTimePoint .
+:EscapeTherapyStartDate         a :EvaluationTimePoint .
+:Week12                         a :EvaluationTimePoint , :DAS28EvaluationTimePoint .
+:Week16                         a :EvaluationTimePoint , :JointCountEvaluationTimePoint .
+:Week24                         a :EvaluationTimePoint , :DAS28EvaluationTimePoint .
+:Week52                         a :EvaluationTimePoint , :DAS28EvaluationTimePoint .
+:Week80                         a :EvaluationTimePoint .
+:Week104                        a :EvaluationTimePoint , :DAS28EvaluationTimePoint .
+
+# #############################################################################################
+# properties      
+:hasSwollenJointCount  a owl:ObjectProperty ; rdfs:domain :RA_EfficacyIndex ; rdfs:range :SwollenJointCount .
+:hasTenderJointCount   a owl:ObjectProperty ; rdfs:domain :RA_EfficacyIndex ; rdfs:range :TenderJointCount .
+
+# core:OutcomeAssessmentValue  or  core:SingleOutcomeAssessmentValue.  Use owl:oneOf for closed world assumptions of known values in some of the scoring systems or assessments
+
+:ClinicalResponseAssessment           rdfs:subClassOf core:SingleOutcomeAssessment .
+:ImagingResponseAssessment            rdfs:subClassOf core:SingleOutcomeAssessment .
+:RadiographicScoreAssessment          rdfs:subClassOf :ImagingResponseAssessment , [a owl:Restriction ; owl:onProperty core:hasMeasurementMethodology ; owl:hasValue :ErosionScore  ] 
+                                                                                 , [a owl:Restriction ; owl:onProperty core:hasMeasurementMethodology ; owl:hasValue :JSNScore  ] .
+:HRQoLAssessment                      rdfs:subClassOf :ClinicalResponseAssessment, [a owl:Restriction ; owl:onProperty core:hasMeasurementMethodology ; owl:hasValue :SF36  ] . 
+:DAS28Assessment                      rdfs:subClassOf :ClinicalResponseAssessment .
+:ACR20Assessment                      rdfs:subClassOf :ClinicalResponseAssessment .
+:ACR50Assessment                      rdfs:subClassOf :ACR20Assessment .
+:ACR70Assessment                      rdfs:subClassOf :ACR50Assessment .
+:DiseaseActivityAssessmentByPatient   rdfs:subClassOf :ClinicalResponseAssessment , [a owl:Restriction ; owl:onProperty core:hasMeasurementMethodology ; owl:hasValue :VASMethod ] .
+:DiseaseActivityAssessmentByPhysician rdfs:subClassOf :ClinicalResponseAssessment , [a owl:Restriction ; owl:onProperty core:hasMeasurementMethodology ; owl:hasValue :VASMethod ] .
+:PainAssessment                       rdfs:subClassOf :ClinicalResponseAssessment , [a owl:Restriction ; owl:onProperty core:hasMeasurementMethodology ; owl:hasValue :VASMethod ] .
+:PhysicalFunctionOutcomeAssessment    rdfs:subClassOf :ClinicalResponseAssessment ,
+                                                       core:FunctionOutcomeAssessment ,
+                                                       [ a owl:Restriction ; owl:onProperty core:hasMeasurementMethodology ; owl:hasValue :HAQDI  ] , 
+                                                       [ a owl:Restriction ; owl:onProperty core:hasResultValue            ; owl:allValuesFrom :PhysicalFunctionOutcomeAssessmentValue ] .
+########################################################################################################################################################################
+# Single Observations which are used as input to an RA index/scoring system. # Each of these is a patient level endpoint withing context of the intervention
+########################################################################################################################################################################
+# core:SingleObservation / QuantitativeMeasurement classes which are candidate for systemic ontology, or possibly a more general auto-immune disease ontology
+
+:DefinedCReactivePeptideLabTest  rdfs:label "C Reactive Peptide (CRP)" ;              a bridg:DefinedObservation .  
+       :CReactivePeptideLabTest  rdfs:label "C Reactive Peptide (CRP)" ;              rdfs:subClassOf core:QuantitativeMeasurement,  # the intersection of these 4 classes...a primitive class which equates to necessary conditions (all subclasses are ANDed)
+                                                                                                      [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult  ] ,
+                                                                                                      [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality   1                              ] ,
+                                                                                                      [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity           ; owl:hasValue      :DefinedCReactivePeptideLabTest] .
+
+:DefinedErythrocyteSedRateLabTest rdfs:label "Erythrocyte Sedimentation Rate (ESR)" ; a bridg:DefinedObservation .  
+       :ErythrocyteSedRateLabTest rdfs:label "Erythrocyte Sedimentation Rate (ESR)" ; rdfs:subClassOf core:QuantitativeMeasurement,
+                                                                                                      [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult    ] ,
+                                                                                                      [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality   1                                ] ,
+                                                                                                      [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity           ; owl:hasValue      :DefinedErythrocyteSedRateLabTest] .
+
+:DefinedSwollenJointCount         rdfs:label "Number of Swollen joints" ;             a bridg:DefinedObservation .  
+       :SwollenJointCount         rdfs:label "Number of Swollen joints" ;             rdfs:subClassOf core:QuantitativeMeasurement,
+                                                                                                      [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+                                                                                                      [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality   1                             ] ,
+                                                                                                      [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity           ; owl:hasValue      :DefinedSwollenJointCount     ] .
+
+:DefinedTenderJointCount          rdfs:label "Number of Swollen joints" ;             a bridg:DefinedObservation .  
+       :TenderJointCount          rdfs:label "Number of Swollen joints" ;             rdfs:subClassOf core:QuantitativeMeasurement,
+                                                                                                      [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+                                                                                                      [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality   1                             ] ,
+                                                                                                      [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity           ; owl:hasValue      :DefinedSwollenJointCount     ] .
+
+
+
+
+# Composite/Rollup/aggregate cohort/population based endpoints - represent large bold orange concepts in CMAP
+:RA_EfficacyIndex             a owl:Class ; rdfs:subClassOf core:EfficacyEndpoint .
+:DAS28EndPoint                a :RA_EfficacyIndex            ; core:sparqlQuery "TBD" ; rdfs:label "Disease Activity Score for 28 joints" . 
+#-------------------------------------------------------------------------------------------------------------------------------------------------
+:ACR20EndPoint                a :RA_EfficacyIndex            ; core:sparqlQuery "TBD" ; rdfs:label "American College of Rheumatology 20% improvement criteria" ; rdfs:comment ">=20% fewer tender joints and >=20% fewer swollen joints.  20% improvement in at least 3 of the other 5 areas" .
+:ACR50EndPoint                a :RA_EfficacyIndex            ; core:sparqlQuery "TBD" ; rdfs:label "American College of Rheumatology 50% improvement criteria" ; rdfs:comment ">=50% fewer tender joints and >=50% fewer swollen joints.  50% improvement in at least 3 of the other 5 areas" .
+:ACR70EndPoint                a :RA_EfficacyIndex            ; core:sparqlQuery "TBD" ; rdfs:label "American College of Rheumatology 70% improvement criteria" ; rdfs:comment ">=70% fewer tender joints and >=70% fewer swollen joints.  70% improvement in at least 3 of the other 5 areas" .
+#-------------------------------------------------------------------------------------------------------------------------------------------------
+:PhysicalFunctionEndPoint     a core:EfficacyEndpoint        ; core:sparqlQuery "TBD" ; rdfs:label "Physical Function" .
+:HRQoL_EndPoint               a core:EfficacyEndpoint        ; core:sparqlQuery "TBD" ; rdfs:label "Health Related Quality Of Life" .
+:RadiographicResponseEndPoint a core:EfficacyEndpoint        ; core:sparqlQuery "TBD" ; rdfs:label "Radiographic Response" .
+
+:Covariate                    a owl:Class .    #generic class, move to core if needed
