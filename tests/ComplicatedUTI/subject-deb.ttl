@@ -6,44 +6,56 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 
+# External ontologies
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> .
 @prefix bridg: <http://www.bridgmodel.org/owl#> .
 @prefix bridg999: <http://www.bridgmodel.org/owl999#> .
 @prefix fma: <http://sig.uw.edu/fma#> .
-
 @prefix ucum: <http://unitsofmeasure.org/ucum-essence.xml#> .
-@prefix hl7-T70: <http://amisha.pragmaticdata.com/~gunther/oldhtml/tables.html#70> .
-@prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .
+
+# TA foundational ontologies
 @prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
-@prefix sys: <http://www.w3.org/2013/12/FDA-TA/systemic#> .
+@prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .
 @prefix renal: <http://www.w3.org/2013/12/FDA-TA/renal#> .
+@prefix sys: <http://www.w3.org/2013/12/FDA-TA/systemic#> .
 @prefix cuti: <http://www.w3.org/2013/12/FDA-TA/ComplicatedUTI#> .
 
+# Instance data ontologies
+@prefix drugs: <http://www.w3.org/2013/12/FDA-TA/drugs#> .
+@prefix hl7-T70: <http://amisha.pragmaticdata.com/~gunther/oldhtml/tables.html#70> .
 @prefix study2: <http://www.w3.org/2013/12/FDA-TA/tests/ComplicatedUTI/study2#> .
 
 <http://www.w3.org/2013/12/FDA-TA/tests/ComplicatedUTI/subject-deb> a owl:Ontology ;
-    owl:imports <http://www.w3.org/2013/12/FDA-TA/core> ,
-               <http://www.w3.org/2013/12/FDA-TA/datatypes> ,
-               <http://www.w3.org/2013/12/FDA-TA/systemic> ,
-               <http://www.w3.org/2013/12/FDA-TA/renal> ,
+    owl:imports <http://www.w3.org/2013/12/FDA-TA/drugs> ,
                <http://www.w3.org/2013/12/FDA-TA/ComplicatedUTI>  .
 
-:subject 
-    foaf:name "Deb" .
+:asSubject a bridg:StudySubject ;
+    bridg:StudySubject.assignedStudySubjectProtocolVersionRelationship 1 ;
+    bridg:Subject.performingBiologicEntity [
+        a bridg:Person ;
+        foaf:name "Deb" ;
+	# example demographics: age sex weight height region
+	bridg:Person.primaryOccupationCode [ a dt:CD ] ;
+	bridg:Person.raceCode [ a dt:CD ] ;
+    ] ;
 
+    # Deb has a baseline state: chills, flank pain, vomiting, lower quadrant pain, CVA pain, change in mental status, suprapubic pain
     core:observation :subjectsInitialChills , :subjectsInitialFlankPain , :subjectsInitialVomiting ,
                      :subjectsInitialLowerQuadrantPain , :subjectsInitialCVApain ,
                      :subjectsInitialChangeinmentalStatus , :subjectsInitialSuprapubicPain ;
 
     bridg:performedProcedure :collectBlood1 , :collectUrine1 ;
-    core:specimen :blood1 , :urine1 .
+    core:hasSpecimen :blood1 , :urine1 ;
 
     bridg:performedProcedure :collectBlood2 , :collectUrine2 ;
-    core:specimen :blood2 , :urine2 .
+    core:hasSpecimen :blood2 , :urine2 ;
+
+    bridg999:StudySubject.involvingScheduledSubstanceAdministration :subjectOnImmunosuppressantB ;
 
 .
+
 
 :subjectsInitialChills               a   sys:ChillsObservation               ; core:hasObservationtime "2012-08-26T19:57:00Z" ; core:hasResultValue [ data:value true ; data:units xsd:boolean ] ;
 :subjectsInitialFlankPain            a renal:FlankPainObservation            ; core:hasObservationtime "2012-08-26T19:57:00Z" ; core:hasResultValue [ data:value true ; data:units xsd:boolean ] ;
@@ -54,7 +66,7 @@
 :subjectsInitialSuprapubicPain       a   sys:SuprapubicPainObservation       ; core:hasObservationtime "2012-08-26T19:57:00Z" ; core:hasResultValue [ data:value true ; data:units xsd:boolean ] ;
 
 
-:collectBlood1 a bridg:PerformedSpecimenCollectionq ;
+:collectBlood1 a bridg:PerformedSpecimenCollection ;
     core:hasObservationtime "2012-08-26T19:57:00Z"^^xsd:dateTime ;
     bridg999:performedSpecimenCollection.material fma:Portion_of_blood .
     # bridg:performedSpecimenCollection.producedSpecimen :blood1 .

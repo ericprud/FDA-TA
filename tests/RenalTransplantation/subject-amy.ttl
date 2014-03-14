@@ -12,6 +12,7 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> .
 @prefix bridg: <http://www.bridgmodel.org/owl#> .
+@prefix bridg999: <http://www.bridgmodel.org/owl999#> .
 @prefix fma: <http://sig.uw.edu/fma#> .
 @prefix ucum: <http://unitsofmeasure.org/ucum-essence.xml#> .
 
@@ -46,7 +47,7 @@
 
     # Amy has a transplant and is treated with anti-rejection ImmunosuppressantB.
     # core:prescription :subjectOnImmunosuppressantB ;
-    core:involvingScheduledSubstanceAdministration :subjectOnImmunosuppressantB ;
+    bridg999:StudySubject.involvingScheduledSubstanceAdministration :subjectOnImmunosuppressantB ;
     core:observation :subjectsGFRpreOp ;
     core:hasIntervention :adminImmunosuppressantB-2013-10-16T07-05 ;
     # bridg:Subject.involvingActivity :@@1 ; # inv

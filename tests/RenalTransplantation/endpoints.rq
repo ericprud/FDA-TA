@@ -70,7 +70,7 @@ SELECT ?endpoint ?count ?labels {
   }
   UNION
   {
-    SELECT ("AccuteRejection" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?label) AS ?labels)
+    SELECT ("AcuteRejection" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?label) AS ?labels)
     WHERE {
       BIND (1 AS ?g)
       [
@@ -106,12 +106,12 @@ SELECT ?endpoint ?count ?labels {
   }
 }
 
-# ┌───────────────────┬────────┬─────────────────────────────────────────────────────────────┐
-# │ ?endpoint         │ ?count │ ?labels                                                     │
-# │   "GraftSurvival" │      1 │                                                       "Amy" │
-# │       "GraftLoss" │      1 │                                                       "Sue" │
-# │   "DecreasingGFR" │      2 │       "Sue(2013-07-08T14:51:00Z) Sue(2013-07-08T16:15:00Z)" │
-# │   "IncreasingSCr" │      2 │       "Sue(2013-07-08T14:51:00Z) Sue(2013-07-08T16:15:00Z)" │
-# │ "AccuteRejection" │      2 │ "Sue(calculated GFR flow rate) Sue(serum creatinine level)" │
-# │           "Death" │      1 │                                                       "Bob" │
-# └───────────────────┴────────┴─────────────────────────────────────────────────────────────┘
+# ┌──────────────────┬────────┬─────────────────────────────────────────────────────────────┐
+# │ ?endpoint        │ ?count │ ?labels                                                     │
+# │  "GraftSurvival" │      1 │                                                       "Amy" │
+# │      "GraftLoss" │      1 │                                                       "Sue" │
+# │  "DecreasingGFR" │      2 │       "Sue(2013-07-08T14:51:00Z) Sue(2013-07-08T16:15:00Z)" │
+# │  "IncreasingSCr" │      2 │       "Sue(2013-07-08T14:51:00Z) Sue(2013-07-08T16:15:00Z)" │
+# │ "AcuteRejection" │      2 │ "Sue(calculated GFR flow rate) Sue(serum creatinine level)" │
+# │          "Death" │      1 │                                                       "Bob" │
+# └──────────────────┴────────┴─────────────────────────────────────────────────────────────┘

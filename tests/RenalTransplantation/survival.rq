@@ -5,7 +5,7 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 PREFIX dt: <http://www.hl7.org/owl/iso-dt-2.0#>
 PREFIX bridg: <http://www.bridgmodel.org/owl#>
-PREFIX : <http://www.w3.org/2013/12/FDA-TA/tests/RenalTransplantation/subject-bob#>
+PREFIX bridg999: <http://www.bridgmodel.org/owl999#>
 PREFIX ucum: <http://unitsofmeasure.org/ucum-essence.xml#>
 PREFIX core: <http://www.w3.org/2013/12/FDA-TA/core#>
 PREFIX data: <http://www.w3.org/2013/12/FDA-TA/datatypes#>
@@ -43,7 +43,7 @@ SELECT ?who
                  core:hasIntervention [
                      a RenalX:RenalTransplantProcedure ;
                      core:hasInterventionTime ?procTime ] ;
-                 core:involvingScheduledSubstanceAdministration [
+                 bridg999:StudySubject.involvingScheduledSubstanceAdministration [
                      bridg:ScheduledActivity.dateRange [ dt:IVL_TS.DATETIME.low ?time ] ;
                      core:medication ?med ;
                      core:hasDosagePlan [

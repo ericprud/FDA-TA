@@ -1,7 +1,4 @@
 
-
-
-
 # Each patient has a complicated UTI (cUTI).  Joe also has acute pyelonephritis.
 # 
 # Each is treated with a given StudyDrug.  Each as multiple urine cultures assessed by either Sponsor or Investigator.  In the case of Sponsor assessment, the opinion of the Investigator is overridden.

@@ -80,12 +80,6 @@ study1:generalPrescriptionOfImmunosuppressantB a bridg:DefinedSubstanceAdministr
     bridg:DefinedSubstanceAdministration.routeOfAdministrationCode [ a dt:CD ] ; # IV
     bridg:DefinedSubstanceAdministration.usedDefinedExpressionVariableRelationship study1:varQtyOfImmunosuppressantB . # inv
 
-drugs:ImmunosuppressantA a bridg:Drug ;
-    . # @@ lots to fill in.
-
-drugs:ImmunosuppressantB a bridg:Drug ;
-    . # @@ lots to fill in.
-
 study1:varQtyOfImmunosuppressantA a bridg:DefinedExpressionVariableRelationship ; # @@ where to put ".6mg/kg"?
     bridg:DefinedExpressionVariableRelationship.usingDefinedSubstanceAdministration study1:generalPrescriptionOfImmunosuppressantA ;
     bridg:DefinedExpressionVariableRelationship.localVariableName "quantity" ;

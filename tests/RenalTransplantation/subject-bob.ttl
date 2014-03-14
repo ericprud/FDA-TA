@@ -12,6 +12,7 @@
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> .
 @prefix bridg: <http://www.bridgmodel.org/owl#> .
+@prefix bridg999: <http://www.bridgmodel.org/owl999#> .
 @prefix fma: <http://sig.uw.edu/fma#> .
 @prefix ucum: <http://unitsofmeasure.org/ucum-essence.xml#> .
 
@@ -46,7 +47,7 @@
 
     # Bob has a transplant and is treated with anti-rejection ImmunosuppressantA.
     # core:prescription :subjectOnImmunosuppressantA ;
-    core:involvingScheduledSubstanceAdministration :subjectOnImmunosuppressantA ;
+    bridg999:StudySubject.involvingScheduledSubstanceAdministration :subjectOnImmunosuppressantA ;
     core:observation :subjectsGFRpreOp ;
     core:hasIntervention :adminImmunosuppressantA-2013-08-26T07-08 ;
     # bridg:Subject.involvingActivity :adminImmunosuppressantA-2013-08-26T07-08 ; # inv
@@ -69,7 +70,7 @@
     core:hasOutcomeAssessment :subjectsApparentInfection ;
 
     # core:prescription :subjectOnImmunosuppressantA2 ; # Reduce ImmunosuppressantA because of indication of infection.
-    core:involvingScheduledSubstanceAdministration :subjectOnImmunosuppressantA2 ;
+    bridg999:StudySubject.involvingScheduledSubstanceAdministration :subjectOnImmunosuppressantA2 ;
 
     core:hasIntervention :adminImmunosuppressantA-2013-08-27T19-35 ,
                          :adminImmunosuppressantA-2013-08-27T23-15 ,
@@ -82,7 +83,7 @@
     core:hasOutcomeAssessment :subjectsWorseningInfection ;
 
     # core:prescription :subjectOnImmunosuppressantA3 ; # Stop ImmunosuppressantA altogether while fighting infection.
-    core:involvingScheduledSubstanceAdministration :subjectOnImmunosuppressantA3 ;
+    bridg999:StudySubject.involvingScheduledSubstanceAdministration :subjectOnImmunosuppressantA3 ;
     core:observation :subjectsPostOpDay4UrineOutput , :subjectsPostOpDay4Temperature , :subjectsPostOpDay4SiteTenderness , :subjectsPostOpDay4SCr ;
 
     # Death do to infection.

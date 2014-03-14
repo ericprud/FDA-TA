@@ -37,6 +37,13 @@ bridg:Biologic.handlingCode a owl:ObjectProperty ;
     rdfs:domain bridg:Biologic ; rdfs:range dt:CD ;
     rdfs:subPropertyOf bridg:attributeProperty .
 
+bridg:BiologicEntityPart a owl:Class ;
+    rdfs:label "BiologicEntityPart"^^<xs:string> ;
+    rdfs:subClassOf bridg:DataEntity .
+bridg:BiologicEntityPart.anatomicSiteLateralityCode a owl:ObjectProperty ;
+    rdfs:domain bridg:BiologicEntityPart ;
+    rdfs:range dt:CD .
+
 bridg:DefinedAdverseEvent a owl:Class ;
     rdfs:label "DefinedAdverseEvent"^^<xs:string> ;
     rdfs:subClassOf bridg:DefinedObservationResult .

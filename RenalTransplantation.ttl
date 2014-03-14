@@ -111,9 +111,9 @@
     } GROUP BY ?g
 """ .
 
-:AccuteRejection a core:EfficacyEndpoint ;
+:AcuteRejection a core:EfficacyEndpoint ;
     core:sparqlQuery """
-    SELECT ("AccuteRejection" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?label) AS ?labels)
+    SELECT ("AcuteRejection" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?label) AS ?labels)
     WHERE {
       BIND (1 AS ?g)
       [
@@ -128,7 +128,7 @@
 
 
 :AllEndpoints owl:equivalentClass [ owl:unionOf (
-        :GraftSurvival :GraftLoss :DecreasingGFR :IncreasingSCr :AccuteRejection core:Death core:LTFU 
+        :GraftSurvival :GraftLoss :DecreasingGFR :IncreasingSCr :AcuteRejection core:Death core:LTFU 
     ) ] .
 
 :Protocol a core:TAProtocol ;

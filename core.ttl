@@ -7,6 +7,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 @prefix bridg: <http://www.bridgmodel.org/owl#> .
+@prefix bridg999: <http://www.bridgmodel.org/owl999#> .
 
 @prefix : <http://www.w3.org/2013/12/FDA-TA/core#> .
 @prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
@@ -67,6 +68,8 @@
 :MedicationPrescription 
     rdfs:subClassOf [ owl:onProperty :hasDosagePlan ; owl:cardinality 1 ] ;
     rdfs:subClassOf [ owl:onProperty :hasMedication ; owl:cardinality 1 ] .
+
+:Medication rdfs:subClassOf bridg:Drug . # can revert to bridg:Drug if we never need to differentiate.
 
 # TI properties
 :hasIntervention a owl:ObjectProperty ;
@@ -134,6 +137,9 @@
 # Observations (middle, yellow)
 #
 
+:hasObservation a owl:ObjectProperty ;
+    rdfs:range :Observation .
+
 :Observation 
     owl:disjointUnionOf (
         :AdministrativeObservation :ClinicalObservation 
@@ -151,6 +157,11 @@
     [ owl:onProperty :hasResultValue ; owl:someValuesFrom :DispositionValue ] .
 :DispositionValue owl:equivalentClass [
             owl:oneOf ( :Deceased :LostToFollowup :AdministrativeWithdrawl :ConsentWithdrawl ) ] .
+:DefinedAdministrativeEndpoint rdfs:subClassOf bridg:DefinedObservation .
+:AdministrativeEndpoint rdfs:subClassOf 
+    :Disposition ,
+    [ owl:onProperty :sparqlQuery ; owl:cardinality 1 ] .
+
 # @@ Will we use this hierarchy from cUTI?
 ###   :Disposition :includes :Prematurely_Withdrawn_from_Treatment .
 ###     :Prematurely_Withdrawn_from_Treatment :includes :Unacceptable_or_Intolerable_AE .
@@ -162,7 +173,7 @@
 ###     :Prematurely_Withdrawn_from_Study :includes :Consent_Withdrawn .
 
 # A couple standard outcome queries for all TA-protocols to use:
-:Death a :EfficacyEndpoint ;
+:Death a :AdministrativeEndpoint ;
     :sparqlQuery """
     SELECT ("Death" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?name) AS ?labels)
     WHERE {
@@ -174,7 +185,7 @@
     } GROUP BY ?g
 """ .
 
-:LTFU a :EfficacyEndpoint ;
+:LTFU a :AdministrativeEndpoint ;
     :sparqlQuery """
     SELECT ("LTFU" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?name) AS ?labels)
     WHERE {
@@ -205,7 +216,7 @@
 :hasLabReport a owl:ObjectProperty ;
     rdfs:domain :DiagnosticProcedure ;
     rdfs:range :LabReport .
-:LabReport a :DiagnosticProcedure ;
+:LabReport rdfs:subClassOf :DiagnosticProcedure ;
     rdfs:domain :QuantitativeMeasurement ;
     rdfs:range :QuantitativeMeasurement . # @@ subclass QuantitativeMeasurement for lab reports?
 
@@ -342,6 +353,16 @@
 # 	owl:allValuesFrom :TemporalProfile
 #     ] 
 .
-:NormalPhysiologicalProcess     rdfs:subClassOf :PhysiologicalProcess .
+:NormalPhysiologicalProcess rdfs:subClassOf :PhysiologicalProcess .
 :PathoPhysiologicalProcess rdfs:subClassOf :PhysiologicalProcess .
+
+
+:hasSpecimen a owl:ObjectProperty .
+
+bridg999:StudySubject.involvingScheduledSubstanceAdministration a owl:ObjectProperty ;
+    rdfs:domain bridg:StudySubject ;
+    rdfs:range bridg:ScheduledSubstanceAdministration .
+bridg999:performedSpecimenCollection.material a owl:ObjectProperty ;
+    rdfs:domain bridg:PerformedSpecimenCollection ;
+    rdfs:range bridg:Biologic .
 
