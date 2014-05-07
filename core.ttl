@@ -260,10 +260,10 @@
 :Assessment 
     rdfs:subClassOf 
         :ClinicalObservation ,
-        [ owl:onProperty :hasObservation ; owl:minCardinality 2 ] .
+        [ owl:onProperty :hasObservation ; owl:minCardinality 1 ] .
 
 :hasObservation a owl:ObjectProperty ;
-    rdfs:domain :Assessment ;
+#    rdfs:domain :Assessment ; # lots of things have observations.
     rdfs:range :ClinicalObservation .
 
 # Outcome Assessment - a conclusions (disposition) based on a set of
