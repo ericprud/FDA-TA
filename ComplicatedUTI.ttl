@@ -41,7 +41,7 @@
 # infection type
 :TypeOfInfection owl:oneOf ( :cUTI :AcutePyelonephritis ) .
 :cUTI rdfs:subClassOf dt:CD ,
-    [ owl:onProperty :complicatingFactor ; owl:hasValue :IndwellingCatheter ] . # minCard 0 
+    [ owl:onProperty :complicatingFactor ; owl:hasValue :ComplicatingFactor ] . # minCard 0 
 :complicatingFactor a owl:ObjectProperty .
 
 :ComplicatingFactor owl:oneOf ( :Obstructive_Uropathy :Azotemia :Male_with_Urinary_Retention 
@@ -99,7 +99,7 @@
 ### :ClinicalEradicationRateEndpoint 
 ###     rdfs:subClassOf :EfficacyEndpoint ,
 ###         [ owl:onProperty core:hasObservation ; owl:someValuesFrom :ClinicalOutcome ] ,
-###         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:SomeValuesFrom :DefinedClinicalEradicationRateEndpoints ] .
+###         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:someValuesFrom :DefinedClinicalEradicationRateEndpoints ] .
 
 #  :ClinicalCureRate :calculated_by :ClinicalCureRateFormula .
 # ----
@@ -133,7 +133,7 @@
 # :ClinicalOutcome
 :ClinicalOutcome 
     rdfs:subClassOf :SingleOutcomeAssessment ,
-        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:SomeValuesFrom :DefinedClinicalOutcome ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:someValuesFrom :DefinedClinicalOutcome ] ,
 	[ owl:onProperty bridg:PerformedObservation.reportingAssessor ; owl:someValuesFrom [
             owl:intersectionOf ( bridg:StudyInvestigator bridg:StudyLegalSponsor )
         ] ] ,
@@ -169,7 +169,7 @@
 ### :MicrobiologicalEradicationRateEndpoint 
 ###     rdfs:subClassOf :EfficacyEndpoint ,
 ###         [ owl:onProperty core:hasObservation ; owl:someValuesFrom :MicrobiologicalOutcome ] ,
-###         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:SomeValuesFrom :DefinedMicrobiologicalEradicationRateEndpoints ] .
+###         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:someValuesFrom :DefinedMicrobiologicalEradicationRateEndpoints ] .
 #  :MicrobiologicalEradicationRate :measured_in :Microbiologically_Evaluable_Population_(ME) .
 #    :Microbiologically_Evaluable_Population_(ME) :classified_by :Baseline_Pathogen .
 #    :Microbiologically_Evaluable_Population_(ME) :classified_by :Country_or_Region .
@@ -203,7 +203,7 @@
 # :MicrobiologicalEradicationRate_Formula :calculated_from :MicrobiologicalOutcome .
 :MicrobiologicalOutcome 
     rdfs:subClassOf :SingleOutcomeAssessment ,
-        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:SomeValuesFrom :DefinedMicrobiologicalOutcome ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:someValuesFrom :DefinedMicrobiologicalOutcome ] ,
 	[ owl:onProperty bridg:PerformedObservation.reportingAssessor ; owl:hasValue bridg:StudyLegalSponsor ], # @@ classified by
 #    bridg:StudyLegalSponsor :assigns :PathogenOutcome . @@ need Assignment Relationship or some such
         [ owl:onProperty core:beforeIntervention ; owl:allValuesFrom :cUTI_LabTests ] ,
