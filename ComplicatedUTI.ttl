@@ -19,6 +19,7 @@
 
 <http://www.w3.org/2013/12/FDA-TA/ComplicatedUTI> a owl:Ontology ;
     owl:imports <http://www.w3.org/2013/12/FDA-TA/core> ,
+                <http://www.w3.org/2013/12/FDA-TA/systemic> ,
         <http://www.w3.org/2013/12/FDA-TA/renal> .
 
 # Hang all of our meds off of cuti:Drug{Prescription,Administration} .
@@ -143,8 +144,8 @@
         [ owl:onProperty core:hasIntervention ; owl:allValuesFrom :DrugAdministration ] ,
         [ owl:onProperty core:afterIntervention ; owl:allValuesFrom :SSXofcUTIandAP ] ,
         [ owl:onProperty core:hasResultValue ; owl:allValuesFrom [
-            rdfs:subClassOf bridg:PerformedObservationResult ,
-                [ owl:onProperty core:typeCode ; owl:allValuesFrom :ClinicalOutcomeValue ]
+            owl:intersectionOf ( bridg:PerformedObservationResult 
+                [ owl:onProperty bridg:PerformedObservationResult.typeCode ; owl:allValuesFrom :ClinicalOutcomeValue ] )
         ] ] .
 #  :ClinicalOutcome :assessed_from :SSXofcUTIandAP . # ...
 #  :ClinicalOutcome :assessed_for :Patient . # ...
