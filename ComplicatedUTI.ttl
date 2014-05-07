@@ -83,9 +83,10 @@
 :MicrobErad_ProtocolVersion owl:oneOf ( :Ascending_cUTI_Protocol :Hematogenous_cUTI_Protocol 
                                  :Ascending_AcutePyelonephritis_Protocol :Hematogenous_AcutePyelonephritis_Protocol ).
 
-# :ClinicalCureRate rdfs:subClassOf :EfficacyEndpoint .
+# :ClinicalCureRate a core:EfficacyEndpoint .
 
-:DefinedClinicalEradicationRateEndpoints owl:oneOf
+:DefinedClinicalEradicationRateEndpoints rdfs:subClassOf core:ExperimentalStratifiedEfficacyEndpoint ;
+    owl:oneOf
     ( :DefnClinEradicationRateEndpoint_CE_TOC :DefnClinEradicationRateEndpoint_CE_EOT 
       :DefnClinEradicationRateEndpoint_MITT_TOC :DefnClinEradicationRateEndpoint_MITT_EOT ) .
 
@@ -98,7 +99,7 @@
 # :ClinicalCureRate
 # :Efficacy_Endpoints :includes :ClinicalCureRate .
 ### :ClinicalEradicationRateEndpoint 
-###     rdfs:subClassOf :EfficacyEndpoint ,
+###     rdfs:subClassOf core:ExperimentalStratifiedEfficacyEndpoint ,
 ###         [ owl:onProperty core:hasObservation ; owl:someValuesFrom :ClinicalOutcome ] ,
 ###         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:someValuesFrom :DefinedClinicalEradicationRateEndpoints ] .
 
@@ -157,7 +158,8 @@
     [ owl:onProperty bridg:StudyActivity.usedDefinedActivity ; owl:someValuesFrom :DefinedMicrobiologicalEradicationRateEndpoints ] ,
     [ owl:onProperty bridg:StudyActivity.usingStudyProtocolVersion ; owl:someValuesFrom :MicrobErad_ProtocolVersion ] .
 
-:DefinedMicrobiologicalEradicationRateEndpoints owl:oneOf
+:DefinedMicrobiologicalEradicationRateEndpoints rdfs:subClassOf core:ExperimentalStratifiedEfficacyEndpoint ;
+    owl:oneOf
     ( :DefnMicrobEradicationRateEndpoint_ME_TOC :DefnMicrobEradicationRateEndpoint_ME_EOT 
       :DefnMicrobEradicationRateEndpoint_MITT_TOC :DefnMicrobEradicationRateEndpoint_MITT_EOT ) .
 
@@ -168,7 +170,7 @@
 :DefnMicrobEradicationRateEndpoint_MITT_EOT rdfs:subClassOf :DefinedMicrobiologicalEradicationRateEndpoint .
 
 ### :MicrobiologicalEradicationRateEndpoint 
-###     rdfs:subClassOf :EfficacyEndpoint ,
+###     rdfs:subClassOf core:ExperimentalStratifiedEfficacyEndpoint ,
 ###         [ owl:onProperty core:hasObservation ; owl:someValuesFrom :MicrobiologicalOutcome ] ,
 ###         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:someValuesFrom :DefinedMicrobiologicalEradicationRateEndpoints ] .
 #  :MicrobiologicalEradicationRate :measured_in :Microbiologically_Evaluable_Population_(ME) .
@@ -392,7 +394,8 @@
 """ .
 
 
-:AllEndpoints owl:equivalentClass [ owl:unionOf (
+:AllEndpoints rdfs:subClassOf core:EfficacyEndpoint ;
+    owl:equivalentClass [ owl:unionOf (
         :ClinicalCureRate :MicrobiologicalEradicationRage :IncreasingWBC :IncreasingNitrate core:Death core:LTFU 
     ) ] .
 
