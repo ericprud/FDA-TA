@@ -22,26 +22,54 @@
                 <http://www.w3.org/2013/12/FDA-TA/systemic> ,
         <http://www.w3.org/2013/12/FDA-TA/renal> .
 
+
+:Subject # cUTI subjects have a few extra properties
+    rdfs:subClassOf 
+        bridg:StudySubject ,
+        [ owl:onProperty :reasonMicrobiologicallyEvaluable ; owl:allValuesFrom :MicrobiologicallyEvaluableClassifier ] ,
+        [ owl:onProperty :isClinicallyEvaluable ; owl:maxCardinality 1 ] ,
+        [ owl:onProperty :isClinicallyEvaluable ; owl:maxCardinality 1 ] ,
+        [ owl:onProperty :isClinicallyEvaluable ; owl:maxCardinality 1 ] .
+:microbiologicallyTreatable a owl:DatatypeProperty ; rdfs:range xsd:boolean .
+:isClinicallyEvaluable a owl:DatatypeProperty ; rdfs:range xsd:boolean .
+:isClinicallyTreatable a owl:DatatypeProperty ; rdfs:range xsd:boolean .
+
+:MicrobiologicallyEvaluableClassifier 
+    rdfs:subClassOf 
+        core:Assessment ,
+        [ owl:onProperty core:hasObservation ;
+          owl:someValuesFrom [ owl:unionOf
+           ( sys:CulturePathogenSpeciesTest :InfectionCategory :Region ) ] ] .
+
+:InfectionCategory a bridg:PerformedObservation .
+:Region a bridg:PerformedObservation . # @@ move to demographics if that comes into scope.
+
+:MicrobiologicallyEvaluableAssessment a core:Assessment ;
+    rdfs:subClassOf 
+        [ owl:onProperty :classifiedBy ; owl:someValuesFrom :MicrobiologicallyEvaluableClassifier ] .
+
 # Hang all of our meds off of cuti:Drug{Prescription,Administration} .
 :DrugPrescription rdfs:subClassOf bridg:ScheduledSubstanceAdministration .
 :DrugAdministration rdfs:subClassOf bridg:PerformedSubstanceAdministration .
 
+:CD rdfs:subClassOf dt:CD .
+
 :ClinicalOutcomeValue owl:oneOf ( :Indeterminate :Cured :Failed :Improved ) .
-:Indeterminate rdfs:subClassOf dt:CD .
-:Cured rdfs:subClassOf dt:CD .
-:Failed rdfs:subClassOf dt:CD .
-:Improved rdfs:subClassOf dt:CD .
+:Indeterminate rdfs:subClassOf :CD .
+:Cured rdfs:subClassOf :CD .
+:Failed rdfs:subClassOf :CD .
+:Improved rdfs:subClassOf :CD .
 
 # infection route
 :RouteOfInfection owl:oneOf ( :Ascending :Hematogenous ) .
-:Ascending rdfs:subClassOf dt:CD ; skos:example "Ascending Pyelonephritis" .
+:Ascending rdfs:subClassOf :CD ; skos:example "Ascending Pyelonephritis" .
 :AscendingPyelonephritis rdfs:subClassOf :Ascending . # example 
-:Hematogenous rdfs:subClassOf dt:CD ; skos:example "Endocarditis" .
+:Hematogenous rdfs:subClassOf :CD ; skos:example "Endocarditis" .
 :Endocarditis rdfs:subClassOf :Hematogenous . # example
 
 # infection type
 :TypeOfInfection owl:oneOf ( :cUTI :AcutePyelonephritis ) .
-:cUTI rdfs:subClassOf dt:CD ,
+:cUTI rdfs:subClassOf :CD ,
     [ owl:onProperty :complicatingFactor ; owl:hasValue :ComplicatingFactor ] . # minCard 0 
 :complicatingFactor a owl:ObjectProperty .
 
@@ -122,9 +150,9 @@
 
 # maybe rename to something like :cUTI_signsAndSymptoms
 :SSXofcUTIandAP owl:equivalentClass [ owl:unionOf  
-  ( sys:Lower_Quadrant_Pain sys:Abdominal_Pain sys:Groin_Pain sys:Vomiting sys:Dysuria sys:Nausia sys:Fever 
-    sys:Tenderness sys:Back_Pain sys:Malaise sys:Flank_Pain sys:Chills sys:Costo-Vertibral_Angle_Pain 
-    sys:Urinary_Frequency sys:Urinary_Urgency sys:Suprapubic_Pain sys:Change_In_Mental_Status 
+  ( sys:LowerQuadrantPainObservation sys:AbdominalPainObservation sys:GroinPainObservation sys:VomitingObservation sys:DysuriaObservation sys:NauseaObservation sys:FeverObservation 
+    sys:TendernessObservation sys:BackPainObservation sys:MalaiseObservation sys:FlankPainObservation sys:ChillsObservation sys:Costo-VertibralAnglePainObservation 
+    sys:UrinaryFrequencyObservation sys:UrinaryUrgencyObservation sys:SuprapubicPainObservation sys:ChangeInMentalStatusObservation 
   ) ].
 ### # :SSXofcUTIandAP
 ### # :ClinicalOutcome :assessed_from :SSXofcUTIandAP .
@@ -179,11 +207,11 @@
 #  :MicrobiologicalEradicationRate :calculated_by :MicrobiologicalEradicationRate_Formula . # ...
 
 :MicrobiologicalOutcomeValue owl:oneOf ( :NewInfection :Superinfection :Indeterminate :Eradication :Persistence ) .
-:NewInfection rdfs:subClassOf dt:CD .
-:Superinfection rdfs:subClassOf dt:CD .
-:Indeterminate rdfs:subClassOf dt:CD .
-:Eradication rdfs:subClassOf dt:CD .
-:Persistence rdfs:subClassOf dt:CD .
+:NewInfection rdfs:subClassOf :CD .
+:Superinfection rdfs:subClassOf :CD .
+:Indeterminate rdfs:subClassOf :CD .
+:Eradication rdfs:subClassOf :CD .
+:Persistence rdfs:subClassOf :CD .
 
 
 # cUTI's :DefinedMicrobiologicalOutcome - bridg:isAbstract true ;
@@ -402,4 +430,8 @@
 :Protocol a core:TAProtocol ;
     rdfs:subClassOf 
         [ owl:onProperty :hasEndpoint ; owl:someValuesFrom :AllEndpoints ] .
-    
+
+# Organization tricks
+
+:Entity a owl:Class . # organizer for cUTI .
+:Subject rdfs:subClassOf :Entity .

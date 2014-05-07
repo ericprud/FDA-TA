@@ -33,6 +33,16 @@ fma:Kidney           rdfs:subClassOf core:AnatomicalTerm ; rdfs:label "Kidney"@e
 # or a subclass: bridg:Performed{ClinicalInterpretation,ClinicalResult,ConditionResult,Diagnosis}
 
 # Each class of PerformedObservation subclass identifies a DefinedObservation which is an individual.
+:FeverObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedFeverObservation ] ;
+    rdfs:label "fever"                  ; skos:definition "@@" .
+:DefinedFeverObservation a bridg:DefinedObservation ;
+    rdfs:label "fever" .
+
 :ChillsObservation 
     rdfs:subClassOf 
         core:SignsAndSymptoms ,
@@ -53,6 +63,46 @@ fma:Kidney           rdfs:subClassOf core:AnatomicalTerm ; rdfs:label "Kidney"@e
 :DefinedVomitingObservation a bridg:DefinedObservation ;
     rdfs:label "vomiting" .
 
+:NauseaObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedNauseaObservation ] ;
+    rdfs:label "nausea"                ; skos:definition "@@" .
+:DefinedNauseaObservation a bridg:DefinedObservation ;
+    rdfs:label "nausea" .
+
+:DysuriaObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedDysuriaObservation ] ;
+    rdfs:label "dysuria"                ; skos:definition "@@" .
+:DefinedDysuriaObservation a bridg:DefinedObservation ;
+    rdfs:label "dysuria" .
+
+:UrinaryFrequencyObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedUrinaryFrequencyObservation ] ;
+    rdfs:label "urinary frequency"                ; skos:definition "@@" .
+:DefinedUrinaryFrequencyObservation a bridg:DefinedObservation ;
+    rdfs:label "urinary frequency" .
+
+:UrinaryUrgencyObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedUrinaryUrgencyObservation ] ;
+    rdfs:label "urinary urgency"                ; skos:definition "@@" .
+:DefinedUrinaryUrgencyObservation a bridg:DefinedObservation ;
+    rdfs:label "urinary urgency" .
+
 :LowerQuadrantPainObservation 
     rdfs:subClassOf 
         core:SignsAndSymptoms ,
@@ -63,15 +113,105 @@ fma:Kidney           rdfs:subClassOf core:AnatomicalTerm ; rdfs:label "Kidney"@e
 :DefinedLowerQuadrantPainObservation a bridg:DefinedObservation ;
     rdfs:label "lower Quadrant Pain" .
 
+:MalaiseObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedMalaiseObservation ] ;
+    rdfs:label "malaise" ; skos:definition "@@" .
+:DefinedMalaiseObservation a bridg:DefinedObservation ;
+    rdfs:label "malaise" .
+
 :ChangeInMentalStatusObservation 
     rdfs:subClassOf 
         core:SignsAndSymptoms ,
         [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
         [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedChangeInMentalStatusObservation ] ;
-    rdfs:label "change In Mental Status" ; skos:definition "@@" .
+    rdfs:label "change In mental status" ; skos:definition "@@" .
 :DefinedChangeInMentalStatusObservation a bridg:DefinedObservation ;
-    rdfs:label "change In Mental Status" .
+    rdfs:label "change In mental status" .
+
+:AbdominalPainObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedAbdominalPainObservation ] ;
+    rdfs:label "Abdominal Pain" ; skos:definition "@@" .
+:DefinedAbdominalPainObservation a bridg:DefinedObservation ;
+    rdfs:label "Abdominal Pain" .
+
+:GroinPainObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedGroinPainObservation ] ;
+    rdfs:label "Groin Pain" ; skos:definition "@@" .
+:DefinedGroinPainObservation a bridg:DefinedObservation ;
+    rdfs:label "Groin Pain" .
+
+:GroinPainObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedGroinPainObservation ] ;
+    rdfs:label "Groin Pain" ; skos:definition "@@" .
+:DefinedGroinPainObservation a bridg:DefinedObservation ;
+    rdfs:label "Groin Pain" .
+
+:BackPainObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedBackPainObservation ] ;
+    rdfs:label "Back Pain" ; skos:definition "@@" .
+:DefinedBackPainObservation a bridg:DefinedObservation ;
+    rdfs:label "Back Pain" .
+
+:FlankPainObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedFlankPainObservation ] ;
+    rdfs:label "Flank Pain" ; skos:definition "@@" .
+:DefinedFlankPainObservation a bridg:DefinedObservation ;
+    rdfs:label "Flank Pain" .
+
+:Costo-VertibralAnglePainObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedCosto-VertibralAnglePainObservation ] ;
+    rdfs:label "Costo-Vertibral Angle Pain" ; skos:definition "@@" .
+:DefinedCosto-VertibralAnglePainObservation a bridg:DefinedObservation ;
+    rdfs:label "Costo-Vertibral Angle Pain" .
+
+:SuprapubicPainObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedSuprapubicPainObservation ] ;
+    rdfs:label "Suprapubic Pain" ; skos:definition "@@" .
+:DefinedSuprapubicPainObservation a bridg:DefinedObservation ;
+    rdfs:label "Suprapubic Pain" .
+
+:TendernessObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedTendernessObservation ] ;
+    rdfs:label "Tenderness" ; skos:definition "@@" .
+:DefinedTendernessObservation a bridg:DefinedObservation ;
+    rdfs:label "Tenderness" .
 
 :CoreTemperatureObservation 
     rdfs:subClassOf 
@@ -122,9 +262,9 @@ fma:Kidney           rdfs:subClassOf core:AnatomicalTerm ; rdfs:label "Kidney"@e
 	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
         [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
 	[ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedLuekostearaseLevelLabTest ] ;
-    rdfs:label "urine nitrate level"          ; skos:definition "@@" .
+    rdfs:label "Luekostearase level"          ; skos:definition "@@" .
 :DefinedLuekostearaseLevelLabTest a bridg:DefinedObservation ;
-    rdfs:label "urine nitrate level" .
+    rdfs:label "Luekostearase level" .
 
 :CultureSusceptaibilityTesting 
     rdfs:subClassOf 
