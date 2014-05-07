@@ -12,6 +12,9 @@
 # The psuedo-drugs below provide example substances to test example trial data.
 # Actual deployment of such a registry will require some governance decisions.
 
+<http://www.w3.org/2013/12/FDA-TA/drugs> a owl:Ontology ;
+    owl:imports <http://www.w3.org/2013/12/FDA-TA/core> .
+
 :ImmunosuppressantA a core:Medication ; core:hasActiveIngredient :ActiveIngredientA . :ActiveIngredientA a core:ActiveIngredient .
 :ImmunosuppressantB a core:Medication ; core:hasActiveIngredient :ActiveIngredientB . :ActiveIngredientB a core:ActiveIngredient .
 :AntibioticC        a core:Medication ; core:hasActiveIngredient :ActiveIngredientC . :ActiveIngredientC a core:ActiveIngredient .

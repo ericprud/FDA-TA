@@ -37,8 +37,9 @@
 @base          <http://www.w3.org/2013/12/FDA-TA/RheumatoidArthritis> .
 
 <http://www.w3.org/2013/12/FDA-TA/RheumatoidArthritis> a owl:Ontology ;
-owl:imports 
-  <http://www.w3.org/2013/12/FDA-TA/core>
+    owl:imports 
+          <http://www.w3.org/2013/12/FDA-TA/core>
+          <http://www.w3.org/2013/12/FDA-TA/systemic> ,
 .
 # #####################################################################################################################
 # metadata and general vocabulary - should be bound to Controlled terminologies

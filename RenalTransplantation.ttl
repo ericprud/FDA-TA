@@ -14,6 +14,7 @@
 
 <http://www.w3.org/2013/12/FDA-TA/RenalTransplantation> a owl:Ontology ;
     owl:imports <http://www.w3.org/2013/12/FDA-TA/core> ,
+                <http://www.w3.org/2013/12/FDA-TA/systemic> ,
                 <http://www.w3.org/2013/12/FDA-TA/renal> ,
                 <http://www.w3.org/2013/12/FDA-TA/transplant> .
 

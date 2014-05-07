@@ -9,6 +9,9 @@ SOURCE= \
     subject-amy.ttl \
     subject-bob.ttl \
     subject-sue.ttl \
+    study1-ted-2May.ttl \
+    study2-rick-2May.ttl \
+    study2-bill-2May.ttl \
 
 ARGS= $(addprefix -d ,$(SOURCE))
 
