@@ -43,6 +43,18 @@
 # or a subclass: bridg:Performed{ClinicalInterpretation,ClinicalResult,ConditionResult,Diagnosis}
 
 # Each class of PerformedObservation subclass identifies a DefinedObservation which is an individual.
+:MalaiseObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedMalaiseObservation ] ;
+    rdfs:label "malaise" ; skos:definition "@@" .
+:DefinedMalaiseObservation a bridg:DefinedObservation ;
+    rdfs:label "malaise" .
+
+
+
 :CVApainObservation 
     rdfs:subClassOf core:SignsAndSymptoms        ,
 	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
@@ -84,8 +96,72 @@
 
 :SuprapubicPainObservation 
     rdfs:subClassOf 
-        core:SignsAndSymptoms                    ,
-	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
-  	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ;
-    rdfs:label "suprapubic Pain"                 ; skos:definition "@@" .
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedSuprapubicPainObservation ] ;
+    rdfs:label "suprapubic pain" ; skos:definition "@@" .
+:DefinedSuprapubicPainObservation a bridg:DefinedObservation ;
+    rdfs:label "suprapubic pain" .
+
+:ObstructiveUropathyObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedObstructiveUropathyObservation ] ;
+    rdfs:label "obstructive uropathy" ; skos:definition "@@" .
+:DefinedObstructiveUropathyObservation a bridg:DefinedObservation ;
+    rdfs:label "obstructive uropathy" .
+
+:AzotemiaObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedAzotemiaObservation ] ;
+    rdfs:label "azotemia" ; skos:definition "@@" .
+:DefinedAzotemiaObservation a bridg:DefinedObservation ;
+    rdfs:label "azotemia" .
+
+:MaleWithUrinaryRetentionObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedMaleWithUrinaryRetentionObservation ] ;
+    rdfs:label "male with urinary retention" ; skos:definition "@@" .
+:DefinedMaleWithUrinaryRetentionObservation a bridg:DefinedObservation ;
+    rdfs:label "male with urinary retention" .
+
+:UrineResidualVolumeObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedUrineResidualVolumeObservation ] ;
+    rdfs:label "urine residual volume" ; skos:definition "@@" .
+:DefinedUrineResidualVolumeObservation a bridg:DefinedObservation ;
+    rdfs:label "urine residual volume" .
+
+:NeurogenicBladderObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedNeurogenicBladderObservation ] ;
+    rdfs:label "neurogenic bladder" ; skos:definition "@@" .
+:DefinedNeurogenicBladderObservation a bridg:DefinedObservation ;
+    rdfs:label "neurogenic bladder" .
+
+:IndwellingCatheterObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedIndwellingCatheterObservation ] ;
+    rdfs:label "indwelling catheter" ; skos:definition "@@" .
+:DefinedIndwellingCatheterObservation a bridg:DefinedObservation ;
+    rdfs:label "indwelling catheter" .
+
 

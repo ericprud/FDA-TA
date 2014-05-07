@@ -29,7 +29,8 @@
         [ owl:onProperty :reasonMicrobiologicallyEvaluable ; owl:allValuesFrom :MicrobiologicallyEvaluableClassifier ] ,
         [ owl:onProperty :isClinicallyEvaluable ; owl:maxCardinality 1 ] ,
         [ owl:onProperty :isClinicallyEvaluable ; owl:maxCardinality 1 ] ,
-        [ owl:onProperty :isClinicallyEvaluable ; owl:maxCardinality 1 ] .
+        [ owl:onProperty :isClinicallyEvaluable ; owl:maxCardinality 1 ] ,
+        [ owl:onProperty :hasComplicatingFactor ; owl:allValuesFrom :ComplicatingFactor ] .
 :microbiologicallyTreatable a owl:DatatypeProperty ; rdfs:range xsd:boolean .
 :isClinicallyEvaluable a owl:DatatypeProperty ; rdfs:range xsd:boolean .
 :isClinicallyTreatable a owl:DatatypeProperty ; rdfs:range xsd:boolean .
@@ -70,11 +71,11 @@
 # infection type
 :TypeOfInfection owl:oneOf ( :cUTI :AcutePyelonephritis ) .
 :cUTI rdfs:subClassOf :CD ,
-    [ owl:onProperty :complicatingFactor ; owl:hasValue :ComplicatingFactor ] . # minCard 0 
-:complicatingFactor a owl:ObjectProperty .
+    [ owl:onProperty :hasComplicatingFactor ; owl:hasValue :ComplicatingFactor ] . # minCard 0 
+:hasComplicatingFactor a owl:ObjectProperty .
 
-:ComplicatingFactor owl:oneOf ( :Obstructive_Uropathy :Azotemia :Male_with_Urinary_Retention 
-                                :Urine_Residual_Volume :Neurogenic_Bladder :IndwellingCatheter ) .
+:ComplicatingFactor owl:oneOf ( renal:ObstructiveUropathyObservation renal:AzotemiaObservation renal:MaleWithUrinaryRetentionObservation 
+                                renal:UrineResidualVolumeObservation renal:NeurogenicBladderObservation renal:IndwellingCatheterObservation ) .
 
 ##### subject stratification
 # route
@@ -152,7 +153,7 @@
 :SSXofcUTIandAP owl:equivalentClass [ owl:unionOf  
   ( sys:LowerQuadrantPainObservation sys:AbdominalPainObservation sys:GroinPainObservation sys:VomitingObservation sys:DysuriaObservation sys:NauseaObservation sys:FeverObservation 
     sys:TendernessObservation sys:BackPainObservation sys:MalaiseObservation sys:FlankPainObservation sys:ChillsObservation sys:Costo-VertibralAnglePainObservation 
-    sys:UrinaryFrequencyObservation sys:UrinaryUrgencyObservation sys:SuprapubicPainObservation sys:ChangeInMentalStatusObservation 
+    sys:UrinaryFrequencyObservation sys:UrinaryUrgencyObservation renal:SuprapubicPainObservation sys:ChangeInMentalStatusObservation 
   ) ].
 ### # :SSXofcUTIandAP
 ### # :ClinicalOutcome :assessed_from :SSXofcUTIandAP .
@@ -281,7 +282,7 @@
 ### # :ClinicalOutcome :assessed_for :Patient .
 ### # :MicrobiologicalOutcome :assessed_for :Patient .
 ###   :Patient :assigned :Disposition .
-###   :Patient rdfs:subClassOf [ owl:onProperty :complicatingFactor ; owl:someValuesFrom :ComplicatingFactor ] .
+###   :Patient rdfs:subClassOf [ owl:onProperty :hasComplicatingFactor ; owl:someValuesFrom :ComplicatingFactor ] .
 ###   :Patient :can_experience :TypeOfInfection .
 ###   :Patient :described_by :Demographics .
 ###     :Demographics :includes :Country_or_Region .

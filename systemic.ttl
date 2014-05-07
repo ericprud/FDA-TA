@@ -193,16 +193,6 @@ fma:Kidney           rdfs:subClassOf core:AnatomicalTerm ; rdfs:label "Kidney"@e
 :DefinedCosto-VertibralAnglePainObservation a bridg:DefinedObservation ;
     rdfs:label "Costo-Vertibral Angle Pain" .
 
-:SuprapubicPainObservation 
-    rdfs:subClassOf 
-        core:SignsAndSymptoms ,
-        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
-        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
-        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedSuprapubicPainObservation ] ;
-    rdfs:label "Suprapubic Pain" ; skos:definition "@@" .
-:DefinedSuprapubicPainObservation a bridg:DefinedObservation ;
-    rdfs:label "Suprapubic Pain" .
-
 :TendernessObservation 
     rdfs:subClassOf 
         core:SignsAndSymptoms ,
