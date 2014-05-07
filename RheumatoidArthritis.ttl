@@ -37,8 +37,8 @@
 @base          <http://www.w3.org/2013/12/FDA-TA/RheumatoidArthritis> .
 
 <http://www.w3.org/2013/12/FDA-TA/RheumatoidArthritis> a owl:Ontology ;
-owl:imports  <file:///C:/Users/mike/git/FDA-TA/bridg-classes.ttl>       # this avoids errors when i only load this ontology with Protege 4.3
-# <http://www.w3.org/2013/12/FDA-TA/core>                               # importing core still causes errors related to BRIDG
+owl:imports 
+  <http://www.w3.org/2013/12/FDA-TA/core>
 .
 # #####################################################################################################################
 # metadata and general vocabulary - should be bound to Controlled terminologies
