@@ -19,7 +19,9 @@
 @prefix fma: <http://sig.uw.edu/fma#> .
 
 <http://www.w3.org/2013/12/FDA-TA/systemic> a owl:Ontology ;
-    owl:imports <http://www.w3.org/2013/12/FDA-TA/core> .
+    owl:imports
+        <http://www.w3.org/2013/12/FDA-TA/core> ,
+        <http://www.w3.org/2013/12/FDA-TA/bridg-classes.ttl> .
 
 # Anatomical terms taken from FMA
 
@@ -33,7 +35,7 @@ fma:Kidney           rdfs:subClassOf core:AnatomicalTerm ; rdfs:label "Kidney"@e
 # Each class of PerformedObservation subclass identifies a DefinedObservation which is an individual.
 :ChillsObservation 
     rdfs:subClassOf 
-        core:SignsAndSymptoms       ,
+        core:SignsAndSymptoms ,
         [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
         [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedChillsObservation ] ;
@@ -43,7 +45,7 @@ fma:Kidney           rdfs:subClassOf core:AnatomicalTerm ; rdfs:label "Kidney"@e
 
 :VomitingObservation 
     rdfs:subClassOf 
-        core:SignsAndSymptoms       ,
+        core:SignsAndSymptoms ,
         [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
         [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedVomitingObservation ] ;
@@ -53,7 +55,7 @@ fma:Kidney           rdfs:subClassOf core:AnatomicalTerm ; rdfs:label "Kidney"@e
 
 :LowerQuadrantPainObservation 
     rdfs:subClassOf 
-        core:SignsAndSymptoms       ,
+        core:SignsAndSymptoms ,
         [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
         [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedLowerQuadrantPainObservation ] ;
@@ -63,7 +65,7 @@ fma:Kidney           rdfs:subClassOf core:AnatomicalTerm ; rdfs:label "Kidney"@e
 
 :ChangeInMentalStatusObservation 
     rdfs:subClassOf 
-        core:SignsAndSymptoms       ,
+        core:SignsAndSymptoms ,
         [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
         [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedChangeInMentalStatusObservation ] ;
@@ -73,7 +75,7 @@ fma:Kidney           rdfs:subClassOf core:AnatomicalTerm ; rdfs:label "Kidney"@e
 
 :CoreTemperatureObservation 
     rdfs:subClassOf 
-        core:QuantitativeMeasurement,
+        core:QuantitativeMeasurement ,
         [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
         [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedCoreTemperatureObservation ] ;
@@ -83,7 +85,7 @@ fma:Kidney           rdfs:subClassOf core:AnatomicalTerm ; rdfs:label "Kidney"@e
 
 :SiteTendernessObservation 
     rdfs:subClassOf 
-        core:QuantitativeMeasurement,
+        core:SignsAndSymptoms ,
         [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
         [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedSiteTendernessObservation ] ;
@@ -96,9 +98,9 @@ fma:Kidney           rdfs:subClassOf core:AnatomicalTerm ; rdfs:label "Kidney"@e
 
 :WhiteBloodCellLabTest 
     rdfs:subClassOf 
-        core:QuantitativeMeasurement             ,
+        core:QuantitativeMeasurement ,
 	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
-  	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
 	[ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedWhiteBloodCellLabTest ] ;
     rdfs:label "white blood cell count"        ; skos:definition "@@" .
 :DefinedWhiteBloodCellLabTest a bridg:DefinedObservation ;
@@ -106,9 +108,9 @@ fma:Kidney           rdfs:subClassOf core:AnatomicalTerm ; rdfs:label "Kidney"@e
 
 :SerumCreatinineLabTest 
     rdfs:subClassOf 
-        core:QuantitativeMeasurement             ,
+        core:QuantitativeMeasurement ,
 	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
-  	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
 	[ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedSerumCreatinineLevelLabTest ] ;
     rdfs:label "urine nitrate level"          ; skos:definition "@@" .
 :DefinedSerumCreatinineLevelLabTest a bridg:DefinedObservation ;
@@ -116,7 +118,7 @@ fma:Kidney           rdfs:subClassOf core:AnatomicalTerm ; rdfs:label "Kidney"@e
 
 :CultureSusceptaibilityTesting 
     rdfs:subClassOf 
-        core:SignsAndSymptoms       ,
+        core:DiagnosticProcedure ,
         [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
         [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedCultureSusceptaibilityTesting ] ;
@@ -126,7 +128,7 @@ fma:Kidney           rdfs:subClassOf core:AnatomicalTerm ; rdfs:label "Kidney"@e
 
 :CultureConfirmatoryTesting 
     rdfs:subClassOf 
-        core:SignsAndSymptoms       ,
+        core:DiagnosticProcedure ,
         [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
         [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedCultureConfirmatoryTesting ] ;
@@ -134,12 +136,22 @@ fma:Kidney           rdfs:subClassOf core:AnatomicalTerm ; rdfs:label "Kidney"@e
 :DefinedCultureConfirmatoryTesting a bridg:DefinedObservation ;
     rdfs:label "Culture Confirmatory" .
 
-:CultureColonyFormingUnitValue 
+:CulturePathogenSpeciesTest 
     rdfs:subClassOf 
-        core:SignsAndSymptoms       ,
+        core:DiagnosticProcedure ,
         [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
         [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
-        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedCultureColonyFormingUnitValue ] ;
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedCulturePathogenSpeciesTest ] ;
+    rdfs:label "Gram-negative or gram-positive bacterial species identified by a laboratory."     ; skos:definition "@@" .
+:DefinedCulturePathogenSpeciesTest a bridg:DefinedObservation ;
+    rdfs:label "Gram-negative or gram-positive bacterial species identified by a laboratory." .
+
+:CultureColonyFormingUnitValueTest 
+    rdfs:subClassOf 
+        core:DiagnosticProcedure ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedCultureColonyFormingUnitValueTest ] ;
     rdfs:label "Culture Colony Forming Unit Value"     ; skos:definition "@@" .
-:DefinedCultureColonyFormingUnitValue a bridg:DefinedObservation ;
+:DefinedCultureColonyFormingUnitValueTest a bridg:DefinedObservation ;
     rdfs:label "Culture Colony Forming Unit Value" .
