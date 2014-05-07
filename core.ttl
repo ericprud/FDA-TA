@@ -218,10 +218,13 @@
 
 :specimentAccepability a owl:DatatypeProperty ;
     rdfs:range [ a owl:Class; owl:unionOf (true false) ] .
+:performedAtLocalOrCentralLab a owl:ObjectProperty ;
+    rdfs:range [ owl:oneOf ( :LocalLab :CentralLab ) ] .
 :LabTest 
     rdfs:subClassOf 
         :QuantitativeMeasurement , # @@ subclass QuantitativeMeasurement for lab reports?
-        [ owl:onProperty :specimentAccepability ; owl:maxCardinality 1 ] .
+        [ owl:onProperty :specimentAccepability ; owl:maxCardinality 1 ] ,
+        [ owl:onProperty :performedAtLocalOrCentralLab ; owl:maxCardinality 1 ] .
 :a a owl:AnnotationProperty .
 :LabReport rdfs:subClassOf bridg:PerformedObservationResult ; :a :b .
 
