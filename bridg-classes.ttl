@@ -145,7 +145,7 @@ bridg:PerformedActivity.instantiatedDefinedActivity a owl:ObjectProperty ;
     rdfs:range bridg:DefinedActivity ;
     rdfs:subPropertyOf bridg:associationProperty ;
     owl:inverseOf bridg:DefinedActivity.instantiatingPerformedActivity .
-bridg:DefinedActivity.instantiatingPerformedActivity a owl:ObjectProperty ;
+ bridg:DefinedActivity.instantiatingPerformedActivity a owl:ObjectProperty ;
      rdfs:label "be instantiated by"^^<xs:string> ;
      rdfs:subPropertyOf bridg:associationProperty .
 bridg:PerformedActivity.instantiatedScheduledActivity a owl:ObjectProperty ;
