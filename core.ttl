@@ -13,8 +13,7 @@
 @prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
 
 <http://www.w3.org/2013/12/FDA-TA/core> a owl:Ontology ;
-    owl:imports <http://www.w3.org/2013/12/FDA-TA/datatypes> ,
-                <http://www.w3.org/2013/12/FDA-TA/systemic> .
+    owl:imports <http://www.w3.org/2013/12/FDA-TA/datatypes> .
 
 ###############################################################################
 # primitives
@@ -216,9 +215,15 @@
 :hasLabReport a owl:ObjectProperty ;
     rdfs:domain :DiagnosticProcedure ;
     rdfs:range :LabReport .
-:LabReport rdfs:subClassOf :DiagnosticProcedure ;
-    rdfs:domain :QuantitativeMeasurement ;
-    rdfs:range :QuantitativeMeasurement . # @@ subclass QuantitativeMeasurement for lab reports?
+
+:specimentAccepability a owl:DatatypeProperty ;
+    rdfs:range [ a owl:Class; owl:unionOf (true false) ] .
+:LabTest 
+    rdfs:subClassOf 
+        :QuantitativeMeasurement , # @@ subclass QuantitativeMeasurement for lab reports?
+        [ owl:onProperty :specimentAccepability ; owl:maxCardinality 1 ] .
+:a a owl:AnnotationProperty .
+:LabReport rdfs:subClassOf bridg:PerformedObservationResult ; :a :b .
 
 :PathologyReport rdfs:subClassOf :QuantitativeMeasurement .
 :hasPathologyFinding a owl:ObjectProperty ;
@@ -365,4 +370,11 @@ bridg999:StudySubject.involvingScheduledSubstanceAdministration a owl:ObjectProp
 bridg999:performedSpecimenCollection.material a owl:ObjectProperty ;
     rdfs:domain bridg:PerformedSpecimenCollection ;
     rdfs:range bridg:Biologic .
+bridg999:PerformedSubstanceExtraction.usedBiologic a owl:ObjectProperty ;
+    rdfs:label "uses"^^<xs:string> ;
+    rdfs:domain bridg:PerformedSubstanceExtraction ;
+    rdfs:range bridg:Biologic ;
+    rdfs:subPropertyOf bridg:associationProperty ;
+    # owl:inverseOf bridg999:Biologic.usingPerformedSubstanceExtraction
+.
 

@@ -8,7 +8,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-#@prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> .
+@prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> .
 @prefix bridg: <http://www.bridgmodel.org/owl#> .
 #@prefix fma: <http://sig.uw.edu/fma#> .
 
@@ -21,7 +21,49 @@
 <http://www.w3.org/2013/12/FDA-TA/transplant> a owl:Ontology ;
     owl:imports <http://www.w3.org/2013/12/FDA-TA/core> .
 
-:TransplantProcedure rdfs:subClassOf core:TherapeuticProcedure , bridg:PerformedSubstanceAdministration .
+:TransplantProcedure rdfs:subClassOf core:TherapeuticProcedure .
+
+:organ rdfs:domain :TransplantProcedure ; rdfs:range bridg:Biologic .
+# @@SPIN rules to create BRIDG structure
+# PREFIX bridg: <http://www.bridgmodel.org/owl#>
+# PREFIX bridg999: <http://a.example/ns/bridg999#>
+# PREFIX xplant: <http://www.w3.org/2013/12/FDA-TA/transplant#>
+# CONSTRUCT {
+# _:TP1extractAdmin a bridg:SubstanceExtractionAdministrationRelationship ;
+#     bridg:SubstanceExtractionAdministrationRelationship.producingPerformedSubstanceExtraction ?extraction ;
+#     bridg:SubstanceExtractionAdministrationRelationship.usingPerformedSubstanceAdministration ?administration .
+# 
+# _:TP1pcrExtract a bridg:PerformedCompositionRelationship ;
+#     bridg:PerformedCompositionRelationship.componentPerformedActivity ?transplant ;
+#     bridg:PerformedCompositionRelationship.compositePerformedActivity ?extraction .
+# 
+# _:TP1pcrAdmin a bridg:PerformedCompositionRelationship ;
+#     bridg:PerformedCompositionRelationship.componentPerformedActivity ?transplant ;
+#     bridg:PerformedCompositionRelationship.compositePerformedActivity ?administration .
+# } WHERE {
+#     ?transplant xplant:organ ?organ .
+#     ?extraction bridg:PerformedSubstanceExtraction.producedBiologic ?organ .
+#     ?administration bridg999:PerformedSubstanceExtraction.usedBiologic ?organ .
+# }
+
+# Observations and results
+:HLA-Panel 
+    rdfs:subClassOf 
+        bridg:PerformedObservation .#,
+#        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ;
+#          owl:allValuesFrom :HLA-PanelResult 
+#        ] .
+:HLA-PanelResult rdfs:subClassOf bridg:PerformedObservationResult .
+:HLA-DR2-Result rdfs:subClassOf :HLA-PanelResult .
+:HLA-DR1-Result rdfs:subClassOf :HLA-PanelResult .
+:HLA-B2-Result  rdfs:subClassOf :HLA-PanelResult .
+:HLA-B1-Result  rdfs:subClassOf :HLA-PanelResult .
+:HLA-A2-Result  rdfs:subClassOf :HLA-PanelResult .
+:HLA-A1-Result  rdfs:subClassOf :HLA-PanelResult .
+
+:coldIschimeiaTime rdfs:domain bridg:Biologic ; rdfs:range dt:PQ.TIME .
+
+# assessements
 
 :GraftViability 
     rdfs:subClassOf core:OutcomeAssessmentValue ;

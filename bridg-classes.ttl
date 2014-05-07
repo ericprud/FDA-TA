@@ -167,6 +167,20 @@ bridg:PerformedActivity.versionStudyProtocolVersion a owl:ObjectProperty ;
     rdfs:domain bridg:PerformedActivity ;
     rdfs:range bridg:StudyProtocolVersion ;
     rdfs:subPropertyOf bridg:associationProperty .
+bridg:PerformedActivity.componentPerformedCompositionRelationship a owl:ObjectProperty ;
+    rdfs:label "be the parent of"^^<xs:string> ;
+    owl:inverseOf bridg:PerformedCompositionRelationship.compositePerformedActivity ;
+    rdfs:subPropertyOf bridg:associationProperty .
+bridg:PerformedActivity.compositePerformedCompositionRelationship a owl:ObjectProperty ;
+    rdfs:label "be the component of"^^<xs:string> ;
+    owl:inverseOf bridg:PerformedCompositionRelationship.componentPerformedActivity ;
+    rdfs:subPropertyOf bridg:associationProperty .
+
+bridg:PerformedCompositionRelationship.compositePerformedActivity a owl:ObjectProperty ;
+    rdfs:label "is the component of"^^<xs:string> ;
+    rdfs:range bridg:PerformedActivity ;
+    rdfs:domain bridg:PerformedCompositionRelationship ;
+    rdfs:subPropertyOf bridg:associationProperty .
 
 bridg:PerformedClinicalResult a owl:Class ;
     rdfs:label "PerformedClinicalResult"^^<xs:string> ;
@@ -410,7 +424,12 @@ bridg:SubstanceExtractionAdministrationRelationship.usingPerformedSubstanceAdmin
     rdfs:domain bridg:SubstanceExtractionAdministrationRelationship ;
     rdfs:range bridg:PerformedSubstanceAdministration ;
     rdfs:subPropertyOf bridg:associationProperty .
-
+bridg:SubstanceExtractionAdministrationRelationship.producingPerformedSubstanceExtraction a owl:ObjectProperty ;
+    rdfs:label "uses a substance produced by"^^<xs:string> ;
+    rdfs:range bridg:PerformedSubstanceExtraction ;
+    owl:inverseOf bridg:PerformedSubstanceExtraction.usedSubstanceExtractionAdministrationRelationship ;
+    rdfs:domain bridg:SubstanceExtractionAdministrationRelationship ;
+    rdfs:subPropertyOf bridg:associationProperty .
 
 # old junk:
 # subset of bridg classes which we use:
@@ -437,4 +456,6 @@ bridg:SubstanceExtractionAdministrationRelationship.usingPerformedSubstanceAdmin
 #  <http://www.bridgmodel.org/owl#DefinedEligibilityCriterion> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.bridgmodel.org/owl#DefinedObservation> .
 #  <http://www.bridgmodel.org/owl#DefinedImaging> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.bridgmodel.org/owl#DefinedObservation> .
 #  <http://www.bridgmodel.org/owl#ScheduledSubstanceAdministration> <http://www.w3.org/2000/01/rdf-schema#subClassOf> <http://www.bridgmodel.org/owl#ScheduledActivity> .
+
+# @@ todo
 

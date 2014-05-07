@@ -50,7 +50,7 @@
     core:observation :subjectsGFRpreOp ;
     core:hasIntervention :adminImmunosuppressantB-2013-07-06T07-27 ;
     # bridg:Subject.involvingActivity :adminImmunosuppressantB-2013-07-06T07-27 ; # inv
-    core:hasIntervention :subjectsTransplant ;
+    core:hasIntervention :TP1admin ;
     core:hasIntervention :adminImmunosuppressantB-2013-07-06T11-20 ,
                          :adminImmunosuppressantB-2013-07-06T15-20 ,
                          :adminImmunosuppressantB-2013-07-06T19-25 ,
@@ -158,20 +158,63 @@
 :adminImmunosuppressantB-2013-07-06T11-20 core:date "2013-07-06T11:20:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
 :adminImmunosuppressantB-2013-07-06T15-20 core:date "2013-07-06T15:29:00Z"^^xsd:dateTime ; bridg:PerformedActivity.instantiatedScheduledActivity :subjectOnImmunosuppressantB .
 
-:organExtraction a bridg:PerformedSubstanceExtraction ;
-    bridg:PerformedSubstanceExtraction.producedBiologic [
-        a bridg:Biologic ;
-        bridg:Biologic.handlingCode [ a dt:CD ] # @@ "4C 90 minutes"
-	# bridg:Material.producingDefinedMaterialProcessStep ...
+########## Donor info
+:TP1donor a bridg:StudySubject ;
+    bridg:Subject.performingBiologicEntity [
+        a bridg:Person ;
+        foaf:name "Sue's Donor" ;
     ] ;
-    bridg:PerformedSubstanceExtraction.usedSubstanceExtractionAdministrationRelationship [
-        bridg:SubstanceExtractionAdministrationRelationship.usingPerformedSubstanceAdministration :subjectsTransplant ;
-        bridg:SubstanceExtractionAdministrationRelationship.donorTypeCode "Unrelated donor" ; # ... ABO and HLA compatibility
-        bridg:SubstanceExtractionAdministrationRelationship.relationCode "Living Unrelated" # could use some coded values for this.
-    ] .
+    core:hasObservation :TP1donor_Death , :TP1donor_HLA ;
+    core:hasIntervention :TP1extract .
 
-:subjectsTransplant a RenalX:RenalTransplantProcedure ;
-    core:hasInterventionTime "2013-07-06T07:28:00Z"^^xsd:dateTime .
+:TP1donor_Death a core:DeathAssessment ;
+    core:hasObservationTime "2007-05-26"^^xsd:dateTime .
+
+:TP1donor_HLA a xplant:HLA-Panel ;
+    core:hasObservationTime "2007-05-26"^^xsd:dateTime ;
+    bridg:PerformedObservation.resultedPerformedObservationResult
+         :TP1donor_HLA-A1-res , :TP1donor_HLA-B1-res , :TP1donor_HLA-DR1-res ,
+         :TP1donor_HLA-A2-res , :TP1donor_HLA-B2-res , :TP1donor_HLA-DR2-res .
+
+:TP1donor_HLA-A1-res  a xplant:HLA-A1-Result  ; core:hasResultValue [ data:value "11" ] . # ; data:units ucum:@@
+:TP1donor_HLA-A2-res  a xplant:HLA-A2-Result  ; core:hasResultValue [ data:value "36" ] .
+:TP1donor_HLA-B1-res  a xplant:HLA-B1-Result  ; core:hasResultValue [ data:value "8"  ] .
+:TP1donor_HLA-B2-res  a xplant:HLA-B2-Result  ; core:hasResultValue [ data:value "27" ] .
+:TP1donor_HLA-DR1-res a xplant:HLA-DR1-Result ; core:hasResultValue [ data:value "1"  ] .
+:TP1donor_HLA-DR2-res a xplant:HLA-DR2-Result ; core:hasResultValue [ data:value "17" ] .
+
+########## Transplant info
+:TP1extract a bridg:PerformedSubstanceExtraction ;
+    core:hasInterventionTime "2013-07-06T06:56:00Z"^^xsd:dateTime ;
+    bridg:PerformedSubstanceExtraction.producedBiologic :TP1transplantOrgan .
+
+# Collect handling info on transplanted organ
+:TP1transplantOrgan a bridg:Biologic ;
+    bridg:Biologic.handlingCode [ a dt:CD ] ; # @@ "4C 90 minutes"
+    xplant:coldIschimeiaTime [ data:value 90 ; data:units ucum:min ]
+    # bridg:Material.producingDefinedMaterialProcessStep ...
+.
+
+# The transplant and its administration into the recipient (study subject):
+:TP1transplant a RenalX:RenalTransplantProcedureqy ;
+    # transplant from:
+    bridg:PerformedActivity.compositePerformedCompositionRelationship [
+        bridg:PerformedCompositionRelationship.compositePerformedActivity :TP1extract ] ;
+    # to:
+    bridg:PerformedActivity.compositePerformedCompositionRelationship [
+        bridg:PerformedCompositionRelationship.compositePerformedActivity :TP1admin ] ;
+    xplant:organ :TP1transplantOrgan . # shortcut to organ details.
+
+:TP1extractAdmin a bridg:SubstanceExtractionAdministrationRelationship ;
+    bridg:SubstanceExtractionAdministrationRelationship.producingPerformedSubstanceExtraction :TP1extract ;
+    bridg:SubstanceExtractionAdministrationRelationship.usingPerformedSubstanceAdministration :TP1admin ;
+    bridg:SubstanceExtractionAdministrationRelationship.donorTypeCode [ dt:codingSystem "NCIt" ; dt:code "C25328" ; dt:displayName "Unrelated" ] ; # ... ABO and HLA compatibility
+    bridg:SubstanceExtractionAdministrationRelationship.relationCode [ dt:codingSystem "2.16.840.1.113883.6.96"; dt:code "50053001" ; dt:displayName "Delayed allogeneic transplantation, living donor (procedure)" ]
+.
+
+:TP1admin a bridg:PerformedSubstanceAdministration ;
+    core:hasInterventionTime "2013-07-06T07:28:00Z"^^xsd:dateTime ;
+    bridg999:PerformedSubstanceExtraction.usedBiologic :TP1transplantOrgan .
 
 # 12 hours post-op: urine output, temperature, site tenderness (for diffuse tenderness), serum creatinine, GFR
 :subjectsPostOpHour12UrineOutput    a renal:UrineVolume24hourObservation ; core:hasObservationTime "2013-07-06T19:07:00Z"^^xsd:dateTime ; core:hasResultValue [ data:value 2.1 ; data:units ucum:L ].
@@ -204,7 +247,7 @@
     core:hasObservationTime "2013-07-07T19:00:00Z"^^xsd:dateTime ;
     core:beforeIntervention :subjectsOutpatientGFR23 , :subjectsGFRpreOp ; # @@ what's the most persuasive start observation?
     # core:prescription :subjectOnImmunosuppressantB ;
-    # core:hasIntervention :subjectsTransplant ;
+    # core:hasIntervention :TP1admin ;
     core:prescription :subjectOnImmunosuppressantB2 ;
     core:hasIntervention :adminImmunosuppressantB-2013-07-06T11-20 ,
                          :adminImmunosuppressantB-2013-07-06T15-20 ,
@@ -259,7 +302,7 @@
     core:hasObservationTime "2013-07-08T14:51:00Z"^^xsd:dateTime ;
     core:beforeIntervention :subjectsGFRpreOp ;
     core:prescription :subjectOnImmunosuppressantB ;
-    core:hasIntervention # :subjectsTransplant ;
+    core:hasIntervention # :TP1admin ;
         :adminImmunosuppressantB-2013-07-06T19-25 ,
         :adminImmunosuppressantB-2013-07-07T23-28 ,
         :adminImmunosuppressantB-2013-07-07T03-26 ,
@@ -273,7 +316,7 @@
     core:hasObservationTime "2013-07-08T14:51:00Z"^^xsd:dateTime ;
     core:beforeIntervention :subjectsPostOpHour12SCr ;
     core:prescription :subjectOnImmunosuppressantB ;
-    core:hasIntervention # :subjectsTransplant ;
+    core:hasIntervention # :TP1admin ;
         :adminImmunosuppressantB-2013-07-06T19-25 ,
         :adminImmunosuppressantB-2013-07-07T23-28 ,
         :adminImmunosuppressantB-2013-07-07T03-26 ,
@@ -301,7 +344,7 @@
     core:hasObservationTime "2013-07-08T16:15:00Z"^^xsd:dateTime ;
     core:beforeIntervention :subjectsPostOpHour12GFR ;
     core:prescription :subjectOnImmunosuppressantB ;
-    core:hasIntervention # :subjectsTransplant ;
+    core:hasIntervention # :TP1admin ;
         :adminImmunosuppressantB-2013-07-07T19-35 ,
         :adminImmunosuppressantB-2013-07-07T22-30 ,
         :adminImmunosuppressantB-2013-07-08T01-26 ,
@@ -316,7 +359,7 @@
     core:hasObservationTime "2013-07-08T16:15:00Z"^^xsd:dateTime ;
     core:beforeIntervention :subjectsPostOpHour36SCr ;
     core:prescription :subjectOnImmunosuppressantB ;
-    core:hasIntervention # :subjectsTransplant ;
+    core:hasIntervention # :TP1admin ;
         :adminImmunosuppressantB-2013-07-07T19-35 ,
         :adminImmunosuppressantB-2013-07-07T22-30 ,
         :adminImmunosuppressantB-2013-07-08T01-26 ,
@@ -331,7 +374,7 @@
     core:hasObservationTime "2013-07-08T16:15:00Z"^^xsd:dateTime ;
     core:beforeIntervention :subjectsOutpatientGFR23 , :subjectsGFRpreOp ; # @@ what's the most persuasive start observation?
     # core:prescription :subjectOnImmunosuppressantB ;
-    # core:hasIntervention :subjectsTransplant ;
+    # core:hasIntervention :TP1admin ;
     core:prescription :subjectOnImmunosuppressantB2 ;
     core:hasIntervention :adminImmunosuppressantB-2013-07-07T19-35 ,
                          :adminImmunosuppressantB-2013-07-07T22-30 ,
