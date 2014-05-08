@@ -1,3 +1,8 @@
+# bridge-classes.ttl
+
+# This is a manually-maintained excerpt from bridgmodel-3.2 which
+# covers the bridge classes used in TAs.
+
 @prefix bridg: <http://www.bridgmodel.org/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -42,7 +47,8 @@ bridg:BiologicEntityPart a owl:Class ;
     rdfs:subClassOf bridg:DataEntity .
 bridg:BiologicEntityPart.anatomicSiteLateralityCode a owl:ObjectProperty ;
     rdfs:domain bridg:BiologicEntityPart ;
-    rdfs:range dt:CD .
+    rdfs:range dt:CD ;
+    rdfs:subPropertyOf bridg:attributeProperty .
 
 bridg:DefinedAdverseEvent a owl:Class ;
     rdfs:label "DefinedAdverseEvent"^^<xs:string> ;
