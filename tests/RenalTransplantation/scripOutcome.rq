@@ -1,3 +1,18 @@
+# get a narrative of what happened to each patient as a result of each regimen of medication.
+
+# ┌────────────────┬──────────────────────────┬──────────────────────┬─────┬──────────────────────────┬────────────────────┬─────┐
+# │ ?who           │ ?medName                 │ ?dose                │ ?x  │ ?outcomeCode             │ ?start             │ ?PN │
+# │   "1#0106-026" │  "#Tacrolimus-STUDYDRUG" │  "008mg 1 per 1.0 d" │  49 │    "NonFunctioningGraft" │ "2010-11-29 19:00" │ "-" │
+# │ "2#033134-018" │ "#Tacrolimus-COMPARATOR" │  "008mg 2 per 1.0 d" │   1 │    "NonFunctioningGraft" │ "2010-11-29 19:00" │ "-" │
+# │ "2#049139-002" │ "#Tacrolimus-COMPARATOR" │  "003mg 2 per 1.0 d" │ 484 │   "SemiFunctioningGraft" │ "2010-11-29 19:00" │ " " │
+# │ "2#049139-002" │ "#Tacrolimus-COMPARATOR" │  "003mg 2 per 1.0 d" │ 484 │    "NonFunctioningGraft" │ "2010-11-29 19:00" │ "-" │
+# │          "Amy" │    "#ImmunosuppressantB" │ "50.0mg 6 per 1.0 d" │  20 │ "NormalFunctioningGraft" │ "2013-10-19 12:34" │ "+" │
+# │          "Bob" │    "#ImmunosuppressantA" │ "50.0mg 4 per 1.0 d" │   9 │   "SemiFunctioningGraft" │ "2013-08-27 19:30" │ " " │
+# │          "Bob" │    "#ImmunosuppressantA" │ "25.0mg 1 per 1.0 d" │   5 │   "SemiFunctioningGraft" │ "2013-08-28 14:32" │ " " │
+# │          "Sue" │    "#ImmunosuppressantB" │ "50.0mg 6 per 1.0 d" │   8 │   "SemiFunctioningGraft" │ "2013-07-07 19:00" │ " " │
+# │          "Sue" │    "#ImmunosuppressantB" │ "75.0mg 8 per 1.0 d" │   7 │    "NonFunctioningGraft" │ "2013-07-08 16:15" │ "-" │
+# └────────────────┴──────────────────────────┴──────────────────────┴─────┴──────────────────────────┴────────────────────┴─────┘
+
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
