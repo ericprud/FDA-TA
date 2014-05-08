@@ -31,56 +31,62 @@ SELECT ?endpoint ?count ?labels {
     } GROUP BY ?g
   }
   UNION
+#  {
+#    SELECT ("DecreasingGFR" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?label) AS ?labels)
+#    WHERE {
+#      BIND (1 AS ?g)
+#      [ 
+#        bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
+#        core:hasOutcomeAssessment ?oa ] .
+#          ?oa a renal:RenalFunctionOutcomeAssessment ; core:hasObservationTime ?when .
+#	  BIND (CONCAT(?name, '(', STR(?when), ')') AS ?label)
+#          { SELECT ?oa { ?oa core:hasObservation [ a renal:GfrFlowRateObservation ] } GROUP BY ?oa } # over GFRs
+#          MINUS { # occurances of GFR increasing with date
+#            ?oa core:hasObservation
+#                    [ a renal:GfrFlowRateObservation ; core:hasObservationTime ?date1 ; core:hasResultValue [ data:value ?gfr1 ] ] ,
+#                    [ a renal:GfrFlowRateObservation ; core:hasObservationTime ?date2 ; core:hasResultValue [ data:value ?gfr2 ] ]
+#            FILTER (?date2 > ?date1 && ?gfr2 > ?gfr1)
+#          }
+#    } GROUP BY ?g
+#  }
+#  UNION
+#  {
+#    SELECT ("IncreasingSCr" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?label) AS ?labels)
+#    WHERE {
+#      BIND (1 AS ?g)
+#      [ 
+#        bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
+#        core:hasOutcomeAssessment ?oa ] .
+#          ?oa a renal:RenalFunctionOutcomeAssessment ; core:hasObservationTime ?when .
+#	  BIND (CONCAT(?name, '(', STR(?when), ')') AS ?label)
+#          { SELECT ?oa { ?oa core:hasObservation [ a renal:SerumCreatinineObservation ] } GROUP BY ?oa } # over SCrs
+#          MINUS { # occurances of SCr decreasing with date
+#            ?oa core:hasObservation
+#                    [ a renal:SerumCreatinineObservation ; core:hasObservationTime ?date1 ; core:hasResultValue [ data:value ?scr1 ] ] ,
+#                    [ a renal:SerumCreatinineObservation ; core:hasObservationTime ?date2 ; core:hasResultValue [ data:value ?scr2 ] ]
+#            FILTER (?date2 > ?date1 && ?scr2 < ?scr1)
+#          }
+#    } GROUP BY ?g
+#  }
+#  UNION
   {
-    SELECT ("DecreasingGFR" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?label) AS ?labels)
+    SELECT (CONCAT("AcuteRejection indicated by ", ?l) AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?label) AS ?labels)
     WHERE {
-      BIND (1 AS ?g)
-      [ 
+      []
         bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
-        core:hasOutcomeAssessment ?oa ] .
-          ?oa a renal:RenalFunctionOutcomeAssessment ; core:hasObservationTime ?when .
-	  BIND (CONCAT(?name, '(', STR(?when), ')') AS ?label)
-          { SELECT ?oa { ?oa core:hasObservation [ a renal:GfrFlowRateObservation ] } GROUP BY ?oa } # over GFRs
-          MINUS { # occurances of GFR increasing with date
-            ?oa core:hasObservation
-                    [ a renal:GfrFlowRateObservation ; core:hasObservationTime ?date1 ; core:hasResultValue [ data:value ?gfr1 ] ] ,
-                    [ a renal:GfrFlowRateObservation ; core:hasObservationTime ?date2 ; core:hasResultValue [ data:value ?gfr2 ] ]
-            FILTER (?date2 > ?date1 && ?gfr2 > ?gfr1)
-          }
-    } GROUP BY ?g
-  }
-  UNION
-  {
-    SELECT ("IncreasingSCr" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?label) AS ?labels)
-    WHERE {
-      BIND (1 AS ?g)
-      [ 
-        bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
-        core:hasOutcomeAssessment ?oa ] .
-          ?oa a renal:RenalFunctionOutcomeAssessment ; core:hasObservationTime ?when .
-	  BIND (CONCAT(?name, '(', STR(?when), ')') AS ?label)
-          { SELECT ?oa { ?oa core:hasObservation [ a renal:SerumCreatinineObservation ] } GROUP BY ?oa } # over SCrs
-          MINUS { # occurances of SCr decreasing with date
-            ?oa core:hasObservation
-                    [ a renal:SerumCreatinineObservation ; core:hasObservationTime ?date1 ; core:hasResultValue [ data:value ?scr1 ] ] ,
-                    [ a renal:SerumCreatinineObservation ; core:hasObservationTime ?date2 ; core:hasResultValue [ data:value ?scr2 ] ]
-            FILTER (?date2 > ?date1 && ?scr2 < ?scr1)
-          }
-    } GROUP BY ?g
-  }
-  UNION
-  {
-    SELECT ("AcuteRejection" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?label) AS ?labels)
-    WHERE {
-      BIND (1 AS ?g)
-      [
-        bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
-        core:hasOutcomeAssessment ?oa ] .
-          { SELECT ?oa ?l { ?oa core:afterIntervention [ bridg:PerformedActivity.instantiatedDefinedActivity [ rdfs:label ?l ] ] } GROUP BY ?oa ?l } # over SCrs
-          BIND (CONCAT(?name, '(', ?l, ")") AS ?label)
-
-          ?oa core:hasResultValue renal:CeasedToFunction .
-    } GROUP BY ?g
+        core:hasOutcomeAssessment ?oa .
+        ?oa core:afterIntervention ?ai .
+        ?ai core:hasObservationTime ?t .
+        ?ai bridg:PerformedActivity.instantiatedDefinedActivity ?da .
+        ?da rdfs:label ?l .
+#        MINUS { ?oa core:afterIntervention ?ai, ?ai2 .
+#            ?ai core:hasObservationTime ?t .
+#            ?ai2 core:hasObservationTime ?t2 .
+#            FILTER (?t2 > ?t)
+#        }
+        BIND (CONCAT(?name, "(", STR(?t), ")") AS ?label)
+        ?oa core:hasResultValue renal:CeasedToFunction .
+    } GROUP BY ?da
   }
   UNION
   {
@@ -106,12 +112,12 @@ SELECT ?endpoint ?count ?labels {
   }
 }
 
-# ┌──────────────────┬────────┬─────────────────────────────────────────────────────────────┐
-# │ ?endpoint        │ ?count │ ?labels                                                     │
-# │  "GraftSurvival" │      1 │                                                       "Amy" │
-# │      "GraftLoss" │      1 │                                                       "Sue" │
-# │  "DecreasingGFR" │      2 │       "Sue(2013-07-08T14:51:00Z) Sue(2013-07-08T16:15:00Z)" │
-# │  "IncreasingSCr" │      2 │       "Sue(2013-07-08T14:51:00Z) Sue(2013-07-08T16:15:00Z)" │
-# │ "AcuteRejection" │      2 │ "Sue(calculated GFR flow rate) Sue(serum creatinine level)" │
-# │          "Death" │      1 │                                                       "Bob" │
-# └──────────────────┴────────┴─────────────────────────────────────────────────────────────┘
+# ┌───────────────────────────────────┬────────┬─────────────────────────────┐
+# │ ?endpoint                         │ ?count │ ?labels                     │
+# │                   "GraftSurvival" │      1 │                       "Amy" │
+# │                       "GraftLoss" │      1 │                       "Sue" │
+# │ "AcuteRejection indicated by GFR" │      1 │  "Sue(2013-07-08T14:50:00)" │
+# │ "AcuteRejection indicated by SCr" │      1 │ "Sue(2013-07-08T14:22:00Z)" │
+# │                           "Death" │      1 │                       "Bob" │
+# │                            "LTFU" │      0 │                          "" │
+# └───────────────────────────────────┴────────┴─────────────────────────────┘

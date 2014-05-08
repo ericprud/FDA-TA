@@ -131,7 +131,7 @@
                    #   rdfs:subClassOf core:OrganFunctionOutcomeAssessment ,
                    #       [ owl:onProperty core:hasResultValue ; owl:hasValue renal:ImprovedToNormal ]
                     owl:intersectionOf (
-                        core:OrganFunctionOutcomeAssessment 
+                        core:FunctionOutcomeAssessment 
                         [ owl:onProperty core:hasResultValue ; owl:hasValue :ImprovedToNormal ]
                     )
                 ]

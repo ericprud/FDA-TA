@@ -27,11 +27,12 @@
     rdfs:subClassOf 
         bridg:StudySubject ,
         [ owl:onProperty :reasonMicrobiologicallyEvaluable ; owl:allValuesFrom :MicrobiologicallyEvaluableClassifier ] ,
+        [ owl:onProperty :isMicrobiologicallyTreatable ; owl:maxCardinality 1 ] ,
         [ owl:onProperty :isClinicallyEvaluable ; owl:maxCardinality 1 ] ,
-        [ owl:onProperty :isClinicallyEvaluable ; owl:maxCardinality 1 ] ,
-        [ owl:onProperty :isClinicallyEvaluable ; owl:maxCardinality 1 ] ,
+        [ owl:onProperty :isClinicallyTreatable ; owl:maxCardinality 1 ] ,
         [ owl:onProperty :hasComplicatingFactor ; owl:allValuesFrom :ComplicatingFactor ] .
 :microbiologicallyTreatable a owl:DatatypeProperty ; rdfs:range xsd:boolean .
+:isMicrobiologicallyTreatable a owl:DatatypeProperty ; rdfs:range xsd:boolean .
 :isClinicallyEvaluable a owl:DatatypeProperty ; rdfs:range xsd:boolean .
 :isClinicallyTreatable a owl:DatatypeProperty ; rdfs:range xsd:boolean .
 
@@ -44,10 +45,6 @@
 
 :InfectionCategory a bridg:PerformedObservation .
 :Region a bridg:PerformedObservation . # @@ move to demographics if that comes into scope.
-
-:MicrobiologicallyEvaluableAssessment a core:Assessment ;
-    rdfs:subClassOf 
-        [ owl:onProperty :classifiedBy ; owl:someValuesFrom :MicrobiologicallyEvaluableClassifier ] .
 
 # Hang all of our meds off of cuti:Drug{Prescription,Administration} .
 :DrugPrescription rdfs:subClassOf bridg:ScheduledSubstanceAdministration .

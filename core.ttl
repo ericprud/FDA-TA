@@ -5,6 +5,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
 @prefix bridg: <http://www.bridgmodel.org/owl#> .
 @prefix bridg999: <http://www.bridgmodel.org/owl999#> .
@@ -323,6 +324,9 @@
     [ owl:onProperty :hasIntervention ; owl:minCardinality 1 ] ,
     [ owl:onProperty :afterIntervention ; owl:minCardinality 1 ] .
 
+:DeathAssessment rdfs:subClassOf :SingleOutcomeAssessment ;
+    rdfs:label "death assessment" ;
+    skos:definition "attests that hasObservation identifies evidence of a subject's death." .
 :FunctionOutcomeAssessment rdfs:subClassOf :SingleOutcomeAssessment .
 
 :DefinedEfficacyEndpoint rdfs:subClassOf bridg:DefinedObservation .

@@ -313,7 +313,7 @@
     core:hasResultValue renal:Deteriorating .
 
 :subjectsSCrTrend1 a renal:RenalFunctionOutcomeAssessment ; # a RenalX:GraftSurvival ;
-    core:hasObservationTime "2013-07-08T14:51:00Z"^^xsd:dateTime ;
+    core:hasObservationTime "2013-07-08T14:52:00Z"^^xsd:dateTime ;
     core:beforeIntervention :subjectsPostOpHour12SCr ;
     core:prescription :subjectOnImmunosuppressantB ;
     core:hasIntervention # :TP1admin ;
@@ -356,7 +356,7 @@
     core:hasResultValue renal:CeasedToFunction .
 
 :subjectsSCrTrend2 a renal:RenalFunctionOutcomeAssessment ; # a RenalX:GraftSurvival ;
-    core:hasObservationTime "2013-07-08T16:15:00Z"^^xsd:dateTime ;
+    core:hasObservationTime "2013-07-08T16:16:00Z"^^xsd:dateTime ;
     core:beforeIntervention :subjectsPostOpHour36SCr ;
     core:prescription :subjectOnImmunosuppressantB ;
     core:hasIntervention # :TP1admin ;

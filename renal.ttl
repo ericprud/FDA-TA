@@ -80,9 +80,9 @@
 	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
   	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
 	[ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedSerumCreatinineLevel ] ;
-    rdfs:label "serum creatinine level"          ; skos:definition "@@" .
+    rdfs:label "SCr"          ; skos:definition "serum creatinine level" .
 :DefinedSerumCreatinineLevel a bridg:DefinedObservation ;
-    rdfs:label "serum creatinine level" .
+    rdfs:label "SCr" .
 
 :GfrFlowRateObservation 
     rdfs:subClassOf 
@@ -90,9 +90,9 @@
 	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
   	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
 	[ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedGfrFlowRateObservation ] ;
-    rdfs:label "calculated GFR flow rate"        ; skos:definition "@@" .
+    rdfs:label "GFR"        ; skos:definition "calculated GFR flow rate" .
 :DefinedGfrFlowRateObservation a bridg:DefinedObservation ;
-    rdfs:label "calculated GFR flow rate" .
+    rdfs:label "GFR" .
 
 :SuprapubicPainObservation 
     rdfs:subClassOf 

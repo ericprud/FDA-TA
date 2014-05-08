@@ -250,7 +250,7 @@
 
 
 # Bob dies of infection.
-:subjectsDeath a core:Assessment ; core:hasObservationTime "2013-08-28T14:52:00Z"^^xsd:dateTime ;
+:subjectsDeath a core:DeathAssessment ; core:hasObservationTime "2013-08-28T14:52:00Z"^^xsd:dateTime ;
     core:hasObservation :noRespirationNoPulse .
 
 :noRespirationNoPulse a core:ClinicalObservation . # @@ ??

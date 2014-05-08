@@ -15,7 +15,7 @@ PREFIX foaf: <http://xmlns.com/foaf/0.1/>
   SELECT ?who ?medName ?dose ?x
          (STRAFTER(STR(?outcomeVal), '#') AS ?outcomeCode)
          (CONCAT(SUBSTR(STR(?time), 0, 10), ' ' ,SUBSTR(STR(?time), 12, 5)) AS ?start)
-         (IF(BOUND(?outcomeSense) , IF(?outcomeSense = core:PositiveOutcome , '+', '-'), '?') AS ?PN)
+         (IF(BOUND(?outcomeSense) , IF(?outcomeSense = core:PositiveOutcome , '+', '-'), ' ') AS ?PN)
    WHERE {
         ?subject bridg:Subject.performingBiologicEntity [ foaf:name ?who ];
                  core:hasOutcomeAssessment ?outcome .
