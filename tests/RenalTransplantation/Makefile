@@ -15,8 +15,8 @@ SOURCE= \
 
 ARGS= $(addprefix -d ,$(SOURCE))
 
-PROTEGEFILE= protege.ttl
-CLOSUREFILE= work.trig
+PROTEGEFILE= built/protege.ttl
+CLOSUREFILE= built/work.trig
 
 $(PROTEGEFILE): $(SOURCE) prefixes.ttl ../../ComplicatedUTI.ttl
 	cp prefixes.ttl $(PROTEGEFILE)
@@ -27,6 +27,6 @@ $(CLOSUREFILE): $(SOURCE) infer.sh
 	./infer.sh $(CLOSUREFILE)
 
 test: $(CLOSUREFILE) $(PROTEGEFILE) # test doesn't need $(PROTEGEFILE) but it's handy to do it all at once.
-	sparql -d work.trig scripOutcome.rq -8
-	sparql -d work.trig endpoints.rq -8
+	sparql -d $(CLOSUREFILE) scripOutcome.rq -8
+	sparql -d $(CLOSUREFILE) endpoints.rq -8
 

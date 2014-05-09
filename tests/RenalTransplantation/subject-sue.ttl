@@ -243,7 +243,7 @@
                      :subjectsPostOpDay3SiteTenderness , :subjectsPostOpDay3SCr , :subjectsPostOpDay3GFR .
 
 # Something's rotten in the lower left abdomen.
-:subjectsKidneyCSAR1 a RenalX:KidneyGraftOutcomeAssessment ;
+:subjectsKidneyCSAR1 a xplant:ClinicallySuspectedAcuteRejection ;
     core:hasObservationTime "2013-07-07T19:00:00Z"^^xsd:dateTime ;
     core:beforeIntervention :subjectsOutpatientGFR23 , :subjectsGFRpreOp ; # @@ what's the most persuasive start observation?
     # core:prescription :subjectOnImmunosuppressantB ;
@@ -258,7 +258,7 @@
                          :adminImmunosuppressantB-2013-07-07T11-28 ,
                          :adminImmunosuppressantB-2013-07-07T15-25 ;
     core:afterIntervention :subjectsCSAR1 ;
-    core:hasResultValue RenalX:SemiFunctioningGraft .
+    core:hasResultValue xplant:NonFunctioningGraft .
 
 
 # @@ AdverseEvent.triggeredCausalAssessment ?
