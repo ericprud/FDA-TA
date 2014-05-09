@@ -98,7 +98,7 @@
      id="namedview9473"
      showgrid="false"
      inkscape:zoom="1.28"
-     inkscape:cx="3548.4189"
+     inkscape:cx="3985.9189"
      inkscape:cy="1246.0533"
      inkscape:window-x="0"
      inkscape:window-y="0"
@@ -8995,6 +8995,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6593"
        transform="translate(3130.25,847.4375)">
+      <title
+         id="title15385">renal:EndStageRenalDisease</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6595">
@@ -9109,6 +9111,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6641"
        transform="translate(3221.2754,737.4375)">
+      <title
+         id="title15389">sys:Dyslipidemia</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6643">
@@ -9126,6 +9130,8 @@
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6649">
+        <title
+           id="title15387">sys:Dyslipidemia</title>
         <path
            inkscape:connector-curvature="0"
            id="path6651"
@@ -9137,6 +9143,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6653"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15391">sys:Dyslipidemia</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g6655">
@@ -10375,7 +10383,7 @@
        id="g7151"
        transform="translate(3569.25,896.28125)">
       <title
-         id="title15231">core:observation</title>
+         id="title15231">renal:SerumCreatinineObservation</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g7153">
@@ -10391,7 +10399,7 @@
        id="g7157"
        transform="translate(190.25,-7.96875)">
       <title
-         id="title15233">core:observation</title>
+         id="title15233">renal:SerumCreatinineObservation</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g7159">

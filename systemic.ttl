@@ -236,6 +236,9 @@ fma:Kidney           rdfs:subClassOf core:AnatomicalTerm ; rdfs:label "Kidney"@e
 :DefinedWhiteBloodCellLabTest a bridg:DefinedObservation ;
     rdfs:label "white blood cell count" .
 
+:Dyslipidemia a :Assessment ;
+    skos:definition "@@missing" .
+
 :SerumCreatinineLabTest 
     rdfs:subClassOf 
         core:LabTest ,
