@@ -34,6 +34,9 @@
 :KidneyGraftLossAssessment a owl:Class ; # rename to NonFunctioningKidneyGraft ?
     rdfs:subClassOf :KidneyGraftOutcomeAssessment , xplant:GraftLossAssessment , core:NegativeOutcome .
 
+:KidneyGraftCSARAssessment a owl:Class ;      
+    rdfs:subClassOf :KidneyGraftOutcomeAssessment , xplant:GraftBPARAssessment .
+
 :KidneyGraftBPARAssessment a owl:Class ;      
     rdfs:subClassOf :KidneyGraftOutcomeAssessment , xplant:GraftBPARAssessment , core:NegativeOutcome .
 

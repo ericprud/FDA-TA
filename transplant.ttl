@@ -67,7 +67,7 @@
 
 :GraftViability 
     rdfs:subClassOf core:OutcomeAssessmentValue ;
-    owl:oneOf (:NonFunctioningGraft :SubFunctioningGraft :NormalFunctioningGraft) .
+    owl:oneOf (:NonFunctioningGraft :SemiFunctioningGraft :NormalFunctioningGraft) .
 
 :TransplantBiopsyReport # peculiar to allograft transplantation or does this go near core?
     rdfs:subClassOf 
@@ -88,6 +88,13 @@
     owl:equivalentClass [ a owl:Restriction ;
                           owl:onProperty core:hasResultValue ;
                           owl:hasValue :NonFunctioningGraft ] .
+
+:GraftCSARAssessment a owl:Class ;
+    rdfs:subClassOf 
+        core:FunctionOutcomeAssessment ,
+        [ owl:onProperty core:hasResultValue ;
+          owl:someValuesFrom [ owl:oneOf ( :NonFunctioningGraft  :SemiFunctioningGraft ) ]
+        ] .
 
 :GraftBPARAssessment a owl:Class ;      
     rdfs:subClassOf core:NegativeOutcome ;

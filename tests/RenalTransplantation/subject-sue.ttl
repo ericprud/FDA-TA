@@ -237,13 +237,8 @@
 :subjectsPostOpHour36SCr            a renal:SerumCreatinineObservation ; core:hasObservationTime "2013-07-07T19:02:00Z"^^xsd:dateTime ; core:hasResultValue   [ data:value 3.3 ; data:units ucum:mg_dL ].
 :subjectsPostOpHour36GFR            a renal:GfrFlowRateObservation ; core:hasObservationTime "2013-07-07T19:30:00Z"^^xsd:dateTime ; core:hasResultValue       [ data:value 18.0 ; data:units ucum:mL-per-minute ].
 
-# CSAR assessment
-:subjectsCSAR1 a renal:RenalFunctionOutcomeAssessment ; core:hasObservationTime "2013-07-07T19:00:00Z"^^xsd:dateTime ;
-    core:hasObservation :subjectsPostOpHour36GFR , :subjectsPostOpDay3UrineOutput , :subjectsPostOpDay3Temperature ,
-                     :subjectsPostOpDay3SiteTenderness , :subjectsPostOpDay3SCr , :subjectsPostOpDay3GFR .
-
 # Something's rotten in the lower left abdomen.
-:subjectsKidneyCSAR1 a xplant:ClinicallySuspectedAcuteRejection ;
+:subjectsKidneyCSAR1 a RenalX:KidneyGraftCSARAssessment ;
     core:hasObservationTime "2013-07-07T19:00:00Z"^^xsd:dateTime ;
     core:beforeIntervention :subjectsOutpatientGFR23 , :subjectsGFRpreOp ; # @@ what's the most persuasive start observation?
     # core:prescription :subjectOnImmunosuppressantB ;
@@ -257,7 +252,8 @@
                          :adminImmunosuppressantB-2013-07-07T07-27 ,
                          :adminImmunosuppressantB-2013-07-07T11-28 ,
                          :adminImmunosuppressantB-2013-07-07T15-25 ;
-    core:afterIntervention :subjectsCSAR1 ;
+    core:afterIntervention :subjectsPostOpHour36GFR , :subjectsPostOpDay3UrineOutput , :subjectsPostOpDay3Temperature ,
+                     :subjectsPostOpDay3SiteTenderness , :subjectsPostOpDay3SCr , :subjectsPostOpDay3GFR ;
     core:hasResultValue xplant:NonFunctioningGraft .
 
 
@@ -327,7 +323,7 @@
     core:hasResultValue renal:Deteriorating .
 
 # CSAR assessment
-:subjectsCSAR2 a renal:RenalFunctionOutcomeAssessment ; core:hasObservationTime "2013-07-08T14:52:00Z"^^xsd:dateTime ;
+:subjectsCSAR2 a RenalX:KidneyGraftCSARAssessment ; core:hasObservationTime "2013-07-08T14:52:00Z"^^xsd:dateTime ;
     core:hasObservation :subjectsPostOpHour36GFR , :subjectsPostOpDay3UrineOutput , :subjectsPostOpDay3Temperature ,
                      :subjectsPostOpDay3SiteTenderness , :subjectsPostOpDay3SCr , :subjectsPostOpDay3GFR .
 
