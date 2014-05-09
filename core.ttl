@@ -383,6 +383,10 @@
 
 :hasSpecimen a owl:ObjectProperty .
 
+:ScreenValue 
+    rdfs:subClassOf core:OutcomeAssessmentValue ;
+    owl:oneOf (:Positive :Negative :Unknown) .
+
 bridg999:StudySubject.involvingScheduledSubstanceAdministration a owl:ObjectProperty ;
     rdfs:domain bridg:StudySubject ;
     rdfs:range bridg:ScheduledSubstanceAdministration .

@@ -24,6 +24,17 @@
 
 :TransplantProcedure rdfs:subClassOf core:TherapeuticProcedure .
 
+:DonorCriteria rdfs:SubClassOf core:AdministrativeObservation .
+
+:StandardCriteriaDonor rdfs:SubClassOf :DonorCriteria ;
+    skos:definition "A  donor who has suffered brain death (i.e., is not a donor after cardiac death) and who is not an expanded criteria kidney donor. " .
+
+:ExpandedCriteriaDonor rdfs:SubClassOf :DonorCriteria ;
+    skos:definition "A kidney donated for transplantation from any brain dead donor over the age of 60 years; or from a donor over the age of 50 years with two of the following: a history of hypertension, the most recent serum creatinine greater than or equal to 1.5 mg/dl, or death resulting from a cerebral vascular accident (stroke). This definition applies to the allocation of deceased donor kidneys." .
+
+:DonorAfterCirculatoryDeath rdfs:SubClassOf :DonorCriteria ;
+    skos:definition "@@missing" .
+
 :organ rdfs:domain :TransplantProcedure ; rdfs:range bridg:Biologic .
 # @@SPIN rules to create BRIDG structure
 # PREFIX bridg: <http://www.bridgmodel.org/owl#>
@@ -65,6 +76,28 @@
 :HLAmatchAssessment 
     rdfs:subClassOf 
         [ owl:onProperty core:onObservation ; owl:allValuesFrom :HLA-Panel ] ,
+        [ owl:onProperty core:hasResultValue ;
+          owl:hasValue [ owl:onProperty core:hasResultValue ;
+                         owl:allValuesFrom xsd:boolean ] ] .
+
+:ViralScreen-Panel 
+    rdfs:subClassOf 
+        bridg:PerformedObservation ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ;
+          owl:allValuesFrom :ViralScreen-PanelResult ] .
+:ViralScreen-PanelResult 
+    rdfs:subClassOf 
+        bridg:PerformedObservationResult ,
+        [ owl:onProperty data:value ;
+          owl:allValuesFrom core:ScreenValue ] .
+:ViralScreen-CytomegaloVirus-Result  rdfs:subClassOf :ViralScreen-PanelResult .
+:ViralScreen-HepatitisB-Result  rdfs:subClassOf :ViralScreen-PanelResult .
+:ViralScreen-HepatitisC-Result  rdfs:subClassOf :ViralScreen-PanelResult .
+:ViralScreen-EpsteinBarr-Result  rdfs:subClassOf :ViralScreen-PanelResult .
+
+:ViralScreenAssessment 
+    rdfs:subClassOf 
+        [ owl:onProperty core:onObservation ; owl:allValuesFrom :ViralScreen-Panel ] ,
         [ owl:onProperty core:hasResultValue ;
           owl:hasValue [ owl:onProperty core:hasResultValue ;
                          owl:allValuesFrom xsd:boolean ] ] .
