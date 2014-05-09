@@ -97,9 +97,9 @@
      inkscape:window-height="1153"
      id="namedview9473"
      showgrid="false"
-     inkscape:zoom="0.90509668"
-     inkscape:cx="3720.3391"
-     inkscape:cy="1154.3693"
+     inkscape:zoom="1.28"
+     inkscape:cx="3548.4189"
+     inkscape:cy="1246.0533"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
@@ -7226,6 +7226,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g5891"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15315">core:observation</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g5893">
@@ -7488,6 +7490,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g5999"
        transform="translate(3164.4756,368.28125)">
+      <title
+         id="title15321">core:observation</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6001">
@@ -7502,6 +7506,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6005"
        transform="translate(3161.25,382.24414)">
+      <title
+         id="title15317">core:observation</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6007">
@@ -7893,6 +7899,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6161"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15319">core:observation</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g6163">
@@ -7907,6 +7915,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6167"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15323">core:observation</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6169">
@@ -7921,6 +7931,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6173"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15329">core:observation</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g6175">
@@ -7935,6 +7947,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6179"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15357">core:observation</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g6181">
@@ -7949,6 +7963,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6185"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15335">core:observation</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6187">
@@ -7977,6 +7993,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6197"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15331">core:observation</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6199">
@@ -7991,6 +8009,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6203"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15353">core:observation</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g6205">
@@ -8005,6 +8025,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6209"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15337">core:observation</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6211">
@@ -8019,6 +8041,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6215"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15375">sys:BodyMassIndexObservation</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g6217">
@@ -8033,6 +8057,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6221"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15347">core:observation</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g6223">
@@ -8047,6 +8073,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6227"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15377">sys:BodyMassIndexObservation</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g6229">
@@ -8061,6 +8089,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6233"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15373">sys:BodyMassIndexObservation</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6235">
@@ -8075,6 +8105,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6239"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15351">core:observation</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g6241">
@@ -8089,6 +8121,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6245"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15355">core:observation</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6247">
@@ -8145,6 +8179,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6269"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15341">core:observation</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g6271">
@@ -8159,6 +8195,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6275"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15339">core:observation</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6277">
@@ -8173,6 +8211,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6281"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15349">core:observation</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g6283">
@@ -8187,6 +8227,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6287"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15343">core:observation</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6289">
@@ -8229,6 +8271,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6305"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15287">core:hasObservation</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g6307">
@@ -8243,6 +8287,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6311"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15307">core:hasObservation</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g6313">
@@ -8257,6 +8303,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6317"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15293">core:hasObservation</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6319">
@@ -8271,6 +8319,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6323"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15305">core:hasObservation</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g6325">
@@ -8285,6 +8335,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6329"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15295">core:hasObservation</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6331">
@@ -8299,6 +8351,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6335"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15301">core:hasObservation</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g6337">
@@ -8313,6 +8367,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6341"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15299">core:hasObservation</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6343">
@@ -8327,6 +8383,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6347"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15303">core:hasObservation</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g6349">
@@ -8341,6 +8399,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6353"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15297">core:hasObservation</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6355">
@@ -8481,6 +8541,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6413"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15309">core:hasObservation</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g6415">
@@ -8495,6 +8557,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6419"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15291">core:hasObservation</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6421">
@@ -8509,6 +8573,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6425"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15359">core:observation</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g6427">
@@ -8523,6 +8589,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6431"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15333">core:observation</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6433">
@@ -8635,6 +8703,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6479"
        transform="translate(2949.25,738.28125)">
+      <title
+         id="title15311">xplan:Dialysis</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6481">
@@ -8649,6 +8719,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6485"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15313">xplan:Dialysis</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g6487">
@@ -8677,6 +8749,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6497"
        transform="translate(3100.25,547.28125)">
+      <title
+         id="title15325">core:observation</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6499">
@@ -8691,6 +8765,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6503"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15327">core:observation</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g6505">
@@ -8733,6 +8809,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6521"
        transform="translate(3086.25,623.70312)">
+      <title
+         id="title15367">sys:BodyMassIndexObservation</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6523">
@@ -8747,6 +8825,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6527"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15369">sys:BodyMassIndexObservation</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g6529">
@@ -8775,6 +8855,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6539"
        transform="translate(3068.25,740.92187)">
+      <title
+         id="title15363">renal:UrineVolume24hourObservation</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6541">
@@ -8789,6 +8871,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6545"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15365">renal:UrineVolume24hourObservation</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g6547">
@@ -8803,6 +8887,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6551"
        transform="translate(3009.25,602.28125)">
+      <title
+         id="title15371">sys:BodyMassIndexObservation</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6553">
@@ -8817,6 +8903,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6557"
        transform="translate(3197.25,605.28125)">
+      <title
+         id="title15345">core:observation</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6559">
@@ -8845,6 +8933,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6569"
        transform="translate(2956.2119,556.70312)">
+      <title
+         id="title15379">sys:BodyMassIndexObservation</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6571">
@@ -8859,6 +8949,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6575"
        transform="translate(2938.25,570.66602)">
+      <title
+         id="title15381">sys:BodyMassIndexObservation</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6577">
@@ -8873,6 +8965,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6581"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15383">sys:BodyMassIndexObservation</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g6583">
@@ -8915,6 +9009,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6599"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title15285">renal:EndStageRenalDisease</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g6601">
@@ -9443,6 +9539,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6815"
        transform="translate(3139.25,898.28125)">
+      <title
+         id="title15289">core:hasObservation</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g6817">

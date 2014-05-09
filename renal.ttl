@@ -35,6 +35,9 @@
           owl:onProperty core:hasResultValue ;
           owl:allValuesFrom :RenalFunctionOutcomeAssessmentValue ] .
 
+:Dialysis rdfs:subClassOf core:DiagnosticProcedure ;
+    skos:definition "Therapy for the insufficient cleansing of the blood by the kidneys based on dialysis including hemodialysis" .
+
 :RenalBiopsy 
     rdfs:subClassOf 
         core:DiagnosticProcedure ,
@@ -225,5 +228,8 @@
 ##### clinical disease assessments:
 :FunctionImpairment a :Assessment ; # general assessment
     skos:definition "Acute or chronic condition, characterized by the inability of the kidneys to adequately filter the blood substances, resulting in uremia and electrolyte imbalances. Acute renal failure is usually associated with oliguria or anuria, hyperkalemia, and pulmonary edema. Chronic renal failure is irreversible and requires hemodialysis." .
+
+:EndStageRenalDisease a :Assessment ;
+    skos:definition "@@missing" .
 
 
