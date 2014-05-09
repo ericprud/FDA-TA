@@ -80,19 +80,42 @@
 	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
   	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
 	[ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedSerumCreatinineLevel ] ;
-    rdfs:label "SCr"          ; skos:definition "serum creatinine level" .
+    rdfs:label "SCr"          ; skos:definition "@@" .
 :DefinedSerumCreatinineLevel a bridg:DefinedObservation ;
     rdfs:label "SCr" .
 
-:GfrFlowRateObservation 
+:CreatinineClearanceObservation 
     rdfs:subClassOf 
         core:QuantitativeMeasurement             ,
 	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
   	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
-	[ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedGfrFlowRateObservation ] ;
-    rdfs:label "GFR"        ; skos:definition "calculated GFR flow rate" .
-:DefinedGfrFlowRateObservation a bridg:DefinedObservation ;
-    rdfs:label "GFR" .
+	[ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedCreatinineClearanceLevel ] ;
+    rdfs:label "SCr"          ; skos:definition "A measurement of the volume of serum or plasma that would be cleared of creatinine by excretion of urine for a specified unit of time (e.g. one minute)." .
+:DefinedCreatinineClearanceLevel a bridg:DefinedObservation ;
+    rdfs:label "SCr" .
+
+:GfrFlowRateObservation 
+    rdfs:subClassOf 
+        core:QuantitativeMeasurement ,
+	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+  	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ;
+    skos:definition "A kidney function test that measures the fluid volume that is filtered from the kidney glomeruli to the Bowman's capsule per unit of time." .
+
+:GfrMeasuredFlowRateObservation 
+    rdfs:subClassOf 
+        core:QuantitativeMeasurement ,
+	[ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedGfrMeasuredFlowRateObservation ] ;
+    rdfs:label "measured GFR"        ; skos:definition "A calculated estimate of the fluid volume that is filtered from the kidney glomeruli to the Bowman's capsule per unit of time." .
+:DefinedGfrMeasuredFlowRateObservation a bridg:DefinedObservation ;
+    rdfs:label "measured GFR" .
+
+:GfrEstimatedFlowRateObservation 
+    rdfs:subClassOf 
+        core:QuantitativeMeasurement ,
+	[ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedGfrEstimatedFlowRateObservation ] ;
+    rdfs:label "estimated GFR"        ; skos:definition "calculated GFR flow rate" .
+:DefinedGfrEstimatedFlowRateObservation a bridg:DefinedObservation ;
+    rdfs:label "estimated GFR" .
 
 :SuprapubicPainObservation 
     rdfs:subClassOf 
