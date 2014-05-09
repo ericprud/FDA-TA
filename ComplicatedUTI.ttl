@@ -430,6 +430,6 @@
 :Subject rdfs:subClassOf :Organizer .
 :AllEndpoints rdfs:subClassOf :Organizer ;
     owl:equivalentClass [ owl:unionOf (
-        :ClinicalCureRate :MicrobiologicalEradicationRage :IncreasingWBC :IncreasingNitrate core:Death core:LTFU 
+        :ClinicalCureRate :MicrobiologicalEradicationRate :IncreasingWBC :IncreasingNitrate core:Death core:LTFU 
     ) ] .
 

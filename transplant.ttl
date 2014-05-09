@@ -62,7 +62,17 @@
 :HLA-A2-Result  rdfs:subClassOf :HLA-PanelResult .
 :HLA-A1-Result  rdfs:subClassOf :HLA-PanelResult .
 
-:coldIschimeiaTime rdfs:domain bridg:Biologic ; rdfs:range dt:PQ.TIME .
+:HLAmatchAssessment 
+    rdfs:subClassOf 
+        [ owl:onProperty core:onObservation ; owl:allValuesFrom :HLA-Panel ] ,
+        [ owl:onProperty core:hasResultValue ;
+          owl:hasValue [ owl:onProperty core:hasResultValue ;
+                         owl:allValuesFrom xsd:boolean ] ] .
+
+:coldIschimeiaTime a owl:ObjectProperty ; rdfs:domain bridg:Biologic ; rdfs:range dt:PQ.TIME ;
+    skos:definition "An apparatus for forcing a gas or liquid from or to any part. In organ preservation, pump is a reference to the mechanical perfusion pump that is used to continuously perfuse a recovered organ with a chilled preservation solution." .
+:wasPumped a owl:DatatypeProperty ; rdfs:domain bridg:Biologic ; rdfs:range xsd:boolean ;
+    skos:definition "In surgery, the time between the chilling of a tissue, organ, or body part after its blood supply has been reduced or cut off and the time it is warmed by having its blood supply restored. This can occur while the organ is still in the body or after it is removed from the body if the organ is to be used for transplantation" .
 
 # assessements
 
@@ -73,12 +83,25 @@
 :TransplantBiopsyReport # peculiar to allograft transplantation or does this go near core?
     rdfs:subClassOf 
         core:PathologyReport ,
-        [ a owl:Restriction ;
-          owl:onProperty :hasPathologyFinding ;
-          owl:someValuesFrom [ owl:oneOf ( :BanffIA :BanffIB :BanffIIA :BanffIIB :BanffIII ) ] ] .
+        [ owl:onProperty core:hasClassification ;
+          owl:someValuesFrom :RejectionClassification ] ,
+        [ owl:onProperty core:hasPathologyFinding ;
+          owl:someValuesFrom :BanffGrade ] .
+
+:RejectionClassification rdfs:subClassOf data:ValueSetValue ;
+    owl:oneOf ( :ChronicRejection :AntibodyMediatedRejection :TCellMediatedRejection ) .
+
+:ChronicRejection a :RejectionClassification ;
+    skos:definition "@@empty" .
+:AntibodyMediatedRejection a :RejectionClassification ;
+    skos:definition "@@empty" .
+:TCellMediatedRejection a :RejectionClassification ;
+    skos:definition "@@empty" .
+
 
 :BanffGrade rdfs:subClassOf data:ValueSetValue ;
-    skos:definition "The BANFF Classification of renal allograph pathology is standard classification scheme developed to assist in the interpretation of allograph biopsies." .
+    skos:definition "The BANFF Classification of renal allograph pathology is standard classification scheme developed to assist in the interpretation of allograph biopsies." ;
+    owl:oneOf ( :BanffIA :BanffIB :BanffIIA :BanffIIB :BanffIII ) .
 :BanffIA  a :BanffGrade ; skos:definition "BANFF Grade for Acute Rejection. Cases with significant interstitial infiltration (>25% of parenchyma affected) and foci of moderate tubulitis (>4 mononuclear cells/tubular cross section or group of 10 tubular cells)" .
 :BanffIB  a :BanffGrade ; skos:definition "BANFF Grade for Acute Rejection. Cases with significant interstitial infiltration (>25% of parenchyma affected) and foci of severe tubulitis (>10 mononuclear cells/tubular cross section or group of 10 tubular cells)" .
 :BanffIIA a :BanffGrade ; skos:definition "BANFF Grade for Acute Rejection. Cases with mild to moderate intimal arteritis (v1)" .

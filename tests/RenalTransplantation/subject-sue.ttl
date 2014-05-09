@@ -85,10 +85,6 @@
     core:hasOutcomeAssessment :subjectsGFRTrend1, :subjectsGFRTrend2 , :subjectsSCrTrend1 , :subjectsSCrTrend2 , :subjectsKidneyBPAR .
 
 
-:subjectsLeftKidney a bridg:ExperimentalUnit ; a fma:Kidney ;
-    :BiologicEntityPart.anatomicSiteLateralityCode [ a dt:CD ] ; # left
-    bridg:ExperimentalUnit.performedArm study1:arm1 .
-
 :subjectsIdentifier a bridg:SubjectIdentifier ;
     bridg:SubjectIdentifier.identifiedSubject :asSubject ;
     bridg:SubjectIdentifier.identifier [ a dt:II ] ;
@@ -127,7 +123,7 @@
     bridg:ScheduledActivity.instantiatedPlannedActivity study1:prescribeImmunosuppressantB ;
     bridg:ScheduledActivity.dateRange [ a dt:IVL_TS.DATETIME ; dt:IVL_TS.DATETIME.low "2013-07-06T07:25:00Z"^^xsd:dateTime ] ;
     bridg:Activity.involvedSubject :asSubject ;
-    bridg:Activity.involvedExperimentalUnit :subjectsLeftKidney ;
+    bridg:Activity.involvedExperimentalUnit :TP1transplantOrgan ;
     core:medication drugs:ImmunosuppressantB ;
     core:hasDosagePlan [ 
         core:hasMedicationQuantity [ data:value 50.0 ; data:units ucum:mg ] ;
@@ -189,7 +185,9 @@
     bridg:PerformedSubstanceExtraction.producedBiologic :TP1transplantOrgan .
 
 # Collect handling info on transplanted organ
-:TP1transplantOrgan a bridg:Biologic ;
+:TP1transplantOrgan a bridg:ExperimentalUnit ; a fma:Kidney ; a bridg:Biologic ;
+    bridg:BiologicEntityPart.anatomicSiteLateralityCode [ a dt:CD ] ; # left
+    bridg:ExperimentalUnit.performedArm study1:arm1 ;
     bridg:Biologic.handlingCode [ a dt:CD ] ; # @@ "4C 90 minutes"
     xplant:coldIschimeiaTime [ data:value 90 ; data:units ucum:min ]
     # bridg:Material.producingDefinedMaterialProcessStep ...
@@ -264,7 +262,7 @@
     bridg:ScheduledActivity.instantiatedPlannedActivity study1:prescribeImmunosuppressantB ;
     bridg:ScheduledActivity.dateRange [ a dt:IVL_TS.DATETIME ; dt:IVL_TS.DATETIME.low "2013-07-07T19:33:00Z"^^xsd:dateTime ] ;
     bridg:Activity.involvedSubject :asSubject ;
-    bridg:Activity.involvedExperimentalUnit :subjectsLeftKidney ;
+    bridg:Activity.involvedExperimentalUnit :TP1transplantOrgan ;
     core:medication drugs:ImmunosuppressantB ;
     core:hasDosagePlan [
         core:hasMedicationQuantity [ data:value 75.0 ; data:units ucum:mg ] ;
@@ -332,7 +330,8 @@
     core:hasLabReport :subjectsRenalBiopsy1report .
 
 :subjectsRenalBiopsy1report a renal:RenalBiopsyReport ; core:hasObservationTime "2013-07-08T16:10:00Z"^^xsd:dateTime ;
-    core:hasPathologyFinding RenalX:BanffIII . # e.g. evidence of cell-mediated graft attack, T-cell infiltration
+    core:hasClassification xplant:TCellMediatedRejection ;
+    core:hasPathologyFinding xplant:BanffIII . # e.g. evidence of cell-mediated graft attack, T-cell infiltration
     # The lab and pathologist are called out in the Concept Map but are they really useful here?.
 
 # Loss of Kidney

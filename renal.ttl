@@ -39,7 +39,8 @@
     rdfs:subClassOf 
         core:DiagnosticProcedure ,
         [ owl:onProperty core:isJustifiedBy ; owl:minCardinality 1 ] , # @@ Some diagnostic procedures require justification.
-        [ owl:onProperty core:hasLabReport ; owl:cardinality 1 ] .
+        [ owl:onProperty core:hasLabReport ; owl:cardinality 1 ] ,
+        [ owl:onProperty core:performedAtLocalOrCentralLab ; owl:maxCardinality 1 ] .
 
 
 # Observation types have results that are either bridg:PerformedObservationResult
@@ -139,7 +140,7 @@
 :basedOnSerumCreatinine     rdfs:subPropertyOf core:hasObservation ; rdfs:range :SerumCreatinineObservation .
 :GfrEstimatedFlowRateObservation 
     rdfs:subClassOf 
-        core:QuantitativeMeasurement , core:Assessment ,
+        core:QuantitativeMeasurement ,
 	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
 	[ owl:onProperty :basedOnBodySurfaceArea     ; owl:cardinality 1 ] ,
 	[ owl:onProperty :basedOnSerumAlbumin        ; owl:cardinality 1 ] ,

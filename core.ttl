@@ -231,6 +231,8 @@
 :LabReport rdfs:subClassOf bridg:PerformedObservationResult ; :a :b .
 
 :PathologyReport rdfs:subClassOf :QuantitativeMeasurement .
+:hasClassification a owl:ObjectProperty ;
+    rdfs:domain :PathologyReport . # can have any value .
 :hasPathologyFinding a owl:ObjectProperty ;
     rdfs:domain :PathologyReport . # can have any value .
 :SignsAndSymptoms        rdfs:subClassOf :SingleObservation .
