@@ -189,9 +189,8 @@
     bridg:BiologicEntityPart.anatomicSiteLateralityCode [ a dt:CD ] ; # left
     bridg:ExperimentalUnit.performedArm study1:arm1 ;
     bridg:Biologic.handlingCode [ a dt:CD ] ; # @@ "4C 90 minutes"
-    xplant:coldIschimeiaTime [ data:value 90 ; data:units ucum:min ]
+    xplant:coldIschimeiaTime [ data:value 90 ; data:units ucum:min ] .
     # bridg:Material.producingDefinedMaterialProcessStep ...
-.
 
 # The transplant and its administration into the recipient (study subject):
 :TP1transplant a RenalX:RenalTransplantProcedureqy ;
@@ -207,8 +206,7 @@
     bridg:SubstanceExtractionAdministrationRelationship.producingPerformedSubstanceExtraction :TP1extract ;
     bridg:SubstanceExtractionAdministrationRelationship.usingPerformedSubstanceAdministration :TP1admin ;
     bridg:SubstanceExtractionAdministrationRelationship.donorTypeCode [ dt:codingSystem "NCIt" ; dt:code "C25328" ; dt:displayName "Unrelated" ] ; # ... ABO and HLA compatibility
-    bridg:SubstanceExtractionAdministrationRelationship.relationCode [ dt:codingSystem "2.16.840.1.113883.6.96"; dt:code "50053001" ; dt:displayName "Delayed allogeneic transplantation, living donor (procedure)" ]
-.
+    bridg:SubstanceExtractionAdministrationRelationship.relationCode [ dt:codingSystem "2.16.840.1.113883.6.96"; dt:code "50053001" ; dt:displayName "Delayed allogeneic transplantation, living donor (procedure)" ] .
 
 :TP1admin a bridg:PerformedSubstanceAdministration ;
     core:hasInterventionTime "2013-07-06T07:28:00Z"^^xsd:dateTime ;
