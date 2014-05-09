@@ -152,3 +152,63 @@
         :GraftSurvival :GraftLoss :AcuteRejection core:Death core:LTFU 
     ) ] .
 
+##### clinical disease assessments:
+:AllograftGlomerulopathy a :Assessment ;
+    skos:definition "@@empty" .
+
+:ArteriolarHyalineThickening a :Assessment ;
+    skos:definition "@@empty" .
+
+:MesangialMatrixIncrease a :Assessment ;
+    skos:definition "@@empty" .
+
+:MononuclearCellInterstitialInflammation a :Assessment ;
+    skos:definition "@@empty" .
+
+:VascularFibrousIntimalThickening a :Assessment ;
+    skos:definition "@@empty" .
+
+:EarlyAllograftGlomerulitis a :Assessment ;
+    skos:definition "@@empty" .
+
+:IntimalArteritis a :Assessment ;
+    skos:definition "@@empty" .
+
+:C4dStatus a :Assessment ;
+    skos:definition "@@missing" .
+
+:Tubulitis a :Assessment ;
+    skos:definition "@@empty" .
+
+:TubularAtrophy a :Assessment ;
+    skos:definition "@@empty" .
+
+:InterstitialFibrosis a :Assessment ;
+    skos:definition "@@empty" .
+
+:Diabetes a :Assessment ;
+    skos:definition "@@missing" .
+
+:HypertensiveNephrosclerocis a :Assessment ;
+    skos:definition "@@empty" .
+
+:PolycisticKidneyDisease a :Assessment ;
+    skos:definition "A hereditary condition that results in the formation of cysts throughout the kidneys. Patients with PKD often require kidney transplantation." .
+
+:GlomerularDiseases a :Assessment ;
+    skos:definition "@@empty" .
+
+:Hypertension a :Assessment ;
+    skos:definition "@@missing" .
+
+:DiseaseAssessment rdfs:subClassOf :Assessment .
+
+:Infection a :DiseaseAssessment ;
+    skos:definition "@@missing" .
+
+:ProgressiveMultifocalLeukoencephalopathy a :DiseaseAssessment ;
+    skos:definition "@@missing" .
+
+:PostTransplantLymphoproliferativeDisorder a :DiseaseAssessment ;
+    skos:definition "@@missing" .
+

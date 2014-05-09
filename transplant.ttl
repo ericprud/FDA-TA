@@ -75,13 +75,15 @@
         core:PathologyReport ,
         [ a owl:Restriction ;
           owl:onProperty :hasPathologyFinding ;
-          owl:someValuesFrom [ owl:oneOf ( :BanffI :BanffII :BanffIII ) ] ] .
+          owl:someValuesFrom [ owl:oneOf ( :BanffIA :BanffIB :BanffIIA :BanffIIB :BanffIII ) ] ] .
 
 :BanffGrade rdfs:subClassOf data:ValueSetValue ;
     skos:definition "The BANFF Classification of renal allograph pathology is standard classification scheme developed to assist in the interpretation of allograph biopsies." .
-:BanffI a :BanffGrade .
-:BanffII a :BanffGrade .
-:BanffIII a :BanffGrade .
+:BanffIA  a :BanffGrade ; skos:definition "BANFF Grade for Acute Rejection. Cases with significant interstitial infiltration (>25% of parenchyma affected) and foci of moderate tubulitis (>4 mononuclear cells/tubular cross section or group of 10 tubular cells)" .
+:BanffIB  a :BanffGrade ; skos:definition "BANFF Grade for Acute Rejection. Cases with significant interstitial infiltration (>25% of parenchyma affected) and foci of severe tubulitis (>10 mononuclear cells/tubular cross section or group of 10 tubular cells)" .
+:BanffIIA a :BanffGrade ; skos:definition "BANFF Grade for Acute Rejection. Cases with mild to moderate intimal arteritis (v1)" .
+:BanffIIB a :BanffGrade ; skos:definition "BANFF Grade for Acute Rejection. Cases with severe intimal arteritis comprising > 25% of the luminal area (v2)" .
+:BanffIII a :BanffGrade ; skos:definition "BANFF Grade for Acute Rejection. Cases with 'transmural' arteritis and/or arterial fibrinoid change and necrosis of medial smoth muscle cells (v3 with accompanying lymphoctic inflammation)" .
 
 # Axiom: { ?x core:hasResultValue :NormalFunctioningGraft } => { ?x a core:PositiveOutcome }
 :GraftSurvivalAssessment a owl:Class ; # rename to GraftWithNormalFunction ?
@@ -105,6 +107,7 @@
         ] .
 
 :GraftBPARAssessment a owl:Class ;      
+    skos:defintion "@@empty" ;
     rdfs:subClassOf 
         core:NegativeOutcome ,
         [ owl:onProperty core:confirms ; owl:minCardinality 0 ] ;

@@ -328,6 +328,11 @@
 :DeathAssessment rdfs:subClassOf :SingleOutcomeAssessment ;
     rdfs:label "death assessment" ;
     skos:definition "attests that hasObservation identifies evidence of a subject's death." .
+
+:CardiacDeath rdfs:subClassOf :DeathAssessment ;
+    skos:defintion "Death defined as the irreversible cessation of circulatory and respiratory functions. Death is declared in accordance with hospital policy and applicable state and local statues or regulation." .
+
+
 :FunctionOutcomeAssessment rdfs:subClassOf :SingleOutcomeAssessment .
 
 :DefinedEfficacyEndpoint rdfs:subClassOf bridg:DefinedObservation .
