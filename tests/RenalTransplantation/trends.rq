@@ -1,0 +1,82 @@
+# trends.rq -- looks for trends within within the data associated with some intervention.
+# ┌─────────────────┬────────┬───────────────────────────────────────────────────────┐
+# │ ?trend          │ ?count │ ?labels                                               │
+# │ "DecreasingGFR" │      2 │ "Sue(2013-07-08T14:51:00Z) Sue(2013-07-08T16:15:00Z)" │
+# │ "IncreasingSCr" │      2 │ "Sue(2013-07-08T14:51:00Z) Sue(2013-07-08T16:15:00Z)" │
+# └─────────────────┴────────┴───────────────────────────────────────────────────────┘
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX dt: <http://www.hl7.org/owl/iso-dt-2.0#>
+PREFIX ucum: <http://unitsofmeasure.org/ucum-essence.xml#>
+PREFIX bridg: <http://www.bridgmodel.org/owl#>
+PREFIX bridg999: <http://www.bridgmodel.org/owl999#>
+PREFIX core: <http://www.w3.org/2013/12/FDA-TA/core#>
+PREFIX xplant: <http://www.w3.org/2013/12/FDA-TA/transplant#>
+PREFIX renal: <http://www.w3.org/2013/12/FDA-TA/renal#>
+PREFIX data: <http://www.w3.org/2013/12/FDA-TA/datatypes#>
+
+SELECT ?trend ?count ?labels {
+  {
+    SELECT ("DecreasingGFR" AS ?trend) (COUNT(*) AS ?count) (GROUP_CONCAT(?label) AS ?labels)
+    WHERE {
+      BIND (1 AS ?g)
+      [ 
+        bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
+        core:hasOutcomeAssessment ?oa ] .
+          ?oa a renal:RenalFunctionOutcomeAssessment ; core:hasObservationTime ?when .
+	  ?oa core:prescription [
+              core:medication ?med ;
+              core:hasDosagePlan [
+                  core:hasMedicationQuantity [
+                      data:value ?qty ; data:units ucum:mg ] ;
+                  core:hasMedicationSchedule [
+                      core:hasMedicationFrequency ?frq ;
+                      core:hasMedicationDuration ?dur ;
+                      core:hasMedicationUnits ?schedunit ]
+              ]
+          ]
+          BIND (CONCAT(STR(?qty), 'mg ', STR(?frq), ' per ', STR(?dur), ' ' , ?schedunit) AS ?dose)
+	  BIND (CONCAT(?name, '(', substr(str(?med), 40), ' ', ?dose, ')') AS ?label)
+          { SELECT ?oa { ?oa core:hasObservation [ a renal:GfrFlowRateObservation ] } GROUP BY ?oa } # over GFRs
+          MINUS { # occurances of GFR increasing with date
+            ?oa core:hasObservation
+                    [ a renal:GfrFlowRateObservation ; core:hasObservationTime ?date1 ; core:hasResultValue [ data:value ?gfr1 ] ] ,
+                    [ a renal:GfrFlowRateObservation ; core:hasObservationTime ?date2 ; core:hasResultValue [ data:value ?gfr2 ] ]
+            FILTER (?date2 > ?date1 && ?gfr2 > ?gfr1)
+          }
+    } GROUP BY ?g
+  }
+  UNION
+  {
+    SELECT ("IncreasingSCr" AS ?trend) (COUNT(*) AS ?count) (GROUP_CONCAT(?label) AS ?labels)
+    WHERE {
+      BIND (1 AS ?g)
+      [ 
+        bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
+        core:hasOutcomeAssessment ?oa ] .
+          ?oa a renal:RenalFunctionOutcomeAssessment ; core:hasObservationTime ?when .
+	  ?oa core:prescription [
+              core:medication ?med ;
+              core:hasDosagePlan [
+                  core:hasMedicationQuantity [
+                      data:value ?qty ; data:units ucum:mg ] ;
+                  core:hasMedicationSchedule [
+                      core:hasMedicationFrequency ?frq ;
+                      core:hasMedicationDuration ?dur ;
+                      core:hasMedicationUnits ?schedunit ]
+              ]
+          ]
+          BIND (CONCAT(STR(?qty), 'mg ', STR(?frq), ' per ', STR(?dur), ' ' , ?schedunit) AS ?dose)
+	  BIND (CONCAT(?name, '(', substr(str(?med), 40), ' ', ?dose, ')') AS ?label)
+          { SELECT ?oa { ?oa core:hasObservation [ a renal:SerumCreatinineObservation ] } GROUP BY ?oa } # over SCrs
+          MINUS { # occurances of SCr decreasing with date
+            ?oa core:hasObservation
+                    [ a renal:SerumCreatinineObservation ; core:hasObservationTime ?date1 ; core:hasResultValue [ data:value ?scr1 ] ] ,
+                    [ a renal:SerumCreatinineObservation ; core:hasObservationTime ?date2 ; core:hasResultValue [ data:value ?scr2 ] ]
+            FILTER (?date2 > ?date1 && ?scr2 < ?scr1)
+          }
+    } GROUP BY ?g
+  }
+}
+
