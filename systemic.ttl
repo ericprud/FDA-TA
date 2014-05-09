@@ -295,3 +295,14 @@ fma:Kidney           rdfs:subClassOf core:AnatomicalTerm ; rdfs:label "Kidney"@e
     rdfs:label "Culture Colony Forming Unit Value"     ; skos:definition "@@" .
 :DefinedCultureColonyFormingUnitValueTest a bridg:DefinedObservation ;
     rdfs:label "Culture Colony Forming Unit Value" .
+
+:BodySurfaceAreaObservation 
+    rdfs:subClassOf 
+        core:QuantitativeMeasurement             ,
+	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+  	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+	[ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedBodySurfaceAreaLevel ] ;
+    rdfs:label "BodySurfaceArea"          ; skos:definition "@@" .
+:DefinedBodySurfaceAreaLevel a bridg:DefinedObservation ;
+    rdfs:label "BodySurfaceArea" .
+

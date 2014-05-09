@@ -10,12 +10,15 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix bridg: <http://www.bridgmodel.org/owl#> .
 
-@prefix : <http://www.w3.org/2013/12/FDA-TA/renal#> .
-@prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .
 @prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
+@prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .
+@prefix sys: <http://www.w3.org/2013/12/FDA-TA/systemic#> .
+
+@prefix : <http://www.w3.org/2013/12/FDA-TA/renal#> .
 
 <http://www.w3.org/2013/12/FDA-TA/renal> a owl:Ontology ;
-    owl:imports <http://www.w3.org/2013/12/FDA-TA/core> .
+    owl:imports <http://www.w3.org/2013/12/FDA-TA/core> ,
+                <http://www.w3.org/2013/12/FDA-TA/systemic> .
 
 :RenalFunctionOutcomeAssessmentValue 
     rdfs:subClassOf core:OutcomeAssessmentValue ;
@@ -74,6 +77,26 @@
   	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ;
     rdfs:label "urine volue over 24 hrs" ; skos:definition "@@" .
 
+:SerumAlbuminObservation 
+    rdfs:subClassOf 
+        core:QuantitativeMeasurement             ,
+	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+  	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+	[ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedSerumAlbuminLevel ] ;
+    rdfs:label "SerAlbumin"          ; skos:definition "@@" .
+:DefinedSerumAlbuminLevel a bridg:DefinedObservation ;
+    rdfs:label "SerAlbumin" .
+
+:SerumUreaNitrogenObservation 
+    rdfs:subClassOf 
+        core:QuantitativeMeasurement             ,
+	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+  	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,
+	[ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedSerumUreaNitrogenLevel ] ;
+    rdfs:label "SerUreaNitrogen"          ; skos:definition "@@" .
+:DefinedSerumUreaNitrogenLevel a bridg:DefinedObservation ;
+    rdfs:label "SerUreaNitrogen" .
+
 :SerumCreatinineObservation 
     rdfs:subClassOf 
         core:QuantitativeMeasurement             ,
@@ -109,10 +132,20 @@
 :DefinedGfrMeasuredFlowRateObservation a bridg:DefinedObservation ;
     rdfs:label "measured GFR" .
 
+:basedOnBodySurfaceArea     rdfs:subPropertyOf core:hasObservation ; rdfs:range sys:BodySurfaceAreaObservation .
+:basedOnSerumAlbumin        rdfs:subPropertyOf core:hasObservation ; rdfs:range :SerumAlbuminObservation .
+:basedOnCreatinineClearance rdfs:subPropertyOf core:hasObservation ; rdfs:range :CreatinineClearanceObservation .
+:basedOnSerumUreaNitrogen   rdfs:subPropertyOf core:hasObservation ; rdfs:range :SerumUreaNitrogenObservation .
+:basedOnSerumCreatinine     rdfs:subPropertyOf core:hasObservation ; rdfs:range :SerumCreatinineObservation .
 :GfrEstimatedFlowRateObservation 
     rdfs:subClassOf 
-        core:QuantitativeMeasurement ,
-	[ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedGfrEstimatedFlowRateObservation ] ;
+        core:QuantitativeMeasurement , core:Assessment ,
+	[ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,
+	[ owl:onProperty :basedOnBodySurfaceArea     ; owl:cardinality 1 ] ,
+	[ owl:onProperty :basedOnSerumAlbumin        ; owl:cardinality 1 ] ,
+	[ owl:onProperty :basedOnCreatinineClearance ; owl:cardinality 1 ] ,
+	[ owl:onProperty :basedOnSerumUreaNitrogen   ; owl:cardinality 1 ] ,
+	[ owl:onProperty :basedOnSerumCreatinine     ; owl:cardinality 1 ] ;
     rdfs:label "estimated GFR"        ; skos:definition "calculated GFR flow rate" .
 :DefinedGfrEstimatedFlowRateObservation a bridg:DefinedObservation ;
     rdfs:label "estimated GFR" .
