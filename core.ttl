@@ -160,6 +160,7 @@
 :DefinedAdministrativeEndpoint rdfs:subClassOf bridg:DefinedObservation .
 :AdministrativeEndpoint rdfs:subClassOf 
     :Disposition ,
+    [ owl:onProperty :dependsOn ; owl:minCardinality 1 ] ,
     [ owl:onProperty :sparqlQuery ; owl:cardinality 1 ] .
 
 # @@ Will we use this hierarchy from cUTI?
@@ -332,11 +333,15 @@
 :DefinedEfficacyEndpoint rdfs:subClassOf bridg:DefinedObservation .
 :EfficacyEndpoint rdfs:subClassOf 
     :Assessment ,
-    [ owl:onProperty :hasObservation ; owl:allValuesFrom :SingleOutcomeAssessment ] .
+    [ owl:onProperty :hasObservation ; owl:allValuesFrom :SingleOutcomeAssessment ] ,
+    [ owl:onProperty :dependsOn ; owl:minCardinality 1 ] ,
     [ owl:onProperty :sparqlQuery ; owl:cardinality 1 ] .
+:dependsOn a owl:DatatypeProperty .
 :sparqlQuery a owl:DatatypeProperty ;
     rdfs:range xsd:string .
 
+:confirms a owl:DatatypeProperty ;
+    rdfs:domain :SingleOutcomeAssessment .
 
 :PositiveOutcome   rdfs:subClassOf :SingleOutcomeAssessment .
 :NegativeOutcome   rdfs:subClassOf :SingleOutcomeAssessment .

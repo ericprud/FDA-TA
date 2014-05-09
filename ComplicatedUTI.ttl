@@ -420,16 +420,16 @@
 """ .
 
 
-:AllEndpoints rdfs:subClassOf core:EfficacyEndpoint ;
-    owl:equivalentClass [ owl:unionOf (
-        :ClinicalCureRate :MicrobiologicalEradicationRage :IncreasingWBC :IncreasingNitrate core:Death core:LTFU 
-    ) ] .
-
 :Protocol a core:TAProtocol ;
     rdfs:subClassOf 
         [ owl:onProperty :hasEndpoint ; owl:someValuesFrom :AllEndpoints ] .
 
 # Organization tricks
 
-:Entity a owl:Class . # organizer for cUTI .
-:Subject rdfs:subClassOf :Entity .
+:Organizer a owl:Class . # organizer for cUTI .
+:Subject rdfs:subClassOf :Organizer .
+:AllEndpoints rdfs:subClassOf :Organizer ;
+    owl:equivalentClass [ owl:unionOf (
+        :ClinicalCureRate :MicrobiologicalEradicationRage :IncreasingWBC :IncreasingNitrate core:Death core:LTFU 
+    ) ] .
+

@@ -5,6 +5,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
 @prefix renal: <http://www.w3.org/2013/12/FDA-TA/renal#> .
 @prefix xplant: <http://www.w3.org/2013/12/FDA-TA/transplant#> .
@@ -75,7 +76,7 @@
     } GROUP BY ?g
 """ .
 
-:DecreasingGFR a core:EfficacyEndpoint ;
+:DecreasingGFR a core:TrendMonitor ;
     core:sparqlQuery """
     SELECT ("DecreasingGFR" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?label) AS ?labels)
     WHERE {
@@ -95,7 +96,8 @@
     } GROUP BY ?g
 """ .
 
-:IncreasingSCr a core:EfficacyEndpoint ;
+:IncreasingSCr a core:TrendMonitor ;
+    core:dependsOn renal:SerumCreatinineObservation ;
     core:sparqlQuery """
     SELECT ("IncreasingSCr" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?label) AS ?labels)
     WHERE {
@@ -116,6 +118,8 @@
 """ .
 
 :AcuteRejection a core:EfficacyEndpoint ;
+    skos:definition "Rejection of a transplanted organ that usually occurs after the first week of the transplantation. The risk of acute rejection is highest in the first three months following transplantation. Morphologically, there is an inflammatory infiltrate composed of lymphocytes and neutrophils and vascular damage in the rejected tissue." ;
+    core:dependsOn :KidneyGraftCSARAssessment ;
     core:sparqlQuery """
     SELECT ("AcuteRejection" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?label) AS ?labels)
     WHERE {
@@ -138,4 +142,13 @@
 :Protocol a core:TAProtocol ;
     rdfs:subClassOf 
         [ owl:onProperty :hasEndpoint ; owl:someValuesFrom :AllEndpoints ] .
+
+# Organization tricks
+
+:Organizer a owl:Class . # organizer for RenalTransplantation .
+:Subject rdfs:subClassOf :Organizer .
+:AllEndpoints rdfs:subClassOf :Organizer ;
+    owl:equivalentClass [ owl:unionOf (
+        :GraftSurvival :GraftLoss :AcuteRejection core:Death core:LTFU 
+    ) ] .
 

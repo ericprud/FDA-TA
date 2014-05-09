@@ -21,3 +21,5 @@
 :units a owl:ObjectProperty  ;
     rdfs:domain :PhysicalQuantity .
 
+:ValueSetValue a owl:Class ;
+    rdfs:label "set of terms" .
