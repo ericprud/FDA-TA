@@ -102,6 +102,15 @@
                                                                          :Hygene
                                                                          :Grip
                                                                          :Eating ) .
+:GroomingFunction rdfs:subClassOf :PhysicalFunction .
+:DressingFunction rdfs:subClassOf :PhysicalFunction .
+:Arising rdfs:subClassOf :PhysicalFunction .
+:Activity rdfs:subClassOf :PhysicalFunction .
+:Walking rdfs:subClassOf :PhysicalFunction .
+:Hygene rdfs:subClassOf :PhysicalFunction .
+:Grip rdfs:subClassOf :PhysicalFunction .
+:Eating rdfs:subClassOf :PhysicalFunction .
+
 
 :EvaluationTimePoint            rdfs:subClassOf bridg:DefinedSubjectActivityGroup ;
                                               owl:unionOf (:DAS28EvaluationTimePoint
