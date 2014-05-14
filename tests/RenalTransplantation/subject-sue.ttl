@@ -193,7 +193,7 @@
     # bridg:Material.producingDefinedMaterialProcessStep ...
 
 # The transplant and its administration into the recipient (study subject):
-:TP1transplant a RenalX:RenalTransplantProcedureqy ;
+:TP1transplant a RenalX:RenalTransplantProcedure ;
     # transplant from:
     bridg:PerformedActivity.compositePerformedCompositionRelationship [
         bridg:PerformedCompositionRelationship.compositePerformedActivity :TP1extract ] ;
