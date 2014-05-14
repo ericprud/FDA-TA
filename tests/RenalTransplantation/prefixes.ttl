@@ -1,35 +1,46 @@
-@prefix amy: <http://www.w3.org/2013/12/FDA-TA/tests/RenalTransplantation/subject-amy#> .
-@prefix bob: <http://www.w3.org/2013/12/FDA-TA/tests/RenalTransplantation/subject-bob#> .
-@prefix bridg999: <http://www.bridgmodel.org/owl999#> .
-@prefix bridg: <http://www.bridgmodel.org/owl#> .
-@prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .
-@prefix cuti: <http://www.w3.org/2013/12/FDA-TA/ComplicatedUTI#> .
-@prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
-@prefix dct: <http://purl.org/dc/terms/> .
-@prefix drug: <http://www.w3.org/2013/12/FDA-TA/DrugList> .
-@prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> .
-#@prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> .
-@prefix elig: <http://www.w3.org/2013/12/FDA-TA/Eligibility> . # @@ To be created.
-@prefix fma: <http://sig.uw.edu/fma#> .
-# @prefix fma: <http://sig.uw.edu/fma#> .
-#@prefix fma: <http://sig.uw.edu/fma#> .
-@prefix foaf: <http://xmlns.com/foaf/0.1/> .
-@prefix hl7-T70: <http://amisha.pragmaticdata.com/~gunther/oldhtml/tables.html#70> .
-@prefix owl: <http://www.w3.org/2002/07/owl#> .
+# RDF
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix renal: <http://www.w3.org/2013/12/FDA-TA/renal#> .
-@prefix cUTI: <http://www.w3.org/2013/12/FDA-TA/ComplicatedUTI#> .
-@prefix RenalX: <http://www.w3.org/2013/12/FDA-TA/RenalTransplantation#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+# HL7, UCUM
+@prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> .
+@prefix hl7-T70: <http://amisha.pragmaticdata.com/~gunther/oldhtml/tables.html#70> .
+@prefix ucum: <http://unitsofmeasure.org/ucum-essence.xml#> .
+
+# BRIDG
+@prefix bridg: <http://www.bridgmodel.org/owl#> .
+@prefix bridg999: <http://www.bridgmodel.org/owl999#> .
+
+# External ontologies
+@prefix fma: <http://sig.uw.edu/fma#> .
+
+# Proposed FDA ontologies
+@prefix drug: <http://www.w3.org/2013/12/FDA-TA/DrugList> . # exists elsewhere but needs URLs
+@prefix elig: <http://www.w3.org/2013/12/FDA-TA/Eligibility> . # @@ To be created.
+@prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
+
+# Shared TA libraries
+@prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .
+@prefix sys: <http://www.w3.org/2013/12/FDA-TA/systemic#> .
+@prefix renal: <http://www.w3.org/2013/12/FDA-TA/renal#> .
+@prefix xplant: <http://www.w3.org/2013/12/FDA-TA/transplant#> .
+
+# TA ontologies
+@prefix RenalX: <http://www.w3.org/2013/12/FDA-TA/RenalTransplantation#> .
+@prefix cUTI: <http://www.w3.org/2013/12/FDA-TA/ComplicatedUTI#> .
+
+# Instance data
+@prefix amy: <http://www.w3.org/2013/12/FDA-TA/tests/RenalTransplantation/subject-amy#> .
+@prefix bob: <http://www.w3.org/2013/12/FDA-TA/tests/RenalTransplantation/subject-bob#> .
+@prefix sue: <http://www.w3.org/2013/12/FDA-TA/tests/RenalTransplantation/subject-sue#> .
 @prefix study1: <http://www.w3.org/2013/12/FDA-TA/tests/RenalTransplantation/study1#> .
 @prefix study2: <http://www.w3.org/2013/12/FDA-TA/tests/ComplicatedUTI/study2#> .
-@prefix sue: <http://www.w3.org/2013/12/FDA-TA/tests/RenalTransplantation/subject-sue#> .
-@prefix sys: <http://www.w3.org/2013/12/FDA-TA/systemic#> .
-@prefix ucum: <http://unitsofmeasure.org/ucum-essence.xml#> .
-#@prefix ucum: <http://unitsofmeasure.org/ucum-essence.xml#> .
-@prefix xplant: <http://www.w3.org/2013/12/FDA-TA/renal#> .
-@prefix xplant: <http://www.w3.org/2013/12/FDA-TA/transplant#> .
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
 @prefix : <http://www.w3.org/2013/12/FDA-TA/tests/RenalTransplantation/subjects#> .
+
+
