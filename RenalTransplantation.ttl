@@ -143,16 +143,9 @@
     rdfs:subClassOf 
         [ owl:onProperty :hasEndpoint ; owl:someValuesFrom :AllEndpoints ] .
 
-# Organization tricks
-
-:Organizer a owl:Class . # organizer for RenalTransplantation .
-:Subject rdfs:subClassOf :Organizer .
-:AllEndpoints rdfs:subClassOf :Organizer ;
-    owl:equivalentClass [ owl:unionOf (
-        :GraftSurvival :GraftLoss :AcuteRejection core:Death core:LTFU 
-    ) ] .
-
 ##### clinical disease assessments:
+:Assessment rdfs:subClassOf core:Assessment .
+
 :AllograftGlomerulopathy a :Assessment ;
     skos:definition "@@empty" .
 
@@ -211,4 +204,15 @@
 
 :PostTransplantLymphoproliferativeDisorder a :DiseaseAssessment ;
     skos:definition "@@missing" .
+
+
+# Organization tricks
+
+:Organizer a owl:Class . # organizer for RenalTransplantation .
+:Subject rdfs:subClassOf :Organizer .
+:Protocol rdfs:subClassOf :Organizer .
+:AllEndpoints rdfs:subClassOf :Organizer ;
+    owl:equivalentClass [ owl:unionOf (
+        :GraftSurvival :GraftLoss :AcuteRejection core:Death core:LTFU 
+    ) ] .
 
