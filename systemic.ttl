@@ -21,7 +21,7 @@
 <http://www.w3.org/2013/12/FDA-TA/systemic> a owl:Ontology ;
     owl:imports
         <http://www.w3.org/2013/12/FDA-TA/core> ,
-        <http://www.w3.org/2013/12/FDA-TA/bridg-classes.ttl> .
+        <http://www.w3.org/2013/12/FDA-TA/bridg-classes> .
 
 # Anatomical terms taken from FMA
 
@@ -236,7 +236,7 @@ fma:Kidney           rdfs:subClassOf core:AnatomicalTerm ; rdfs:label "Kidney"@e
 :DefinedWhiteBloodCellLabTest a bridg:DefinedObservation ;
     rdfs:label "white blood cell count" .
 
-:Dyslipidemia a :Assessment ;
+:Dyslipidemia a core:Assessment ;
     skos:definition "@@missing" .
 
 :SerumCreatinineLabTest 
