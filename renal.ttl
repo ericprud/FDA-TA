@@ -226,10 +226,10 @@
 
 
 ##### clinical disease assessments:
-:FunctionImpairment a :Assessment ; # general assessment
+:FunctionImpairment a core:Assessment ; # general assessment
     skos:definition "Acute or chronic condition, characterized by the inability of the kidneys to adequately filter the blood substances, resulting in uremia and electrolyte imbalances. Acute renal failure is usually associated with oliguria or anuria, hyperkalemia, and pulmonary edema. Chronic renal failure is irreversible and requires hemodialysis." .
 
-:EndStageRenalDisease a :Assessment ;
+:EndStageRenalDisease a core:Assessment ;
     skos:definition "@@missing" .
 
 
