@@ -160,7 +160,7 @@
 
 # :ClinicalOutcome
 :ClinicalOutcome 
-    rdfs:subClassOf :SingleOutcomeAssessment ,
+    rdfs:subClassOf core:SingleOutcomeAssessment ,
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:someValuesFrom :DefinedClinicalOutcome ] ,
 	[ owl:onProperty bridg:PerformedObservation.reportingAssessor ; owl:someValuesFrom [
             owl:intersectionOf ( bridg:StudyInvestigator bridg:StudyLegalSponsor )
@@ -223,7 +223,7 @@
 :DefinedMicrobiologicalTOCOutcome rdfs:subClassOf :DefinedMicrobiologicalOutcome ; :lastInterventionToAfterDuration :TreatmentTOC .
 :DefinedMicrobiologicalLTFUOutcome rdfs:subClassOf :DefinedMicrobiologicalOutcome ; :lastInterventionToAfterDuration :TreatmentLTFU .
 
-:cUTI_LabTests owl:equivalentClass [ owl:unionOf 
+:LabTests owl:equivalentClass [ owl:unionOf 
   ( sys:WhiteBloodCellLabTest sys:NitrateInUrineLabTest sys:Luekoestrearase 
     sys:CultureSusceptaibilityTesting sys:CultureConfirmatoryTesting sys:CultureColonyFormingUnitValue 
   ) ].
@@ -231,14 +231,14 @@
 # :MicrobiologicalOutcome
 # :MicrobiologicalEradicationRate_Formula :calculated_from :MicrobiologicalOutcome .
 :MicrobiologicalOutcome 
-    rdfs:subClassOf :SingleOutcomeAssessment ,
+    rdfs:subClassOf core:SingleOutcomeAssessment ,
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:someValuesFrom :DefinedMicrobiologicalOutcome ] ,
 	[ owl:onProperty bridg:PerformedObservation.reportingAssessor ; owl:hasValue bridg:StudyLegalSponsor ], # @@ classified by
 #    bridg:StudyLegalSponsor :assigns :PathogenOutcome . @@ need Assignment Relationship or some such
-        [ owl:onProperty core:beforeIntervention ; owl:allValuesFrom :cUTI_LabTests ] ,
+        [ owl:onProperty core:beforeIntervention ; owl:allValuesFrom :LabTests ] ,
         [ owl:onProperty core:prescription ; owl:allValuesFrom :DrugPrescription ] ,
         [ owl:onProperty core:hasIntervention ; owl:allValuesFrom :DrugAdministration ] ,
-        [ owl:onProperty core:afterIntervention ; owl:allValuesFrom :cUTI_LabTests ] ,
+        [ owl:onProperty core:afterIntervention ; owl:allValuesFrom :LabTests ] ,
         [ owl:onProperty core:hasResultValue ; owl:allValuesFrom [
             owl:intersectionOf ( bridg:PerformedObservationResult 
                 [ owl:onProperty bridg:PerformedObservationResult.typeCode ; owl:allValuesFrom :MicrobiologicalOutcomeValue ] )
@@ -428,6 +428,11 @@
 
 :Organizer a owl:Class . # organizer for cUTI .
 :Subject rdfs:subClassOf :Organizer .
+:ComplicatingFactor rdfs:subClassOf :Organizer .
+:LabTests rdfs:subClassOf :Organizer .
+:Protocol rdfs:subClassOf :Organizer .
+:RouteOfInfection rdfs:subClassOf :Organizer .
+:TypeOfInfection rdfs:subClassOf :Organizer .
 :AllEndpoints rdfs:subClassOf :Organizer ;
     owl:equivalentClass [ owl:unionOf (
         :ClinicalCureRate :MicrobiologicalEradicationRate :IncreasingWBC :IncreasingNitrate core:Death core:LTFU 
