@@ -24,15 +24,15 @@
 
 :TransplantProcedure rdfs:subClassOf core:TherapeuticProcedure .
 
-:DonorCriteria rdfs:SubClassOf core:AdministrativeObservation .
+:DonorCriteria rdfs:subClassOf core:AdministrativeObservation .
 
-:StandardCriteriaDonor rdfs:SubClassOf :DonorCriteria ;
+:StandardCriteriaDonor rdfs:subClassOf :DonorCriteria ;
     skos:definition "A  donor who has suffered brain death (i.e., is not a donor after cardiac death) and who is not an expanded criteria kidney donor. " .
 
-:ExpandedCriteriaDonor rdfs:SubClassOf :DonorCriteria ;
+:ExpandedCriteriaDonor rdfs:subClassOf :DonorCriteria ;
     skos:definition "A kidney donated for transplantation from any brain dead donor over the age of 60 years; or from a donor over the age of 50 years with two of the following: a history of hypertension, the most recent serum creatinine greater than or equal to 1.5 mg/dl, or death resulting from a cerebral vascular accident (stroke). This definition applies to the allocation of deceased donor kidneys." .
 
-:DonorAfterCirculatoryDeath rdfs:SubClassOf :DonorCriteria ;
+:DonorAfterCirculatoryDeath rdfs:subClassOf :DonorCriteria ;
     skos:definition "@@missing" .
 
 :organ rdfs:domain :TransplantProcedure ; rdfs:range bridg:Biologic .
