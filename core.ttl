@@ -10,8 +10,10 @@
 @prefix bridg: <http://www.bridgmodel.org/owl#> .
 @prefix bridg999: <http://www.bridgmodel.org/owl999#> .
 
-@prefix : <http://www.w3.org/2013/12/FDA-TA/core#> .
 @prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
+@prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> . # really <http://hl7.org/owl/datatypes/uv#> .
+
+@prefix : <http://www.w3.org/2013/12/FDA-TA/core#> .
 
 <http://www.w3.org/2013/12/FDA-TA/core> a owl:Ontology ;
     owl:imports <http://www.w3.org/2013/12/FDA-TA/datatypes> .
@@ -51,6 +53,10 @@
 # 	owl:allValuesFrom :TemporalProfile
 #     ] 
 .
+:BehaviorModification rdfs:subClassOf :TherapeuticIntervention .
+:TherapeuticProcedure rdfs:subClassOf :TherapeuticIntervention .
+:MedicationAdministration rdfs:subClassOf :TherapeuticIntervention .
+
 
 :hasInterventionTime a owl:DatatypeProperty ;
     rdfs:domain :TherapeuticIntervention ;
@@ -107,7 +113,7 @@
 :hasMedicationQuantity a owl:ObjectProperty ;
     rdfs:domain :Dosage ;
     rdfs:range :MedicationQuantity .
-:MedicationQuantity rdfs:subClassOf data:PhysicalQuantity.
+:MedicationQuantity rdfs:subClassOf dt:PQ.
 
 :DosagePlan 
     rdfs:subClassOf 
@@ -146,6 +152,8 @@
     ) ;
     rdfs:subClassOf bridg:PerformedObservation ,
         [ owl:onProperty :hasObservationTime ; owl:cardinality 1 ] . # ,
+:AdministrativeObservation rdfs:subClassOf :Observation .
+:ClinicalObservation rdfs:subClassOf :Observation .
 
         # Don't apply cardinality constraints to properties defined as property
         # chains or you'll get a "reasoner died" dialgo with e.g. (from Fact++):
@@ -204,6 +212,10 @@
     owl:disjointUnionOf (
         :Assessment :SingleObservation :InferrableDiagnosis 
     ) .
+:Assessment rdfs:subClassOf :ClinicalObservation .
+:SingleObservation rdfs:subClassOf :ClinicalObservation .
+:InferrableDiagnosis rdfs:subClassOf :ClinicalObservation .
+
 # :Assessment described below
 :SingleObservation       rdfs:subClassOf :ClinicalObservation ;
     owl:unionOf (
@@ -245,19 +257,19 @@
     rdfs:range :TherapeuticIntervention .
 
 # Observation properties
-:monitorsStateOf a owl:ObjectProperty ;
-    rdfs:domain :SingleOutcomeAssessment ;
-    rdfs:range :PhysiologicalProcess .
-
-:hasPlaceOfMeasurement a owl:ObjectProperty ;
-    rdfs:domain :ClinicalObservation ;
-    rdfs:range :PlaceOfMeasurement .
-:PlaceOfMeasurement a owl:Class .
-
-:hasMeasurementMethodology a owl:ObjectProperty ;
-    rdfs:domain :ClinicalObservation ;
-    rdfs:range :MeasurementMethodology .
-:MeasurementMethodology a owl:Class .
+# :monitorsStateOf a owl:ObjectProperty ;
+#     rdfs:domain :SingleOutcomeAssessment ;
+#     rdfs:range :PhysiologicalProcess .
+# 
+# :hasPlaceOfMeasurement a owl:ObjectProperty ;
+#     rdfs:domain :ClinicalObservation ;
+#     rdfs:range :PlaceOfMeasurement .
+# :PlaceOfMeasurement a owl:Class .
+# 
+# :hasMeasurementMethodology a owl:ObjectProperty ;
+#     rdfs:domain :ClinicalObservation ;
+#     rdfs:range :MeasurementMethodology .
+# :MeasurementMethodology a owl:Class .
 
 # Information Model imposed on Observation.
 :hasObservationTime a owl:DatatypeProperty ;
@@ -365,20 +377,13 @@
 # PhysiologicalProcess (right, blue)
 #
 
-:PhysiologicalProcess a owl:Class .
-
-# PhysiologicalProcess is one of: :NormalPhysiologicalProcess :PathoPhysiologicalProcess
-:PhysiologicalProcess
-    owl:disjointUnionOf (
-        :NormalPhysiologicalProcess :PathoPhysiologicalProcess
-    ) ;
-#     rdfs:subClassOf [
-#         owl:onProperty :temporalProfile ;
-# 	owl:allValuesFrom :TemporalProfile
-#     ] 
-.
-:NormalPhysiologicalProcess rdfs:subClassOf :PhysiologicalProcess .
-:PathoPhysiologicalProcess rdfs:subClassOf :PhysiologicalProcess .
+# :PhysiologicalProcess a owl:Class .
+# :PhysiologicalProcess
+#     owl:disjointUnionOf (
+#         :NormalPhysiologicalProcess :PathoPhysiologicalProcess
+#     ) .
+# :NormalPhysiologicalProcess rdfs:subClassOf :PhysiologicalProcess .
+# :PathoPhysiologicalProcess rdfs:subClassOf :PhysiologicalProcess .
 
 
 :hasSpecimen a owl:ObjectProperty .
