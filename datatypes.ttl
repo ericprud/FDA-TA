@@ -10,16 +10,34 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
+@prefix hl7: <http://hl7.org/owl/metadata#> .
+@prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> . # really <http://hl7.org/owl/datatypes/uv#> .
 @prefix : <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
 
 <http://www.w3.org/2013/12/FDA-TA/datatypes> a owl:Ontology .
 
-:PhysicalQuantity a owl:Class .
 :value a owl:DatatypeProperty ;
-    rdfs:domain :PhysicalQuantity .
+    rdfs:domain dt:PQ .
 :units a owl:ObjectProperty  ;
-    rdfs:domain :PhysicalQuantity .
+    rdfs:domain dt:PQ .
 
 :ValueSetValue a owl:Class ;
     rdfs:label "set of terms" .
+
+# include a bit from O-RIM's datatypes-uv-2.0.ttl
+dt:ANY rdfs:subClassOf hl7:Datatype .
+dt:CD rdfs:subClassOf dt:ANY .
+dt:DSET_CD rdfs:subClassOf dt:DSET_ANY .
+dt:DSET_ANY rdfs:subClassOf hl7:Datatype .
+dt:II rdfs:subClassOf dt:ANY .
+dt:IVL_INT rdfs:subClassOf dt:IVL_QTZ .
+dt:IVL_QTZ rdfs:subClassOf dt:IVL_QTY .
+dt:IVL_QTY rdfs:subClassOf hl7:Datatype .
+dt:IVL_TS.DATETIME rdfs:subClassOf dt:IVL_TS .
+dt:IVL_TS rdfs:subClassOf dt:IVL_QTY .
+dt:TS.DATETIME rdfs:subClassOf dt:TS .
+dt:TS rdfs:subClassOf dt:QTY .
+dt:QTY rdfs:subClassOf dt:ANY .
+dt:PQ.TIME rdfs:subClassOf dt:PQ .
+dt:PQ rdfs:subClassOf dt:QTZ .
+dt:QTZ rdfs:subClassOf dt:QTY .
