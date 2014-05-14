@@ -105,8 +105,8 @@
      id="namedview9473"
      showgrid="false"
      inkscape:zoom="1.28"
-     inkscape:cx="3985.9189"
-     inkscape:cy="1246.0533"
+     inkscape:cx="2196.3589"
+     inkscape:cy="996.0533"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
@@ -2728,6 +2728,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g4067"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title6643">xplant:GraftBPARAssessment</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g4069">
@@ -2847,6 +2849,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g4115"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title6645">core:hasPathologyFinding</title>
       <g
          style="fill:#ffff96;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g4117">
@@ -3145,6 +3149,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g4235"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title6647">xplant:TCellMediatedRejection</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g4237">
@@ -4799,7 +4805,7 @@
        id="g4883"
        transform="translate(190.25,-7.96875)">
       <title
-         id="title13746">transplant:BanffIA</title>
+         id="title13746">transplant:BanffIB</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g4885">
@@ -6316,6 +6322,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g5507"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title6641">bridg:PerformedActivity.dateRange</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g5509">
@@ -6386,6 +6394,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g5537"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title6639">bridg:PerformedActivity.dateRange</title>
       <g
          style="fill:none;stroke:#000000;stroke-opacity:1"
          id="g5539">
@@ -6400,6 +6410,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g5543"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title6635">bridg:PerformedActivity.dateRange</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g5545">
@@ -6754,6 +6766,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g5693"
        transform="translate(868.25,1281.2813)">
+      <title
+         id="title6637">bridg:PerformedActivity.dateRange</title>
       <g
          style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g5695">
@@ -6768,6 +6782,8 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g5699"
        transform="translate(190.25,-7.96875)">
+      <title
+         id="title6633">RenalX:GraftLoss</title>
       <g
          style="fill:#ff9600;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="g5701">
@@ -9909,6 +9925,14 @@
        style="stroke-width:1;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-dashoffset:0"
        id="g6965"
        transform="translate(190.25,-7.96875)">
+      <text
+         style="font-size:16px;text-anchor:start;fill:none;stroke:#ffffff;fill-opacity:1;stroke-width:5px"
+         transform="translate(0,-10)"
+         id="text2260">renal:EndStageRenalDisease</text>
+      <text
+         style="font-size:16px;text-anchor:start;fill:#007700"
+         transform="translate(0,-10)"
+         id="text2262">renal:EndStageRenalDiseasexx</text>
       <title
          id="title15209">core:observation</title>
       <g
@@ -16056,24 +16080,34 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="me">
-    <path
-       style="fill:none;stroke:#fc0000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;marker-end:url(#Arrow2Mend)"
-       d="m 1834.4345,769.2437 c 104.949,3.37961 -94.5612,-210.90729 6.6616,-210.52816"
-       id="path6389"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc">
+    <g
+       id="g10307">
       <title
          id="title11545">core:hasLabReport</title>
-    </path>
-    <path
-       style="fill:none;stroke:#fc0000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Mend)"
-       d="m 1955.7288,563.07153 c 104.949,3.37961 325.2835,205.6228 426.5063,206.00193"
-       id="path6389-4"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc">
+      <g
+         id="g10310">
+        <path
+           style="fill:none;stroke:#fc0000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Mend)"
+           d="m 1834.4345,769.2437 c 111.199,-1.30789 -139.0924,-209.34479 6.6616,-210.52816"
+           id="path6389"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc" />
+      </g>
+    </g>
+    <g
+       id="g10313">
       <title
          id="title11545-7">core:hasLabReport</title>
-    </path>
+      <g
+         id="g10316">
+        <path
+           style="fill:none;stroke:#fc0000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Mend)"
+           d="m 1955.7288,563.07153 c 104.949,-1.30789 277.6273,206.40405 426.5063,206.00193"
+           id="path6389-4"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="cc" />
+      </g>
+    </g>
   </g>
 </svg>
 <!-- bounding box -->
