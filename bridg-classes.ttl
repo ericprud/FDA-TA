@@ -45,6 +45,10 @@ bridg:Biologic.handlingCode a owl:ObjectProperty ;
 bridg:BiologicEntityPart a owl:Class ;
     rdfs:label "BiologicEntityPart"^^<xs:string> ;
     rdfs:subClassOf bridg:DataEntity .
+bridg:BiologicEntity.birthDate a owl:ObjectProperty ;
+    rdfs:domain bridg:BiologicEntity ;
+    rdfs:range dt:TS.DATETIME ;
+    rdfs:subPropertyOf bridg:attributeProperty .
 bridg:BiologicEntityPart.anatomicSiteLateralityCode a owl:ObjectProperty ;
     rdfs:domain bridg:BiologicEntityPart ;
     rdfs:range dt:CD ;

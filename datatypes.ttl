@@ -11,6 +11,7 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix hl7: <http://hl7.org/owl/metadata#> .
+@prefix bridg: <http://www.bridgmodel.org/owl#> .
 @prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> . # really <http://hl7.org/owl/datatypes/uv#> .
 @prefix : <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
 
@@ -24,9 +25,19 @@
 :ValueSetValue a owl:Class ;
     rdfs:label "set of terms" .
 
+hl7:Datatype.objectProperty rdfs:subPropertyOf bridg:attributeProperty . # patch
+
 # include a bit from O-RIM's datatypes-uv-2.0.ttl
 dt:ANY rdfs:subClassOf hl7:Datatype .
 dt:CD rdfs:subClassOf dt:ANY .
+ dt:CD.codeSystemName a owl:ObjectProperty ;
+     rdfs:domain dt:CD ;
+     rdfs:range dt:ST , dt:ST.NT ;
+     rdfs:subPropertyOf hl7:Datatype.objectProperty .
+ dt:CD.displayName a owl:ObjectProperty ;
+                  rdfs:domain dt:CD ;
+                  rdfs:range dt:ST ;
+                  rdfs:subPropertyOf hl7:Datatype.objectProperty .
 dt:DSET_CD rdfs:subClassOf dt:DSET_ANY .
 dt:DSET_ANY rdfs:subClassOf hl7:Datatype .
 dt:II rdfs:subClassOf dt:ANY .
