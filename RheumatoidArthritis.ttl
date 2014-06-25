@@ -7,8 +7,9 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-@prefix renal: <http://www.w3.org/2013/12/FDA-TA/renal#> .
-@prefix xplant: <http://www.w3.org/2013/12/FDA-TA/transplant#> .
+@prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> .
+@prefix bridg: <http://www.bridgmodel.org/owl#> .
+
 @prefix : <http://www.w3.org/2013/12/FDA-TA/RheumatoidArthritis#> .
 @prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .
 @prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
@@ -16,6 +17,7 @@
 <http://www.w3.org/2013/12/FDA-TA/RheumatoidArthritis> a owl:Ontology ;
     owl:imports <http://www.w3.org/2013/12/FDA-TA/core> .
 
+:Assessment rdfs:subClassOf core:Assessment .
 
 :SwollenJointCountObservation 
     rdfs:subClassOf 
@@ -89,13 +91,55 @@
 :DefinedPatientPainAssessmentObservation a bridg:DefinedObservation ;
     rdfs:label "@@" .
 
+:DAS28_Assessment 
+    rdfs:subClassOf 
+        :Assessment ,
+        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :SwollenJointCountObservation ] ,
+        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :TenderJointCountObservation ] ,
+        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :CReactiveProteinObservation ] ,
+        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :ErythrociteSedimentationRateObservation ] ,
+        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :PatientGlobalAssessmentOfDiseaseActivityObservation ] .
+
+:DAS28_Assessment 
+    rdfs:subClassOf 
+        core:SingleOutcomeAssessment ,
+        [ owl:onProperty core:beforeIntervention ; owl:someValuesFrom :DAS28_Assessment ] ,
+        [ owl:onProperty core:afterIntervention ; owl:someValuesFrom :DAS28_Assessment ] .
+
+:DiseaseActivityScoreEndpoint a core:EfficacyEndpoint ;
+    skos:definition "@@" ;
+    :evaluates :DAS28_Assessment .
+
+
+:ACRn_Assessment 
+    rdfs:subClassOf 
+        :Assessment ,
+        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :SwollenJointCountObservation ] ,
+        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :TenderJointCountObservation ] ,
+        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :CReactiveProteinObservation ] ,
+        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :ErythrociteSedimentationRateObservation ] ,
+        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :PatientGlobalAssessmentOfDiseaseActivityObservation ] ,
+        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :PhysicianGlobalAssessmentOfDiseaseActivityObservation ] ,
+        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :PatientPainAssessmentObservation ] .
+
+:ACRn_Assessment 
+    rdfs:subClassOf 
+        core:SingleOutcomeAssessment ,
+        [ owl:onProperty core:beforeIntervention ; owl:someValuesFrom :ACRn_Assessment ] ,
+        [ owl:onProperty core:afterIntervention ; owl:someValuesFrom :ACRn_Assessment ] .
+
+:AmericanCollegeOfRheumatologyEndpoint a core:EfficacyEndpoint ;
+    skos:definition "@@" ;
+    :evaluates :ACRn_Assessment .
+
+
 # HAQ-DI
 
 :HAQ-DICategory_ObservationResult 
     rdfs:subClassOf 
         bridg:PerformedObservationResult ,
         [ owl:onProperty data:value ; owl:allValuesFrom [
-            rdf:type rdfs:Datatype ;
+            a rdfs:Datatype ;
             owl:onDatatype xsd:integer ;
             owl:withRestrictions ( [ xsd:minInclusive 0 ] [ xsd:maxInclusive 3 ] )
         ] ] .
@@ -191,13 +235,35 @@
 :DefinedHAQ-DI_ActivitiesObservation a bridg:DefinedObservation ;
     rdfs:label "@@" .
 
+:HAQ-DI_Assessment 
+    rdfs:subClassOf 
+        :Assessment ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_DressingAndGroomingObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_ArisingObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_EatingObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_WalkingObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_HygieneObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_ReachObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_GripObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_ActivitiesObservation ] .
+
+:HAQ-DI_Assessment 
+    rdfs:subClassOf 
+        core:SingleOutcomeAssessment ,
+        [ owl:onProperty core:beforeIntervention ; owl:someValuesFrom :HAQ-DI_Assessment ] ,
+        [ owl:onProperty core:afterIntervention ; owl:someValuesFrom :HAQ-DI_Assessment ] .
+
+:PhysicalFunctionEndpoint a core:EfficacyEndpoint ;
+    skos:definition "@@" ;
+    :evaluates :HAQ-DI_Assessment .
+
 # SF-36
 
 :SF-36Category_ObservationResult 
     rdfs:subClassOf 
         bridg:PerformedObservationResult ,
         [ owl:onProperty data:value ; owl:allValuesFrom [
-            rdf:type rdfs:Datatype ;
+            a rdfs:Datatype ;
             owl:onDatatype xsd:integer ;
             owl:withRestrictions ( [ xsd:minInclusive 0 ] [ xsd:maxInclusive 100 ] )
         ] ] .
@@ -294,30 +360,42 @@
 :DefinedSF-36_BodilyPainObservation a bridg:DefinedObservation ;
     rdfs:label "@@" .
 
+:SF-36_Assessment 
+    rdfs:subClassOf 
+        :Assessment ,
+        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :SF-36_PhysicalFunctionObservation ] ,
+        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :SF-36_SocialFunctionObservation ] ,
+        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :SF-36_Role-physicalObservation ] ,
+        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :SF-36_Role-emotionalObservation ] ,
+        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :SF-36_GeneralHealthObservation ] ,
+        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :SF-36_MentalHealthObservation ] ,
+        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :SF-36_VitalityObservation ] ,
+        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :SF-36_BodilyPainObservation ] .
 
+:SF-36_Assessment 
+    rdfs:subClassOf 
+        core:SingleOutcomeAssessment ,
+        [ owl:onProperty core:beforeIntervention ; owl:someValuesFrom :SF-36_Assessment ] ,
+        [ owl:onProperty core:afterIntervention ; owl:someValuesFrom :SF-36_Assessment ] .
 
-:DiseaseActivityScoreEndpoint a core:EfficacyEndpoint ;
+:PhysicalFunctionEndpoint a core:EfficacyEndpoint ;
     skos:definition "@@" ;
-    core:sparqlQuery """
-    SELECT ("DiseaseActivityScoreEndpoint" AS ?endpoint) (COUNT(*) AS ?count) (GROUP_CONCAT(?label) AS ?labels)
-    WHERE {
-      BIND (1 AS ?g)
-      [
-        bridg:Subject.performingBiologicEntity [ foaf:name ?name ] ;
-        core:hasOutcomeAssessment ?oa ] .
-          { SELECT ?oa ?l { ?oa core:afterIntervention [ bridg:PerformedActivity.instantiatedDefinedActivity [ rdfs:label ?l ] ] } GROUP BY ?oa ?l }
-          BIND (CONCAT(?name, '(', ?l, ")") AS ?label)
-
-          ?oa core:hasResultValue renal:CeasedToFunction .
-    } GROUP BY ?g
-""" .
+    :evaluates :SF-36_Assessment .
 
 
-:AllEndpoints owl:equivalentClass [ owl:unionOf (
-        :DiseaseActivityScoreEndpoint :PhysicalFunctionEndpoint :HealthRelatedQualityOfLifeEndpoint :RadiographicResponseEndpoint 
+:Organizer a owl:Class . # organizer for RheumatoidArthritis .
+:Subject rdfs:subClassOf :Organizer .
+:Protocol rdfs:subClassOf :Organizer .
+:AllEndpoints rdfs:subClassOf :Organizer ;
+    owl:equivalentClass [ owl:unionOf (
+        :DiseaseActivityScoreEndpoint 
+	:PhysicalFunctionEndpoint 
+	:HealthRelatedQualityOfLifeEndpoint 
+	:RadiographicResponseEndpoint 
+	# core:LTFU # @@ include this? and death?
     ) ] .
 
-:Protocol a core:TAProtocol ;
-    rdfs:subClassOf 
+:Protocol 
+    rdfs:subClassOf :Organizer, core:TAProtocol ,
         [ owl:onProperty :hasEndpoint ; owl:someValuesFrom :AllEndpoints ] .
 
