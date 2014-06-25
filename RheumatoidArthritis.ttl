@@ -100,7 +100,7 @@
         [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :ErythrociteSedimentationRateObservation ] ,
         [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :PatientGlobalAssessmentOfDiseaseActivityObservation ] .
 
-:DAS28_Assessment 
+:DAS28_OutcomeAssessment 
     rdfs:subClassOf 
         core:SingleOutcomeAssessment ,
         [ owl:onProperty core:beforeIntervention ; owl:someValuesFrom :DAS28_Assessment ] ,
@@ -122,7 +122,7 @@
         [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :PhysicianGlobalAssessmentOfDiseaseActivityObservation ] ,
         [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :PatientPainAssessmentObservation ] .
 
-:ACRn_Assessment 
+:ACRn_OutcomeAssessment 
     rdfs:subClassOf 
         core:SingleOutcomeAssessment ,
         [ owl:onProperty core:beforeIntervention ; owl:someValuesFrom :ACRn_Assessment ] ,
@@ -247,7 +247,7 @@
         [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_GripObservation ] ,
         [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_ActivitiesObservation ] .
 
-:HAQ-DI_Assessment 
+:HAQ-DI_OutcomeAssessment 
     rdfs:subClassOf 
         core:SingleOutcomeAssessment ,
         [ owl:onProperty core:beforeIntervention ; owl:someValuesFrom :HAQ-DI_Assessment ] ,
@@ -372,7 +372,7 @@
         [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :SF-36_VitalityObservation ] ,
         [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :SF-36_BodilyPainObservation ] .
 
-:SF-36_Assessment 
+:SF-36_OutcomeAssessment 
     rdfs:subClassOf 
         core:SingleOutcomeAssessment ,
         [ owl:onProperty core:beforeIntervention ; owl:someValuesFrom :SF-36_Assessment ] ,
