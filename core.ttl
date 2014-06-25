@@ -406,3 +406,15 @@ bridg999:PerformedSubstanceExtraction.usedBiologic a owl:ObjectProperty ;
     # owl:inverseOf bridg999:Biologic.usingPerformedSubstanceExtraction
 .
 
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( bridg:PerformedObservation
+                bridg:DefinedObservation
+              )
+] .
+# @@ need to merge these ^v
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( bridg:PerformedObservationResult
+                bridg:DefinedObservationResult
+              )
+] .
+
