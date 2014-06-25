@@ -7,6 +7,9 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
+@prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> .
+@prefix bridg: <http://www.bridgmodel.org/owl#> .
+
 @prefix renal: <http://www.w3.org/2013/12/FDA-TA/renal#> .
 @prefix xplant: <http://www.w3.org/2013/12/FDA-TA/transplant#> .
 @prefix : <http://www.w3.org/2013/12/FDA-TA/RenalTransplantation#> .
@@ -135,63 +138,55 @@
 """ .
 
 
-:AllEndpoints owl:equivalentClass [ owl:unionOf (
-        :GraftSurvival :GraftLoss :DecreasingGFR :IncreasingSCr :AcuteRejection core:Death core:LTFU 
-    ) ] .
-
-:Protocol a core:TAProtocol ;
-    rdfs:subClassOf 
-        [ owl:onProperty :hasEndpoint ; owl:someValuesFrom :AllEndpoints ] .
-
 ##### clinical disease assessments:
 :Assessment rdfs:subClassOf core:Assessment .
 
-:AllograftGlomerulopathy a :Assessment ;
+:AllograftGlomerulopathy rdfs:subClassOf :Assessment ;
     skos:definition "@@empty" .
 
-:ArteriolarHyalineThickening a :Assessment ;
+:ArteriolarHyalineThickening rdfs:subClassOf :Assessment ;
     skos:definition "@@empty" .
 
-:MesangialMatrixIncrease a :Assessment ;
+:MesangialMatrixIncrease rdfs:subClassOf :Assessment ;
     skos:definition "@@empty" .
 
-:MononuclearCellInterstitialInflammation a :Assessment ;
+:MononuclearCellInterstitialInflammation rdfs:subClassOf :Assessment ;
     skos:definition "@@empty" .
 
-:VascularFibrousIntimalThickening a :Assessment ;
+:VascularFibrousIntimalThickening rdfs:subClassOf :Assessment ;
     skos:definition "@@empty" .
 
-:EarlyAllograftGlomerulitis a :Assessment ;
+:EarlyAllograftGlomerulitis rdfs:subClassOf :Assessment ;
     skos:definition "@@empty" .
 
-:IntimalArteritis a :Assessment ;
+:IntimalArteritis rdfs:subClassOf :Assessment ;
     skos:definition "@@empty" .
 
-:C4dStatus a :Assessment ;
+:C4dStatus rdfs:subClassOf :Assessment ;
     skos:definition "@@missing" .
 
-:Tubulitis a :Assessment ;
+:Tubulitis rdfs:subClassOf :Assessment ;
     skos:definition "@@empty" .
 
-:TubularAtrophy a :Assessment ;
+:TubularAtrophy rdfs:subClassOf :Assessment ;
     skos:definition "@@empty" .
 
-:InterstitialFibrosis a :Assessment ;
+:InterstitialFibrosis rdfs:subClassOf :Assessment ;
     skos:definition "@@empty" .
 
-:Diabetes a :Assessment ;
+:Diabetes rdfs:subClassOf :Assessment ;
     skos:definition "@@missing" .
 
-:HypertensiveNephrosclerocis a :Assessment ;
+:HypertensiveNephrosclerocis rdfs:subClassOf :Assessment ;
     skos:definition "@@empty" .
 
-:PolycisticKidneyDisease a :Assessment ;
+:PolycisticKidneyDisease rdfs:subClassOf :Assessment ;
     skos:definition "A hereditary condition that results in the formation of cysts throughout the kidneys. Patients with PKD often require kidney transplantation." .
 
-:GlomerularDiseases a :Assessment ;
+:GlomerularDiseases rdfs:subClassOf :Assessment ;
     skos:definition "@@empty" .
 
-:Hypertension a :Assessment ;
+:Hypertension rdfs:subClassOf :Assessment ;
     skos:definition "@@missing" .
 
 :DiseaseAssessment rdfs:subClassOf :Assessment .
@@ -213,6 +208,10 @@
 :Protocol rdfs:subClassOf :Organizer .
 :AllEndpoints rdfs:subClassOf :Organizer ;
     owl:equivalentClass [ owl:unionOf (
-        :GraftSurvival :GraftLoss :AcuteRejection core:Death core:LTFU 
+        :GraftSurvival :GraftLoss :AcuteRejection core:Death core:LTFU #  :DecreasingGFR :IncreasingSCr 
     ) ] .
+
+:Protocol 
+    rdfs:subClassOf :Organizer, core:TAProtocol ,
+        [ owl:onProperty :hasEndpoint ; owl:someValuesFrom :AllEndpoints ] .
 
