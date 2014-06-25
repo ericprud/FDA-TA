@@ -39,6 +39,7 @@
 	# example demographics: age sex weight height region
 	bridg:Person.primaryOccupationCode [ a dt:CD ] ;
 	bridg:Person.raceCode [ a dt:CD ] ;
+	bridg:BiologicEntity.birthDate [ a dt:TS.DATETIME ] ;
     ] ;
 
     # Sue has a baseline state: low GFR (21 ml/hr) and elevated serum creatinine and time on dialysis of 18 months.
@@ -164,10 +165,10 @@
     core:hasIntervention :TP1extract .
 
 :TP1donor_Death a core:DeathAssessment ;
-    core:hasObservationTime "2007-05-26"^^xsd:dateTime .
+    core:hasObservationTime "2013-07-06T04:00:00Z"^^xsd:dateTime .
 
 :TP1donor_HLA a xplant:HLA-Panel ;
-    core:hasObservationTime "2007-05-26"^^xsd:dateTime ;
+    core:hasObservationTime "2013-07-06T04:03:00Z"^^xsd:dateTime ;
     bridg:PerformedObservation.resultedPerformedObservationResult
          :TP1donor_HLA-A1-res , :TP1donor_HLA-B1-res , :TP1donor_HLA-DR1-res ,
          :TP1donor_HLA-A2-res , :TP1donor_HLA-B2-res , :TP1donor_HLA-DR2-res .
