@@ -94,11 +94,11 @@
 :DAS28_Assessment 
     rdfs:subClassOf 
         :Assessment ,
-        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :SwollenJointCountObservation ] ,
-        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :TenderJointCountObservation ] ,
-        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :CReactiveProteinObservation ] ,
-        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :ErythrociteSedimentationRateObservation ] ,
-        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :PatientGlobalAssessmentOfDiseaseActivityObservation ] .
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :SwollenJointCountObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :TenderJointCountObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :CReactiveProteinObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :ErythrociteSedimentationRateObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :PatientGlobalAssessmentOfDiseaseActivityObservation ] .
 
 :DAS28_OutcomeAssessment 
     rdfs:subClassOf 
@@ -108,19 +108,19 @@
 
 :DiseaseActivityScoreEndpoint a core:EfficacyEndpoint ;
     skos:definition "@@" ;
-    :evaluates :DAS28_Assessment .
+    :evaluates :DAS28_OutcomeAssessment .
 
 
 :ACRn_Assessment 
     rdfs:subClassOf 
         :Assessment ,
-        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :SwollenJointCountObservation ] ,
-        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :TenderJointCountObservation ] ,
-        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :CReactiveProteinObservation ] ,
-        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :ErythrociteSedimentationRateObservation ] ,
-        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :PatientGlobalAssessmentOfDiseaseActivityObservation ] ,
-        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :PhysicianGlobalAssessmentOfDiseaseActivityObservation ] ,
-        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :PatientPainAssessmentObservation ] .
+        [ owl:onProperty core:beforeIntervention ; owl:someValuesFrom :SwollenJointCountObservation ] ,
+        [ owl:onProperty core:beforeIntervention ; owl:someValuesFrom :TenderJointCountObservation ] ,
+        [ owl:onProperty core:beforeIntervention ; owl:someValuesFrom :CReactiveProteinObservation ] ,
+        [ owl:onProperty core:beforeIntervention ; owl:someValuesFrom :ErythrociteSedimentationRateObservation ] ,
+        [ owl:onProperty core:beforeIntervention ; owl:someValuesFrom :PatientGlobalAssessmentOfDiseaseActivityObservation ] ,
+        [ owl:onProperty core:beforeIntervention ; owl:someValuesFrom :PhysicianGlobalAssessmentOfDiseaseActivityObservation ] ,
+        [ owl:onProperty core:beforeIntervention ; owl:someValuesFrom :PatientPainAssessmentObservation ] .
 
 :ACRn_OutcomeAssessment 
     rdfs:subClassOf 
@@ -363,14 +363,14 @@
 :SF-36_Assessment 
     rdfs:subClassOf 
         :Assessment ,
-        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :SF-36_PhysicalFunctionObservation ] ,
-        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :SF-36_SocialFunctionObservation ] ,
-        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :SF-36_Role-physicalObservation ] ,
-        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :SF-36_Role-emotionalObservation ] ,
-        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :SF-36_GeneralHealthObservation ] ,
-        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :SF-36_MentalHealthObservation ] ,
-        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :SF-36_VitalityObservation ] ,
-        [ owl:someValuesFrom core:beforeIntervention ; owl:someValuesFrom :SF-36_BodilyPainObservation ] .
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :SF-36_PhysicalFunctionObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :SF-36_SocialFunctionObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :SF-36_Role-physicalObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :SF-36_Role-emotionalObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :SF-36_GeneralHealthObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :SF-36_MentalHealthObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :SF-36_VitalityObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :SF-36_BodilyPainObservation ] .
 
 :SF-36_OutcomeAssessment 
     rdfs:subClassOf 

@@ -1,0 +1,19 @@
+TA: RheumatoidArthritis
+ENDPOINT: DiseaseActivityScoreEndpoint "name" """defn""" DAS28_OutcomeAssessment(DAS28_Assessment)
+ASSESSMENT: DAS28_Assessment
+
+
+
+                             SwollenJointCountObservation
+
+                             TenderJointCountObservation
+                             CReactiveProteinObservation
+                             ErythrociteSedimentationRateObservation
+                             PatientGlobalAssessmentOfDiseaseActivityObservation
+
+// We can include the clinical assessments as either assessments of 28 observations or as simple observations.
+QUANT: SwollenJointCountObservation "override name" """override defn""" @"Swollen joint count" [< "NCI EVS" "C1234"]
+QUANT: TenderJointCountObservation @"Tender joint count"
+QUANT: CReactiveProteinObservation @"CRP - C reactive peptide Level"
+QUANT: ErythrociteSedimentationRateObservation @"ESR - Erythrocyte Sedimentation Rate"
+SSX: PatientGlobalAssessmentOfDiseaseActivityObservation @"Visual Analog Scale (VAS) for Patient Global Assessment "
