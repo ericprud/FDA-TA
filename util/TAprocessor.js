@@ -76,7 +76,7 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
 	    ret += ";\n    skos:definition "+defn+" ";
 	if (xtnd) {
 	    var newCode = "refined-" + code;
-	    auxilliaryTaxonomy += "<http://example.org/@@FDA-TA#" + newCode + "> skos:narrowerThan <" + systemURI(sstm) + "#" + code + "> ." ;
+	    auxilliaryTaxonomy += "<http://example.org/@@FDA-TA#" + newCode + "> skos:narrowerThan <" + systemURI(sstm) + "#" + code + "> .\n" ;
 	    sstm = "FDA-TA";
 	    code = newCode;
 	}
@@ -140,9 +140,11 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
 	if (e in ta && !(e in defined)) {
 	    defined[e] = true;
 	    var endpoint = ta[e];
-	    ret += ":"+e+" a core:EfficacyEndpoint ";
+	    ret += ":"+e+" \n"
+		+ "    rdfs:subClassOf \n"
+		+ "        core:EfficacyEndpoint ,\n"
+		+ "        [ owl:onProperty core:evaluates ; owl:someValuesFrom :"+endpoint.outcome+" ] "
 	    ret += definition_toTurtle(endpoint.definition);
-	    ret += ";\n    core:evaluates :"+endpoint.outcome+" ";
 	    ret += ".\n";
 	    if (recurse)
 		ret += outcomeAssessment_toTurtle(endpoint.outcome, recurse);
@@ -159,7 +161,7 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
 	    var outcomeAssessment = ta[e];
 	    var onAssessment = 'assessment' in outcomeAssessment ? true : false;
 	    var on = onAssessment ? outcomeAssessment.assessment : outcomeAssessment.observation;
-	    ret += ":"+e
+	    ret += ":"+e+" \n"
 		+ "    rdfs:subClassOf \n"
 		+ "        core:SingleOutcomeAssessment ,\n"
 		+ "        [ owl:onProperty core:beforeIntervention ; owl:someValuesFrom :"+on+" ] ,\n"
@@ -184,17 +186,22 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
 	    var basedOn = assessment.basedOn;
 	    ret += ":"+e+" \n"
 		+ "    rdfs:subClassOf \n"
-		+ "        core:Assessment ";
+		+ "        core:Assessment "
 		+ basedOn.map(function (e) {
-		    return ",\n        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :"+e+" ] ";
+		    return ",\n        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :"+e[1]+" ] ";
 		}).join("");
 	    ret += definition_toTurtle(assessment.definition);
 	    ret += ".\n";
 	    if (recurse)
 		ret += basedOn.map(function (e) {
-		    return e in ta && ta[e]._ == 'ASSESSMENT'
-			? assessment_toTurtle(e, recurse)
-			: observation_toTurtle(e, recurse) ;
+		    var definedAsAssessment = e[1] in ta && ta[e[1]]._ == 'ASSESSMENT';
+		    if (e[0] && !definedAsAssessment)
+			warn(e[1], "defined as observation but referenced as assessment");
+		    else if (!e[0] && definedAsAssessment)
+			warn(e[1], "defined as assessment but referenced as observation");
+		    return definedAsAssessment
+			? assessment_toTurtle(e[1], recurse)
+			: observation_toTurtle(e[1], recurse) ;
 		}).join("");
 	}
 	return ret;
@@ -232,7 +239,7 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
 	    warn("unreferenced declaration:", decl);
     if (true)
     for (termDefinition in termDefinitions)
-	if (!(termDefinition in termDefinitionsUsed))
+	if (!(termDefinition in termDefinitionsUsed) && termDefinition.indexOf(' x ') == -1)
 	    warn("unused definition:", termDefinition);
     return ret;
 };

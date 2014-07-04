@@ -1,6 +1,8 @@
 TA: RheumatoidArthritis
-ENDPOINT: DiseaseActivityScoreEndpoint "name" """defn""" DAS28_OutcomeAssessment(DAS28_Assessment)
-ASSESSMENT: DAS28_Assessment
+
+
+ENDPOINT: DiseaseActivityScoreEndpoint @"Disease Activity Score (DAS28)" DAS28_OutcomeAssessment(DAS28_Assessment)
+ASSESSMENT: DAS28_Assessment @"Disease Activity Score (DAS28)"
 
 
 
@@ -12,8 +14,81 @@ ASSESSMENT: DAS28_Assessment
                              PatientGlobalAssessmentOfDiseaseActivityObservation
 
 // We can include the clinical assessments as either assessments of 28 observations or as simple observations.
-QUANT: SwollenJointCountObservation "override name" """override defn""" @"Swollen joint count" [< "NCI EVS" "C1234"]
+QUANT: SwollenJointCountObservation @"Swollen joint count"
 QUANT: TenderJointCountObservation @"Tender joint count"
 QUANT: CReactiveProteinObservation @"CRP - C reactive peptide Level"
 QUANT: ErythrociteSedimentationRateObservation @"ESR - Erythrocyte Sedimentation Rate"
 SSX: PatientGlobalAssessmentOfDiseaseActivityObservation @"Visual Analog Scale (VAS) for Patient Global Assessment "
+ENDPOINT: AmericanCollegeOfRheumatologyEndpoint @"American College of Rheumatology score (ACRn)" ACRn_OutcomeAssessment(ACRn_Assessment)
+ASSESSMENT: ACRn_Assessment @"American College of Rheumatology score (ACRn)"
+                             SwollenJointCountObservation
+                             TenderJointCountObservation
+                             CReactiveProteinObservation
+                             ErythrociteSedimentationRateObservation
+                             PatientGlobalAssessmentOfDiseaseActivityObservation
+                             PatientPainAssessmentObservation
+                             PhysicianGlobalAssessmentOfDiseaseActivityObservation
+SSX: PatientPainAssessmentObservation @"Visual Analog Scale (VAS) for Patient Pain Assessment"
+SSX: PhysicianGlobalAssessmentOfDiseaseActivityObservation @"Visual Analog Scale (VAS) for Physician Global Assessment"
+ENDPOINT: PhysicalFunctionEndpoint @"PF: Physical Function" HAQ-DI_OutcomeAssessment(HAQ-DI_Assessment)
+ASSESSMENT: HAQ-DI_Assessment @"HAQ-DI"
+                             HAQ-DI_DressingAndGroomingObservation
+                             HAQ-DI_ArisingObservation
+                             HAQ-DI_EatingObservation
+                             HAQ-DI_WalkingObservation
+                             HAQ-DI_HygieneObservation
+                             HAQ-DI_ReachObservation
+                             HAQ-DI_GripObservation
+                             HAQ-DI_ActivitiesObservation
+SSX: HAQ-DI_DressingAndGroomingObservation @"dressing & grooming"
+SSX: HAQ-DI_ArisingObservation @"arising"
+SSX: HAQ-DI_EatingObservation @"eating"
+SSX: HAQ-DI_WalkingObservation @"walking"
+SSX: HAQ-DI_HygieneObservation @"hygiene"
+SSX: HAQ-DI_ReachObservation @"reach"
+SSX: HAQ-DI_GripObservation @"grip"
+SSX: HAQ-DI_ActivitiesObservation @"common daily activities"
+ENDPOINT: HealthRelatedQualityOfLifeEndpoint @"Health Related Quality Of Life (HRQoL)" HRQoL_OutcomeAssessment(SF-36_Assessment)
+ASSESSMENT: SF-36_Assessment @"Short Form (SF-36)"
+         SF-36_PhysicalFunctionObservation
+                              SF-36_SocialFunctionObservation
+                              SF-36_Role-physicalObservation
+                              SF-36_Role-emotionalObservation
+                              SF-36_GeneralHealthObservation
+                              SF-36_MentalHealthObservation
+                              SF-36_VitalityObservation
+                              SF-36_BodilyPainObservation
+                              {SF-36_PhysicalComponentSummaryAssessment}
+                              {SF-36_MentalComponentSummaryAssessment}
+SSX: SF-36_PhysicalFunctionObservation @"PF: Physical Function"
+SSX: SF-36_SocialFunctionObservation @"SF: Social Function"
+SSX: SF-36_Role-physicalObservation @"RP: Role-physical"
+SSX: SF-36_Role-emotionalObservation @"RE: Role-Emotional"
+SSX: SF-36_GeneralHealthObservation @"GH: General Health"
+SSX: SF-36_MentalHealthObservation @"MH: Mental Health"
+SSX: SF-36_VitalityObservation @"VT: Vitality"
+SSX: SF-36_BodilyPainObservation @"BP: Bodily Pain"
+ASSESSMENT: SF-36_PhysicalComponentSummaryAssessment @"Physical Component Summary (PCS)"
+         SF-36_PhysicalFunctionObservation
+                              SF-36_SocialFunctionObservation
+                              SF-36_Role-physicalObservation
+                              SF-36_Role-emotionalObservation
+                              SF-36_GeneralHealthObservation
+                              SF-36_MentalHealthObservation
+                              SF-36_VitalityObservation
+                              SF-36_BodilyPainObservation
+ASSESSMENT: SF-36_MentalComponentSummaryAssessment @"Mental Component Summary (MCS)"
+         SF-36_PhysicalFunctionObservation
+                              SF-36_SocialFunctionObservation
+                              SF-36_Role-physicalObservation
+                              SF-36_Role-emotionalObservation
+                              SF-36_GeneralHealthObservation
+                              SF-36_MentalHealthObservation
+                              SF-36_VitalityObservation
+                              SF-36_BodilyPainObservation
+ENDPOINT: RadiographicResponseEndpoint @"Radiographic response" RadiographicScoreOutcomeAssessment(RadiographicScoreAssessment)
+ASSESSMENT: RadiographicScoreAssessment @"Radiographic Score"
+                             ErosionScoreObservation
+                             JointSpaceNarrowingScoreObservation
+SSX: ErosionScoreObservation @"Erosion Score"
+SSX: JointSpaceNarrowingScoreObservation @"Joint Space Narrowing (JSN) Score"

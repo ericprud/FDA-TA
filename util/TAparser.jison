@@ -119,10 +119,10 @@ Assessment_Def	: Definition Observation_Or_Assessment_Plus
 Observation_Or_Assessment_Plus:
 		  Observation_Or_Assessment		{ $$ = [ $1 ]; }
 		| Observation_Or_Assessment_Plus Observation_Or_Assessment
-							{ $$ = $1.concat($2); } ;
+							{ $1.push($2); $$ = $1; } ;
 Observation_Or_Assessment:
-		  Observation				{ $$ = $1; }
-		| '{' Assessment '}'			{ $$ = $2; } ;
+		  Observation				{ $$ = [false, $1]; }
+		| '{' Assessment '}'			{ $$ = [true, $2]; } ;
 
 ObservationDecl	: 'OBSERVATION' Name Observation_Def	{ $$ = yy.decl($1, $2, $3); } ;
 Observation	: Name Observation_Def_Opt		{ $$ = $2 ? yy.decl('OBSERVATION', $1, $2) : $1; } ;
