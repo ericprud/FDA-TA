@@ -9,7 +9,7 @@
 %lex
 
 NAME_FIRST		[A-Za-z_]
-NAME_REST		[A-Za-z_0-9]
+NAME_REST		[A-Za-z_0-9-]
 NAME			{NAME_FIRST}{NAME_REST}*
 
 IRIREF			'<' ([^\u0000-\u0020<>\"{}|^`\\] | {UCHAR})* '>' /* #x00=NULL #01-#x1F=control codes #x20=space */

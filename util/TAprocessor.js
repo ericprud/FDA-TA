@@ -81,8 +81,8 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
 	    code = newCode;
 	}
 	if (code) {
-	    ret += ";\n    rdfs:subClassOf [ owl:onProperty data:CodeSystem ; owl:someValuesFrom <"+systemURI(sstm)+"> ] ";
-	    ret += ",\n                    [ owl:onProperty data:Coding ; owl:someValuesFrom \""+code+"\" ] ";
+	    ret += ";\n    rdfs:subClassOf [ owl:onProperty dt:CD.CodeSystem ; owl:hasValue <"+systemURI(sstm)+"> ] ";
+	    ret += ",\n                    [ owl:onProperty dt:CD.Coding ; owl:hasValue \""+code+"\" ] ";
 	}
 	return ret;
     }
@@ -216,8 +216,8 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
 	    ret += ":"+e+" \n"
 		+ "    rdfs:subClassOf \n"
 		+ "        core:"+type+" ,\n"
-		+ "        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:allValuesFrom bridg:PerformedClinicalResult ] ,\n"
-		+ "        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,\n"
+		+ "        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,\n"
+	     // + "        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,\n"
 		+ "        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedCReactiveProteinObservation ] "
 		+ definition_toTurtle(observation.definition)
 	    ret += ".\n\n";
@@ -232,8 +232,8 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
 	    warn("unreferenced declaration:", decl);
     if (true)
     for (termDefinition in termDefinitions)
-	if ((termDefinition in termDefinitionsUsed))
-	    warn("unused definition:", termDefinitions[termDefinition]);
+	if (!(termDefinition in termDefinitionsUsed))
+	    warn("unused definition:", termDefinition);
     return ret;
 };
 
