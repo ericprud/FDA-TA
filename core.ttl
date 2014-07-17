@@ -1,4 +1,4 @@
-# $Id: core.ttl,v 1.5 2014-03-02 20:38:34 eric Exp $
+# $Id: core.ttl,v 1.9 2014-07-17 08:59:18 eric Exp $
 #
 # ericP at the keyboard
 
@@ -248,7 +248,7 @@
 :hasPathologyFinding a owl:ObjectProperty ;
     rdfs:domain :PathologyReport . # can have any value .
 :SignsAndSymptoms        rdfs:subClassOf :SingleObservation .
-# [] rdf:type owl:AllDisjointClasses ; # @@ needed?
+# [] a owl:AllDisjointClasses ; # @@ needed?
 #     owl:members ( :Assessment :DiagnosticProcedure :QuantitativeMeasurement :SignsAndSymptoms ) .
 
 # Observation properties
@@ -406,13 +406,13 @@ bridg999:PerformedSubstanceExtraction.usedBiologic a owl:ObjectProperty ;
     # owl:inverseOf bridg999:Biologic.usingPerformedSubstanceExtraction
 .
 
-[ rdf:type owl:AllDisjointClasses ;
+[ a owl:AllDisjointClasses ;
   owl:members ( bridg:PerformedObservation
                 bridg:DefinedObservation
               )
 ] .
 # @@ need to merge these ^v
-[ rdf:type owl:AllDisjointClasses ;
+[ a owl:AllDisjointClasses ;
   owl:members ( bridg:PerformedObservationResult
                 bridg:DefinedObservationResult
               )

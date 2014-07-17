@@ -1,4 +1,4 @@
-# $Id: RheumatoidArthritis.ttl,v 1.12 2014-03-03 16:51:24 eric Exp $
+# $Id: RheumatoidArthritis.ttl,v 1.2 2014-07-17 10:26:24 eric Exp $
 #
 # ericP at the keyboard
 

@@ -1,4 +1,4 @@
-# $Id: datatypes.ttl,v 1.2 2014-03-01 12:28:59 eric Exp $
+# $Id: datatypes.ttl,v 1.5 2014-07-17 10:28:22 eric Exp $
 #
 # ericP at the keyboard
 
@@ -27,8 +27,8 @@
 
 hl7:Datatype.objectProperty rdfs:subPropertyOf bridg:attributeProperty . # patch
 
-:CodeSystem a owl:ObjectProperty .
-:Coding a owl:DatatypeProperty .
+dt:CD.CodeSystem a owl:ObjectProperty .
+dt:CD.Coding a owl:DatatypeProperty .
 
 # include a bit from O-RIM's datatypes-uv-2.0.ttl
 dt:ANY rdfs:subClassOf hl7:Datatype .
