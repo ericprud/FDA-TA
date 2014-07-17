@@ -93,7 +93,7 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
 	    allEndpoints.push(endpoint);
 	}
 	var ret = ""+
-	    "# $Id: "+name+".ttl,v 1.12 2014-03-03 16:51:24 eric Exp $\n"+
+	    "# $Id: TAprocessor.js,v 1.1 2014-07-17 11:11:01 eric Exp $\n"+
 	    "#\n"+
 	    "# ericP at the keyboard\n"+
 	    "\n"+
@@ -186,7 +186,7 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
 	    var basedOn = assessment.basedOn;
 	    ret += ":"+e+" \n"
 		+ "    rdfs:subClassOf \n"
-		+ "        core:Assessment "
+		+ "        :Assessment "
 		+ basedOn.map(function (e) {
 		    return ",\n        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :"+e[1]+" ] ";
 		}).join("");
@@ -225,7 +225,9 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
 		+ "        core:"+type+" ,\n"
 		+ "        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,\n"
 	     // + "        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,\n"
-		+ "        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedCReactiveProteinObservation ] "
+		+ "        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :Defined"+e+" ] "
+		+ definition_toTurtle(observation.definition)
+		+ ".\n:Defined"+e+" rdfs:subClassOf bridg:DefinedObservation "
 		+ definition_toTurtle(observation.definition)
 	    ret += ".\n\n";
 	}
