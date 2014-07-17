@@ -28,6 +28,7 @@ ASSESSMENT: ACRn_Assessment @"American College of Rheumatology score (ACRn)"
                              PatientGlobalAssessmentOfDiseaseActivityObservation
                              PatientPainAssessmentObservation
                              PhysicianGlobalAssessmentOfDiseaseActivityObservation
+                             HAQ-DI_Assessment
 SSX: PatientPainAssessmentObservation @"Visual Analog Scale (VAS) for Patient Pain Assessment"
 SSX: PhysicianGlobalAssessmentOfDiseaseActivityObservation @"Visual Analog Scale (VAS) for Physician Global Assessment"
 ENDPOINT: PhysicalFunctionEndpoint @"PF: Physical Function" HAQ-DI_OutcomeAssessment(HAQ-DI_Assessment)
