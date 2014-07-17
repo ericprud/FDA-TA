@@ -27,8 +27,8 @@
 
 hl7:Datatype.objectProperty rdfs:subPropertyOf bridg:attributeProperty . # patch
 
-:CodeSystem a owl:ObjectProperty .
-:Coding a owl:DatatypeProperty .
+dt:CD.CodeSystem a owl:ObjectProperty .
+dt:CD.Coding a owl:DatatypeProperty .
 
 # include a bit from O-RIM's datatypes-uv-2.0.ttl
 dt:ANY rdfs:subClassOf hl7:Datatype .
