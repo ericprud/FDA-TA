@@ -1,2 +1,2 @@
-export LD_LIBRARY_PATH=/usr/local/instantclient_11_2/:/home/eric/checkouts/libbooost.inst/lib/:/home/eric/checkouts/SWObjects/boost-log-1.46/stage/lib
+export LD_LIBRARY_PATH=/usr/local/instantclient_11_2/:/home/eric/checkouts/libboost-1.55.inst/lib/
 export PATH=$PATH:/home/eric/checkouts/SWObjects/bin
