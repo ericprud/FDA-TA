@@ -1,4 +1,4 @@
-# $Id: transplant.ttl,v 1.5 2014-03-02 20:38:34 eric Exp $
+# $Id: transplant.ttl,v 1.7 2014-05-29 23:13:58 eric Exp $
 #
 # Transplant function
 
@@ -155,7 +155,7 @@
                           owl:hasValue :NonFunctioningGraft ] .
 
 :GraftCSARAssessment a owl:Class ;
-    skos:defintion "A pathological event of transplant rejection requiring clinical evidence, which can include one or more of the following: 1) an unexplained rise of serum creatinine (SCr) >= 25% from baseline, 2) occurrence of one or more of the following:  an unexplained decreased urine output; fever and graft tenderness; a SCr that remained elevated within 14 days after transplantation and clinical suspicion of AR, and 3) a reason other than those listed above where the subject was treated for this episode." ;
+    skos:definition "A pathological event of transplant rejection requiring clinical evidence, which can include one or more of the following: 1) an unexplained rise of serum creatinine (SCr) >= 25% from baseline, 2) occurrence of one or more of the following:  an unexplained decreased urine output; fever and graft tenderness; a SCr that remained elevated within 14 days after transplantation and clinical suspicion of AR, and 3) a reason other than those listed above where the subject was treated for this episode." ;
     rdfs:subClassOf 
         core:FunctionOutcomeAssessment ,
         [ owl:onProperty core:hasResultValue ;
@@ -163,7 +163,7 @@
         ] .
 
 :GraftBPARAssessment a owl:Class ;      
-    skos:defintion "@@empty" ;
+    skos:definition "@@empty" ;
     rdfs:subClassOf 
         core:NegativeOutcome ,
         [ owl:onProperty core:confirms ; owl:minCardinality 0 ] ;
