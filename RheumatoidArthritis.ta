@@ -28,27 +28,55 @@ ASSESSMENT: ACRn_Assessment @"American College of Rheumatology score (ACRn)"
                              PatientGlobalAssessmentOfDiseaseActivityObservation
                              PatientPainAssessmentObservation
                              PhysicianGlobalAssessmentOfDiseaseActivityObservation
-                             HAQ-DI_Assessment
+                             {HAQ-DI_Assessment}
 SSX: PatientPainAssessmentObservation @"Visual Analog Scale (VAS) for Patient Pain Assessment"
 SSX: PhysicianGlobalAssessmentOfDiseaseActivityObservation @"Visual Analog Scale (VAS) for Physician Global Assessment"
 ENDPOINT: PhysicalFunctionEndpoint @"PF: Physical Function" HAQ-DI_OutcomeAssessment(HAQ-DI_Assessment)
 ASSESSMENT: HAQ-DI_Assessment @"HAQ-DI"
-                             HAQ-DI_DressingAndGroomingObservation
-                             HAQ-DI_ArisingObservation
-                             HAQ-DI_EatingObservation
-                             HAQ-DI_WalkingObservation
-                             HAQ-DI_HygieneObservation
-                             HAQ-DI_ReachObservation
-                             HAQ-DI_GripObservation
-                             HAQ-DI_ActivitiesObservation
-SSX: HAQ-DI_DressingAndGroomingObservation @"dressing & grooming"
-SSX: HAQ-DI_ArisingObservation @"arising"
-SSX: HAQ-DI_EatingObservation @"eating"
-SSX: HAQ-DI_WalkingObservation @"walking"
-SSX: HAQ-DI_HygieneObservation @"hygiene"
-SSX: HAQ-DI_ReachObservation @"reach"
-SSX: HAQ-DI_GripObservation @"grip"
-SSX: HAQ-DI_ActivitiesObservation @"common daily activities"
+                             {HAQ-DI_DressingAndGroomingAssessment}
+                             {HAQ-DI_ArisingAssessment}
+                             {HAQ-DI_EatingAssessment}
+                             {HAQ-DI_WalkingAssessment}
+                             {HAQ-DI_HygieneAssessment}
+                             {HAQ-DI_ReachAssessment}
+                             {HAQ-DI_GripAssessment}
+                             {HAQ-DI_ActivitiesAssessment}
+ASSESSMENT: HAQ-DI_DressingAndGroomingAssessment @"dressing & grooming"
+    HAQ-DI_DressingAndGrooming_dressObservation(@"dressing & grooming x - dress" [0 3])
+    HAQ-DI_DressingAndGrooming_shampooObservation(@"dressing & grooming x - shampoo" [0 3])
+    HAQ-DI_DressingAndGrooming_aidsObservation(@"dressing & grooming x - aids" [0 3])
+ASSESSMENT: HAQ-DI_ArisingAssessment @"arising"
+    HAQ-DI_Arising_chairObservation(@"arising x - chair")
+    HAQ-DI_Arising_bedObservation(@"arising x - bed")
+    HAQ-DI_Arising_aidsObservation(@"arising x - aids")
+ASSESSMENT: HAQ-DI_EatingAssessment @"eating"
+    HAQ-DI_Eating_cutObservation(@"eating x - cut")
+    HAQ-DI_Eating_openObservation(@"eating x - open")
+    HAQ-DI_Eating_liftObservation(@"eating x - lift")
+    HAQ-DI_Eating_aidsObservation(@"eating x - aids")
+ASSESSMENT: HAQ-DI_WalkingAssessment @"walking"
+    HAQ-DI_Walking_climbStepsObservation(@"walking x - climb steps")
+    HAQ-DI_Walking_walkObservation(@"walking x - walk")
+    HAQ-DI_Walking_aidsObservation(@"walking x - aids")
+ASSESSMENT: HAQ-DI_HygieneAssessment @"hygiene"
+    HAQ-DI_Hygiene_bathObservation(@"hygiene x - bath")
+    HAQ-DI_Hygiene_washObservation(@"hygiene x - wash")
+    HAQ-DI_Hygiene_toiletObservation(@"hygiene x - toilet")
+    HAQ-DI_Hygiene_aidsObservation(@"hygiene x - aids")
+ASSESSMENT: HAQ-DI_ReachAssessment @"reach"
+    HAQ-DI_Reach_pickUpObservation(@"reach x - pick up")
+    HAQ-DI_Reach_fromAboveObservation(@"reach x - from above")
+    HAQ-DI_Reach_aidsObservation(@"reach x - aids")
+ASSESSMENT: HAQ-DI_GripAssessment @"grip"
+    HAQ-DI_Grip_faucetsObservation(@"grip x - faucets")
+    HAQ-DI_Grip_carDoorsObservation(@"grip x - car doors")
+    HAQ-DI_Grip_jarsObservation(@"grip x - jars")
+    HAQ-DI_Grip_aidsObservation(@"grip x - aids")
+ASSESSMENT: HAQ-DI_ActivitiesAssessment @"common daily activities"
+    HAQ-DI_Activities_vacuumObservation(@"common daily activities x - vacuum")
+    HAQ-DI_Activities_errandsObservation(@"common daily activities x - errands")
+    HAQ-DI_Activities_outOfCarObservation(@"common daily activities x - out of car")
+    HAQ-DI_Activities_aidsObservation(@"common daily activities x - aids")
 ENDPOINT: HealthRelatedQualityOfLifeEndpoint @"Health Related Quality Of Life (HRQoL)" HRQoL_OutcomeAssessment(SF-36_Assessment)
 ASSESSMENT: SF-36_Assessment @"Short Form (SF-36)"
          SF-36_PhysicalFunctionObservation

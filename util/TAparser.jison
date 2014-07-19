@@ -56,6 +56,7 @@ COMMENT			'//' [^\u000a\u000d]*
 {NAME}						return 'NAME'
 {STRING_LITERAL_LONG2}				return 'STRING_LITERAL_LONG2'
 {STRING_LITERAL2}				return 'STRING_LITERAL2'
+{INTEGER}						return 'INTEGER'
 ":"						return ':'
 "="						return '='
 "@"						return '@'
@@ -140,7 +141,8 @@ Definition_Elt_Star
 		| Definition_Elt_Star Definition_Elt	{ $1[$2[0]] = $2[1]; $$ = $1; };
 Definition_Elt	: STRING_LITERAL2			{ $$ = ['name', $1]; }
 		| STRING_LITERAL_LONG2			{ $$ = ['defn', $1]; }
-		| '[' CodeDefinition ']'		{ $$ = ['code', $2]; }
+		| '<' CodeDefinition '>'		{ $$ = ['code', $2]; }
+		| '[' INTEGER INTEGER ']'		{ $$ = ['range', [$2, $3]]; }
 		| '@' NAME				{ $$ = ['ref', $2]; }
 		| '@' STRING_LITERAL2			{ $$ = ['ref', $2.substr(1, $2.length-2)]; } ;
 

@@ -20,14 +20,16 @@ var defns = {};
     var lines = defsFile.split("\n");
     var headings = lines.shift().split('\t');
     for (var i=0; i<lines.length; i++) {
-	var vals = lines[i].split('\t');
-	var ob = {};
-	for (h in headings)
-	    if (vals[h] != '')
-		ob[headings[h]] = vals[h];
-	defns[ob['Concept Name']] = ob;
+        var vals = lines[i].split('\t');
+        var ob = {};
+        // if (vals[0] == 'dressing & grooming x - dress')
+        //     console.warn("HERE!");
+        for (h in headings)
+            if (vals[h] != undefined && vals[h] != '')
+                ob[headings[h]] = vals[h].replace(/\\n/g , "\n");
+        defns[ob['Concept Name']] = ob;
     }
 }
 
 console.log(turtlify(ta, taParser.yy.name, allEndpoints, defined, defns,
-		     function () { console.warn.apply(null, arguments); }));
+                     function () { console.warn.apply(null, arguments); }));
