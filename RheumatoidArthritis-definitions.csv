@@ -1,0 +1,109 @@
+Concept Name	Concept Definition	Concept Definition Source	Concept Code	URI for SW model	Atomized Concepts	Comment
+Anti-CCP	Anti-citrullinated protein/peptide antibodies are autoantibodies (antibodies directed against one or more of the individual’s own proteins) frequently detected in rheumatoid arthritis patients. During inflammation, citrulline is incorporated enzymatically into proteins[1], what is called citrullination. Recently, these ACPAs have turned up as powerful biomarkers, which are accepted as a major diagnostic tool in diagnosing rheumatoid arthritis (RA) already in a very early stage of disease.	LOINC: 53027-9 	C1138934	=		search.loinc.org
+Rheumatoid Factor	Rheumatoid factor (RF or RhF) is a blood test performed in patients with suspected rheumatoid arthritis (RA). It is an auto-antibody directed against the Fc portion of IgG, which is itself an antibody. RF and IgG form immune complexes, which are part of the disease process (serum sickness) of various rheumatological diseases.	LOINC: 6928-6	C0035448	=		search.loinc.org
+TNF inhibitors biologics	"Biologics are genetically engineered proteins derived from human genes. They are designed to inhibit specific components of the immune system that play pivotal roles in fueling inflammation, which is a central feature of rheumatoid arthritis. They differ significantly from traditional drugs used to treat rheumatoid arthritis in that they target specific components of the immune system instead of broadly affecting many areas of the immune system.\nTNF inhibitors are drugs that inhibit the production or activity of a Tumor Necrosis Factor. This process may result also in inhibition of some functions of mature immune cells, including polymorphonuclear chemotaxis and monocyte phagocytosis. Tumor Necrosis Factor suppression is intended to favorably modulate functions of the immune system."	http://www.webmd.com/rheumatoid-arthritis/guide/biologics	C1519686	<		http://www.arthritistoday.org/arthritis-treatment/medications/drug-guide/search-by-condition.php?v=9&condition=Rheumatoid%20arthritis
+Non TNF inhibitor biologics	"Biologics are genetically engineered proteins derived from human genes. They are designed to inhibit specific components of the immune system that play pivotal roles in fueling inflammation, which is a central feature of rheumatoid arthritis. They differ significantly from traditional drugs used to treat rheumatoid arthritis in that they target specific components of the immune system instead of broadly affecting many areas of the immune system.\nNon-TNF inhibitor biologics are the drugs that target other than TNF immune response components ."	http://www.webmd.com/rheumatoid-arthritis/guide/biologics		 <		http://www.arthritistoday.org/arthritis-treatment/medications/drug-guide/search-by-condition.php?v=9&condition=Rheumatoid%20arthritis
+Oral corticosteroids	Group of drugs, steroid hormones, that are administered orally to suppress inflammation and immunity.	Medicinenet.com	C0001617	 <		
+MTX (Methotrexate)	An antimetabolite and antifolate agent with antineoplastic and immunosuppressant activities. Methotrexate binds to and inhibits the enzyme dihydrofolate reductase, resulting in inhibition of purine nucleotide and thymidylate synthesis and, subsequently, inhibition of DNA and RNA syntheses. Methotrexate also exhibits potent immunosuppressant activity although the mechanism(s) of actions is unclear.	http://ncim.nci.nih.gov/ncimbrowser/ConceptReport.jsp?dictionary=NCI%20MetaThesaurus&code=C0025677	C0025677	=		
+Oral Disease-modifying antirheumatic drug	Each disease-modifying anti­rheumatic drug (DMARD) works in different ways to slow or stop the inflammatory process that can damage the joints and internal organs.	http://www.arthritistoday.org/arthritis-treatment/medications/types-of-drugs/disease-modifying-drugs/drug-guide-dmards.php	C0242708	 =		http://www.arthritistoday.org/arthritis-treatment/medications/drug-guide/search-by-condition.php?v=9&condition=Rheumatoid%20arthritis
+Swollen joint count	# of joints evaluated for soft-tissue swelling and effusion	NCI EVS	C0451521	=		
+Tender joint count	 # of joints evaluated for upon pressure or motion	NCI EVS	C0451530	=		
+Radiographic response	An RA outcome measure that uses radiographs as the simplest and least expensive permanent record of the cumulative joint damage caused by the disease.			 <		
+CRP - C reactive peptide Level	Laboratory Test result for C-reactive protein	NCI EVS	C0856624	=		30522-7  LOINC
+ESR - Erythrocyte Sedimentation Rate	Laboratory Test result for ESR	LOINC	30341-2	 =		C0086250   NCI EVS
+Visual Analog Scale (VAS) for Patient Pain Assessment	May be recorded using a 0-10 scale, or a visual analog scale 0-100 mm.	https://www.rheumatology.org/Practice/Clinical/Rcr/Disease_Assessment/	C21120	 <		
+Visual Analog Scale (VAS) for Patient Global Assessment 	"Scales maybe recorded using a 0-10 scale or a visual analog scale 0-100 mm, or may be recorded using descriptors such as ""well"" or ""poor""."	https://www.rheumatology.org/Practice/Clinical/Rcr/Disease_Assessment/	C21120	 <		
+Visual Analog Scale (VAS) for Physician Global Assessment	Maybe recorded using a 0-10 scale or a visual analog scale 0-100 mm, or may be recorded using descriptors such as “remission, low disease activity, moderate disease activity or high disease activity”. The Physician global assessment can take into account several factors such as the presence of joint pain, duration of morning stiffness, degree of fatigue, functional status, objective evidence of disease activity (i.e., synovitis, as assessed by tender and swollen joint counts, and the erythrocyte sedimentation rate (ESR) or C-reactive protein (CRP) level), mechanical joint problems (i.e., loss of motion, crepitus, instability, malalignment, and/or deformity), the presence of extraarticular disease, and the presence of radiographic damage.	https://www.rheumatology.org/Practice/Clinical/Rcr/Disease_Assessment/	C21120	 <		
+"“Considering all the ways your arthritis affects you, \nhow are you feeling today?”"	One open ended question, that allows any answer by a patient.	Cmap; Summary of Clin.Efficacy NDA 203214, p.24		 <		
+Erosion Score	A result of a calculation method based on the radiographic obervation and measurments of the joints' damage. 	NCI EVS	C0587240	 <		code does not represent the score, but erosion itself
+Joint Space Narrowing (JSN) Score	A result of a calculation method based on the radiographic obervation and measurments of the joints' damage. 	NCI EVS	C1859695	 <		code does not represent JSN score, but JSN itself
+Radiographic Score	It is a calculation that supports Radiographic Response outcome measure and is derived from  two components: joint space narrowing and erosion. Examples of  most common scoring methods are  Sharp score, Van der Heijde score, modified Van der Heijde score and Genant score.	Interviews	not-found	 <		"Sharp score, Van der Heijde score, modified Van der Heijde score and Genant score are not found in NCI EVS.  \nAll scores' descriptions - http://ard.bmj.com/content/60/9/817.full"
+American College of Rheumatology score (ACRn)	"American College of Rheumatology response criteria is a dichotomous\ncomposite endpoint indicating the proportion of patients with at least 20 (where n=20) percent improvement in the\nnumber of tender and swollen joints, and in three out of the remaining five ACR core-set measures: patient pain,\npatient global assessment of disease, physician global assessment of disease, physical functioning assessment\n(Health Assessment Questionnaire-Disability Index (HAQ-DI)), and acute phase reactants"	FDA Guidance for Industry, p.3, foot note	C3273740	 <		
+American College of Rheumatology score (ACR20)	"American College of Rheumatology response criteria is a dichotomous\ncomposite endpoint indicating the proportion of patients with at least 20  percent improvement in the\nnumber of tender and swollen joints, and in three out of the remaining five ACR core-set measures: patient pain,\npatient global assessment of disease, physician global assessment of disease, physical functioning assessment\n(Health Assessment Questionnaire-Disability Index (HAQ-DI)), and acute phase reactants"	FDA Guidance for Industry, p.3, foot note	C3273740	 <		
+American College of Rheumatology score (ACR50)	"American College of Rheumatology response criteria is a dichotomous\ncomposite endpoint indicating the proportion of patients with at least 50 percent improvement in the\nnumber of tender and swollen joints, and in three out of the remaining five ACR core-set measures: patient pain,\npatient global assessment of disease, physician global assessment of disease, physical functioning assessment\n(Health Assessment Questionnaire-Disability Index (HAQ-DI)), and acute phase reactants"	FDA Guidance for Industry, p.3, foot note	C3273740	 <		
+American College of Rheumatology score (ACR70)	"American College of Rheumatology response criteria is a dichotomous\ncomposite endpoint indicating the proportion of patients with at least 70 percent improvement in the\nnumber of tender and swollen joints, and in three out of the remaining five ACR core-set measures: patient pain,\npatient global assessment of disease, physician global assessment of disease, physical functioning assessment\n(Health Assessment Questionnaire-Disability Index (HAQ-DI)), and acute phase reactants"	FDA Guidance for Industry, p.3, foot note	C3273740	 <		
+Disease Activity Score (DAS28)	Disease Activity Score 28 is a mathematically calculated, continuous, composite endpoint with differential weighting given to each of the following components: tender joint count (28 joints), swollen joint count (28 joints), acute phase reactant, and patient global assessment of arthritis.	FDA Guidance for Industry, p.3, foot note	C2711347	 <		"DAS28 assess the number of swollen and tender joints and measure the ESR. The DAS28 provides you with a number on a scale from 0 to 10 indicating the current activity of the rheumatoid arthritis of your patient. A DAS28 above 5.1 means high disease activity whereas a DAS28 below 3.2 indicates low disease activity. Remission is achieved by a DAS28 lower than 2.6 (comparable to the ARA remission criteria).\nThe DAS28 has additional utility in measuring the level of disease activity at a given timepoint, whereas the ACR response criteria are calculated as improvement in the variables over a set period of time (relative improvement)."
+Health Related Quality Of Life (HRQoL)	"Health-related quality of life (HRQOL) and its determinants encompass those aspects of overall quality of life that can be clearly shown to affect health—either physical or mental. On the individual level, this includes physical and mental health perceptions and their correlates—including health risks and conditions, functional status, social support, and socioeconomic status. On the community level, HRQOL includes resources, conditions, policies, and practices that influence a population’s health perceptions and functional status.\nHRQoL questions about perceived physical and mental health and function have become an important component of health surveillance and are generally considered valid indicators of service needs and intervention outcomes."	http://www.cdc.gov/hrqol/concept.htm	C0451401	 <		
+Short Form (SF-36)	A 36 question survey for measuring health status and outcomes from the patient's point of view. Designed for use in surveys of general and specific populations, health policy evaluations, and clinical practice and research. Measures 8 health concepts: 1) Limitations in physical activities because of health problems, 2) Limitations in usual role activities because of physical health problems, 3) Bodily pain, 4) General health perceptions, 5) Vitality (energy and fatigue), 6) Limitations in social activities because of physical or emotional problems, 7) Limitations in usual role activities because of emotional problems, 8) Mental health (psychological distress and well-being). 	NCI EVS	C101879	 =		
+Physical Component Summary (PCS)	"Summary of all 35 questions of the Short Form 36 (SF-36) across all scales, with PF, RP, BP and GH contributing the greatest.\nSCALE: lowest - limitations in self-care, physical, social, and role activities, severe bodily pain, frequent tiredness, health rated ""poor"";  highest - no physical limitations, disabilities, or decrements in well-being, high energy level, health rated ""excellent"".\n(http://www.sf-36.org/tools/sf36.shtml)"			<		
+PF: Physical Function	"10 items assess physical function\nSCALE: lowest - very limited in performing all physical activities, including bathing or dressing; highest - performs all types of physical activities including the most vigorous without limitations due to health.\n(http://www.sf-36.org/tools/sf36.shtml)"			<		
+PF: Physical Function x -vigurous	"\n3a. vigurous activity"	NCI EVS	C102199			
+PF: Physical Function x -  moderate	3b. Moderate activities	NCI EVS	C102200			
+PF: Physical Function x - bend	3f. Bend, Kneel	NCI EVS	C102204			
+PF: Physical Function x - climb 1	3e. Climb One Flight	NCI EVS	C102203			
+PF: Physical Function x - climb 2	3d. Climb Several Flights	NCI EVS	C102202			
+PF: Physical Function x - lift	3c. Lift, Carry Groceries	NCI EVS	C102201			
+PF: Physical Function x - walk mile	3g. Walk Mile	NCI EVS	C102205			
+PF: Physical Function x - walk yards 1	3h. Walk Several Hundred Yards	NCI EVS	C102206			
+PF: Physical Function x - walk yards 2	3i. Walk One Hundred Yards	NCI EVS	C102207			
+PF: Physical Function x -  bathe	3j. Bathe, Dress	NCI EVS	C102208			
+RP: Role-physical	"4 items to assess role limitations due to physical health\nSCALE: lowest - problems with work or other daily activities as a result of physical health; highest - no problems with work or other daily activities.\n(http://www.sf-36.org/tools/sf36.shtml)"			<		
+RP: Role-physical x - cut down time	4a. Cut Down Time	NCI EVS	C102209			
+RP: Role-physical x - accomplished	4b. Accomplished Less	NCI EVS	C102210			
+RP: Role-physical x - limited	4c. Limited in Kind	NCI EVS	C102211			
+RP: Role-physical x - difficulty	4d. Had Difficulty	NCI EVS	C102212			
+BP: Bodily Pain	"2 items to assess body pain\nSCALE: lowest - very severe and extremely limiting pain; highest - no pain or limitations due to pain\n(http://www.sf-36.org/tools/sf36.shtml)"			<		
+BP: Bodily Pain x - magnitude	7. Pain -Magnitude	NCI EVS	C102217			
+BP: Bodily Pain x - interference	8. Pain - Interference	NCI EVS	C102218			
+GH: General Health	"5 items to asses general health\nSCALE: lowest - evaluates personal health as poor and believes it is likely to get worse; highest - evaluates personal health as excellent. (http://www.sf-36.org/tools/sf36.shtml)"			<		
+GH: General Health x - rating	1. EVGFP Rating	NCI EVS	C102197			
+GH: General Health x - sick	11a. Sick Easier	NCI EVS	C102229			
+GH: General Health x - as healthy	11b. As Healthy	NCI EVS	C102230			
+GH: General Health x - worse	11c. Health To Get Worse	NCI EVS	C102231			
+GH: General Health x - excellent	11d. Health Excellent	NCI EVS	C102232			
+Mental Component Summary (MCS)	"Summary of all 35 questions of the Short Form 36 (SF-36) across all scales, with MH, RE, SF and VT contributing the greatest.\nSCALE:lowest - frequent psychological distress, social and role disability due to emotional problems, health rated ""poor""; highest - frequent positive affect, absence of psychological distress and limitations in usual social/role activities due to emotional problems, health rated ""excellent"". (http://www.sf-36.org/tools/sf36.shtml)."			<		
+MH: Mental Health	"5 items to assess emotional well being\nSCALE: lowest - feelings of nervousness and depression all of the time; highest - feels peaceful, happy, and calm all of the time. (http://www.sf-36.org/tools/sf36.shtml)"			<		
+MH: Mental Health x - nervous	9b. Nervous	NCI EVS	C102220			
+MH: Mental Health x - down	9c. Down in Dumps	NCI EVS	C102221			
+MH: Mental Health x - peaceful	9d. Peaceful	NCI EVS	C102222			
+MH: Mental Health x - depressed	9f. Depressed/ Downhearted	NCI EVS	C102224			
+MH: Mental Health x - happy	9h. Happy	NCI EVS	C102226			
+RE: Role-Emotional	"3 items to assess role limitations due to emotional problems.\nSCALE: lowest - problems with work or other daily activities as a result of emotional problems; highest - no problems with work or other daily activities.\n((http://www.sf-36.org/tools/sf36.shtml))"			<		
+RE: Role-Emotional x - cut down time	5a. Cut Down Time	NCI EVS	C102213			
+RE: Role-Emotional x - accomplished	5b. Accomplished Less	NCI EVS	C102214			
+RE: Role-Emotional x - less careful	5c. Less Careful	NCI EVS	C102215			
+SF: Social Function	"2 items to assess social function\nSCALE: lowest - extreme and frequent interference with normal social activities due to physical and emotional problems; highest - performs normal social activities without interference due to physical or emotional problems."			<		
+SF: Social Function x - extent	6. Social-Extent	NCI EVS	C102216			
+SF: Social Function x - time	10. Social-Time	NCI EVS	C102228			
+VT: Vitality	"4 items to assess role limitations due to physical health\nSCALE: lowest - feels tired and worn out all of the time; highest - feels full of pep and energy all of the time."			<		
+VT: Vitality x - full	9a. Full of Life	NCI EVS	C102219			
+VT: Vitality x - energy	9e. Energy	NCI EVS	C102223			
+VT: Vitality x - worn	9g. Worn Out	NCI EVS	C102225			
+VT: Vitality x - tired.	9i. Tired	NCI EVS	C102227			
+HAQ-DI	"A standardized questionnaire developed by James F. Fries in 1983, which is originally used to measure outcome in patients with Rheumatoid Arthritis. The HAQ-DI is a generic instrument which focuses on self-reported, patient-oriented outcome measures. The questionnaire contains 8 categories of 46 items; dressing and grooming, arising, eating, walking, hygiene, reaching, grip, and activities. \nA 0-3 grade scale is used, where grade 0 represents category performed without any difficulty and grade 3 represents category performed with the greatest difficulty (unable to do)."	NCI EVS	C106699	=		
+dressing & grooming	2 questions to assess ability to dress and groom one's self. 2 questions: one question on help of devices and one on help of a person.			<		
+dressing & grooming x - dress	to dress	NCI EVS	CL448078	<		
+dressing & grooming x - shampoo	to shampoo	NCI EVS	CL448079	<		
+dressing & grooming x - aids	aids of a person or device	NCI EVS	CL448094	<		
+arising	2 questions to assess ability to get up out of bed or a chair. 2 questions: one question on help of devices and one on help of a person.			<		
+arising x - chair	from chair	NCI EVS	C1290946	<		
+arising x - bed	from bed	NCI EVS	C0439549	<		
+arising x - aids	aids of a person or device	NCI EVS	CL448094	<		
+eating	3 questions to assess ability to use utencils, lift a glass or open a milk carton. 2 questions: one question on help of devices and one on help of a person.			<		
+eating x - cut	cut meat	NCI EVS	CL448082	<		
+eating x - open	milk carton	NCI EVS	CL448084	<		
+eating x - lift	glass to mouth	NCI EVS	CL448083	<		
+eating x - aids	aids of a person or device	NCI EVS	CL448094	<		
+walking	2 questions to assess ability walking on flat grounds and climbs up stairs. 2 questions: one question on help of devices and one on help of a person.			<		
+walking x - climb steps	climb steps	NCI EVS	CL448086	<		
+walking x - walk	walk outdoors on flat ground	NCI EVS	CL448085	<		
+walking x - aids	aids of a person or device	NCI EVS	CL448094	<		
+hygiene	3 questions to assess ability to wash body, get off toilet and take a bath. 2 questions: one question on help of devices and one on help of a person.			<		
+hygiene x - bath	take bath	NCI EVS	CL448101	<		
+hygiene x - wash	wash and dry body	NCI EVS	CL448100	<		
+hygiene x - toilet	get off the toilet	NCI EVS	CL448102	<		
+hygiene x - aids	aids of a person or device	NCI EVS	CL448094	<		
+reach	2 questions to assess ability to lift 5 lb objects overhead or on the ground. 2 questions: one question on help of devices and one on help of a person.			<		
+reach x - pick up	pick up from floor	NCI EVS	CL448104	<		
+reach x - from above	object from above head	NCI EVS	CL448103	<		
+reach x - aids	aids of a person or device	NCI EVS	CL448094	<		
+grip	3 questions to assess ability to open car doors or previously opened jars. 2 questions: one question on help of devices and one on help of a person.			<		
+grip x - faucets	faucets	NCI EVS	CL448107	<		
+grip x - car doors	open car doors	NCI EVS	CL448105	<		
+grip x - jars	open jars	NCI EVS	CL448106	<		
+grip x - aids	aids of a person or device	NCI EVS	CL448094	<		
+common daily activities	3 questions to assess ability to perform common errands, getting in and out of cars, or doing light chores. 2 questions: one question on help of devices and one on help of a person.			<		
+common daily activities x - vacuum	vacuum	NCI EVS	CL448110			
+common daily activities x - errands	errands	NCI EVS	CL448108			
+common daily activities x - out of car	get out of the car	NCI EVS	CL448109			
+common daily activities x - aids	aids of a person or device	NCI EVS	CL448094			
