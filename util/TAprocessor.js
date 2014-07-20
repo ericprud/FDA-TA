@@ -4,10 +4,16 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
     function system (str) {
         if (str == "NCI EVS")
             return {URI:"<http://example.org/@@NCI-EVS>", label:"NCI-EVS"};
+        else if (str == "LOINC")
+            return {URI:"<http://example.org/@@LOINC>", label:"LOINC"};
         else if (str.indexOf("FDA Guidance for Industry") == 0)
             return {URI:"<http://example.org/@@FDA-Guidance>", label:"FDA-Guidance" };
         else if (str == "FDA-TA")
             return {URI:"<http://example.org/@@FDA-TA>", label:"FDA-TA" };
+        else if (str == "http://www.cdc.gov/hrqol/concept.htm")
+            return {URI:"<http://example.org/@@CDC>", label:"CDC" };
+        else if (str == "https://www.rheumatology.org/Practice/Clinical/Rcr/Disease_Assessment/")
+            return {URI:"<http://example.org/@@ACR>", label:"ACR" };
         else
             return {URI:"<http://example.org/@@unknown>", label:"unknownSystem"};
     }
@@ -27,15 +33,16 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
             for (var i = 0; i < this.entries.length; ++i) {
                 var entry = this.entries[i];
                 var subclass = '';
-                ret += ":"+entry.id+"\n";
+                ret += ":"+entry.id+" \n"
+                    + "  rdfs:subClassOf :CDCoding ";
                 if (entry.parentCode) {
-                    ret += "   rdfs:subClassOf [\n"
+                    ret += ",\n    [\n"
                         + "     owl:intersectionOf (\n"
                         + "       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue " + system(entry.sstm).URI + " ]\n"
                         + "       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue \""+entry.parentCode+"\" ]\n"
-                        + "       ) ] ;\n";
+                        + "       ) ] ";
                 }
-                ret += "   owl:equivalentClass [\n"
+                ret += ";\n   owl:equivalentClass [\n"
                     + "     owl:intersectionOf (\n"
                     + "       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue "
                     + system(entry.parentCode ? "FDA-TA" : entry.sstm).URI
@@ -49,6 +56,7 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
 
     function definition_toTurtle (def) {
         ret = "";
+        var range = null;
         var name = null;
         var defn = null;
         var sstm = null;
@@ -94,6 +102,8 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
         //        code: [Object] },
         //     _name: 'SwollenJointCountObservation',
         //     _: 'QUANT' },
+        if ('range' in def && def.range)
+            range = def.range;
         if ('name' in def && def.name)
             name = def.name;
         if ('defn' in def && def.defn)
@@ -103,6 +113,16 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
             sstm = def.code[1]; sstm = sstm.substr(1, sstm.length-2);
             code = def.code[2]; code = code.substr(1, code.length-2);
         }
+
+        if (range)
+            ret += ",\n        [ owl:onProperty data:value ; owl:allValuesFrom [\n"
+            + "            a rdfs:Datatype ;\n"
+            + "            owl:onDatatype xsd:integer ;\n"
+            + "            owl:withRestrictions ( "
+            + (range[0] === undefined ? '' : "[ xsd:minInclusive " + range[0] + " ] ")
+            + (range[1] === undefined ? '' : "[ xsd:maxInclusive " + range[1] + " ] ")
+            + ")\n"
+            +"        ] ] ";
 
         if (name)
             ret += ";\n    rdfs:label "+name+" ";
@@ -133,7 +153,7 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
             allEndpoints.push(endpoint);
         }
         var ret = ""+
-            "# $Id: TAprocessor.js,v 1.4 2014-07-20 08:19:37 eric Exp $\n"+
+            "# $Id: TAprocessor.js,v 1.5 2014-07-20 19:38:52 eric Exp $\n"+
             "#\n"+
             "# ericP at the keyboard\n"+
             "\n"+
@@ -154,6 +174,7 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
             "    owl:imports <http://www.w3.org/2013/12/FDA-TA/core> .\n"+
             "\n"+
             ":Assessment rdfs:subClassOf core:Assessment .\n"+
+            ":CDCoding rdfs:subClassOf dt:CDCoding .\n"+
             allEndpoints.map(function (e) {
                 return endpoint_toTurtle(e, recursive);
             }).join("")+

@@ -2,39 +2,16 @@ TA: RheumatoidArthritis
 
 
 ENDPOINT: DiseaseActivityScoreEndpoint @"Disease Activity Score (DAS28)" DAS28_OutcomeAssessment(DAS28_Assessment)
-ASSESSMENT: DAS28_Assessment @"Disease Activity Score (DAS28)"
-#if COUNT_ASSESSMENT
-                             SwollenJointCountAssessment
-#else
+ASSESSMENT: DAS28_Assessment @"Disease Activity Score (DAS28)" [0 10]
                              SwollenJointCountObservation
-#endif
                              TenderJointCountObservation
                              CReactiveProteinObservation
                              ErythrociteSedimentationRateObservation
                              PatientGlobalAssessmentOfDiseaseActivityObservation
 
 // We can include the clinical assessments as either assessments of 28 observations or as simple observations.
-#if COUNT_ASSESSMENT
-ASSESSMENT:  SwollenJointCountAssessment @"Swollen joint count"
-    SwollenLeftShoulderAssessment("swollen left shoulder assessment" """Is the left shoulder swollen? Y/N""")                                                                    SwollenRightShoulderAssessment("swollen right shoulder assessment" """Is the right shoulder swollen? Y/N""")
-    SwollenLeftElbowAssessment("swollen left elbow assessment" """Is the left elbow swollen? Y/N""")                                                                             SwollenRightElbowAssessment("swollen right elbow assessment" """Is the right elbow swollen? Y/N""")
-    SwollenLeftWristAssessment("swollen left wrist assessment" """Is the left wrist swollen? Y/N""")                                                                             SwollenRightWristAssessment("swollen right wrist assessment" """Is the right wrist swollen? Y/N""")
-    SwollenLeftFirstMetacarpophalangealAssessment("swollen left first metacarpophalangeal assessment" """Is the left first metacarpophalangeal swollen? Y/N""")                  SwollenRightFirstMetacarpophalangealAssessment("swollen right first metacarpophalangeal assessment" """Is the right first metacarpophalangeal swollen? Y/N""")
-    SwollenLeftSecondMetacarpophalangealAssessment("swollen left second metacarpophalangeal assessment" """Is the left second metacarpophalangeal swollen? Y/N""")               SwollenRightSecondMetacarpophalangealAssessment("swollen right second metacarpophalangeal assessment" """Is the right second metacarpophalangeal swollen? Y/N""")
-    SwollenLeftThirdMetacarpophalangealAssessment("swollen left third metacarpophalangeal assessment" """Is the left third metacarpophalangeal swollen? Y/N""")                  SwollenRightThirdMetacarpophalangealAssessment("swollen right third metacarpophalangeal assessment" """Is the right third metacarpophalangeal swollen? Y/N""")
-    SwollenLeftFourthMetacarpophalangealAssessment("swollen left fourth metacarpophalangeal assessment" """Is the left fourth metacarpophalangeal swollen? Y/N""")               SwollenRightFourthMetacarpophalangealAssessment("swollen right fourth metacarpophalangeal assessment" """Is the right fourth metacarpophalangeal swollen? Y/N""")
-    SwollenLeftFifthMetacarpophalangealAssessment("swollen left fifth metacarpophalangeal assessment" """Is the left fifth metacarpophalangeal swollen? Y/N""")                  SwollenRightFifthMetacarpophalangealAssessment("swollen right fifth metacarpophalangeal assessment" """Is the right fifth metacarpophalangeal swollen? Y/N""")
-    SwollenLeftFirstProximalInterphalangealAssessment("swollen left first proximal interphalangeal assessment" """Is the left first proximal interphalangeal swollen? Y/N""")    SwollenRightFirstProximalInterphalangealAssessment("swollen right first proximal interphalangeal assessment" """Is the right first proximal interphalangeal swollen? Y/N""")
-    SwollenLeftSecondProximalInterphalangealAssessment("swollen left second proximal interphalangeal assessment" """Is the left second proximal interphalangeal swollen? Y/N""") SwollenRightSecondProximalInterphalangealAssessment("swollen right second proximal interphalangeal assessment" """Is the right second proximal interphalangeal swollen? Y/N""")
-    SwollenLeftThirdProximalInterphalangealAssessment("swollen left third proximal interphalangeal assessment" """Is the left third proximal interphalangeal swollen? Y/N""")    SwollenRightThirdProximalInterphalangealAssessment("swollen right third proximal interphalangeal assessment" """Is the right third proximal interphalangeal swollen? Y/N""")
-    SwollenLeftFourthProximalInterphalangealAssessment("swollen left fourth proximal interphalangeal assessment" """Is the left fourth proximal interphalangeal swollen? Y/N""") SwollenRightFourthProximalInterphalangealAssessment("swollen right fourth proximal interphalangeal assessment" """Is the right fourth proximal interphalangeal swollen? Y/N""")
-    SwollenLeftFifthProximalInterphalangealAssessment("swollen left fifth proximal interphalangeal assessment" """Is the left fifth proximal interphalangeal swollen? Y/N""")    SwollenRightFifthProximalInterphalangealAssessment("swollen right fifth proximal interphalangeal assessment" """Is the right fifth proximal interphalangeal swollen? Y/N""")
-    SwollenLeftKneeAssessment("swollen left knee assessment" """Is the left knee swollen? Y/N""")                                                                                SwollenRightKneeAssessment("swollen right knee assessment" """Is the right knee swollen? Y/N""")
-#else
-QUANT:  SwollenJointCountObservation @"Swollen joint count"
-#endif
-
-QUANT: TenderJointCountObservation @"Tender joint count"
+QUANT:  SwollenJointCountObservation @"Swollen joint count" [0 66]
+QUANT: TenderJointCountObservation @"Tender joint count" [0 68]
 QUANT: CReactiveProteinObservation @"CRP - C reactive peptide Level"
 QUANT: ErythrociteSedimentationRateObservation @"ESR - Erythrocyte Sedimentation Rate"
 SSX: PatientGlobalAssessmentOfDiseaseActivityObservation @"Visual Analog Scale (VAS) for Patient Global Assessment "
@@ -57,6 +34,7 @@ SSX: PhysicianGlobalAssessmentOfDiseaseActivityObservation @"Visual Analog Scale
 
 ENDPOINT: PhysicalFunctionEndpoint @"PF: Physical Function" HAQ-DI_OutcomeAssessment(HAQ-DI_Assessment)
 ASSESSMENT: HAQ-DI_Assessment @"HAQ-DI"
+
 #if HAQ_DI_FUNCTIONS_AS_OBSERVATIONS
                              HAQ-DI_DressingAndGroomingObservation
                              HAQ-DI_ArisingObservation

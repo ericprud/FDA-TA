@@ -2,23 +2,21 @@ TA: RheumatoidArthritis
 
 
 ENDPOINT: DiseaseActivityScoreEndpoint @"Disease Activity Score (DAS28)" DAS28_OutcomeAssessment(DAS28_Assessment)
-ASSESSMENT: DAS28_Assessment @"Disease Activity Score (DAS28)"
-
-
-
+ASSESSMENT: DAS28_Assessment @"Disease Activity Score (DAS28)" [0 10]
                              SwollenJointCountObservation
-
                              TenderJointCountObservation
                              CReactiveProteinObservation
                              ErythrociteSedimentationRateObservation
                              PatientGlobalAssessmentOfDiseaseActivityObservation
 
 // We can include the clinical assessments as either assessments of 28 observations or as simple observations.
-QUANT: SwollenJointCountObservation @"Swollen joint count"
-QUANT: TenderJointCountObservation @"Tender joint count"
+QUANT: SwollenJointCountObservation @"Swollen joint count" [0 66]
+QUANT: TenderJointCountObservation @"Tender joint count" [0 68]
 QUANT: CReactiveProteinObservation @"CRP - C reactive peptide Level"
 QUANT: ErythrociteSedimentationRateObservation @"ESR - Erythrocyte Sedimentation Rate"
 SSX: PatientGlobalAssessmentOfDiseaseActivityObservation @"Visual Analog Scale (VAS) for Patient Global Assessment "
+
+
 ENDPOINT: AmericanCollegeOfRheumatologyEndpoint @"American College of Rheumatology score (ACRn)" ACRn_OutcomeAssessment(ACRn_Assessment)
 ASSESSMENT: ACRn_Assessment @"American College of Rheumatology score (ACRn)"
                              SwollenJointCountObservation
@@ -29,8 +27,11 @@ ASSESSMENT: ACRn_Assessment @"American College of Rheumatology score (ACRn)"
                              PatientPainAssessmentObservation
                              PhysicianGlobalAssessmentOfDiseaseActivityObservation
                              {HAQ-DI_Assessment}
+
 SSX: PatientPainAssessmentObservation @"Visual Analog Scale (VAS) for Patient Pain Assessment"
 SSX: PhysicianGlobalAssessmentOfDiseaseActivityObservation @"Visual Analog Scale (VAS) for Physician Global Assessment"
+
+
 ENDPOINT: PhysicalFunctionEndpoint @"PF: Physical Function" HAQ-DI_OutcomeAssessment(HAQ-DI_Assessment)
 ASSESSMENT: HAQ-DI_Assessment @"HAQ-DI"
                              {HAQ-DI_DressingAndGroomingAssessment}
