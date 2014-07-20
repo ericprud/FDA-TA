@@ -1,4 +1,4 @@
-# $Id: RheumatoidArthritis.ttl,v 1.4 2014-07-19 21:35:35 eric Exp $
+# $Id: RheumatoidArthritis.ttl,v 1.5 2014-07-20 08:19:37 eric Exp $
 #
 # ericP at the keyboard
 
@@ -25,7 +25,7 @@
         [ owl:onProperty core:evaluates ; owl:someValuesFrom :DAS28_OutcomeAssessment ] ;
     rdfs:label "Disease Activity Score (DAS28)" ;
     skos:definition """Disease Activity Score 28 is a mathematically calculated, continuous, composite endpoint with differential weighting given to each of the following components: tender joint count (28 joints), swollen joint count (28 joints), acute phase reactant, and patient global assessment of arthritis.""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :unknownSystem-C2711347 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-Guidance-C2711347 ] .
 :DAS28_OutcomeAssessment 
     rdfs:subClassOf 
         core:SingleOutcomeAssessment ,
@@ -41,7 +41,7 @@
         [ owl:onProperty core:hasObservation ; owl:someValuesFrom :PatientGlobalAssessmentOfDiseaseActivityObservation ] ;
     rdfs:label "Disease Activity Score (DAS28)" ;
     skos:definition """Disease Activity Score 28 is a mathematically calculated, continuous, composite endpoint with differential weighting given to each of the following components: tender joint count (28 joints), swollen joint count (28 joints), acute phase reactant, and patient global assessment of arthritis.""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :unknownSystem-C2711347 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-Guidance-C2711347 ] .
 :SwollenJointCountObservation 
     rdfs:subClassOf 
         core:QuantitativeMeasurement ,
@@ -99,7 +99,10 @@
     rdfs:label "American College of Rheumatology score (ACRn)" ;
     skos:definition """American College of Rheumatology response criteria is a dichotomous
 composite endpoint indicating the proportion of patients with at least 20 (where n=20) percent improvement in the
-number of tender and swollen joints, and in three out of the remaining five ACR core-set measures: patient pain""" .
+number of tender and swollen joints, and in three out of the remaining five ACR core-set measures: patient pain,
+patient global assessment of disease, physician global assessment of disease, physical functioning assessment
+(Health Assessment Questionnaire-Disability Index (HAQ-DI)), and acute phase reactants""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-Guidance-C3273740 ] .
 :ACRn_OutcomeAssessment 
     rdfs:subClassOf 
         core:SingleOutcomeAssessment ,
@@ -119,7 +122,10 @@ number of tender and swollen joints, and in three out of the remaining five ACR 
     rdfs:label "American College of Rheumatology score (ACRn)" ;
     skos:definition """American College of Rheumatology response criteria is a dichotomous
 composite endpoint indicating the proportion of patients with at least 20 (where n=20) percent improvement in the
-number of tender and swollen joints, and in three out of the remaining five ACR core-set measures: patient pain""" .
+number of tender and swollen joints, and in three out of the remaining five ACR core-set measures: patient pain,
+patient global assessment of disease, physician global assessment of disease, physical functioning assessment
+(Health Assessment Questionnaire-Disability Index (HAQ-DI)), and acute phase reactants""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-Guidance-C3273740 ] .
 :PatientPainAssessmentObservation 
     rdfs:subClassOf 
         core:SignsAndSymptoms ,
@@ -170,7 +176,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_DressingAndGrooming_dressObservation ] ;
     rdfs:label "dressing & grooming x - dress" ;
     skos:definition """to dress""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-TA-refined-CL448078 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448078 ] .
 :DefinedHAQ-DI_DressingAndGrooming_dressObservation rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_DressingAndGrooming_shampooObservation 
@@ -180,7 +186,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_DressingAndGrooming_shampooObservation ] ;
     rdfs:label "dressing & grooming x - shampoo" ;
     skos:definition """to shampoo""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-TA-refined-CL448079 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448079 ] .
 :DefinedHAQ-DI_DressingAndGrooming_shampooObservation rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_DressingAndGrooming_aidsObservation 
@@ -190,7 +196,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_DressingAndGrooming_aidsObservation ] ;
     rdfs:label "dressing & grooming x - aids" ;
     skos:definition """aids of a person or device""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-TA-refined-CL448094 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448094 ] .
 :DefinedHAQ-DI_DressingAndGrooming_aidsObservation rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_ArisingAssessment 
@@ -208,7 +214,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Arising_chairObservation ] ;
     rdfs:label "arising x - chair" ;
     skos:definition """from chair""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-TA-refined-C1290946 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-C1290946 ] .
 :DefinedHAQ-DI_Arising_chairObservation rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_Arising_bedObservation 
@@ -218,7 +224,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Arising_bedObservation ] ;
     rdfs:label "arising x - bed" ;
     skos:definition """from bed""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-TA-refined-C0439549 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-C0439549 ] .
 :DefinedHAQ-DI_Arising_bedObservation rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_Arising_aidsObservation 
@@ -228,7 +234,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Arising_aidsObservation ] ;
     rdfs:label "arising x - aids" ;
     skos:definition """aids of a person or device""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-TA-refined-CL448094 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448094 ] .
 :DefinedHAQ-DI_Arising_aidsObservation rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_EatingAssessment 
@@ -247,7 +253,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Eating_cutObservation ] ;
     rdfs:label "eating x - cut" ;
     skos:definition """cut meat""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-TA-refined-CL448082 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448082 ] .
 :DefinedHAQ-DI_Eating_cutObservation rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_Eating_openObservation 
@@ -257,7 +263,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Eating_openObservation ] ;
     rdfs:label "eating x - open" ;
     skos:definition """milk carton""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-TA-refined-CL448084 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448084 ] .
 :DefinedHAQ-DI_Eating_openObservation rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_Eating_liftObservation 
@@ -267,7 +273,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Eating_liftObservation ] ;
     rdfs:label "eating x - lift" ;
     skos:definition """glass to mouth""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-TA-refined-CL448083 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448083 ] .
 :DefinedHAQ-DI_Eating_liftObservation rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_Eating_aidsObservation 
@@ -277,7 +283,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Eating_aidsObservation ] ;
     rdfs:label "eating x - aids" ;
     skos:definition """aids of a person or device""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-TA-refined-CL448094 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448094 ] .
 :DefinedHAQ-DI_Eating_aidsObservation rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_WalkingAssessment 
@@ -295,7 +301,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Walking_climbStepsObservation ] ;
     rdfs:label "walking x - climb steps" ;
     skos:definition """climb steps""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-TA-refined-CL448086 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448086 ] .
 :DefinedHAQ-DI_Walking_climbStepsObservation rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_Walking_walkObservation 
@@ -305,7 +311,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Walking_walkObservation ] ;
     rdfs:label "walking x - walk" ;
     skos:definition """walk outdoors on flat ground""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-TA-refined-CL448085 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448085 ] .
 :DefinedHAQ-DI_Walking_walkObservation rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_Walking_aidsObservation 
@@ -315,7 +321,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Walking_aidsObservation ] ;
     rdfs:label "walking x - aids" ;
     skos:definition """aids of a person or device""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-TA-refined-CL448094 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448094 ] .
 :DefinedHAQ-DI_Walking_aidsObservation rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_HygieneAssessment 
@@ -334,7 +340,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Hygiene_bathObservation ] ;
     rdfs:label "hygiene x - bath" ;
     skos:definition """take bath""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-TA-refined-CL448101 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448101 ] .
 :DefinedHAQ-DI_Hygiene_bathObservation rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_Hygiene_washObservation 
@@ -344,7 +350,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Hygiene_washObservation ] ;
     rdfs:label "hygiene x - wash" ;
     skos:definition """wash and dry body""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-TA-refined-CL448100 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448100 ] .
 :DefinedHAQ-DI_Hygiene_washObservation rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_Hygiene_toiletObservation 
@@ -354,7 +360,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Hygiene_toiletObservation ] ;
     rdfs:label "hygiene x - toilet" ;
     skos:definition """get off the toilet""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-TA-refined-CL448102 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448102 ] .
 :DefinedHAQ-DI_Hygiene_toiletObservation rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_Hygiene_aidsObservation 
@@ -364,7 +370,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Hygiene_aidsObservation ] ;
     rdfs:label "hygiene x - aids" ;
     skos:definition """aids of a person or device""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-TA-refined-CL448094 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448094 ] .
 :DefinedHAQ-DI_Hygiene_aidsObservation rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_ReachAssessment 
@@ -382,7 +388,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Reach_pickUpObservation ] ;
     rdfs:label "reach x - pick up" ;
     skos:definition """pick up from floor""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-TA-refined-CL448104 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448104 ] .
 :DefinedHAQ-DI_Reach_pickUpObservation rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_Reach_fromAboveObservation 
@@ -392,7 +398,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Reach_fromAboveObservation ] ;
     rdfs:label "reach x - from above" ;
     skos:definition """object from above head""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-TA-refined-CL448103 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448103 ] .
 :DefinedHAQ-DI_Reach_fromAboveObservation rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_Reach_aidsObservation 
@@ -402,7 +408,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Reach_aidsObservation ] ;
     rdfs:label "reach x - aids" ;
     skos:definition """aids of a person or device""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-TA-refined-CL448094 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448094 ] .
 :DefinedHAQ-DI_Reach_aidsObservation rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_GripAssessment 
@@ -421,7 +427,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Grip_faucetsObservation ] ;
     rdfs:label "grip x - faucets" ;
     skos:definition """faucets""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-TA-refined-CL448107 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448107 ] .
 :DefinedHAQ-DI_Grip_faucetsObservation rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_Grip_carDoorsObservation 
@@ -431,7 +437,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Grip_carDoorsObservation ] ;
     rdfs:label "grip x - car doors" ;
     skos:definition """open car doors""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-TA-refined-CL448105 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448105 ] .
 :DefinedHAQ-DI_Grip_carDoorsObservation rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_Grip_jarsObservation 
@@ -441,7 +447,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Grip_jarsObservation ] ;
     rdfs:label "grip x - jars" ;
     skos:definition """open jars""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-TA-refined-CL448106 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448106 ] .
 :DefinedHAQ-DI_Grip_jarsObservation rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_Grip_aidsObservation 
@@ -451,7 +457,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Grip_aidsObservation ] ;
     rdfs:label "grip x - aids" ;
     skos:definition """aids of a person or device""" ;
-    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :FDA-TA-refined-CL448094 ] .
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448094 ] .
 :DefinedHAQ-DI_Grip_aidsObservation rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_ActivitiesAssessment 
@@ -714,16 +720,16 @@ SCALE:lowest - frequent psychological distress, social and role disability due t
         [ owl:onProperty :hasEndpoint ; owl:someValuesFrom :AllEndpoints ] .
 
 
-:unknownSystem-C2711347
+:FDA-Guidance-C2711347
    owl:equivalentClass [
      owl:intersectionOf (
-       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@unknown> ]
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-Guidance> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "C2711347" ]
        ) ] .
-:unknownSystem-C2711347
+:FDA-Guidance-C2711347
    owl:equivalentClass [
      owl:intersectionOf (
-       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@unknown> ]
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-Guidance> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "C2711347" ]
        ) ] .
 :NCI-EVS-C0451521
@@ -756,6 +762,18 @@ SCALE:lowest - frequent psychological distress, social and role disability due t
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@unknown> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "C21120" ]
        ) ] .
+:FDA-Guidance-C3273740
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-Guidance> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "C3273740" ]
+       ) ] .
+:FDA-Guidance-C3273740
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-Guidance> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "C3273740" ]
+       ) ] .
 :unknownSystem-C21120
    owl:equivalentClass [
      owl:intersectionOf (
@@ -774,169 +792,265 @@ SCALE:lowest - frequent psychological distress, social and role disability due t
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "C106699" ]
        ) ] .
-<http://example.org/@@FDA-TA#refined-CL448078> skos:narrowerThan <http://example.org/@@NCI-EVS> .
-:FDA-TA-refined-CL448078
+:NCI-EVS-refined-CL448078
+   rdfs:subClassOf [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448078" ]
+       ) ] ;
    owl:equivalentClass [
      owl:intersectionOf (
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448078" ]
        ) ] .
-<http://example.org/@@FDA-TA#refined-CL448079> skos:narrowerThan <http://example.org/@@NCI-EVS> .
-:FDA-TA-refined-CL448079
+:NCI-EVS-refined-CL448079
+   rdfs:subClassOf [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448079" ]
+       ) ] ;
    owl:equivalentClass [
      owl:intersectionOf (
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448079" ]
        ) ] .
-<http://example.org/@@FDA-TA#refined-CL448094> skos:narrowerThan <http://example.org/@@NCI-EVS> .
-:FDA-TA-refined-CL448094
+:NCI-EVS-refined-CL448094
+   rdfs:subClassOf [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448094" ]
+       ) ] ;
    owl:equivalentClass [
      owl:intersectionOf (
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448094" ]
        ) ] .
-<http://example.org/@@FDA-TA#refined-C1290946> skos:narrowerThan <http://example.org/@@NCI-EVS> .
-:FDA-TA-refined-C1290946
+:NCI-EVS-refined-C1290946
+   rdfs:subClassOf [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "C1290946" ]
+       ) ] ;
    owl:equivalentClass [
      owl:intersectionOf (
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-C1290946" ]
        ) ] .
-<http://example.org/@@FDA-TA#refined-C0439549> skos:narrowerThan <http://example.org/@@NCI-EVS> .
-:FDA-TA-refined-C0439549
+:NCI-EVS-refined-C0439549
+   rdfs:subClassOf [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "C0439549" ]
+       ) ] ;
    owl:equivalentClass [
      owl:intersectionOf (
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-C0439549" ]
        ) ] .
-<http://example.org/@@FDA-TA#refined-CL448094> skos:narrowerThan <http://example.org/@@NCI-EVS> .
-:FDA-TA-refined-CL448094
+:NCI-EVS-refined-CL448094
+   rdfs:subClassOf [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448094" ]
+       ) ] ;
    owl:equivalentClass [
      owl:intersectionOf (
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448094" ]
        ) ] .
-<http://example.org/@@FDA-TA#refined-CL448082> skos:narrowerThan <http://example.org/@@NCI-EVS> .
-:FDA-TA-refined-CL448082
+:NCI-EVS-refined-CL448082
+   rdfs:subClassOf [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448082" ]
+       ) ] ;
    owl:equivalentClass [
      owl:intersectionOf (
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448082" ]
        ) ] .
-<http://example.org/@@FDA-TA#refined-CL448084> skos:narrowerThan <http://example.org/@@NCI-EVS> .
-:FDA-TA-refined-CL448084
+:NCI-EVS-refined-CL448084
+   rdfs:subClassOf [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448084" ]
+       ) ] ;
    owl:equivalentClass [
      owl:intersectionOf (
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448084" ]
        ) ] .
-<http://example.org/@@FDA-TA#refined-CL448083> skos:narrowerThan <http://example.org/@@NCI-EVS> .
-:FDA-TA-refined-CL448083
+:NCI-EVS-refined-CL448083
+   rdfs:subClassOf [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448083" ]
+       ) ] ;
    owl:equivalentClass [
      owl:intersectionOf (
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448083" ]
        ) ] .
-<http://example.org/@@FDA-TA#refined-CL448094> skos:narrowerThan <http://example.org/@@NCI-EVS> .
-:FDA-TA-refined-CL448094
+:NCI-EVS-refined-CL448094
+   rdfs:subClassOf [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448094" ]
+       ) ] ;
    owl:equivalentClass [
      owl:intersectionOf (
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448094" ]
        ) ] .
-<http://example.org/@@FDA-TA#refined-CL448086> skos:narrowerThan <http://example.org/@@NCI-EVS> .
-:FDA-TA-refined-CL448086
+:NCI-EVS-refined-CL448086
+   rdfs:subClassOf [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448086" ]
+       ) ] ;
    owl:equivalentClass [
      owl:intersectionOf (
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448086" ]
        ) ] .
-<http://example.org/@@FDA-TA#refined-CL448085> skos:narrowerThan <http://example.org/@@NCI-EVS> .
-:FDA-TA-refined-CL448085
+:NCI-EVS-refined-CL448085
+   rdfs:subClassOf [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448085" ]
+       ) ] ;
    owl:equivalentClass [
      owl:intersectionOf (
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448085" ]
        ) ] .
-<http://example.org/@@FDA-TA#refined-CL448094> skos:narrowerThan <http://example.org/@@NCI-EVS> .
-:FDA-TA-refined-CL448094
+:NCI-EVS-refined-CL448094
+   rdfs:subClassOf [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448094" ]
+       ) ] ;
    owl:equivalentClass [
      owl:intersectionOf (
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448094" ]
        ) ] .
-<http://example.org/@@FDA-TA#refined-CL448101> skos:narrowerThan <http://example.org/@@NCI-EVS> .
-:FDA-TA-refined-CL448101
+:NCI-EVS-refined-CL448101
+   rdfs:subClassOf [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448101" ]
+       ) ] ;
    owl:equivalentClass [
      owl:intersectionOf (
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448101" ]
        ) ] .
-<http://example.org/@@FDA-TA#refined-CL448100> skos:narrowerThan <http://example.org/@@NCI-EVS> .
-:FDA-TA-refined-CL448100
+:NCI-EVS-refined-CL448100
+   rdfs:subClassOf [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448100" ]
+       ) ] ;
    owl:equivalentClass [
      owl:intersectionOf (
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448100" ]
        ) ] .
-<http://example.org/@@FDA-TA#refined-CL448102> skos:narrowerThan <http://example.org/@@NCI-EVS> .
-:FDA-TA-refined-CL448102
+:NCI-EVS-refined-CL448102
+   rdfs:subClassOf [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448102" ]
+       ) ] ;
    owl:equivalentClass [
      owl:intersectionOf (
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448102" ]
        ) ] .
-<http://example.org/@@FDA-TA#refined-CL448094> skos:narrowerThan <http://example.org/@@NCI-EVS> .
-:FDA-TA-refined-CL448094
+:NCI-EVS-refined-CL448094
+   rdfs:subClassOf [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448094" ]
+       ) ] ;
    owl:equivalentClass [
      owl:intersectionOf (
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448094" ]
        ) ] .
-<http://example.org/@@FDA-TA#refined-CL448104> skos:narrowerThan <http://example.org/@@NCI-EVS> .
-:FDA-TA-refined-CL448104
+:NCI-EVS-refined-CL448104
+   rdfs:subClassOf [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448104" ]
+       ) ] ;
    owl:equivalentClass [
      owl:intersectionOf (
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448104" ]
        ) ] .
-<http://example.org/@@FDA-TA#refined-CL448103> skos:narrowerThan <http://example.org/@@NCI-EVS> .
-:FDA-TA-refined-CL448103
+:NCI-EVS-refined-CL448103
+   rdfs:subClassOf [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448103" ]
+       ) ] ;
    owl:equivalentClass [
      owl:intersectionOf (
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448103" ]
        ) ] .
-<http://example.org/@@FDA-TA#refined-CL448094> skos:narrowerThan <http://example.org/@@NCI-EVS> .
-:FDA-TA-refined-CL448094
+:NCI-EVS-refined-CL448094
+   rdfs:subClassOf [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448094" ]
+       ) ] ;
    owl:equivalentClass [
      owl:intersectionOf (
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448094" ]
        ) ] .
-<http://example.org/@@FDA-TA#refined-CL448107> skos:narrowerThan <http://example.org/@@NCI-EVS> .
-:FDA-TA-refined-CL448107
+:NCI-EVS-refined-CL448107
+   rdfs:subClassOf [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448107" ]
+       ) ] ;
    owl:equivalentClass [
      owl:intersectionOf (
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448107" ]
        ) ] .
-<http://example.org/@@FDA-TA#refined-CL448105> skos:narrowerThan <http://example.org/@@NCI-EVS> .
-:FDA-TA-refined-CL448105
+:NCI-EVS-refined-CL448105
+   rdfs:subClassOf [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448105" ]
+       ) ] ;
    owl:equivalentClass [
      owl:intersectionOf (
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448105" ]
        ) ] .
-<http://example.org/@@FDA-TA#refined-CL448106> skos:narrowerThan <http://example.org/@@NCI-EVS> .
-:FDA-TA-refined-CL448106
+:NCI-EVS-refined-CL448106
+   rdfs:subClassOf [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448106" ]
+       ) ] ;
    owl:equivalentClass [
      owl:intersectionOf (
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448106" ]
        ) ] .
-<http://example.org/@@FDA-TA#refined-CL448094> skos:narrowerThan <http://example.org/@@NCI-EVS> .
-:FDA-TA-refined-CL448094
+:NCI-EVS-refined-CL448094
+   rdfs:subClassOf [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448094" ]
+       ) ] ;
    owl:equivalentClass [
      owl:intersectionOf (
        [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]

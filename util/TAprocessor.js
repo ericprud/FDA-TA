@@ -1,11 +1,51 @@
 
-exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn) {
+exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn, errStr) {
+
+    function system (str) {
+        if (str == "NCI EVS")
+            return {URI:"<http://example.org/@@NCI-EVS>", label:"NCI-EVS"};
+        else if (str.indexOf("FDA Guidance for Industry") == 0)
+            return {URI:"<http://example.org/@@FDA-Guidance>", label:"FDA-Guidance" };
+        else if (str == "FDA-TA")
+            return {URI:"<http://example.org/@@FDA-TA>", label:"FDA-TA" };
+        else
+            return {URI:"<http://example.org/@@unknown>", label:"unknownSystem"};
+    }
+
     var END = "Endpoint";
     var OUC = "OutcomeAssessment";
     var ASS = "Assessment";
     var OBS = "Observation";
     var termDefinitionsUsed = {};
-    var auxilliaryTaxonomy = "";
+    var auxilliaryTaxonomy = {
+        entries: [],
+        addEntry: function (id, sstm, code, parentCode) {
+            this.entries.push({id:id, sstm:sstm, code:code, parentCode:parentCode});
+        },
+        toString: function () {
+            var ret = '';
+            for (var i = 0; i < this.entries.length; ++i) {
+                var entry = this.entries[i];
+                var subclass = '';
+                ret += ":"+entry.id+"\n";
+                if (entry.parentCode) {
+                    ret += "   rdfs:subClassOf [\n"
+                        + "     owl:intersectionOf (\n"
+                        + "       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue " + system(entry.sstm).URI + " ]\n"
+                        + "       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue \""+entry.parentCode+"\" ]\n"
+                        + "       ) ] ;\n";
+                }
+                ret += "   owl:equivalentClass [\n"
+                    + "     owl:intersectionOf (\n"
+                    + "       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue "
+                    + system(entry.parentCode ? "FDA-TA" : entry.sstm).URI
+                    + " ]\n"
+                    + "       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue \""+entry.code+"\" ]\n"
+                    + "       ) ] .\n";
+            }
+            return ret;
+        }
+    };
 
     function definition_toTurtle (def) {
         ret = "";
@@ -14,7 +54,7 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
         var sstm = null;
         var code = null;
         var xtnd = null;
-        var newCode = null;
+        var parentCode = null;
         if ('ref' in def && def.ref) {
             // Concept Name             Concept Definition      Concept Definition Source Site  Concept Definition Source Code NCI EVS  URI for SW model        Atomized Concepts       Comment
             // Swollen joint count      # of joi...ion          NCI EVS                         C0451521                                =               
@@ -27,6 +67,8 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
             if (def.ref in termDefinitions) {
                 name = '"' + def.ref + '"'; // default to Concept Name
                 var termdef = termDefinitions[def.ref];
+                def.file = termdef.file;
+                def.line = termdef.line;
                 if (DEFN in termdef)
                     if (termdef[DEFN].substr(0, 1) == '"') {
                         termdef[DEFN] = termdef[DEFN].substr(1, termdef[DEFN].length-2);
@@ -62,43 +104,25 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
             code = def.code[2]; code = code.substr(1, code.length-2);
         }
 
-        function system (str) {
-            if (str == "NCI EVS")
-                return {URI:"<http://example.org/@@NCI-EVS>", label:"NCI-EVS"};
-            else if (str == "FDA-TA")
-                return {URI:"<http://example.org/@@FDA-TA>", label:"FDA-TA" };
-            else
-                return {URI:"<http://example.org/@@unknown>", label:"unknownSystem"};
-        }
-
         if (name)
             ret += ";\n    rdfs:label "+name+" ";
         if (defn)
             ret += ";\n    skos:definition "+defn+" ";
         if (xtnd) {
             if (!code)
-                warn ("expected to refine " + JSON.stringify(def) + " with no code");
+                warn (errStr(def.file, def.line, 0) + "Expected to refine \"" + def.ref + "\" but no general code was specified.");
             else if (!sstm)
-                warn ("expected to refine " + JSON.stringify(def) + " with no code system");
+                warn (errStr(def.file, def.line) + "Expected to refine \"" + def.ref + "\" but no general code system was specified");
             else {
                 // warn ("refining " + JSON.stringify(def));
-                newCode = "refined-" + code;
-                auxilliaryTaxonomy += "<http://example.org/@@FDA-TA#" + newCode + "> skos:narrowerThan " + system(sstm).URI
-                    // + "#" + code
-                    + " .\n" ;
-                sstm = "FDA-TA";
-                code = newCode;
+                parentCode = code;
+                code = "refined-" + code;
             }
         }
         if (code) {
             var id = system(sstm).label+"-"+code;
             ret += ";\n    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :"+id+" ] ";
-            auxilliaryTaxonomy += ":"+id+"\n"
-                + "   owl:equivalentClass [\n"
-                + "     owl:intersectionOf (\n"
-                + "       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue " + system(sstm).URI + " ]\n"
-                + "       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue \""+code+"\" ]\n"
-                + "       ) ] .\n";
+            auxilliaryTaxonomy.addEntry(id, sstm, code, parentCode);
         }
         return ret;
     }
@@ -109,7 +133,7 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
             allEndpoints.push(endpoint);
         }
         var ret = ""+
-            "# $Id: TAprocessor.js,v 1.3 2014-07-19 21:35:35 eric Exp $\n"+
+            "# $Id: TAprocessor.js,v 1.4 2014-07-20 08:19:37 eric Exp $\n"+
             "#\n"+
             "# ericP at the keyboard\n"+
             "\n"+
@@ -251,15 +275,17 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
         return ret;
     }
 
-    ret = ta_toTurtle(true)+"\n\n"+auxilliaryTaxonomy;
+    ret = ta_toTurtle(true)+"\n\n"+auxilliaryTaxonomy.toString();
 
     for (decl in ta)
         if (!(decl in defined))
             warn("unreferenced declaration:", decl);
     if (true)
     for (termDefinition in termDefinitions)
-        if (!(termDefinition in termDefinitionsUsed) && termDefinition.indexOf(' x ') == -1)
-            warn("unused definition:", termDefinition);
+        if (!(termDefinition in termDefinitionsUsed) && termDefinition.indexOf(' x ') == -1) {
+            var def = termDefinitions[termDefinition];
+            warn(errStr(def.file, def.line) + "Unused definition:", termDefinition);
+        }
     return ret;
 };
 

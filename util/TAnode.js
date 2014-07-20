@@ -21,7 +21,7 @@ var defns = {};
     var headings = lines.shift().split('\t');
     for (var i=0; i<lines.length; i++) {
         var vals = lines[i].split('\t');
-        var ob = {};
+        var ob = {line:i+1, file:process.argv[3]};
         // if (vals[0] == 'dressing & grooming x - dress')
         //     console.warn("HERE!");
         for (h in headings)
@@ -32,4 +32,11 @@ var defns = {};
 }
 
 console.log(turtlify(ta, taParser.yy.name, allEndpoints, defined, defns,
-                     function () { console.warn.apply(null, arguments); }));
+                     function () { console.warn.apply(null, arguments); },
+                     function (file, line, column) {
+                         var ret = file + ":" + line;
+                         if (column !== undefined)
+                             ret += ":"+(column+1);
+                         ret += ": error: ";
+                         return ret;
+                     }));
