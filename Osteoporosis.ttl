@@ -1,0 +1,94 @@
+# $Id: Osteoporosis.ttl,v 1.1 2014-07-21 01:27:49 eric Exp $
+#
+# ericP at the keyboard
+
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+@prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> .
+@prefix bridg: <http://www.bridgmodel.org/owl#> .
+
+@prefix : <http://www.w3.org/2013/12/FDA-TA/Osteoporosis#> .
+@prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .
+@prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
+@prefix hl7: <http://hl7.org/owl/metadata#> .
+@prefix skel: <http://www.w3.org/2013/12/FDA-TA/skeletal#> .
+
+<http://www.w3.org/2013/12/FDA-TA/Osteoporosis> a owl:Ontology ;
+    owl:imports <http://www.w3.org/2013/12/FDA-TA/core> ,
+                <http://www.w3.org/2013/12/FDA-TA/skeletal> .
+
+:Assessment rdfs:subClassOf core:Assessment .
+:CDCoding rdfs:subClassOf dt:CDCoding .
+:NonVertebralFractureEndpoint 
+    rdfs:subClassOf 
+        core:EfficacyEndpoint ,
+        [ owl:onProperty core:evaluates ; owl:someValuesFrom :NonVertabralFractureRadiographicOutcomeAssessment ] .
+:NonVertabralFractureRadiographicOutcomeAssessment 
+    rdfs:subClassOf 
+        core:SingleOutcomeAssessment ,
+        [ owl:onProperty core:beforeIntervention ; owl:someValuesFrom skel:NonVertabralFractureRadiographicAssessment ] ,
+        [ owl:onProperty core:afterIntervention ; owl:someValuesFrom skel:NonVertabralFractureRadiographicAssessment ] .
+:VertebralFractureEndpoint 
+    rdfs:subClassOf 
+        core:EfficacyEndpoint ,
+        [ owl:onProperty core:evaluates ; owl:someValuesFrom :VertabralFractureRadiographicOutcomeAssessment ] .
+:VertabralFractureRadiographicOutcomeAssessment 
+    rdfs:subClassOf 
+        core:SingleOutcomeAssessment ,
+        [ owl:onProperty core:beforeIntervention ; owl:someValuesFrom skel:VertabralFractureRadiographicAssessment ] ,
+        [ owl:onProperty core:afterIntervention ; owl:someValuesFrom skel:VertabralFractureRadiographicAssessment ] .
+:BoneMineralDensityEndpoint 
+    rdfs:subClassOf 
+        core:EfficacyEndpoint ,
+        [ owl:onProperty core:evaluates ; owl:someValuesFrom :DXA_OutcomeAssessment ] .
+:DXA_OutcomeAssessment 
+    rdfs:subClassOf 
+        core:SingleOutcomeAssessment ,
+        [ owl:onProperty core:beforeIntervention ; owl:someValuesFrom :DXA_Assessment ] ,
+        [ owl:onProperty core:afterIntervention ; owl:someValuesFrom :DXA_Assessment ] .
+:DXA_Assessment 
+    rdfs:subClassOf 
+        :Assessment ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :LumbarVertebraeT-scoreObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :TotalHopT-scoreObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :FemoralNeckT-scoreObservation ] .
+:LumbarVertebraeT-scoreObservation 
+    rdfs:subClassOf 
+        core:QuantitativeMeasurement ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedLumbarVertebraeT-scoreObservation ] .
+:DefinedLumbarVertebraeT-scoreObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:TotalHopT-scoreObservation 
+    rdfs:subClassOf 
+        core:QuantitativeMeasurement ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedTotalHopT-scoreObservation ] .
+:DefinedTotalHopT-scoreObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:FemoralNeckT-scoreObservation 
+    rdfs:subClassOf 
+        core:QuantitativeMeasurement ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedFemoralNeckT-scoreObservation ] .
+:DefinedFemoralNeckT-scoreObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:Organizer a owl:Class . # organizer for the Osteoporosis Therapeutic Area .
+:Subject rdfs:subClassOf :Organizer .
+:Protocol rdfs:subClassOf :Organizer .
+:AllEndpoints rdfs:subClassOf :Organizer ;
+    owl:equivalentClass [ owl:unionOf (
+        :NonVertebralFractureEndpoint 
+        :VertebralFractureEndpoint 
+        :BoneMineralDensityEndpoint 
+    ) ] .
+
+:Protocol 
+    rdfs:subClassOf :Organizer, core:TAProtocol ,
+        [ owl:onProperty :hasEndpoint ; owl:someValuesFrom :AllEndpoints ] .
+
+
+

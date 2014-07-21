@@ -1,0 +1,77 @@
+# $Id: skeletal.ttl,v 1.1 2014-07-21 01:27:49 eric Exp $
+#
+# ericP at the keyboard
+
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+@prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> .
+@prefix bridg: <http://www.bridgmodel.org/owl#> .
+
+@prefix : <http://www.w3.org/2013/12/FDA-TA/skeletal#> .
+@prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .
+@prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
+@prefix hl7: <http://hl7.org/owl/metadata#> .
+
+<http://www.w3.org/2013/12/FDA-TA/skeletal> a owl:Ontology ;
+    owl:imports <http://www.w3.org/2013/12/FDA-TA/core> .
+
+:Assessment rdfs:subClassOf core:Assessment .
+:CDCoding rdfs:subClassOf dt:CDCoding .
+:NonVertabralFractureRadiographicAssessment 
+    rdfs:subClassOf 
+        :Assessment ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :RadiographicReportObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :RadiographicFilmObservation ] .
+:RadiographicReportObservation 
+    rdfs:subClassOf 
+        core:DiagnosticProcedure ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedRadiographicReportObservation ] .
+:DefinedRadiographicReportObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:RadiographicFilmObservation 
+    rdfs:subClassOf 
+        core:DiagnosticProcedure ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedRadiographicFilmObservation ] .
+:DefinedRadiographicFilmObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:VertabralFractureRadiographicAssessment 
+    rdfs:subClassOf 
+        :Assessment ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :QuantitativeMorphometryAssessment ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :VertebralShapeAssessment ] .
+:QuantitativeMorphometryAssessment 
+    rdfs:subClassOf 
+        :Assessment ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :VertebralHeightObservation ] .
+:VertebralHeightObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedVertebralHeightObservation ] ,
+        [ owl:onProperty data:value ; owl:allValuesFrom [
+            a rdfs:Datatype ;
+            owl:onDatatype xsd:integer ;
+            owl:withRestrictions ( [ xsd:minInclusive 0 ] [ xsd:maxInclusive 3 ] )
+        ] ] .
+:DefinedVertebralHeightObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:VertebralShapeAssessment 
+    rdfs:subClassOf 
+        :Assessment ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :VertebralHeightObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :VertebralShapeObservation ] .
+:VertebralShapeObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedVertebralShapeObservation ] .
+:DefinedVertebralShapeObservation rdfs:subClassOf bridg:DefinedObservation .
+
+
+
+

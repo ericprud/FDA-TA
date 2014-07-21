@@ -1,0 +1,26 @@
+LIBRARY: skeletal
+
+ASSESSMENT: NonVertabralFractureRadiographicAssessment
+                             RadiographicReportObservation
+                             RadiographicFilmObservation
+
+DIAGPROC: RadiographicReportObservation
+DIAGPROC: RadiographicFilmObservation
+
+
+ASSESSMENT: VertabralFractureRadiographicAssessment
+                             {QuantitativeMorphometryAssessment}
+                             {VertebralShapeAssessment}
+
+ASSESSMENT: QuantitativeMorphometryAssessment
+                             VertebralHeightObservation
+
+SSX: VertebralHeightObservation [0 3]
+
+ASSESSMENT: VertebralShapeAssessment
+                             VertebralHeightObservation
+                             VertebralShapeObservation
+
+SSX: VertebralShapeObservation
+
+
