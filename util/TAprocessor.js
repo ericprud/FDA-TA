@@ -153,7 +153,7 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
             allEndpoints.push(endpoint);
         }
         var ret = ""+
-            "# $Id: TAprocessor.js,v 1.5 2014-07-20 19:38:52 eric Exp $\n"+
+            "# $Id: TAprocessor.js,v 1.6 2014-07-21 00:03:12 eric Exp $\n"+
             "#\n"+
             "# ericP at the keyboard\n"+
             "\n"+
