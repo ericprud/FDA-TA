@@ -22,6 +22,8 @@ var defns = {};
     var lines = defsFile.split("\n");
     var headings = lines.shift().split('\t');
     for (var i=0; i<lines.length; i++) {
+        if (lines[i].length == 0)
+            break;
         var vals = lines[i].split('\t');
         var ob = {line:i+1, file:process.argv[3]};
         // if (vals[0] == 'dressing & grooming x - dress')

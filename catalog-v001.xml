@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="User Entered Import Resolution" name="http://www.w3.org/2013/12/FDA-TA/skeletal" uri="skeletal.ttl"/>
+    <uri id="User Entered Import Resolution" name="http://www.w3.org/2013/12/FDA-TA/Osteoporosis" uri="Osteoporosis.ttl"/>
     <uri id="User Entered Import Resolution" name="http://www.w3.org/2013/12/FDA-TA/cns" uri="cns.ttl"/>
     <uri id="User Entered Import Resolution" name="http://www.w3.org/2013/12/FDA-TA/bridg-classes" uri="bridg-classes.ttl"/>
     <uri id="User Entered Import Resolution" name="http://www.w3.org/2013/12/FDA-TA/datatypes" uri="datatypes.ttl"/>

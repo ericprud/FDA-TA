@@ -1,0 +1,29 @@
+# $Id: _allTAs.ttl,v 1.1 2014-07-21 01:13:01 eric Exp $
+#
+# ericP at the keyboard
+
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+@prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> .
+@prefix bridg: <http://www.bridgmodel.org/owl#> .
+
+@prefix ra: <http://www.w3.org/2013/12/FDA-TA/RheumatoidArthritis#> .
+@prefix cUTI: <http://www.w3.org/2013/12/FDA-TA/ComplicatedUTI#> .
+@prefix renalX: <http://www.w3.org/2013/12/FDA-TA/RenalTransplantation#> .
+@prefix osteo: <http://www.w3.org/2013/12/FDA-TA/Osteoporosis#> .
+@prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .
+@prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
+@prefix hl7: <http://hl7.org/owl/metadata#> .
+
+@prefix : <http://www.w3.org/2013/12/FDA-TA/tests/RenalTransplantation/subjects#> .
+
+<http://www.w3.org/2013/12/FDA-TA/_allTAs> a owl:Ontology ;
+   owl:imports <http://www.w3.org/2013/12/FDA-TA/RheumatoidArthritis> ,
+               <http://www.w3.org/2013/12/FDA-TA/RenalTransplantation> ,
+               <http://www.w3.org/2013/12/FDA-TA/ComplicatedUTI> ,
+               <http://www.w3.org/2013/12/FDA-TA/Osteoporosis> .
+
+:doc :imported true .

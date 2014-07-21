@@ -24,10 +24,30 @@ RheumatoidArthritis.ttl: RheumatoidArthritis.ta RheumatoidArthritis-definitions.
 t_RheumatoidArthritis: RheumatoidArthritis.ttl
 	sparql -d RheumatoidArthritis.ttl -q
 
+skeletal.ta: skeletal.tapp
+	gcc -E -x c -P -C $^ > $@
+
+skeletal.ttl: skeletal.ta skeletal-definitions.csv util/TAnode.js util/TAparser.js util/TAprocessor.js
+	NODE_PATH=util node util/TAnode.js skeletal.ta skeletal-definitions.csv > $@
+
+t_skeletal: skeletal.ttl
+	sparql -d skeletal.ttl -q
+
+
+Osteoporosis.ta: Osteoporosis.tapp
+	gcc -E -x c -P -C $^ > $@
+
+Osteoporosis.ttl: Osteoporosis.ta Osteoporosis-definitions.csv util/TAnode.js util/TAparser.js util/TAprocessor.js
+	NODE_PATH=util node util/TAnode.js Osteoporosis.ta Osteoporosis-definitions.csv > $@
+
+t_Osteoporosis: Osteoporosis.ttl
+	sparql -d Osteoporosis.ttl -q
+
 # import hierarchy
 RheumatoidArthritis.tapp: cns.tapp
+Osteoporosis.tapp: skeletal.tapp
 
 
 # perform all tests
-all: t_cns t_RheumatoidArthritis
+all: t_RheumatoidArthritis t_Osteoporosis
 
