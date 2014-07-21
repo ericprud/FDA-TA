@@ -6,7 +6,9 @@ var allEndpoints = [];
 taParser.yy = {
     log: function (s) { console.log(">>" + s + "<<"); },
     allEndpoints: allEndpoints,
-    name: null
+    name: null,
+    type: null,
+    file: process.argv[2]
 };
 var taFile = FS.readFileSync(PATH.normalize(process.argv[2]), "utf8");
 var ta = taParser.parse(taFile); // console.warn(ta);
@@ -31,7 +33,7 @@ var defns = {};
     }
 }
 
-console.log(turtlify(ta, taParser.yy.name, allEndpoints, defined, defns,
+console.log(turtlify(ta, taParser.yy.name, taParser.yy.type, taParser.yy.imports, allEndpoints, defined, defns,
                      function () { console.warn.apply(null, arguments); },
                      function (file, line, column) {
                          var ret = file + ":" + line;

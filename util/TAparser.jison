@@ -30,7 +30,7 @@ ECHAR                   '\\' [tbnrf\\\"\']
 WS                      \u0020 | \u0009 | \u000d | \u000a /* #x20=space #x9=character tabulation #xD=carriage return #xA=new line */
 ANON                    '[' {WS}* ']'
 PN_CHARS_BASE           [A-Z] | [a-z] | [\u00c0-\u00d6] | [\u00d8-\u00f6] | [\u00f8-\u02ff] | [\u0370-\u037d] | [\u037f-\u1fff] | [\u200c-\u200d] | [\u2070-\u218f] | [\u2c00-\u2fef] | [\u3001-\ud7ff] | [\uf900-\ufdcf] | [\ufdf0-\ufffd] | [\U00010000-\U000effff]
-PN_CHARS_U              {PN_CHARS_BASE} | '_'
+PN_CHARS_U              {PN_CHARS_BASE} | '_' | '_' /* !!! raise jison bug */
 PN_CHARS                {PN_CHARS_U} | '-' | [0-9] | [\u00b7] | [\u0300-\u036f] | [\u203f-\u2040]
 PN_PREFIX               {PN_CHARS_BASE} (({PN_CHARS} | '.')* {PN_CHARS})?
 PN_LOCAL                ({PN_CHARS_U} | ':' | [0-9] | {PLX}) (({PN_CHARS} | '.' | ':' | {PLX})* ({PN_CHARS} | ':' | {PLX}))?
@@ -44,6 +44,9 @@ COMMENT			'//' [^\u000a\u000d]*
 
 \s+|{COMMENT} /**/
 [Tt][Aa]':'					return 'TA'
+[Ll][Ii][Bb][Rr][Aa][Rr][Yy]':'			return 'LIBRARY'
+[Ii][Mm][Pp][Oo][Rr][Tt]':'			return 'IMPORT'
+[Aa][Ss]':'					return 'AS'
 [Ee][Nn][Dd][Pp][Oo][Ii][Nn][Tt]':'		return 'ENDPOINT'
 [Oo][Uu][Tt][Cc][Oo][Mm][Ee]':'			return 'OUTCOME'
 [Aa][Ss][Ss][Ee][Ss][Ss][Mm][Ee][Nn][Tt]':'	return 'ASSESSMENT'
@@ -51,8 +54,8 @@ COMMENT			'//' [^\u000a\u000d]*
 [Ss][Ss][Xx]':'					return 'OBSERVATION'
 [Dd][Ii][Aa][Gg][Pp][Rr][Oo][Cc]':'		return 'OBSERVATION'
 {IRIREF}					return 'IRIREF'
-{PNAME_NS}					return 'PNAME_NS'
 {PNAME_LN}					return 'PNAME_LN'
+{PNAME_NS}					return 'PNAME_NS'
 {NAME}						return 'NAME'
 {STRING_LITERAL_LONG2}				return 'STRING_LITERAL_LONG2'
 {STRING_LITERAL2}				return 'STRING_LITERAL2'
@@ -79,40 +82,51 @@ COMMENT			'//' [^\u000a\u000d]*
 
 %% /* language grammar */
 
-TAdecl		: PREP TA Name DeclStar EOF		{
-		    if ('name' in yy)
+TAdecl		: PREP TA_Or_LIBRARY Name DeclStar EOF		{
+		    if ('name' in yy) {
 			yy.name = $3;
+                        yy.type = $2;
+                    }
 		    return yy.decls;
 		  } ;
 PREP		: { yy.decls = {};
-		    yy.decl = function (type, name, ob) {
+                    yy.imports = [];
+		    yy.decl = function (type, name, ob, line, column) {
 		      type = type.substr(0, type.length-1);
 		      ob._name = name;
 		      ob._ = type;
+                      ob.file = yy.file;
+                      ob.line = line;
+                      ob.column = column;
 		      yy.decls[name] = ob;
 		      if (type == 'ENDPOINT' && 'allEndpoints' in yy)
 			yy.allEndpoints.push(name);
 		      return name;
                     } ;
 		  };
+
+TA_Or_LIBRARY   : TA					{ $$ = 'TA'; }
+		| LIBRARY				{ $$ = 'LIBRARY'; } ;
+
 DeclStar	:					{ $$ = null; }
 		| DeclStar Decl				{ $$ = $1 + $2; } ;
-Decl		: EndpointDecl				{ $$ = $1; }
+Decl		: IMPORT STRING_LITERAL2 AS PNAME_NS	{ yy.imports.push([$4, $2]); $$ = $4; }
+		| EndpointDecl				{ $$ = $1; }
 		| OutcomeDecl				{ $$ = $1; }
 		| AssessmentDecl			{ $$ = $1; }
 		| ObservationDecl			{ $$ = $1; } ;
 
 EndpointDecl	: 'ENDPOINT' Name Definition Outcome
-							{ $$ = yy.decl($1, $2, { definition:$3, outcome:$4 }); } ;
+							{ $$ = yy.decl($1, $2, { definition:$3, outcome:$4 }, @1.first_line, @1.first_column); } ;
 
-OutcomeDecl	: 'OUTCOME' Name Outcome_Def		{ $$ = yy.decl($1, $2, $3); } ;
-Outcome		: Name Outcome_Def_Opt			{ $$ = $2 ? yy.decl('OUTCOME', $1, $2) : $1; } ;
+OutcomeDecl	: 'OUTCOME' Name Outcome_Def		{ $$ = yy.decl($1, $2, $3, @1.first_line, @1.first_column); } ;
+Outcome		: Name Outcome_Def_Opt			{ $$ = $2 ? yy.decl('OUTCOME', $1, $2, @1.first_line, @1.first_column) : $1; } ;
 Outcome_Def_Opt	: '(' Outcome_Def ')'			{ $$ = $2; }
 		|					{ $$ = null; } ;
 Outcome_Def	: Definition Assessment			{ $$ = { definition:$1, assessment:$2 }; } ;
 
-AssessmentDecl	: 'ASSESSMENT' Name Assessment_Def	{ $$ = yy.decl($1, $2, $3); } ;
-Assessment	: Name Assessment_Def_Opt		{ $$ = $2 ? yy.decl('OUTCOME', $1, $2) : $1; } ;
+AssessmentDecl	: 'ASSESSMENT' Name Assessment_Def	{ $$ = yy.decl($1, $2, $3, @1.first_line, @1.first_column); } ;
+Assessment	: Name Assessment_Def_Opt		{ $$ = $2 ? yy.decl('OUTCOME', $1, $2, @1.first_line, @1.first_column) : $1; } ;
 Assessment_Def_Opt: '(' Assessment_Def ')'		{ $$ = $2; }
 		|					{ $$ = null; } ;
 Assessment_Def	: Definition Observation_Or_Assessment_Plus
@@ -125,14 +139,14 @@ Observation_Or_Assessment:
 		  Observation				{ $$ = [false, $1]; }
 		| '{' Assessment '}'			{ $$ = [true, $2]; } ;
 
-ObservationDecl	: 'OBSERVATION' Name Observation_Def	{ $$ = yy.decl($1, $2, $3); } ;
-Observation	: Name Observation_Def_Opt		{ $$ = $2 ? yy.decl('OBSERVATION', $1, $2) : $1; } ;
+ObservationDecl	: 'OBSERVATION' Name Observation_Def	{ $$ = yy.decl($1, $2, $3, @1.first_line, @1.first_column); } ;
+Observation	: Name Observation_Def_Opt		{ $$ = $2 ? yy.decl('OBSERVATION', $1, $2, @1.first_line, @1.first_column) : $1; } ;
 Observation_Def_Opt: '(' Observation_Def ')'		{ $$ = $2; }
 		|					{ $$ = null; } ;
 Observation_Def : Definition	{ $$ = { definition:$1 }; } ;
 
 Name		: NAME					{ $$ = $1; }
-		| iri					{ $$ = $1; } ;
+		| Iri					{ $$ = $1; } ;
 
 Definition	: Definition_Elt_Star			{ $$ = $1; } ;
 

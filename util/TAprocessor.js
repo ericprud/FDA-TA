@@ -1,5 +1,5 @@
 
-exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn, errStr) {
+exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDefinitions, warn, errStr) {
 
     function system (str) {
         if (str == "NCI EVS")
@@ -54,7 +54,7 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
         }
     };
 
-    function definition_toTurtle (def) {
+    function definition_toTurtle (def, parent) {
         ret = "";
         var range = null;
         var name = null;
@@ -90,7 +90,7 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
                 if (XTND in termdef)
                     xtnd = termdef[XTND] == '<';
             } else {
-                warn("can't find definiton for", def.ref);
+                warn(errStr(parent.file, parent.line, parent.column) + "can't find definiton for", def.ref);
             }
         }
 
@@ -169,36 +169,53 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
             "@prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .\n"+
             "@prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .\n"+
             "@prefix hl7: <http://hl7.org/owl/metadata#> .\n"+
+            imports.map(function (imp) {
+                return "@prefix "+imp[0]+" <http://www.w3.org/2013/12/FDA-TA/" + imp[1].substr(1, imp[1].indexOf(".")-1) + "#> .\n";
+            }).join("")+
             "\n"+
             "<http://www.w3.org/2013/12/FDA-TA/"+name+"> a owl:Ontology ;\n"+
-            "    owl:imports <http://www.w3.org/2013/12/FDA-TA/core> .\n"+
-            "\n"+
-            ":Assessment rdfs:subClassOf core:Assessment .\n"+
-            ":CDCoding rdfs:subClassOf dt:CDCoding .\n"+
-            allEndpoints.map(function (e) {
-                return endpoint_toTurtle(e, recursive);
+            "    owl:imports <http://www.w3.org/2013/12/FDA-TA/core> "+
+            imports.map(function (imp) {
+                return ",\n                <http://www.w3.org/2013/12/FDA-TA/" + imp[1].substr(1, imp[1].indexOf(".")-1) + "> ";
             }).join("")+
-            ":Organizer a owl:Class . # organizer for the "+name+" Therapeutic Area .\n"+
-            ":Subject rdfs:subClassOf :Organizer .\n"+
-            ":Protocol rdfs:subClassOf :Organizer .\n"+
-            ":AllEndpoints rdfs:subClassOf :Organizer ;\n"+
-            "    owl:equivalentClass [ owl:unionOf (\n"+
-            allEndpoints.map(function (e) {
-                return "        :" + e + " \n";
-            }).join("")+
-            "    ) ] .\n"+
-            "\n"+
-            ":Protocol \n"+
-            "    rdfs:subClassOf :Organizer, core:TAProtocol ,\n"+
-            "        [ owl:onProperty :hasEndpoint ; owl:someValuesFrom :AllEndpoints ] .\n"+
-            "";
+            ".\n"+
+            "\n:Assessment rdfs:subClassOf core:Assessment .\n"+
+            ":CDCoding rdfs:subClassOf dt:CDCoding .\n";
+        if (type == 'TA') {
+            ret += allEndpoints.map(function (e) {
+                    return endpoint_toTurtle(e, recursive, ta[e]);
+                }).join("")+
+                ":Organizer a owl:Class . # organizer for the "+name+" Therapeutic Area .\n"+
+                ":Subject rdfs:subClassOf :Organizer .\n"+
+                ":Protocol rdfs:subClassOf :Organizer .\n"+
+                ":AllEndpoints rdfs:subClassOf :Organizer ;\n"+
+                "    owl:equivalentClass [ owl:unionOf (\n"+
+                allEndpoints.map(function (e) {
+                    return "        :" + e + " \n";
+                }).join("")+
+                "    ) ] .\n"+
+                "\n"+
+                ":Protocol \n"+
+                "    rdfs:subClassOf :Organizer, core:TAProtocol ,\n"+
+                "        [ owl:onProperty :hasEndpoint ; owl:someValuesFrom :AllEndpoints ] .\n"+
+                "";
+        } else {
+            for (e in ta) {
+                if (!(e in defined)) {
+                    if (ta[e]._ == 'ASSESSMENT')
+                        ret += assessment_toTurtle(e, true, ta[e]);
+                    else
+                        ret += observation_toTurtle(e, true, ta[e]);
+                }
+            }
+        }
         return ret;
     }
 
-    function endpoint_toTurtle (e, recurse) {
+    function endpoint_toTurtle (e, recurse, parent) {
         var ret = '';
         if (e.lastIndexOf(END) != e.length-END.length)
-            warn(e, "should end with", END);
+            warn(errStr(parent.file, parent.line, parent.column) + e, "should end with", END);
         if (e in ta && !(e in defined)) {
             defined[e] = true;
             var endpoint = ta[e];
@@ -206,18 +223,18 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
                 + "    rdfs:subClassOf \n"
                 + "        core:EfficacyEndpoint ,\n"
                 + "        [ owl:onProperty core:evaluates ; owl:someValuesFrom :"+endpoint.outcome+" ] "
-            ret += definition_toTurtle(endpoint.definition);
+            ret += definition_toTurtle(endpoint.definition, endpoint);
             ret += ".\n";
             if (recurse)
-                ret += outcomeAssessment_toTurtle(endpoint.outcome, recurse);
+                ret += outcomeAssessment_toTurtle(endpoint.outcome, recurse, endpoint);
         }
         return ret;
     }
 
-    function outcomeAssessment_toTurtle (e, recurse) {
+    function outcomeAssessment_toTurtle (e, recurse, parent) {
         var ret = '';
         if (e.lastIndexOf(OUC) != e.length-OUC.length)
-            warn(e, "should end with", OUC);
+            warn(errStr(parent.file, parent.line, parent.column) + e, "should end with", OUC);
         if (e in ta && !(e in defined)) {
             defined[e] = true;
             var outcomeAssessment = ta[e];
@@ -228,20 +245,20 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
                 + "        core:SingleOutcomeAssessment ,\n"
                 + "        [ owl:onProperty core:beforeIntervention ; owl:someValuesFrom :"+on+" ] ,\n"
                 + "        [ owl:onProperty core:afterIntervention ; owl:someValuesFrom :"+on+" ] ";
-            ret += definition_toTurtle(outcomeAssessment.definition);
+            ret += definition_toTurtle(outcomeAssessment.definition, outcomeAssessment);
             ret += ".\n";
             if (recurse)
                 ret += (onAssessment
-                        ? assessment_toTurtle(on, recurse)
-                        : observation_toTurtle(on, recurse)) ;
+                        ? assessment_toTurtle(on, recurse, outcomeAssessment)
+                        : observation_toTurtle(on, recurse, outcomeAssessment)) ;
         }
         return ret;
     }
 
-    function assessment_toTurtle (e, recurse) {
+    function assessment_toTurtle (e, recurse, parent) {
         var ret = '';
         if (e.lastIndexOf(ASS) != e.length-ASS.length)
-            warn(e, "should end with", ASS);
+            warn(errStr(parent.file, parent.line, parent.column) + e, "should end with", ASS);
         if (e in ta && !(e in defined)) {
             defined[e] = true;
             var assessment = ta[e];
@@ -252,45 +269,50 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
                 + basedOn.map(function (e) {
                     return ",\n        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :"+e[1]+" ] ";
                 }).join("");
-            ret += definition_toTurtle(assessment.definition);
+            ret += definition_toTurtle(assessment.definition, assessment);
             ret += ".\n";
             if (recurse)
                 ret += basedOn.map(function (e) {
-                    var definedAsAssessment = e[1] in ta && ta[e[1]]._ == 'ASSESSMENT';
-                    if (e[0] && !definedAsAssessment)
-                        warn(e[1], "defined as observation but referenced as assessment");
-                    else if (!e[0] && definedAsAssessment)
-                        warn(e[1], "defined as assessment but referenced as observation");
-                    return definedAsAssessment
-                        ? assessment_toTurtle(e[1], recurse)
-                        : observation_toTurtle(e[1], recurse) ;
+                    if (e[1] in ta) {
+                        var definedAsAssessment = ta[e[1]]._ == 'ASSESSMENT';
+                        if (e[0] && !definedAsAssessment)
+                            warn(errStr(assessment.file, assessment.line, assessment.column) + e[1], "defined as observation but referenced as assessment");
+                        else if (!e[0] && definedAsAssessment)
+                            warn(errStr(assessment.file, assessment.line, assessment.column) + e[1], "defined as assessment but referenced as observation");
+                        return definedAsAssessment
+                            ? assessment_toTurtle(e[1], recurse, assessment)
+                            : observation_toTurtle(e[1], recurse, assessment) ;
+                    } else {
+                        warn(errStr(assessment.file, assessment.line, assessment.column) + e[1], "referenced but not defined");
+                        return '';
+                    }
                 }).join("");
         }
         return ret;
     }
 
-    function observation_toTurtle (e, recurse) {
+    function observation_toTurtle (e, recurse, parent) {
         var ret = '';
         if (e.lastIndexOf(OBS) != e.length-OBS.length)
-            warn(e, "should end with", OBS);
+            warn(errStr(parent.file, parent.line, parent.column) + e, "should end with", OBS);
         if (e in ta && !(e in defined)) {
             defined[e] = true;
             var observation = ta[e];
             var type =
                 observation._ == 'QUANT'
                 ? 'QuantitativeMeasurement'
-                : observation._ == 'SSX'
-                ? 'SignsAndSymptoms'
-                : 'DiagnosticProcedure' ;
+                : observation._ == 'DIAGPROC'
+                ? 'DiagnosticProcedure'
+                : 'SignsAndSymptoms' ;
             ret += ":"+e+" \n"
                 + "    rdfs:subClassOf \n"
                 + "        core:"+type+" ,\n"
                 + "        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,\n"
              // + "        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,\n"
                 + "        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :Defined"+e+" ] "
-                + definition_toTurtle(observation.definition)
+                + definition_toTurtle(observation.definition, observation)
                 + ".\n:Defined"+e+" rdfs:subClassOf bridg:DefinedObservation "
-                // + definition_toTurtle(observation.definition) -- duplicates term definitions @@factor
+                // + definition_toTurtle(observation.definition, observation) -- duplicates term definitions @@factor
             ret += ".\n\n";
         }
         return ret;
@@ -298,9 +320,11 @@ exports.toTurtle = function (ta, name, endpoints, defined, termDefinitions, warn
 
     ret = ta_toTurtle(true)+"\n\n"+auxilliaryTaxonomy.toString();
 
-    for (decl in ta)
-        if (!(decl in defined))
-            warn("unreferenced declaration:", decl);
+    for (declaration in ta)
+        if (!(declaration in defined)) {
+            var decl = ta[declaration];
+            warn(errStr(decl.file, decl.line, decl.column) + "unreferenced declaration:", declaration);
+        }
     if (true)
     for (termDefinition in termDefinitions)
         if (!(termDefinition in termDefinitionsUsed) && termDefinition.indexOf(' x ') == -1) {

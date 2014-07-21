@@ -1,0 +1,726 @@
+# $Id: TAprocessor.js,v 1.5 2014-07-20 19:38:52 eric Exp $
+#
+# ericP at the keyboard
+
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+@prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> .
+@prefix bridg: <http://www.bridgmodel.org/owl#> .
+
+@prefix : <http://www.w3.org/2013/12/FDA-TA/cns#> .
+@prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .
+@prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
+@prefix hl7: <http://hl7.org/owl/metadata#> .
+
+<http://www.w3.org/2013/12/FDA-TA/cns> a owl:Ontology ;
+    owl:imports <http://www.w3.org/2013/12/FDA-TA/core> .
+
+:Assessment rdfs:subClassOf core:Assessment .
+:CDCoding rdfs:subClassOf dt:CDCoding .
+:HAQ-DI_Assessment 
+    rdfs:subClassOf 
+        :Assessment ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_DressingAndGroomingAssessment ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_ArisingAssessment ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_EatingAssessment ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_WalkingAssessment ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_HygieneAssessment ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_ReachAssessment ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_GripAssessment ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_ActivitiesAssessment ] ;
+    rdfs:label "HAQ-DI" ;
+    skos:definition """A standardized questionnaire developed by James F. Fries in 1983, which is originally used to measure outcome in patients with Rheumatoid Arthritis. The HAQ-DI is a generic instrument which focuses on self-reported, patient-oriented outcome measures. The questionnaire contains 8 categories of 46 items; dressing and grooming, arising, eating, walking, hygiene, reaching, grip, and activities. 
+A 0-3 grade scale is used, where grade 0 represents category performed without any difficulty and grade 3 represents category performed with the greatest difficulty (unable to do).""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-C106699 ] .
+:HAQ-DI_DressingAndGroomingAssessment 
+    rdfs:subClassOf 
+        :Assessment ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_DressingAndGrooming_dressObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_DressingAndGrooming_shampooObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_DressingAndGrooming_aidsObservation ] ;
+    rdfs:label "dressing & grooming" ;
+    skos:definition """2 questions to assess ability to dress and groom one's self. 2 questions: one question on help of devices and one on help of a person.""" .
+:HAQ-DI_DressingAndGrooming_dressObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_DressingAndGrooming_dressObservation ] ,
+        [ owl:onProperty data:value ; owl:allValuesFrom [
+            a rdfs:Datatype ;
+            owl:onDatatype xsd:integer ;
+            owl:withRestrictions ( [ xsd:minInclusive 0 ] [ xsd:maxInclusive 3 ] )
+        ] ] ;
+    rdfs:label "dressing & grooming x - dress" ;
+    skos:definition """to dress""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448078 ] .
+:DefinedHAQ-DI_DressingAndGrooming_dressObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_DressingAndGrooming_shampooObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_DressingAndGrooming_shampooObservation ] ,
+        [ owl:onProperty data:value ; owl:allValuesFrom [
+            a rdfs:Datatype ;
+            owl:onDatatype xsd:integer ;
+            owl:withRestrictions ( [ xsd:minInclusive 0 ] [ xsd:maxInclusive 3 ] )
+        ] ] ;
+    rdfs:label "dressing & grooming x - shampoo" ;
+    skos:definition """to shampoo""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448079 ] .
+:DefinedHAQ-DI_DressingAndGrooming_shampooObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_DressingAndGrooming_aidsObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_DressingAndGrooming_aidsObservation ] ,
+        [ owl:onProperty data:value ; owl:allValuesFrom [
+            a rdfs:Datatype ;
+            owl:onDatatype xsd:integer ;
+            owl:withRestrictions ( [ xsd:minInclusive 0 ] [ xsd:maxInclusive 3 ] )
+        ] ] ;
+    rdfs:label "dressing & grooming x - aids" ;
+    skos:definition """aids of a person or device""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448094 ] .
+:DefinedHAQ-DI_DressingAndGrooming_aidsObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_ArisingAssessment 
+    rdfs:subClassOf 
+        :Assessment ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Arising_chairObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Arising_bedObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Arising_aidsObservation ] ;
+    rdfs:label "arising" ;
+    skos:definition """2 questions to assess ability to get up out of bed or a chair. 2 questions: one question on help of devices and one on help of a person.""" .
+:HAQ-DI_Arising_chairObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Arising_chairObservation ] ;
+    rdfs:label "arising x - chair" ;
+    skos:definition """from chair""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-C1290946 ] .
+:DefinedHAQ-DI_Arising_chairObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_Arising_bedObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Arising_bedObservation ] ;
+    rdfs:label "arising x - bed" ;
+    skos:definition """from bed""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-C0439549 ] .
+:DefinedHAQ-DI_Arising_bedObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_Arising_aidsObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Arising_aidsObservation ] ;
+    rdfs:label "arising x - aids" ;
+    skos:definition """aids of a person or device""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448094 ] .
+:DefinedHAQ-DI_Arising_aidsObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_EatingAssessment 
+    rdfs:subClassOf 
+        :Assessment ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Eating_cutObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Eating_openObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Eating_liftObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Eating_aidsObservation ] ;
+    rdfs:label "eating" ;
+    skos:definition """3 questions to assess ability to use utencils, lift a glass or open a milk carton. 2 questions: one question on help of devices and one on help of a person.""" .
+:HAQ-DI_Eating_cutObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Eating_cutObservation ] ;
+    rdfs:label "eating x - cut" ;
+    skos:definition """cut meat""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448082 ] .
+:DefinedHAQ-DI_Eating_cutObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_Eating_openObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Eating_openObservation ] ;
+    rdfs:label "eating x - open" ;
+    skos:definition """milk carton""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448084 ] .
+:DefinedHAQ-DI_Eating_openObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_Eating_liftObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Eating_liftObservation ] ;
+    rdfs:label "eating x - lift" ;
+    skos:definition """glass to mouth""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448083 ] .
+:DefinedHAQ-DI_Eating_liftObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_Eating_aidsObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Eating_aidsObservation ] ;
+    rdfs:label "eating x - aids" ;
+    skos:definition """aids of a person or device""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448094 ] .
+:DefinedHAQ-DI_Eating_aidsObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_WalkingAssessment 
+    rdfs:subClassOf 
+        :Assessment ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Walking_climbStepsObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Walking_walkObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Walking_aidsObservation ] ;
+    rdfs:label "walking" ;
+    skos:definition """2 questions to assess ability walking on flat grounds and climbs up stairs. 2 questions: one question on help of devices and one on help of a person.""" .
+:HAQ-DI_Walking_climbStepsObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Walking_climbStepsObservation ] ;
+    rdfs:label "walking x - climb steps" ;
+    skos:definition """climb steps""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448086 ] .
+:DefinedHAQ-DI_Walking_climbStepsObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_Walking_walkObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Walking_walkObservation ] ;
+    rdfs:label "walking x - walk" ;
+    skos:definition """walk outdoors on flat ground""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448085 ] .
+:DefinedHAQ-DI_Walking_walkObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_Walking_aidsObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Walking_aidsObservation ] ;
+    rdfs:label "walking x - aids" ;
+    skos:definition """aids of a person or device""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448094 ] .
+:DefinedHAQ-DI_Walking_aidsObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_HygieneAssessment 
+    rdfs:subClassOf 
+        :Assessment ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Hygiene_bathObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Hygiene_washObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Hygiene_toiletObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Hygiene_aidsObservation ] ;
+    rdfs:label "hygiene" ;
+    skos:definition """3 questions to assess ability to wash body, get off toilet and take a bath. 2 questions: one question on help of devices and one on help of a person.""" .
+:HAQ-DI_Hygiene_bathObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Hygiene_bathObservation ] ;
+    rdfs:label "hygiene x - bath" ;
+    skos:definition """take bath""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448101 ] .
+:DefinedHAQ-DI_Hygiene_bathObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_Hygiene_washObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Hygiene_washObservation ] ;
+    rdfs:label "hygiene x - wash" ;
+    skos:definition """wash and dry body""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448100 ] .
+:DefinedHAQ-DI_Hygiene_washObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_Hygiene_toiletObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Hygiene_toiletObservation ] ;
+    rdfs:label "hygiene x - toilet" ;
+    skos:definition """get off the toilet""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448102 ] .
+:DefinedHAQ-DI_Hygiene_toiletObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_Hygiene_aidsObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Hygiene_aidsObservation ] ;
+    rdfs:label "hygiene x - aids" ;
+    skos:definition """aids of a person or device""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448094 ] .
+:DefinedHAQ-DI_Hygiene_aidsObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_ReachAssessment 
+    rdfs:subClassOf 
+        :Assessment ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Reach_pickUpObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Reach_fromAboveObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Reach_aidsObservation ] ;
+    rdfs:label "reach" ;
+    skos:definition """2 questions to assess ability to lift 5 lb objects overhead or on the ground. 2 questions: one question on help of devices and one on help of a person.""" .
+:HAQ-DI_Reach_pickUpObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Reach_pickUpObservation ] ;
+    rdfs:label "reach x - pick up" ;
+    skos:definition """pick up from floor""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448104 ] .
+:DefinedHAQ-DI_Reach_pickUpObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_Reach_fromAboveObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Reach_fromAboveObservation ] ;
+    rdfs:label "reach x - from above" ;
+    skos:definition """object from above head""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448103 ] .
+:DefinedHAQ-DI_Reach_fromAboveObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_Reach_aidsObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Reach_aidsObservation ] ;
+    rdfs:label "reach x - aids" ;
+    skos:definition """aids of a person or device""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448094 ] .
+:DefinedHAQ-DI_Reach_aidsObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_GripAssessment 
+    rdfs:subClassOf 
+        :Assessment ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Grip_faucetsObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Grip_carDoorsObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Grip_jarsObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Grip_aidsObservation ] ;
+    rdfs:label "grip" ;
+    skos:definition """3 questions to assess ability to open car doors or previously opened jars. 2 questions: one question on help of devices and one on help of a person.""" .
+:HAQ-DI_Grip_faucetsObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Grip_faucetsObservation ] ;
+    rdfs:label "grip x - faucets" ;
+    skos:definition """faucets""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448107 ] .
+:DefinedHAQ-DI_Grip_faucetsObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_Grip_carDoorsObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Grip_carDoorsObservation ] ;
+    rdfs:label "grip x - car doors" ;
+    skos:definition """open car doors""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448105 ] .
+:DefinedHAQ-DI_Grip_carDoorsObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_Grip_jarsObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Grip_jarsObservation ] ;
+    rdfs:label "grip x - jars" ;
+    skos:definition """open jars""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448106 ] .
+:DefinedHAQ-DI_Grip_jarsObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_Grip_aidsObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Grip_aidsObservation ] ;
+    rdfs:label "grip x - aids" ;
+    skos:definition """aids of a person or device""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448094 ] .
+:DefinedHAQ-DI_Grip_aidsObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_ActivitiesAssessment 
+    rdfs:subClassOf 
+        :Assessment ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Activities_vacuumObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Activities_errandsObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Activities_outOfCarObservation ] ,
+        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Activities_aidsObservation ] ;
+    rdfs:label "common daily activities" ;
+    skos:definition """3 questions to assess ability to perform common errands, getting in and out of cars, or doing light chores. 2 questions: one question on help of devices and one on help of a person.""" .
+:HAQ-DI_Activities_vacuumObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Activities_vacuumObservation ] ;
+    rdfs:label "common daily activities x - vacuum" ;
+    skos:definition """vacuum""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-CL448110 ] .
+:DefinedHAQ-DI_Activities_vacuumObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_Activities_errandsObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Activities_errandsObservation ] ;
+    rdfs:label "common daily activities x - errands" ;
+    skos:definition """errands""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-CL448108 ] .
+:DefinedHAQ-DI_Activities_errandsObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_Activities_outOfCarObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Activities_outOfCarObservation ] ;
+    rdfs:label "common daily activities x - out of car" ;
+    skos:definition """get out of the car""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-CL448109 ] .
+:DefinedHAQ-DI_Activities_outOfCarObservation rdfs:subClassOf bridg:DefinedObservation .
+
+:HAQ-DI_Activities_aidsObservation 
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Activities_aidsObservation ] ;
+    rdfs:label "common daily activities x - aids" ;
+    skos:definition """aids of a person or device""" ;
+    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-CL448094 ] .
+:DefinedHAQ-DI_Activities_aidsObservation rdfs:subClassOf bridg:DefinedObservation .
+
+
+
+:NCI-EVS-C106699 
+  rdfs:subClassOf :CDCoding ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "C106699" ]
+       ) ] .
+:NCI-EVS-refined-CL448078 
+  rdfs:subClassOf :CDCoding ,
+    [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448078" ]
+       ) ] ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448078" ]
+       ) ] .
+:NCI-EVS-refined-CL448079 
+  rdfs:subClassOf :CDCoding ,
+    [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448079" ]
+       ) ] ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448079" ]
+       ) ] .
+:NCI-EVS-refined-CL448094 
+  rdfs:subClassOf :CDCoding ,
+    [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448094" ]
+       ) ] ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448094" ]
+       ) ] .
+:NCI-EVS-refined-C1290946 
+  rdfs:subClassOf :CDCoding ,
+    [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "C1290946" ]
+       ) ] ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-C1290946" ]
+       ) ] .
+:NCI-EVS-refined-C0439549 
+  rdfs:subClassOf :CDCoding ,
+    [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "C0439549" ]
+       ) ] ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-C0439549" ]
+       ) ] .
+:NCI-EVS-refined-CL448094 
+  rdfs:subClassOf :CDCoding ,
+    [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448094" ]
+       ) ] ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448094" ]
+       ) ] .
+:NCI-EVS-refined-CL448082 
+  rdfs:subClassOf :CDCoding ,
+    [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448082" ]
+       ) ] ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448082" ]
+       ) ] .
+:NCI-EVS-refined-CL448084 
+  rdfs:subClassOf :CDCoding ,
+    [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448084" ]
+       ) ] ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448084" ]
+       ) ] .
+:NCI-EVS-refined-CL448083 
+  rdfs:subClassOf :CDCoding ,
+    [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448083" ]
+       ) ] ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448083" ]
+       ) ] .
+:NCI-EVS-refined-CL448094 
+  rdfs:subClassOf :CDCoding ,
+    [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448094" ]
+       ) ] ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448094" ]
+       ) ] .
+:NCI-EVS-refined-CL448086 
+  rdfs:subClassOf :CDCoding ,
+    [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448086" ]
+       ) ] ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448086" ]
+       ) ] .
+:NCI-EVS-refined-CL448085 
+  rdfs:subClassOf :CDCoding ,
+    [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448085" ]
+       ) ] ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448085" ]
+       ) ] .
+:NCI-EVS-refined-CL448094 
+  rdfs:subClassOf :CDCoding ,
+    [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448094" ]
+       ) ] ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448094" ]
+       ) ] .
+:NCI-EVS-refined-CL448101 
+  rdfs:subClassOf :CDCoding ,
+    [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448101" ]
+       ) ] ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448101" ]
+       ) ] .
+:NCI-EVS-refined-CL448100 
+  rdfs:subClassOf :CDCoding ,
+    [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448100" ]
+       ) ] ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448100" ]
+       ) ] .
+:NCI-EVS-refined-CL448102 
+  rdfs:subClassOf :CDCoding ,
+    [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448102" ]
+       ) ] ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448102" ]
+       ) ] .
+:NCI-EVS-refined-CL448094 
+  rdfs:subClassOf :CDCoding ,
+    [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448094" ]
+       ) ] ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448094" ]
+       ) ] .
+:NCI-EVS-refined-CL448104 
+  rdfs:subClassOf :CDCoding ,
+    [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448104" ]
+       ) ] ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448104" ]
+       ) ] .
+:NCI-EVS-refined-CL448103 
+  rdfs:subClassOf :CDCoding ,
+    [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448103" ]
+       ) ] ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448103" ]
+       ) ] .
+:NCI-EVS-refined-CL448094 
+  rdfs:subClassOf :CDCoding ,
+    [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448094" ]
+       ) ] ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448094" ]
+       ) ] .
+:NCI-EVS-refined-CL448107 
+  rdfs:subClassOf :CDCoding ,
+    [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448107" ]
+       ) ] ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448107" ]
+       ) ] .
+:NCI-EVS-refined-CL448105 
+  rdfs:subClassOf :CDCoding ,
+    [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448105" ]
+       ) ] ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448105" ]
+       ) ] .
+:NCI-EVS-refined-CL448106 
+  rdfs:subClassOf :CDCoding ,
+    [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448106" ]
+       ) ] ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448106" ]
+       ) ] .
+:NCI-EVS-refined-CL448094 
+  rdfs:subClassOf :CDCoding ,
+    [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448094" ]
+       ) ] ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448094" ]
+       ) ] .
+:NCI-EVS-CL448110 
+  rdfs:subClassOf :CDCoding ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448110" ]
+       ) ] .
+:NCI-EVS-CL448108 
+  rdfs:subClassOf :CDCoding ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448108" ]
+       ) ] .
+:NCI-EVS-CL448109 
+  rdfs:subClassOf :CDCoding ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448109" ]
+       ) ] .
+:NCI-EVS-CL448094 
+  rdfs:subClassOf :CDCoding ;
+   owl:equivalentClass [
+     owl:intersectionOf (
+       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448094" ]
+       ) ] .
+
