@@ -25,33 +25,48 @@
 :ValueSetValue a owl:Class ;
     rdfs:label "set of terms" .
 
+hl7:Datatype a owl:Class .
+
 hl7:Datatype.objectProperty rdfs:subPropertyOf bridg:attributeProperty . # patch
 
 dt:CD.CodeSystem a owl:ObjectProperty .
 dt:CD.Coding a owl:DatatypeProperty .
 
 # include a bit from O-RIM's datatypes-uv-2.0.ttl
-dt:ANY rdfs:subClassOf hl7:Datatype .
-dt:CD rdfs:subClassOf dt:ANY .
- dt:CD.codeSystemName a owl:ObjectProperty ;
-     rdfs:domain dt:CD ;
-     rdfs:range dt:ST , dt:ST.NT ;
-     rdfs:subPropertyOf hl7:Datatype.objectProperty .
- dt:CD.displayName a owl:ObjectProperty ;
-                  rdfs:domain dt:CD ;
-                  rdfs:range dt:ST ;
-                  rdfs:subPropertyOf hl7:Datatype.objectProperty .
-dt:DSET_CD rdfs:subClassOf dt:DSET_ANY .
-dt:DSET_ANY rdfs:subClassOf hl7:Datatype .
-dt:II rdfs:subClassOf dt:ANY .
-dt:IVL_INT rdfs:subClassOf dt:IVL_QTZ .
-dt:IVL_QTZ rdfs:subClassOf dt:IVL_QTY .
-dt:IVL_QTY rdfs:subClassOf hl7:Datatype .
-dt:IVL_TS.DATETIME rdfs:subClassOf dt:IVL_TS .
-dt:IVL_TS rdfs:subClassOf dt:IVL_QTY .
-dt:TS.DATETIME rdfs:subClassOf dt:TS .
-dt:TS rdfs:subClassOf dt:QTY .
-dt:QTY rdfs:subClassOf dt:ANY .
-dt:PQ.TIME rdfs:subClassOf dt:PQ .
-dt:PQ rdfs:subClassOf dt:QTZ .
-dt:QTZ rdfs:subClassOf dt:QTY .
+dt:ANY a owl:Class ; rdfs:subClassOf hl7:Datatype .
+ dt:CD a owl:Class ; rdfs:subClassOf dt:ANY .
+  dt:CD.codeSystemName a owl:ObjectProperty ;
+      rdfs:domain dt:CD ;
+      rdfs:range dt:ST , dt:ST.NT ;
+      rdfs:subPropertyOf hl7:Datatype.objectProperty .
+  dt:CD.displayName a owl:ObjectProperty ;
+      rdfs:domain dt:CD ;
+      rdfs:range dt:ST ;
+      rdfs:subPropertyOf hl7:Datatype.objectProperty .
+
+ dt:CDCoding a :Class ; rdfs:subClassOf dt:ANY .
+
+ dt:ED a owl:Class ; rdfs:subClassOf dt:ANY .
+  dt:ST a owl:Class ; rdfs:subClassOf dt:ED .
+   dt:ST.NT a owl:Class ; rdfs:subClassOf dt:ST .
+
+ dt:II a owl:Class ; rdfs:subClassOf dt:ANY .
+
+dt:QTY a owl:Class ; rdfs:subClassOf dt:ANY .
+ dt:TS a owl:Class ; rdfs:subClassOf dt:QTY .
+  dt:TS.DATETIME a owl:Class ; rdfs:subClassOf dt:TS .
+
+ dt:QTZ a owl:Class ; rdfs:subClassOf dt:QTY .
+  dt:PQ a owl:Class ; rdfs:subClassOf dt:QTZ .
+   dt:PQ.TIME a owl:Class ; rdfs:subClassOf dt:PQ .
+
+dt:DSET_ANY a owl:Class ; rdfs:subClassOf hl7:Datatype .
+ dt:DSET_CD a owl:Class ; rdfs:subClassOf dt:DSET_ANY .
+
+dt:IVL_QTY a owl:Class ; rdfs:subClassOf hl7:Datatype .
+ dt:IVL_QTZ a owl:Class ; rdfs:subClassOf dt:IVL_QTY .
+  dt:IVL_INT a owl:Class ; rdfs:subClassOf dt:IVL_QTZ .
+
+ dt:IVL_TS a owl:Class ; rdfs:subClassOf dt:IVL_QTY .
+  dt:IVL_TS.DATETIME a owl:Class ; rdfs:subClassOf dt:IVL_TS .
+

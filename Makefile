@@ -44,8 +44,8 @@ t_Osteoporosis: Osteoporosis.ttl
 	sparql -d Osteoporosis.ttl -q
 
 # import hierarchy
-RheumatoidArthritis.tapp: cns.tapp
-Osteoporosis.tapp: skeletal.tapp
+RheumatoidArthritis.ttl: cns.ttl
+Osteoporosis.ttl: skeletal.ttl
 
 
 # perform all tests

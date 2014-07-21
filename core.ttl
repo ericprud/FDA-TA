@@ -16,7 +16,8 @@
 @prefix : <http://www.w3.org/2013/12/FDA-TA/core#> .
 
 <http://www.w3.org/2013/12/FDA-TA/core> a owl:Ontology ;
-    owl:imports <http://www.w3.org/2013/12/FDA-TA/datatypes> .
+    owl:imports <http://www.w3.org/2013/12/FDA-TA/bridg-classes> ,
+                <http://www.w3.org/2013/12/FDA-TA/datatypes> .
 
 ###############################################################################
 # primitives
@@ -44,7 +45,7 @@
 #
 
 # TherapeuticIntervention is one of :BehaviorModification :TherapeuticProcedure :MedicationAdministration
-:TherapeuticIntervention 
+:TherapeuticIntervention a owl:Class ; 
     owl:disjointUnionOf (
         :BehaviorModification :TherapeuticProcedure :MedicationAdministration 
     ) ;
@@ -53,9 +54,11 @@
 # 	owl:allValuesFrom :TemporalProfile
 #     ] 
 .
-:BehaviorModification rdfs:subClassOf :TherapeuticIntervention .
-:TherapeuticProcedure rdfs:subClassOf :TherapeuticIntervention .
-:MedicationAdministration rdfs:subClassOf :TherapeuticIntervention .
+:BehaviorModification     a owl:Class ; rdfs:subClassOf :TherapeuticIntervention .
+:TherapeuticProcedure     a owl:Class ; rdfs:subClassOf :TherapeuticIntervention , bridg:PerformedProcedure .
+:MedicationAdministration a owl:Class ; rdfs:subClassOf :TherapeuticIntervention ,
+        bridg:PerformedSubstanceAdministration ,
+        [ a owl:Restriction ; owl:onProperty :hasMedication ; owl:cardinality 1 ] .
 
 
 :hasInterventionTime a owl:DatatypeProperty ;
@@ -63,25 +66,19 @@
     rdfs:range xsd:dateTime ;
     rdfs:subPropertyOf bridg:PerformedActivity.dateRange .
 
-:BehaviorModification     rdfs:subClassOf :TherapeuticIntervention .
-:TherapeuticProcedure	  rdfs:subClassOf :TherapeuticIntervention , bridg:PerformedProcedure .
-:MedicationAdministration rdfs:subClassOf :TherapeuticIntervention ,
-        bridg:PerformedSubstanceAdministration ,
-        [ owl:onProperty :hasMedication ; owl:cardinality 1 ] .
-
 # :Prescription is a bridg:ScheduledSubstanceAdministration\
 # bridg:ConcomitantAgent
-:MedicationPrescription 
-    rdfs:subClassOf [ owl:onProperty :hasDosagePlan ; owl:cardinality 1 ] ;
-    rdfs:subClassOf [ owl:onProperty :hasMedication ; owl:cardinality 1 ] .
+:MedicationPrescription a owl:Class ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty :hasDosagePlan ; owl:cardinality 1 ] ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty :hasMedication ; owl:cardinality 1 ] .
 
-:Medication rdfs:subClassOf bridg:Drug . # can revert to bridg:Drug if we never need to differentiate.
+:Medication a owl:Class ; rdfs:subClassOf bridg:Drug . # can revert to bridg:Drug if we never need to differentiate.
 
 # TI properties
 :hasIntervention a owl:ObjectProperty ;
     rdfs:range :TherapeuticIntervention .
 
-:hasMedication a owl:ObjectProperty ;
+:hasMedication   a owl:ObjectProperty ;
     # rdfs:domain :MedicationAdministration ; # :MedicationAdministration or :MedicationPrescription
     rdfs:range :Medication .
 
@@ -93,15 +90,15 @@
 
 :hasConsentForIntervention a owl:ObjectProperty ;
     rdfs:domain :TherapeuticIntervention ;
-    rdfs:range :ConsentForIntervention .
+    rdfs:range :ConsentForIntervention . # @@ BRIDG-ify
 
 :hasEncounterProfile a owl:ObjectProperty ;
     rdfs:domain :TherapeuticIntervention ;
     rdfs:range :EncounterProfile .
 
 
-:hasDosagePlan a owl:ObjectProperty ;
-    rdfs:domain :MedicationAdministration ;
+:hasDosagePlan a owl:ObjectProperty ; # @@ move to BRIDG
+#    rdfs:domain :MedicationAdministration ;
     rdfs:range :DosagePlan .
 :hasMedicationSchedule a owl:ObjectProperty ;
      rdfs:domain :DosagePlan ;
@@ -113,28 +110,28 @@
 :hasMedicationQuantity a owl:ObjectProperty ;
     rdfs:domain :Dosage ;
     rdfs:range :MedicationQuantity .
-:MedicationQuantity rdfs:subClassOf dt:PQ.
+:MedicationQuantity    a owl:Class ; rdfs:subClassOf dt:PQ.
 
-:DosagePlan 
+:DosagePlan a owl:Class ;
     rdfs:subClassOf 
-        [ owl:onProperty :hasMedicationSchedule ; owl:cardinality 1 ] ,
-        # [ owl:onProperty :medicationRoute ; owl:cardinality 1 ] ,
-        [ owl:onProperty :hasMedicationQuantity ; owl:cardinality 1 ] .
+        [ a owl:Restriction ; owl:onProperty :hasMedicationSchedule ; owl:cardinality 1 ] ,
+        # [ a owl:Restriction ; owl:onProperty :medicationRoute ; owl:cardinality 1 ] ,
+        [ a owl:Restriction ; owl:onProperty :hasMedicationQuantity ; owl:cardinality 1 ] .
 
 :hasMedicationFrequency a owl:DatatypeProperty ;
     rdfs:domain :Dosage ;
     rdfs:range xsd:integer .
-:hasMedicationDuration a owl:DatatypeProperty ;
+:hasMedicationDuration  a owl:DatatypeProperty ;
     rdfs:domain :Dosage ;
     rdfs:range xsd:float .
-:hasMedicationUnits a owl:DatatypeProperty ;
+:hasMedicationUnits     a owl:DatatypeProperty ;
     rdfs:domain :Dosage ;
     rdfs:range xsd:string .
-:MedicationSchedule
+:MedicationSchedule a owl:Class ;
     rdfs:subClassOf
-        [ owl:onProperty :hasMedicationFrequency ; owl:cardinality 1 ] ,
-        [ owl:onProperty :hasMedicationDuration ; owl:cardinality 1 ] ,
-        [ owl:onProperty :hasMedicationUnits ; owl:cardinality 1 ] .
+        [ a owl:Restriction ; owl:onProperty :hasMedicationFrequency ; owl:cardinality 1 ] ,
+        [ a owl:Restriction ; owl:onProperty :hasMedicationDuration ; owl:cardinality 1 ] ,
+        [ a owl:Restriction ; owl:onProperty :hasMedicationUnits ; owl:cardinality 1 ] .
 
 :EncounterProfile a owl:Class . # @@ elided schedule and emergency status
 
@@ -146,30 +143,30 @@
 :hasObservation a owl:ObjectProperty ;
     rdfs:range :Observation .
 
-:Observation 
+:Observation a owl:Class ;
     owl:disjointUnionOf (
         :AdministrativeObservation :ClinicalObservation 
     ) ;
     rdfs:subClassOf bridg:PerformedObservation ,
-        [ owl:onProperty :hasObservationTime ; owl:cardinality 1 ] . # ,
-:AdministrativeObservation rdfs:subClassOf :Observation .
-:ClinicalObservation rdfs:subClassOf :Observation .
+        [ a owl:Restriction ; owl:onProperty :hasObservationTime ; owl:cardinality 1 ] . # ,
+:AdministrativeObservation a owl:Class ; rdfs:subClassOf :Observation .
+:ClinicalObservation       a owl:Class ; rdfs:subClassOf :Observation .
 
         # Don't apply cardinality constraints to properties defined as property
         # chains or you'll get a "reasoner died" dialgo with e.g. (from Fact++):
         # org.semanticweb.owlapi.reasoner.OWLReasonerRuntimeException: Non-simple object property 'http://www.w3.org/2013/12/FDA-TA/core#hasResultValue' is used as a simple one
-        # [ owl:onProperty :hasResultValue ; owl:cardinality 1 ] .
+        # [ a owl:Restriction ; owl:onProperty :hasResultValue ; owl:cardinality 1 ] .
 
-:AdministrativeObservation a owl:Class .
-:Disposition rdfs:subClassOf :AdministrativeObservation ,
-    [ owl:onProperty :hasResultValue ; owl:someValuesFrom :DispositionValue ] .
-:DispositionValue owl:equivalentClass [
+:AdministrativeObservation     a owl:Class .
+:Disposition                   a owl:Class ; rdfs:subClassOf :AdministrativeObservation ,
+    [ a owl:Restriction ; owl:onProperty :hasResultValue ; owl:someValuesFrom :DispositionValue ] .
+:DispositionValue a owl:Class ; owl:equivalentClass [ a owl:Class ;
             owl:oneOf ( :Deceased :LostToFollowup :AdministrativeWithdrawl :ConsentWithdrawl ) ] .
-:DefinedAdministrativeEndpoint rdfs:subClassOf bridg:DefinedObservation .
-:AdministrativeEndpoint rdfs:subClassOf 
+:DefinedAdministrativeEndpoint a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+:AdministrativeEndpoint        a owl:Class ; rdfs:subClassOf 
     :Disposition ,
-    [ owl:onProperty :dependsOn ; owl:minCardinality 1 ] ,
-    [ owl:onProperty :sparqlQuery ; owl:cardinality 1 ] .
+    [ a owl:Restriction ; owl:onProperty :dependsOn ; owl:minCardinality 1 ] ,
+    [ a owl:Restriction ; owl:onProperty :sparqlQuery ; owl:cardinality 1 ] .
 
 # @@ Will we use this hierarchy from cUTI?
 ###   :Disposition :includes :Prematurely_Withdrawn_from_Treatment .
@@ -212,17 +209,19 @@
     owl:disjointUnionOf (
         :Assessment :SingleObservation :InferrableDiagnosis 
     ) .
-:Assessment rdfs:subClassOf :ClinicalObservation .
-:SingleObservation rdfs:subClassOf :ClinicalObservation .
-:InferrableDiagnosis rdfs:subClassOf :ClinicalObservation .
+:Assessment          a owl:Class ; rdfs:subClassOf :ClinicalObservation .
+:SingleObservation   a owl:Class ; rdfs:subClassOf :ClinicalObservation .
+:InferrableDiagnosis a owl:Class ; rdfs:subClassOf :ClinicalObservation .
 
 # :Assessment described below
-:SingleObservation       rdfs:subClassOf :ClinicalObservation ;
+:SingleObservation 
     owl:unionOf (
         :DiagnosticProcedure :QuantitativeMeasurement :SignsAndSymptoms 
     ) .
-# :DiagnosticProcedure     rdfs:subClassOf :SingleObservation .
-# :QuantitativeMeasurement rdfs:subClassOf :SingleObservation .
+:DiagnosticProcedure     a owl:Class ; rdfs:subClassOf :SingleObservation .
+:QuantitativeMeasurement a owl:Class ; rdfs:subClassOf :SingleObservation .
+:SignsAndSymptoms        a owl:Class ; rdfs:subClassOf :SingleObservation .
+
 :isJustifiedBy a owl:ObjectProperty ; # @@reasonCode
     rdfs:domain :DiagnosticProcedure ;
     rdfs:range :ClinicalObservation .
@@ -233,21 +232,20 @@
 :specimentAccepability a owl:DatatypeProperty ;
     rdfs:range [ a owl:Class; owl:unionOf (true false) ] .
 :performedAtLocalOrCentralLab a owl:ObjectProperty ;
-    rdfs:range [ owl:oneOf ( :LocalLab :CentralLab ) ] .
-:LabTest 
+    rdfs:range [ a owl:Class ; owl:oneOf ( :LocalLab :CentralLab ) ] .
+:LabTest   a owl:Class ;
     rdfs:subClassOf 
         :QuantitativeMeasurement , # @@ subclass QuantitativeMeasurement for lab reports?
-        [ owl:onProperty :specimentAccepability ; owl:maxCardinality 1 ] ,
-        [ owl:onProperty :performedAtLocalOrCentralLab ; owl:maxCardinality 1 ] .
-:a a owl:AnnotationProperty .
-:LabReport rdfs:subClassOf bridg:PerformedObservationResult ; :a :b .
+        [ a owl:Restriction ; owl:onProperty :specimentAccepability ; owl:maxCardinality 1 ] ,
+        [ a owl:Restriction ; owl:onProperty :performedAtLocalOrCentralLab ; owl:maxCardinality 1 ] .
+:LabReport a owl:Class ; rdfs:subClassOf bridg:PerformedObservationResult .
 
-:PathologyReport rdfs:subClassOf :QuantitativeMeasurement .
-:hasClassification a owl:ObjectProperty ;
+:PathologyReport     a owl:Class ; rdfs:subClassOf :QuantitativeMeasurement .
+:hasClassification   a owl:ObjectProperty ;
     rdfs:domain :PathologyReport . # can have any value .
 :hasPathologyFinding a owl:ObjectProperty ;
     rdfs:domain :PathologyReport . # can have any value .
-:SignsAndSymptoms        rdfs:subClassOf :SingleObservation .
+:SignsAndSymptoms    a owl:Class ; rdfs:subClassOf :SingleObservation .
 # [] a owl:AllDisjointClasses ; # @@ needed?
 #     owl:members ( :Assessment :DiagnosticProcedure :QuantitativeMeasurement :SignsAndSymptoms ) .
 
@@ -276,10 +274,10 @@
     rdfs:domain :Observation ;
     rdfs:range xsd:dateTime .
 
-:Assessment 
+:Assessment a owl:Class ;
     rdfs:subClassOf 
         :ClinicalObservation ,
-        [ owl:onProperty :hasObservation ; owl:minCardinality 1 ] .
+        [ a owl:Restriction ; owl:onProperty :hasObservation ; owl:minCardinality 1 ] .
 
 :hasObservation a owl:ObjectProperty ;
 #    rdfs:domain :Assessment ; # lots of things have observations.
@@ -313,6 +311,8 @@
     rdfs:domain :Observation ;
     rdfs:range :SingleOutcomeAssessmentValue .
 
+:SingleOutcomeAssessmentValue a owl:Class .
+
 :lastInterventionToAfterDuration a owl:DatatypeProperty ;
     rdfs:range xsd:string . # P10DT15H !! xsd:duration
 
@@ -323,55 +323,52 @@
 :hasEndpoint a owl:ObjectProperty ;
     rdfs:domain :TAProtocol ;
     rdfs:range :EfficacyEndpoint .
-:TAProtocol rdfs:subClassOf bridg:StudyProtocol .
+:TAProtocol a owl:Class ; rdfs:subClassOf bridg:StudyProtocol .
 
 :hasObservationType a owl:ObjectProperty .
 :hasInterventionType a owl:ObjectProperty .
 
-:DefinedSingleOutcomeAssessment rdfs:subClassOf 
+:DefinedSingleOutcomeAssessment a owl:Class ; rdfs:subClassOf 
     bridg:DefinedObservation ,
-    [ owl:onProperty :hasObservationType ; owl:minCardinality 1 ] ,
-    [ owl:onProperty :hasInterventionType ; owl:minCardinality 1 ] ,
-    [ owl:onProperty :lastInterventionToAfterDuration ; owl:maxCardinality 1 ] .
-:SingleOutcomeAssessment rdfs:subClassOf 
+    [ a owl:Restriction ; owl:onProperty :hasObservationType ; owl:minCardinality 1 ] ,
+    [ a owl:Restriction ; owl:onProperty :hasInterventionType ; owl:minCardinality 1 ] ,
+    [ a owl:Restriction ; owl:onProperty :lastInterventionToAfterDuration ; owl:maxCardinality 1 ] .
+:SingleOutcomeAssessment a owl:Class ; rdfs:subClassOf 
     :Assessment ,
-    [ owl:onProperty :beforeIntervention ; owl:minCardinality 1 ] ,
-    [ owl:onProperty :hasIntervention ; owl:minCardinality 1 ] ,
-    [ owl:onProperty :afterIntervention ; owl:minCardinality 1 ] .
+    [ a owl:Restriction ; owl:onProperty :beforeIntervention ; owl:minCardinality 1 ] ,
+    [ a owl:Restriction ; owl:onProperty :hasIntervention ; owl:minCardinality 1 ] ,
+    [ a owl:Restriction ; owl:onProperty :afterIntervention ; owl:minCardinality 1 ] .
 
-:DeathAssessment rdfs:subClassOf :SingleOutcomeAssessment ;
+:DeathAssessment a owl:Class ; rdfs:subClassOf :SingleOutcomeAssessment ;
     rdfs:label "death assessment" ;
     skos:definition "attests that hasObservation identifies evidence of a subject's death." .
 
-:CardiacDeath rdfs:subClassOf :DeathAssessment ;
+:CardiacDeath    a owl:Class ; rdfs:subClassOf :DeathAssessment ;
     skos:defintion "Death defined as the irreversible cessation of circulatory and respiratory functions. Death is declared in accordance with hospital policy and applicable state and local statues or regulation." .
 
 
-:FunctionOutcomeAssessment rdfs:subClassOf :SingleOutcomeAssessment .
+:FunctionOutcomeAssessment a owl:Class ; rdfs:subClassOf :SingleOutcomeAssessment .
 
-:DefinedEfficacyEndpoint rdfs:subClassOf bridg:DefinedObservation .
-:EfficacyEndpoint rdfs:subClassOf 
+:DefinedEfficacyEndpoint   a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+:EfficacyEndpoint          a owl:Class ; rdfs:subClassOf 
     :Assessment ,
-    [ owl:onProperty :hasObservation ; owl:allValuesFrom :SingleOutcomeAssessment ] ,
-    [ owl:onProperty :dependsOn ; owl:minCardinality 1 ] ,
-    [ owl:onProperty :sparqlQuery ; owl:cardinality 1 ] .
-:dependsOn a owl:DatatypeProperty .
+    [ a owl:Restriction ; owl:onProperty :hasObservation ; owl:allValuesFrom :SingleOutcomeAssessment ] ,
+    [ a owl:Restriction ; owl:onProperty :dependsOn ; owl:minCardinality 1 ] ,
+    [ a owl:Restriction ; owl:onProperty :sparqlQuery ; owl:cardinality 1 ] .
+:dependsOn   a owl:DatatypeProperty .
 :sparqlQuery a owl:DatatypeProperty ;
     rdfs:range xsd:string .
-
-:confirms a owl:DatatypeProperty ;
+:confirms    a owl:DatatypeProperty ;
     rdfs:domain :SingleOutcomeAssessment .
 
-:PositiveOutcome   rdfs:subClassOf :SingleOutcomeAssessment .
-:NegativeOutcome   rdfs:subClassOf :SingleOutcomeAssessment .
+:PositiveOutcome a owl:Class ; rdfs:subClassOf :SingleOutcomeAssessment .
+:NegativeOutcome a owl:Class ; rdfs:subClassOf :SingleOutcomeAssessment .
 #:DeathOtherReasons rdfs:subClassOf :EfficacyEndpoint .
 
 :OutcomeAssessmentValue a owl:Class . # This is xtended by TA-specific ontologies,
 
 
 # Diagnosis
-:InferrableDiagnosis rdfs:subClassOf :ClinicalObservation .
-
 
 ###############################################################################
 # PhysiologicalProcess (right, blue)
@@ -382,15 +379,16 @@
 #     owl:disjointUnionOf (
 #         :NormalPhysiologicalProcess :PathoPhysiologicalProcess
 #     ) .
-# :NormalPhysiologicalProcess rdfs:subClassOf :PhysiologicalProcess .
-# :PathoPhysiologicalProcess rdfs:subClassOf :PhysiologicalProcess .
+# :NormalPhysiologicalProcess a owl:Class ; rdfs:subClassOf :PhysiologicalProcess .
+# :PathoPhysiologicalProcess  a owl:Class ; rdfs:subClassOf :PhysiologicalProcess .
 
 
 :hasSpecimen a owl:ObjectProperty .
 
-:ScreenValue 
-    rdfs:subClassOf :OutcomeAssessmentValue ;
-    owl:oneOf (:Positive :Negative :Unknown) .
+:ScreenValue a owl:Class ;
+    rdfs:subClassOf 
+        :OutcomeAssessmentValue ,
+        [ a owl:Restriction ; owl:oneOf (:Positive :Negative :Unknown) ] .
 
 bridg999:StudySubject.involvingScheduledSubstanceAdministration a owl:ObjectProperty ;
     rdfs:domain bridg:StudySubject ;
@@ -399,7 +397,7 @@ bridg999:performedSpecimenCollection.material a owl:ObjectProperty ;
     rdfs:domain bridg:PerformedSpecimenCollection ;
     rdfs:range bridg:Biologic .
 bridg999:PerformedSubstanceExtraction.usedBiologic a owl:ObjectProperty ;
-    rdfs:label "uses"^^<xs:string> ;
+    rdfs:label "uses"^^xsd:string ;
     rdfs:domain bridg:PerformedSubstanceExtraction ;
     rdfs:range bridg:Biologic ;
     rdfs:subPropertyOf bridg:associationProperty ;

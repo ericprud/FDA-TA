@@ -33,21 +33,21 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
             for (var i = 0; i < this.entries.length; ++i) {
                 var entry = this.entries[i];
                 var subclass = '';
-                ret += ":"+entry.id+" \n"
+                ret += ":"+entry.id+" a owl:Class ;\n"
                     + "  rdfs:subClassOf :CDCoding ";
                 if (entry.parentCode) {
                     ret += ",\n    [\n"
                         + "     owl:intersectionOf (\n"
-                        + "       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue " + system(entry.sstm).URI + " ]\n"
-                        + "       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue \""+entry.parentCode+"\" ]\n"
+                        + "       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue " + system(entry.sstm).URI + " ]\n"
+                        + "       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue \""+entry.parentCode+"\" ]\n"
                         + "       ) ] ";
                 }
                 ret += ";\n   owl:equivalentClass [\n"
                     + "     owl:intersectionOf (\n"
-                    + "       [ owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue "
+                    + "       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue "
                     + system(entry.parentCode ? "FDA-TA" : entry.sstm).URI
                     + " ]\n"
-                    + "       [ owl:onProperty dt:CDCoding.code       ; owl:hasValue \""+entry.code+"\" ]\n"
+                    + "       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue \""+entry.code+"\" ]\n"
                     + "       ) ] .\n";
             }
             return ret;
@@ -115,7 +115,7 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
         }
 
         if (range)
-            ret += ",\n        [ owl:onProperty data:value ; owl:allValuesFrom [\n"
+            ret += ",\n        [ a owl:Restriction ; owl:onProperty data:value ; owl:allValuesFrom [\n"
             + "            a rdfs:Datatype ;\n"
             + "            owl:onDatatype xsd:integer ;\n"
             + "            owl:withRestrictions ( "
@@ -141,7 +141,7 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
         }
         if (code) {
             var id = system(sstm).label+"-"+code;
-            ret += ";\n    rdfs:subClassOf [ owl:onProperty hl7:coding ; owl:hasValue :"+id+" ] ";
+            ret += ";\n    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :"+id+" ] ";
             auxilliaryTaxonomy.addEntry(id, sstm, code, parentCode);
         }
         return ret;
@@ -179,25 +179,25 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
                 return ",\n                <http://www.w3.org/2013/12/FDA-TA/" + imp[1].substr(1, imp[1].indexOf(".")-1) + "> ";
             }).join("")+
             ".\n"+
-            "\n:Assessment rdfs:subClassOf core:Assessment .\n"+
-            ":CDCoding rdfs:subClassOf dt:CDCoding .\n";
+            "\n:Assessment a owl:Class ; rdfs:subClassOf core:Assessment .\n"+
+            ":CDCoding a owl:Class ; rdfs:subClassOf dt:CDCoding .\n";
         if (type == 'TA') {
             ret += allEndpoints.map(function (e) {
                     return endpoint_toTurtle(e, recursive, ta[e]);
                 }).join("")+
                 ":Organizer a owl:Class . # organizer for the "+name+" Therapeutic Area .\n"+
-                ":Subject rdfs:subClassOf :Organizer .\n"+
-                ":Protocol rdfs:subClassOf :Organizer .\n"+
-                ":AllEndpoints rdfs:subClassOf :Organizer ;\n"+
-                "    owl:equivalentClass [ owl:unionOf (\n"+
+                ":Subject a owl:Class ; rdfs:subClassOf :Organizer .\n"+
+                ":Protocol a owl:Class ; rdfs:subClassOf :Organizer .\n"+
+                ":AllEndpoints a owl:Class ; rdfs:subClassOf :Organizer ;\n"+
+                "    owl:equivalentClass [ a owl:Class ; owl:unionOf (\n"+
                 allEndpoints.map(function (e) {
                     return "        :" + e + " \n";
                 }).join("")+
                 "    ) ] .\n"+
                 "\n"+
-                ":Protocol \n"+
+                ":Protocol a owl:Class ;\n"+
                 "    rdfs:subClassOf :Organizer, core:TAProtocol ,\n"+
-                "        [ owl:onProperty :hasEndpoint ; owl:someValuesFrom :AllEndpoints ] .\n"+
+                "        [ a owl:Restriction ; owl:onProperty :hasEndpoint ; owl:someValuesFrom :AllEndpoints ] .\n"+
                 "";
         } else {
             for (e in ta) {
@@ -219,10 +219,10 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
         if (e in ta && !(e in defined)) {
             defined[e] = true;
             var endpoint = ta[e];
-            ret += ":"+e+" \n"
+            ret += ":"+e+" a owl:Class ;\n"
                 + "    rdfs:subClassOf \n"
                 + "        core:EfficacyEndpoint ,\n"
-                + "        [ owl:onProperty core:evaluates ; owl:someValuesFrom :"+endpoint.outcome+" ] "
+                + "        [ a owl:Restriction ; owl:onProperty core:evaluates ; owl:someValuesFrom :"+endpoint.outcome+" ] "
             ret += definition_toTurtle(endpoint.definition, endpoint);
             ret += ".\n";
             if (recurse)
@@ -240,11 +240,11 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
             var outcomeAssessment = ta[e];
             var onAssessment = 'assessment' in outcomeAssessment ? true : false;
             var on = onAssessment ? outcomeAssessment.assessment : outcomeAssessment.observation;
-            ret += ":"+e+" \n"
+            ret += ":"+e+" a owl:Class ;\n"
                 + "    rdfs:subClassOf \n"
                 + "        core:SingleOutcomeAssessment ,\n"
-                + "        [ owl:onProperty core:beforeIntervention ; owl:someValuesFrom :"+on+" ] ,\n"
-                + "        [ owl:onProperty core:afterIntervention ; owl:someValuesFrom :"+on+" ] ";
+                + "        [ a owl:Restriction ; owl:onProperty core:beforeIntervention ; owl:someValuesFrom :"+on+" ] ,\n"
+                + "        [ a owl:Restriction ; owl:onProperty core:afterIntervention ; owl:someValuesFrom :"+on+" ] ";
             ret += definition_toTurtle(outcomeAssessment.definition, outcomeAssessment);
             ret += ".\n";
             if (recurse)
@@ -263,11 +263,11 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
             defined[e] = true;
             var assessment = ta[e];
             var basedOn = assessment.basedOn;
-            ret += ":"+e+" \n"
+            ret += ":"+e+" a owl:Class ;\n"
                 + "    rdfs:subClassOf \n"
                 + "        :Assessment "
                 + basedOn.map(function (e) {
-                    return ",\n        [ owl:onProperty core:hasObservation ; owl:someValuesFrom :"+e[1]+" ] ";
+                    return ",\n        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :"+e[1]+" ] ";
                 }).join("");
             ret += definition_toTurtle(assessment.definition, assessment);
             ret += ".\n";
@@ -304,14 +304,14 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
                 : observation._ == 'DIAGPROC'
                 ? 'DiagnosticProcedure'
                 : 'SignsAndSymptoms' ;
-            ret += ":"+e+" \n"
+            ret += ":"+e+" a owl:Class ;\n"
                 + "    rdfs:subClassOf \n"
                 + "        core:"+type+" ,\n"
-                + "        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,\n"
-             // + "        [ owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,\n"
-                + "        [ owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :Defined"+e+" ] "
+                + "        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,\n"
+             // + "        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:cardinality 1 ] ,\n"
+                + "        [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :Defined"+e+" ] "
                 + definition_toTurtle(observation.definition, observation)
-                + ".\n:Defined"+e+" rdfs:subClassOf bridg:DefinedObservation "
+                + ".\n:Defined"+e+" a owl:Class ; rdfs:subClassOf bridg:DefinedObservation "
                 // + definition_toTurtle(observation.definition, observation) -- duplicates term definitions @@factor
             ret += ".\n\n";
         }

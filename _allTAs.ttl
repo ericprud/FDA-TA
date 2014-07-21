@@ -21,9 +21,9 @@
 @prefix : <http://www.w3.org/2013/12/FDA-TA/tests/RenalTransplantation/subjects#> .
 
 <http://www.w3.org/2013/12/FDA-TA/_allTAs> a owl:Ontology ;
-   owl:imports <http://www.w3.org/2013/12/FDA-TA/RheumatoidArthritis> ,
+   owl:imports <http://www.w3.org/2013/12/FDA-TA/Osteoporosis> ,
                <http://www.w3.org/2013/12/FDA-TA/RenalTransplantation> ,
                <http://www.w3.org/2013/12/FDA-TA/ComplicatedUTI> ,
-               <http://www.w3.org/2013/12/FDA-TA/Osteoporosis> .
+               <http://www.w3.org/2013/12/FDA-TA/RheumatoidArthritis> .
 
 :doc :imported true .
