@@ -1,4 +1,4 @@
-# $Id: TAprocessor.js,v 1.6 2014-07-21 00:03:12 eric Exp $
+# $Id: RheumatoidArthritis.ttl,v 1.12 2014-07-22 20:42:34 eric Exp $
 #
 # ericP at the keyboard
 
@@ -377,112 +377,112 @@ SCALE:lowest - frequent psychological distress, social and role disability due t
 
 :FDA-Guidance-C2711347 a owl:Class ;
   rdfs:subClassOf :CDCoding ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-Guidance> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C2711347" ]
        ) ] .
 :FDA-Guidance-C2711347 a owl:Class ;
   rdfs:subClassOf :CDCoding ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-Guidance> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C2711347" ]
        ) ] .
 :NCI-EVS-C0451521 a owl:Class ;
   rdfs:subClassOf :CDCoding ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C0451521" ]
        ) ] .
 :NCI-EVS-C0451530 a owl:Class ;
   rdfs:subClassOf :CDCoding ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C0451530" ]
        ) ] .
 :NCI-EVS-C0856624 a owl:Class ;
   rdfs:subClassOf :CDCoding ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C0856624" ]
        ) ] .
 :LOINC-30341-2 a owl:Class ;
   rdfs:subClassOf :CDCoding ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@LOINC> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "30341-2" ]
        ) ] .
 :ACR-C21120 a owl:Class ;
   rdfs:subClassOf :CDCoding ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@ACR> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C21120" ]
        ) ] .
 :FDA-Guidance-C3273740 a owl:Class ;
   rdfs:subClassOf :CDCoding ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-Guidance> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C3273740" ]
        ) ] .
 :FDA-Guidance-C3273740 a owl:Class ;
   rdfs:subClassOf :CDCoding ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-Guidance> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C3273740" ]
        ) ] .
 :ACR-C21120 a owl:Class ;
   rdfs:subClassOf :CDCoding ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@ACR> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C21120" ]
        ) ] .
 :ACR-C21120 a owl:Class ;
   rdfs:subClassOf :CDCoding ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@ACR> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C21120" ]
        ) ] .
 :CDC-C0451401 a owl:Class ;
   rdfs:subClassOf :CDCoding ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@CDC> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C0451401" ]
        ) ] .
 :NCI-EVS-C101879 a owl:Class ;
   rdfs:subClassOf :CDCoding ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C101879" ]
        ) ] .
 :unknownSystem-not-found a owl:Class ;
   rdfs:subClassOf :CDCoding ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@unknown> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "not-found" ]
        ) ] .
 :NCI-EVS-C0587240 a owl:Class ;
   rdfs:subClassOf :CDCoding ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C0587240" ]
        ) ] .
 :NCI-EVS-C1859695 a owl:Class ;
   rdfs:subClassOf :CDCoding ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C1859695" ]

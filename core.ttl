@@ -1,4 +1,4 @@
-# $Id: core.ttl,v 1.9 2014-07-17 08:59:18 eric Exp $
+# $Id: core.ttl,v 1.12 2014-07-21 16:12:39 eric Exp $
 #
 # ericP at the keyboard
 

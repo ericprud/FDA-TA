@@ -1,4 +1,4 @@
-# $Id: TAprocessor.js,v 1.6 2014-07-21 00:03:12 eric Exp $
+# $Id: cns.ttl,v 1.5 2014-07-22 20:42:35 eric Exp $
 #
 # ericP at the keyboard
 
@@ -402,323 +402,323 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
 
 :NCI-EVS-C106699 a owl:Class ;
   rdfs:subClassOf :CDCoding ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C106699" ]
        ) ] .
 :NCI-EVS-refined-CL448078 a owl:Class ;
   rdfs:subClassOf :CDCoding ,
-    [
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448078" ]
        ) ] ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448078" ]
        ) ] .
 :NCI-EVS-refined-CL448079 a owl:Class ;
   rdfs:subClassOf :CDCoding ,
-    [
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448079" ]
        ) ] ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448079" ]
        ) ] .
 :NCI-EVS-refined-CL448094 a owl:Class ;
   rdfs:subClassOf :CDCoding ,
-    [
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448094" ]
        ) ] ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448094" ]
        ) ] .
 :NCI-EVS-refined-C1290946 a owl:Class ;
   rdfs:subClassOf :CDCoding ,
-    [
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C1290946" ]
        ) ] ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-C1290946" ]
        ) ] .
 :NCI-EVS-refined-C0439549 a owl:Class ;
   rdfs:subClassOf :CDCoding ,
-    [
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C0439549" ]
        ) ] ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-C0439549" ]
        ) ] .
 :NCI-EVS-refined-CL448094 a owl:Class ;
   rdfs:subClassOf :CDCoding ,
-    [
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448094" ]
        ) ] ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448094" ]
        ) ] .
 :NCI-EVS-refined-CL448082 a owl:Class ;
   rdfs:subClassOf :CDCoding ,
-    [
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448082" ]
        ) ] ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448082" ]
        ) ] .
 :NCI-EVS-refined-CL448084 a owl:Class ;
   rdfs:subClassOf :CDCoding ,
-    [
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448084" ]
        ) ] ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448084" ]
        ) ] .
 :NCI-EVS-refined-CL448083 a owl:Class ;
   rdfs:subClassOf :CDCoding ,
-    [
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448083" ]
        ) ] ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448083" ]
        ) ] .
 :NCI-EVS-refined-CL448094 a owl:Class ;
   rdfs:subClassOf :CDCoding ,
-    [
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448094" ]
        ) ] ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448094" ]
        ) ] .
 :NCI-EVS-refined-CL448086 a owl:Class ;
   rdfs:subClassOf :CDCoding ,
-    [
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448086" ]
        ) ] ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448086" ]
        ) ] .
 :NCI-EVS-refined-CL448085 a owl:Class ;
   rdfs:subClassOf :CDCoding ,
-    [
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448085" ]
        ) ] ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448085" ]
        ) ] .
 :NCI-EVS-refined-CL448094 a owl:Class ;
   rdfs:subClassOf :CDCoding ,
-    [
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448094" ]
        ) ] ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448094" ]
        ) ] .
 :NCI-EVS-refined-CL448101 a owl:Class ;
   rdfs:subClassOf :CDCoding ,
-    [
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448101" ]
        ) ] ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448101" ]
        ) ] .
 :NCI-EVS-refined-CL448100 a owl:Class ;
   rdfs:subClassOf :CDCoding ,
-    [
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448100" ]
        ) ] ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448100" ]
        ) ] .
 :NCI-EVS-refined-CL448102 a owl:Class ;
   rdfs:subClassOf :CDCoding ,
-    [
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448102" ]
        ) ] ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448102" ]
        ) ] .
 :NCI-EVS-refined-CL448094 a owl:Class ;
   rdfs:subClassOf :CDCoding ,
-    [
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448094" ]
        ) ] ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448094" ]
        ) ] .
 :NCI-EVS-refined-CL448104 a owl:Class ;
   rdfs:subClassOf :CDCoding ,
-    [
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448104" ]
        ) ] ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448104" ]
        ) ] .
 :NCI-EVS-refined-CL448103 a owl:Class ;
   rdfs:subClassOf :CDCoding ,
-    [
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448103" ]
        ) ] ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448103" ]
        ) ] .
 :NCI-EVS-refined-CL448094 a owl:Class ;
   rdfs:subClassOf :CDCoding ,
-    [
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448094" ]
        ) ] ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448094" ]
        ) ] .
 :NCI-EVS-refined-CL448107 a owl:Class ;
   rdfs:subClassOf :CDCoding ,
-    [
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448107" ]
        ) ] ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448107" ]
        ) ] .
 :NCI-EVS-refined-CL448105 a owl:Class ;
   rdfs:subClassOf :CDCoding ,
-    [
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448105" ]
        ) ] ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448105" ]
        ) ] .
 :NCI-EVS-refined-CL448106 a owl:Class ;
   rdfs:subClassOf :CDCoding ,
-    [
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448106" ]
        ) ] ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448106" ]
        ) ] .
 :NCI-EVS-refined-CL448094 a owl:Class ;
   rdfs:subClassOf :CDCoding ,
-    [
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448094" ]
        ) ] ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448094" ]
        ) ] .
 :NCI-EVS-CL448110 a owl:Class ;
   rdfs:subClassOf :CDCoding ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448110" ]
        ) ] .
 :NCI-EVS-CL448108 a owl:Class ;
   rdfs:subClassOf :CDCoding ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448108" ]
        ) ] .
 :NCI-EVS-CL448109 a owl:Class ;
   rdfs:subClassOf :CDCoding ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448109" ]
        ) ] .
 :NCI-EVS-CL448094 a owl:Class ;
   rdfs:subClassOf :CDCoding ;
-   owl:equivalentClass [
+   owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448094" ]

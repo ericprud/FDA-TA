@@ -36,13 +36,13 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
                 ret += ":"+entry.id+" a owl:Class ;\n"
                     + "  rdfs:subClassOf :CDCoding ";
                 if (entry.parentCode) {
-                    ret += ",\n    [\n"
+                    ret += ",\n    [ a owl:Class ;\n"
                         + "     owl:intersectionOf (\n"
                         + "       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue " + system(entry.sstm).URI + " ]\n"
                         + "       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue \""+entry.parentCode+"\" ]\n"
                         + "       ) ] ";
                 }
-                ret += ";\n   owl:equivalentClass [\n"
+                ret += ";\n   owl:equivalentClass [ a owl:Class ;\n"
                     + "     owl:intersectionOf (\n"
                     + "       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue "
                     + system(entry.parentCode ? "FDA-TA" : entry.sstm).URI
@@ -153,7 +153,7 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
             allEndpoints.push(endpoint);
         }
         var ret = ""+
-            "# $Id: TAprocessor.js,v 1.6 2014-07-21 00:03:12 eric Exp $\n"+
+            "# $Id: TAprocessor.js,v 1.8 2014-07-22 20:42:35 eric Exp $\n"+
             "#\n"+
             "# ericP at the keyboard\n"+
             "\n"+
