@@ -153,7 +153,7 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
             allEndpoints.push(endpoint);
         }
         var ret = ""+
-            "# $Id: TAprocessor.js,v 1.8 2014-07-22 20:42:35 eric Exp $\n"+
+            "# $Id: TAprocessor.js,v 1.9 2014-07-23 12:41:17 eric Exp $\n"+
             "#\n"+
             "# ericP at the keyboard\n"+
             "\n"+
@@ -243,14 +243,27 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
             ret += ":"+e+" a owl:Class ;\n"
                 + "    rdfs:subClassOf \n"
                 + "        core:SingleOutcomeAssessment ,\n"
-                + "        [ a owl:Restriction ; owl:onProperty core:beforeIntervention ; owl:someValuesFrom :"+on+" ] ,\n"
-                + "        [ a owl:Restriction ; owl:onProperty core:afterIntervention ; owl:someValuesFrom :"+on+" ] ";
+                + "        [ a owl:Restriction ; owl:onProperty core:beforeIntervention ; owl:someValuesFrom :"+on[1]+" ] ,\n"
+                + "        [ a owl:Restriction ; owl:onProperty core:afterIntervention ; owl:someValuesFrom :"+on[1]+" ] ";
             ret += definition_toTurtle(outcomeAssessment.definition, outcomeAssessment);
             ret += ".\n";
             if (recurse)
-                ret += (onAssessment
-                        ? assessment_toTurtle(on, recurse, outcomeAssessment)
-                        : observation_toTurtle(on, recurse, outcomeAssessment)) ;
+                    if (on[1] in ta) {
+                        var definedAsAssessment = ta[on[1]]._ == 'ASSESSMENT';
+                        if (on[0] && !definedAsAssessment)
+                            warn(errStr(outcomeAssessment.file, outcomeAssessment.line, outcomeAssessment.column) + on[1], "defined as observation but referenced as assessment");
+                        else if (!on[0] && definedAsAssessment)
+                            warn(errStr(outcomeAssessment.file, outcomeAssessment.line, outcomeAssessment.column) + on[1], "defined as assessment but referenced as observation");
+                        ret += definedAsAssessment
+                            ? assessment_toTurtle(on[1], recurse, outcomeAssessment)
+                            : observation_toTurtle(on[1], recurse, outcomeAssessment) ;
+                    } else {
+                        warn(errStr(outcomeAssessment.file, outcomeAssessment.line, outcomeAssessment.column) + on[1], "referenced but not defined");
+                        ret += '';
+                    }
+                // ret += (onAssessment
+                //         ? assessment_toTurtle(on, recurse, outcomeAssessment)
+                //         : observation_toTurtle(on, recurse, outcomeAssessment)) ;
         }
         return ret;
     }
@@ -272,18 +285,18 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
             ret += definition_toTurtle(assessment.definition, assessment);
             ret += ".\n";
             if (recurse)
-                ret += basedOn.map(function (e) {
-                    if (e[1] in ta) {
-                        var definedAsAssessment = ta[e[1]]._ == 'ASSESSMENT';
-                        if (e[0] && !definedAsAssessment)
-                            warn(errStr(assessment.file, assessment.line, assessment.column) + e[1], "defined as observation but referenced as assessment");
-                        else if (!e[0] && definedAsAssessment)
-                            warn(errStr(assessment.file, assessment.line, assessment.column) + e[1], "defined as assessment but referenced as observation");
+                ret += basedOn.map(function (on) {
+                    if (on[1] in ta) {
+                        var definedAsAssessment = ta[on[1]]._ == 'ASSESSMENT';
+                        if (on[0] && !definedAsAssessment)
+                            warn(errStr(assessment.file, assessment.line, assessment.column) + on[1], "defined as observation but referenced as assessment");
+                        else if (!on[0] && definedAsAssessment)
+                            warn(errStr(assessment.file, assessment.line, assessment.column) + on[1], "defined as assessment but referenced as observation");
                         return definedAsAssessment
-                            ? assessment_toTurtle(e[1], recurse, assessment)
-                            : observation_toTurtle(e[1], recurse, assessment) ;
+                            ? assessment_toTurtle(on[1], recurse, assessment)
+                            : observation_toTurtle(on[1], recurse, assessment) ;
                     } else {
-                        warn(errStr(assessment.file, assessment.line, assessment.column) + e[1], "referenced but not defined");
+                        warn(errStr(assessment.file, assessment.line, assessment.column) + on[1], "referenced but not defined");
                         return '';
                     }
                 }).join("");
@@ -319,6 +332,11 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
     }
 
     ret = ta_toTurtle(true)+"\n\n"+auxilliaryTaxonomy.toString();
+
+    imports.map(function (imp) { /* vulgar hack until terms have a toString or toURI method */
+        var pat = new RegExp("ValuesFrom :"+imp[0], 'g');
+        ret = ret.replace(pat, "ValuesFrom "+imp[0]);
+    });    
 
     for (declaration in ta)
         if (!(declaration in defined)) {
