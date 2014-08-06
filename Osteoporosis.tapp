@@ -1,13 +1,13 @@
 TA: Osteoporosis
 IMPORT: "skeletal.tapp" AS: skel:
 
-ENDPOINT: NonVertebralFractureEndpoint NonVertabralFractureRadiographicOutcomeAssessment(skel:NonVertabralFractureRadiographicAssessment)
+ENDPOINT: NonVertebralFractureEndpoint NonVertabralFractureRadiographicOutcomeAssessment({skel:NonVertabralFractureRadiographicAssessment})
 
 
-ENDPOINT: VertebralFractureEndpoint VertabralFractureRadiographicOutcomeAssessment(skel:VertabralFractureRadiographicAssessment)
+ENDPOINT: VertebralFractureEndpoint VertabralFractureRadiographicOutcomeAssessment({skel:VertabralFractureRadiographicAssessment})
 
 
-ENDPOINT: BoneMineralDensityEndpoint DXA_OutcomeAssessment(DXA_Assessment)
+ENDPOINT: BoneMineralDensityEndpoint DXA_OutcomeAssessment({DXA_Assessment})
 ASSESSMENT: DXA_Assessment
                              LumbarVertebraeT-scoreObservation
                              TotalHopT-scoreObservation
