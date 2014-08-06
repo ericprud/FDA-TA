@@ -1,4 +1,4 @@
-# $Id: systemic.ttl,v 1.6 2014-05-28 13:38:37 eric Exp $
+# $Id$
 #
 # Signs, symptoms, tests, procedures not specific to any organ system or TA.
 # Fever, Chills, Vomiting, Confusion
