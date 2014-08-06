@@ -53,6 +53,8 @@ COMMENT			'//' [^\u000a\u000d]*
 [Qq][Uu][Aa][Nn][Tt]':'				return 'OBSERVATION'
 [Ss][Ss][Xx]':'					return 'OBSERVATION'
 [Dd][Ii][Aa][Gg][Pp][Rr][Oo][Cc]':'		return 'OBSERVATION'
+[Cc][Oo][Vv][Aa][Rr][Ii][Aa][Tt][Ee][Ss]':'     return 'COVARIATES'
+[Cc][Oo][Nn][Cc][Oo][Mm][Ii][Tt][Aa][Nn][Tt]':' return 'CONCOMITANT'
 {IRIREF}					return 'IRIREF'
 {PNAME_LN}					return 'PNAME_LN'
 {PNAME_NS}					return 'PNAME_NS'
@@ -114,7 +116,14 @@ Decl		: IMPORT STRING_LITERAL2 AS PNAME_NS	{ yy.imports.push([$4, $2]); $$ = $4;
 		| EndpointDecl				{ $$ = $1; }
 		| OutcomeDecl				{ $$ = $1; }
 		| AssessmentDecl			{ $$ = $1; }
-		| ObservationDecl			{ $$ = $1; } ;
+		| ObservationDecl			{ $$ = $1; }
+		| CovariatesList			{ $$ = $1; } ;
+
+CovariatesList  : 'COVARIATES' Covariate_Star           { $$ = $1; } ;
+CovariateStar	:					{ $$ = null; }
+		| CovariateStar Covariate		{ $$ = $1 + $2; } ;
+Covariate       : 'CONCOMITANT' Medication_Star         { $$ = $2; }
+                | 'HISTORY' Medication_Star             { $$ = $1; } ;
 
 EndpointDecl	: 'ENDPOINT' Name Definition Outcome
 							{ $$ = yy.decl($1, $2, { definition:$3, outcome:$4 }, @1.first_line, @1.first_column); } ;
@@ -123,7 +132,7 @@ OutcomeDecl	: 'OUTCOME' Name Outcome_Def		{ $$ = yy.decl($1, $2, $3, @1.first_li
 Outcome		: Name Outcome_Def_Opt			{ $$ = $2 ? yy.decl('OUTCOME', $1, $2, @1.first_line, @1.first_column) : $1; } ;
 Outcome_Def_Opt	: '(' Outcome_Def ')'			{ $$ = $2; }
 		|					{ $$ = null; } ;
-Outcome_Def	: Definition Assessment			{ $$ = { definition:$1, assessment:$2 }; } ;
+Outcome_Def	: Definition Observation_Or_Assessment	{ $$ = { definition:$1, assessment:$2 }; } ;
 
 AssessmentDecl	: 'ASSESSMENT' Name Assessment_Def	{ $$ = yy.decl($1, $2, $3, @1.first_line, @1.first_column); } ;
 Assessment	: Name Assessment_Def_Opt		{ $$ = $2 ? yy.decl('OUTCOME', $1, $2, @1.first_line, @1.first_column) : $1; } ;
