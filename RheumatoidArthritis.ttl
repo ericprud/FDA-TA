@@ -1,4 +1,4 @@
-# $Id: RheumatoidArthritis.ttl,v 1.13 2014-07-23 12:41:16 eric Exp $
+# $Id: TAprocessor.js,v 1.10 2014-08-06 08:50:59 eric Exp $
 #
 # ericP at the keyboard
 
@@ -414,7 +414,7 @@ SCALE:lowest - frequent psychological distress, social and role disability due t
   rdfs:subClassOf :CDCoding ;
    owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
-       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@LOINC> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <oid:2.16.840.1.113883.6.1> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "30341-2" ]
        ) ] .
 :ACR-C21120 a owl:Class ;

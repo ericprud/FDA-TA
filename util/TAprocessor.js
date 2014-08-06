@@ -5,7 +5,7 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
         if (str == "NCI EVS")
             return {URI:"<http://example.org/@@NCI-EVS>", label:"NCI-EVS"};
         else if (str == "LOINC")
-            return {URI:"<http://example.org/@@LOINC>", label:"LOINC"};
+            return {URI:"<oid:2.16.840.1.113883.6.1>", label:"LOINC"};
         else if (str.indexOf("FDA Guidance for Industry") == 0)
             return {URI:"<http://example.org/@@FDA-Guidance>", label:"FDA-Guidance" };
         else if (str == "FDA-TA")
@@ -153,7 +153,7 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
             allEndpoints.push(endpoint);
         }
         var ret = ""+
-            "# $Id: TAprocessor.js,v 1.9 2014-07-23 12:41:17 eric Exp $\n"+
+            "# $Id: TAprocessor.js,v 1.10 2014-08-06 08:50:59 eric Exp $\n"+
             "#\n"+
             "# ericP at the keyboard\n"+
             "\n"+
