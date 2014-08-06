@@ -1,3 +1,10 @@
+#
+
+# ~/IHMC_CmapTools/CmapTools &
+# ~/Protege_5.0_beta/run.sh &
+# ~/Downloads/tbc/run.sh &
+# for f in _allTAs.ttl bridg-classes.ttl core.ttl datatypes.ttl drugs.ttl cns.ttl renal.ttl skeletal.ttl systemic.ttl transplant.ttl ComplicatedUTI.ttl Osteoporosis.ttl RenalTransplantation.ttl RheumatoidArthritis.ttl; do ln -s ~/checkouts/FDA-TA-merge/$f; done
+# LD_LIBRARY_PATH=../libboost-1.55.install/lib PATH=../SWObjects/bin:$PATH make -k
 
 all: # default target
 
@@ -10,6 +17,11 @@ cns.ta: cns.tapp
 
 cns.ttl: cns.ta cns-definitions.csv util/TAnode.js util/TAparser.js util/TAprocessor.js
 	NODE_PATH=util node util/TAnode.js cns.ta cns-definitions.csv > $@
+
+# debug by running:
+#   node-inspector&
+#   NODE_PATH=util node --debug-brk util/TAnode.js cns.ta cns-definitions.csv
+#   chrome to http://127.0.0.1:8080/debug?port=5858
 
 t_cns: cns.ttl
 	sparql -d cns.ttl -q
