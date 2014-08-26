@@ -1,4 +1,4 @@
-# $Id: drugs.ttl,v 1.3 2014-05-28 13:38:37 eric Exp $
+# $Id: drugs.ttl,v 1.6 2014-07-21 16:12:39 eric Exp $
 #
 # ericP at the keyboard
 
