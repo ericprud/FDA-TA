@@ -1,0 +1,15 @@
+The attached files provide the RenalTransplantation and ComplicatedUTI
+ontologies in a Turtle format. You can look at individual files to see how the intology is segregated. All of the files are concatonated into
+  FDA-TA/tests/RenalTransplantation/built/protege.ttl
+. Loading this will allow you to browse the ontology. In that view,
+you should see a hierarchy like
+  FDA-TA/RentalTransplant-cUTI-Observations-protege.png
+. The prefixes indicate the ontology organization as well. You can
+look at
+  FDA-TA/RenalTransplantation-cmap.svg
+in a web browser. Hovering over the nodes and arrows will bring up
+tooltips showing the corresponding or property class in the ontology.
+
+These files are also available at https://github.com/ericprud/FDA-TA .
+I may be able to improve RenalTransplantation-cmap.svg over the
+weekend.
