@@ -141,7 +141,8 @@
 #
 
 :hasObservation a owl:ObjectProperty ;
-    rdfs:range :Observation .
+    rdfs:range :Observation ;
+    rdfs:seeAlso bridg:AssessedActivityRelationship . # ?s :hasObservation ?o -> [ a AAR: ; AAR:.assessedPerformedActivity ?s ; AAR:assessingPerformedObservation ?o ] .
 
 :Observation a owl:Class ;
     owl:disjointUnionOf (
