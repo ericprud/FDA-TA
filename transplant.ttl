@@ -1,4 +1,4 @@
-# $Id: transplant.ttl,v 1.7 2014-05-29 23:13:58 eric Exp $
+# $Id: transplant.ttl,v 1.10 2014-07-21 16:12:39 eric Exp $
 #
 # Transplant function
 
@@ -27,7 +27,7 @@
 :DonorCriteria rdfs:subClassOf core:AdministrativeObservation .
 
 :StandardCriteriaDonor rdfs:subClassOf :DonorCriteria ;
-    skos:definition "A  donor who has suffered brain death (i.e., is not a donor after cardiac death) and who is not an expanded criteria kidney donor. " .
+    skos:definition "A donor who has suffered brain death (i.e., is not a donor after cardiac death) and who is not an expanded criteria kidney donor." .
 
 :ExpandedCriteriaDonor rdfs:subClassOf :DonorCriteria ;
     skos:definition "A kidney donated for transplantation from any brain dead donor over the age of 60 years; or from a donor over the age of 50 years with two of the following: a history of hypertension, the most recent serum creatinine greater than or equal to 1.5 mg/dl, or death resulting from a cerebral vascular accident (stroke). This definition applies to the allocation of deceased donor kidneys." .
@@ -105,7 +105,7 @@
 :coldIschimeiaTime a owl:ObjectProperty ; rdfs:domain bridg:Biologic ; rdfs:range dt:PQ.TIME ;
     skos:definition "An apparatus for forcing a gas or liquid from or to any part. In organ preservation, pump is a reference to the mechanical perfusion pump that is used to continuously perfuse a recovered organ with a chilled preservation solution." .
 :wasPumped a owl:DatatypeProperty ; rdfs:domain bridg:Biologic ; rdfs:range xsd:boolean ;
-    skos:definition "In surgery, the time between the chilling of a tissue, organ, or body part after its blood supply has been reduced or cut off and the time it is warmed by having its blood supply restored. This can occur while the organ is still in the body or after it is removed from the body if the organ is to be used for transplantation" .
+    skos:definition "In surgery, the time between the chilling of a tissue, organ, or body part after its blood supply has been reduced or cut off and the time it is warmed by having its blood supply restored. This can occur while the organ is still in the body or after it is removed from the body if the organ is to be used for transplantation." .
 
 # assessements
 
@@ -135,11 +135,11 @@
 :BanffGrade rdfs:subClassOf data:ValueSetValue ;
     skos:definition "The BANFF Classification of renal allograph pathology is standard classification scheme developed to assist in the interpretation of allograph biopsies." ;
     owl:oneOf ( :BanffIA :BanffIB :BanffIIA :BanffIIB :BanffIII ) .
-:BanffIA  a :BanffGrade ; skos:definition "BANFF Grade for Acute Rejection. Cases with significant interstitial infiltration (>25% of parenchyma affected) and foci of moderate tubulitis (>4 mononuclear cells/tubular cross section or group of 10 tubular cells)" .
-:BanffIB  a :BanffGrade ; skos:definition "BANFF Grade for Acute Rejection. Cases with significant interstitial infiltration (>25% of parenchyma affected) and foci of severe tubulitis (>10 mononuclear cells/tubular cross section or group of 10 tubular cells)" .
-:BanffIIA a :BanffGrade ; skos:definition "BANFF Grade for Acute Rejection. Cases with mild to moderate intimal arteritis (v1)" .
-:BanffIIB a :BanffGrade ; skos:definition "BANFF Grade for Acute Rejection. Cases with severe intimal arteritis comprising > 25% of the luminal area (v2)" .
-:BanffIII a :BanffGrade ; skos:definition "BANFF Grade for Acute Rejection. Cases with 'transmural' arteritis and/or arterial fibrinoid change and necrosis of medial smoth muscle cells (v3 with accompanying lymphoctic inflammation)" .
+:BanffIA  a :BanffGrade ; skos:definition "BANFF Grade for Acute Rejection. Cases with significant interstitial infiltration (>25% of parenchyma affected) and foci of moderate tubulitis (>4 mononuclear cells/tubular cross section or group of 10 tubular cells)." .
+:BanffIB  a :BanffGrade ; skos:definition "BANFF Grade for Acute Rejection. Cases with significant interstitial infiltration (>25% of parenchyma affected) and foci of severe tubulitis (>10 mononuclear cells/tubular cross section or group of 10 tubular cells)." .
+:BanffIIA a :BanffGrade ; skos:definition "BANFF Grade for Acute Rejection. Cases with mild to moderate intimal arteritis (v1)." .
+:BanffIIB a :BanffGrade ; skos:definition "BANFF Grade for Acute Rejection. Cases with severe intimal arteritis comprising > 25% of the luminal area (v2)." .
+:BanffIII a :BanffGrade ; skos:definition "BANFF Grade for Acute Rejection. Cases with 'transmural' arteritis and/or arterial fibrinoid change and necrosis of medial smoth muscle cells (v3 with accompanying lymphoctic inflammation)." .
 
 # Axiom: { ?x core:hasResultValue :NormalFunctioningGraft } => { ?x a core:PositiveOutcome }
 :GraftSurvivalAssessment a owl:Class ; # rename to GraftWithNormalFunction ?
