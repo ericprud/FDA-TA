@@ -158,10 +158,14 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
             var endpoint = endpoints[i];
             allEndpoints.push(endpoint);
         }
-	var ver = "$Id: TAprocessor.js,v 1.11 2014-09-09 08:16:47 eric Exp $";
+	var ver = "$Id: TAprocessor.js,v 1.12 2014-09-09 08:58:36 eric Exp $";
+	var cvsFile = "$RCSfile: TAprocessor.js,v $"; cvsFile = cvsFile.substr(10, cvsFile.length-10-4);
+	var cvsRev = "$Revision: 1.12 $"; cvsRev = cvsRev.substr(11, cvsRev.length-11-2);
+	var cvsDate = "$Date: 2014-09-09 08:58:36 $"; cvsDate = cvsDate.substr(7, cvsDate.length-7-2);
+	var cvsAuthor = "$Author: eric $"; cvsAuthor = cvsAuthor.substr(9, cvsAuthor.length-9-2);
         var ret = ""+
             "# " + name + " ontology generated " + Date() + "\n"+
-            "#   by $Id: TAprocessor.js,v 1.11 2014-09-09 08:16:47 eric Exp $\n"+
+            "#   by "+cvsFile+" V"+cvsRev+" edited by "+cvsAuthor+" on "+cvsDate+"\n"+
             "#\n"+
             "# ericP at the keyboard\n"+
             "\n"+

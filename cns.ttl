@@ -1,4 +1,5 @@
-# $Id: cns.ttl,v 1.8 2014-08-26 11:10:42 eric Exp $
+# cns ontology generated Tue Sep 09 2014 04:50:57 GMT-0400 (EDT)
+#   by keyword.html:1.3 edited by markd on 1999/12/23 21:59:22
 #
 # ericP at the keyboard
 
@@ -365,7 +366,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Activities_vacuumObservation ] ;
     rdfs:label "common daily activities x - vacuum" ;
     skos:definition """vacuum""" ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-CL448110 ] .
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448110 ] .
 :DefinedHAQ-DI_Activities_vacuumObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_Activities_errandsObservation a owl:Class ;
@@ -375,7 +376,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Activities_errandsObservation ] ;
     rdfs:label "common daily activities x - errands" ;
     skos:definition """errands""" ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-CL448108 ] .
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448108 ] .
 :DefinedHAQ-DI_Activities_errandsObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_Activities_outOfCarObservation a owl:Class ;
@@ -385,7 +386,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Activities_outOfCarObservation ] ;
     rdfs:label "common daily activities x - out of car" ;
     skos:definition """get out of the car""" ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-CL448109 ] .
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448109 ] .
 :DefinedHAQ-DI_Activities_outOfCarObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
 :HAQ-DI_Activities_aidsObservation a owl:Class ;
@@ -395,7 +396,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Activities_aidsObservation ] ;
     rdfs:label "common daily activities x - aids" ;
     skos:definition """aids of a person or device""" ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-CL448094 ] .
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448094 ] .
 :DefinedHAQ-DI_Activities_aidsObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
 
@@ -695,32 +696,52 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448094" ]
        ) ] .
-:NCI-EVS-CL448110 a owl:Class ;
-  rdfs:subClassOf :CDCoding ;
-   owl:equivalentClass [ a owl:Class ;
+:NCI-EVS-refined-CL448110 a owl:Class ;
+  rdfs:subClassOf :CDCoding ,
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448110" ]
-       ) ] .
-:NCI-EVS-CL448108 a owl:Class ;
-  rdfs:subClassOf :CDCoding ;
+       ) ] ;
    owl:equivalentClass [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448110" ]
+       ) ] .
+:NCI-EVS-refined-CL448108 a owl:Class ;
+  rdfs:subClassOf :CDCoding ,
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448108" ]
-       ) ] .
-:NCI-EVS-CL448109 a owl:Class ;
-  rdfs:subClassOf :CDCoding ;
+       ) ] ;
    owl:equivalentClass [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448108" ]
+       ) ] .
+:NCI-EVS-refined-CL448109 a owl:Class ;
+  rdfs:subClassOf :CDCoding ,
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448109" ]
-       ) ] .
-:NCI-EVS-CL448094 a owl:Class ;
-  rdfs:subClassOf :CDCoding ;
+       ) ] ;
    owl:equivalentClass [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448109" ]
+       ) ] .
+:NCI-EVS-refined-CL448094 a owl:Class ;
+  rdfs:subClassOf :CDCoding ,
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "CL448094" ]
+       ) ] ;
+   owl:equivalentClass [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-CL448094" ]
        ) ] .
 
