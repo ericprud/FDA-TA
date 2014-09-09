@@ -106,44 +106,34 @@ function CSVToArray( strData, strDelimiter ){
 }
 // </included-code>
 
+// Translate array of arrays into definition map.
+var makeDefinitions = function (data) {
+    var headings = data.shift();
+    var defns = {};
+    for (var i=0; i<data.length; i++) {
+        var vals = data[i];
+        if (vals[0] === '')
+            break;
+        var ob = {line:i+1, file:process.argv[3]};
+        for (h in headings)
+            if (vals[h] != undefined && vals[h] != '')
+                ob[headings[h]] = vals[h].replace(/\\n/g , "\n");
+        defns[ob['Name']] = ob;
+    }
+    return defns;
+}
+
 var CSVparser = function (path, delim, func) {
     var defsFile = FS.readFileSync(path, "utf8");
     var data = CSVToArray(defsFile, delim);
-        // data is an array of arrays
-        var headings = data.shift();
-        var defns = {};
-        for (var i=0; i<data.length; i++) {
-            var vals = data[i];
-            if (vals[0] === '')
-                break;
-            var ob = {line:i+1, file:process.argv[3]};
-            for (h in headings)
-                if (vals[h] != undefined && vals[h] != '')
-                    ob[headings[h]] = vals[h].replace(/\\n/g , "\n");
-            defns[ob['Concept Name']] = ob;
-        }
-        func(defns);
+    func(makeDefinitions(CSVToArray(defsFile, delim)));
 };
 
 var XSLSparser = function (path, func) {
     var parseXlsx = require('excel');
     parseXlsx(path, function(err, data) {
         if (err) throw err;
-
-        // data is an array of arrays
-        var headings = data.shift();
-        var defns = {};
-        for (var i=0; i<data.length; i++) {
-            var vals = data[i];
-            if (vals[0] === '')
-                break;
-            var ob = {line:i+1, file:process.argv[3]};
-            for (h in headings)
-                if (vals[h] != undefined && vals[h] != '')
-                    ob[headings[h]] = vals[h].replace(/\\n/g , "\n");
-            defns[ob['Concept Name']] = ob;
-        }
-        func(defns);
+        func(makeDefinitions(data));
     });
 };
 

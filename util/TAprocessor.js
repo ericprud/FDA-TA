@@ -66,10 +66,13 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
         if ('ref' in def && def.ref) {
             // Concept Name             Concept Definition      Concept Definition Source Site  Concept Definition Source Code NCI EVS  URI for SW model        Atomized Concepts       Comment
             // Swollen joint count      # of joi...ion          NCI EVS                         C0451521                                =               
-            var DEFN = "Concept Definition";
-            var SSTM = "Concept Definition Source";
-            var CODE = "Concept Code"
-            var XTND = "URI for SW model";
+	    // Name     | Definition | Definition Source | Code     | Code System | Code Extension | See Also | Comment
+            // Anti-CCP | Anti-citr… | LOINC: 53027-9    | C1138934 | NCI EVS     | =              | http://… | search.loinc.org
+
+            var DEFN = "Definition";
+            var SSTM = "Code System";
+            var CODE = "Code"
+            var XTND = "Code Extension";
             // warn("ref:", def.ref);
             termDefinitionsUsed[def.ref] = true;
             if (def.ref in termDefinitions) {
@@ -158,10 +161,10 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
             var endpoint = endpoints[i];
             allEndpoints.push(endpoint);
         }
-	var ver = "$Id: TAprocessor.js,v 1.12 2014-09-09 08:58:36 eric Exp $";
+	var ver = "$Id: TAprocessor.js,v 1.13 2014-09-09 12:36:43 eric Exp $";
 	var cvsFile = "$RCSfile: TAprocessor.js,v $"; cvsFile = cvsFile.substr(10, cvsFile.length-10-4);
-	var cvsRev = "$Revision: 1.12 $"; cvsRev = cvsRev.substr(11, cvsRev.length-11-2);
-	var cvsDate = "$Date: 2014-09-09 08:58:36 $"; cvsDate = cvsDate.substr(7, cvsDate.length-7-2);
+	var cvsRev = "$Revision: 1.13 $"; cvsRev = cvsRev.substr(11, cvsRev.length-11-2);
+	var cvsDate = "$Date: 2014-09-09 12:36:43 $"; cvsDate = cvsDate.substr(7, cvsDate.length-7-2);
 	var cvsAuthor = "$Author: eric $"; cvsAuthor = cvsAuthor.substr(9, cvsAuthor.length-9-2);
         var ret = ""+
             "# " + name + " ontology generated " + Date() + "\n"+
@@ -270,8 +273,16 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
                             ? assessment_toTurtle(on[1], recurse, outcomeAssessment)
                             : observation_toTurtle(on[1], recurse, outcomeAssessment) ;
                     } else {
-                        warn(errStr(outcomeAssessment.file, outcomeAssessment.line, outcomeAssessment.column) + on[1], "referenced but not defined");
-                        ret += '';
+                        var found = false;
+                        for (i in imports) {
+                            if (imports[i][0] === on[1].substr(0, imports[i][0].length)) {
+                                found = true;
+                                ret += '# external reference to ' + imports[i][0] + "\n";
+                                break;
+                            }
+                        }
+                        if (!found)
+                            warn(errStr(outcomeAssessment.file, outcomeAssessment.line, outcomeAssessment.column) + on[1], "referenced but not defined");
                     }
                 // ret += (onAssessment
                 //         ? assessment_toTurtle(on, recurse, outcomeAssessment)
@@ -308,8 +319,18 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
                             ? assessment_toTurtle(on[1], recurse, assessment)
                             : observation_toTurtle(on[1], recurse, assessment) ;
                     } else {
-                        warn(errStr(assessment.file, assessment.line, assessment.column) + on[1], "referenced but not defined");
-                        return '';
+                        var found = false;
+                        for (i in imports) {
+                            if (imports[i][0] === on[1].substr(0, imports[i][0].length)) {
+                                found = true;
+                                ret += '# external reference to ' + imports[i][0] + "\n";
+                                break;
+                            }
+                        }
+                        if (!found) {
+                            warn(errStr(assessment.file, assessment.line, assessment.column) + on[1], "referenced but not defined");
+                            return '';
+                        }
                     }
                 }).join("");
         }
