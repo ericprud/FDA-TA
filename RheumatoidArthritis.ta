@@ -14,7 +14,7 @@ QUANT: SwollenJointCountObservation @"Swollen joint count" [0 66]
 QUANT: TenderJointCountObservation @"Tender joint count" [0 68]
 QUANT: CReactiveProteinObservation @"CRP - C reactive peptide Level"
 QUANT: ErythrociteSedimentationRateObservation @"ESR - Erythrocyte Sedimentation Rate"
-SSX: PatientGlobalAssessmentOfDiseaseActivityObservation @"Visual Analog Scale (VAS) for Patient Global Assessment "
+SSX: PatientGlobalAssessmentOfDiseaseActivityObservation @"Visual Analog Scale (VAS) for Patient Global Assessment"
 
 
 ENDPOINT: AmericanCollegeOfRheumatologyEndpoint @"American College of Rheumatology score (ACRn)" ACRn_OutcomeAssessment({ACRn_Assessment})
