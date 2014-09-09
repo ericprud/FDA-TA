@@ -132,17 +132,23 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
             if (!code)
                 warn (errStr(def.file, def.line, 0) + "Expected to refine \"" + def.ref + "\" but no general code was specified.");
             else if (!sstm)
-                warn (errStr(def.file, def.line) + "Expected to refine \"" + def.ref + "\" but no general code system was specified");
+                warn (errStr(def.file, def.line) + "Expected to refine \"" + def.ref + "\" but no general code system was specified.");
             else {
                 // warn ("refining " + JSON.stringify(def));
                 parentCode = code;
                 code = "refined-" + code;
             }
         }
-        if (code) {
-            var id = system(sstm).label+"-"+code;
-            ret += ";\n    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :"+id+" ] ";
-            auxilliaryTaxonomy.addEntry(id, sstm, code, parentCode);
+        if (code || sstm) {
+            if (!code)
+                warn (errStr(def.file, def.line, 0) + "Code system supplied without code: \"" + def.ref + "\".");
+            else if (!sstm)
+                warn (errStr(def.file, def.line) + "Code supplied without code system: \"" + def.ref + "\".");
+            else {
+		var id = system(sstm).label+"-"+code;
+		ret += ";\n    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :"+id+" ] ";
+		auxilliaryTaxonomy.addEntry(id, sstm, code, parentCode);
+	    }
         }
         return ret;
     }
@@ -152,8 +158,10 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
             var endpoint = endpoints[i];
             allEndpoints.push(endpoint);
         }
+	var ver = "$Id: TAprocessor.js,v 1.11 2014-09-09 08:16:47 eric Exp $";
         var ret = ""+
-            "# $Id: TAprocessor.js,v 1.10 2014-08-06 08:50:59 eric Exp $\n"+
+            "# " + name + " ontology generated " + Date() + "\n"+
+            "#   by $Id: TAprocessor.js,v 1.11 2014-09-09 08:16:47 eric Exp $\n"+
             "#\n"+
             "# ericP at the keyboard\n"+
             "\n"+
