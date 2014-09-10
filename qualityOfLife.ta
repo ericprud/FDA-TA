@@ -1,6 +1,4 @@
-LIBRARY: cns
-
-
+LIBRARY: qol
 ASSESSMENT: HAQ-DI_Assessment @"HAQ-DI"
                              {HAQ-DI_DressingAndGroomingAssessment}
                              {HAQ-DI_ArisingAssessment}

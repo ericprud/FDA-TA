@@ -1,5 +1,5 @@
-# cns ontology generated Tue Sep 09 2014 08:12:19 GMT-0400 (EDT)
-#   by TAprocessor.js V1.12 edited by eric on 2014-09-09 08:58:36
+# qualityOfLife.ta ontology generated Wed Sep 10 2014 05:37:50 GMT-0400 (EDT)
+#   by TAprocessor.js V1.14 edited by eric on 2014-09-10 09:36:15
 #
 # ericP at the keyboard
 
@@ -11,12 +11,12 @@
 @prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> .
 @prefix bridg: <http://www.bridgmodel.org/owl#> .
 
-@prefix : <http://www.w3.org/2013/12/FDA-TA/cns#> .
+@prefix : <http://www.w3.org/2013/12/FDA-TA/qualityOfLife#> .
 @prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .
 @prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
 @prefix hl7: <http://hl7.org/owl/metadata#> .
 
-<http://www.w3.org/2013/12/FDA-TA/cns> a owl:Ontology ;
+<http://www.w3.org/2013/12/FDA-TA/qualityOfLife> a owl:Ontology ;
     owl:imports <http://www.w3.org/2013/12/FDA-TA/core> .
 
 :Assessment a owl:Class ; rdfs:subClassOf core:Assessment .
