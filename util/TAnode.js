@@ -1,6 +1,9 @@
 var FS = require('fs');
 var PATH = require('path');
 
+var taFilename = process.argv[2];
+var definitionsFilename = process.argv[3];
+
 var taParser = require("./TAparser").parser;
 var allEndpoints = [];
 taParser.yy = {
@@ -8,9 +11,9 @@ taParser.yy = {
     allEndpoints: allEndpoints,
     name: null,
     type: null,
-    file: process.argv[2]
+    file: taFilename
 };
-var taFile = FS.readFileSync(PATH.normalize(process.argv[2]), "utf8");
+var taFile = FS.readFileSync(PATH.normalize(taFilename), "utf8");
 var ta = taParser.parse(taFile); // console.warn(ta);
 var turtlify = require("./TAprocessor").toTurtle;
 var defined = [];
@@ -114,7 +117,7 @@ var makeDefinitions = function (data) {
         var vals = data[i];
         if (vals[0] === '')
             break;
-        var ob = {line:i+1, file:process.argv[3]};
+        var ob = {line:i+1, file:definitionsFilename};
         for (h in headings)
             if (vals[h] != undefined && vals[h] != '')
                 ob[headings[h]] = vals[h].replace(/\\n/g , "\n");
@@ -139,7 +142,7 @@ var XSLSparser = function (path, func) {
 var processParsedData = function (defns) {
     console.log(
         turtlify(
-            ta, taParser.yy.name, taParser.yy.type, taParser.yy.imports, allEndpoints, defined, defns,
+            ta, taParser.yy.file, taParser.yy.type, taParser.yy.imports, allEndpoints, defined, defns,
             function () { console.warn.apply(null, arguments); },
             function (file, line, column) {
                 var ret = file + ":" + line;
@@ -151,9 +154,9 @@ var processParsedData = function (defns) {
     )
 }
 
-var Defns = PATH.normalize(process.argv[3]);
+var Defns = PATH.normalize(definitionsFilename);
 var Parse =
-    Defns.indexOf(".xslx", Defns.length - 5) !== -1 ? XSLSparser
+    Defns.indexOf(".xlsx", Defns.length - 5) !== -1 ? XSLSparser
     : Defns.indexOf(".tsv", Defns.length - 4) !== -1
       ? function (path, func) { return CSVparser(path, "\t", func) ; }
     : function (path, func) { return CSVparser(path, ",", func) ; };
