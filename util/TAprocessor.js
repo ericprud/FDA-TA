@@ -161,11 +161,12 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
             var endpoint = endpoints[i];
             allEndpoints.push(endpoint);
         }
-	var ver = "$Id: TAprocessor.js,v 1.13 2014-09-09 12:36:43 eric Exp $";
+	var ver = "$Id: TAprocessor.js,v 1.14 2014-09-10 09:36:15 eric Exp $";
 	var cvsFile = "$RCSfile: TAprocessor.js,v $"; cvsFile = cvsFile.substr(10, cvsFile.length-10-4);
-	var cvsRev = "$Revision: 1.13 $"; cvsRev = cvsRev.substr(11, cvsRev.length-11-2);
-	var cvsDate = "$Date: 2014-09-09 12:36:43 $"; cvsDate = cvsDate.substr(7, cvsDate.length-7-2);
+	var cvsRev = "$Revision: 1.14 $"; cvsRev = cvsRev.substr(11, cvsRev.length-11-2);
+	var cvsDate = "$Date: 2014-09-10 09:36:15 $"; cvsDate = cvsDate.substr(7, cvsDate.length-7-2);
 	var cvsAuthor = "$Author: eric $"; cvsAuthor = cvsAuthor.substr(9, cvsAuthor.length-9-2);
+        var base = name.substr(0,name.lastIndexOf('.'));
         var ret = ""+
             "# " + name + " ontology generated " + Date() + "\n"+
             "#   by "+cvsFile+" V"+cvsRev+" edited by "+cvsAuthor+" on "+cvsDate+"\n"+
@@ -180,7 +181,7 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
             "@prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> .\n"+
             "@prefix bridg: <http://www.bridgmodel.org/owl#> .\n"+
             "\n"+
-            "@prefix : <http://www.w3.org/2013/12/FDA-TA/"+name+"#> .\n"+
+            "@prefix : <http://www.w3.org/2013/12/FDA-TA/"+base+"#> .\n"+
             "@prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .\n"+
             "@prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .\n"+
             "@prefix hl7: <http://hl7.org/owl/metadata#> .\n"+
@@ -188,7 +189,7 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
                 return "@prefix "+imp[0]+" <http://www.w3.org/2013/12/FDA-TA/" + imp[1].substr(1, imp[1].indexOf(".")-1) + "#> .\n";
             }).join("")+
             "\n"+
-            "<http://www.w3.org/2013/12/FDA-TA/"+name+"> a owl:Ontology ;\n"+
+            "<http://www.w3.org/2013/12/FDA-TA/"+base+"> a owl:Ontology ;\n"+
             "    owl:imports <http://www.w3.org/2013/12/FDA-TA/core> "+
             imports.map(function (imp) {
                 return ",\n                <http://www.w3.org/2013/12/FDA-TA/" + imp[1].substr(1, imp[1].indexOf(".")-1) + "> ";
