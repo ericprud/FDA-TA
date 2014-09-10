@@ -15,8 +15,8 @@ util/TAparser.js: util/TAparser.jison
 qualityOfLife.ta: qualityOfLife.tapp
 	gcc -E -x c -P -C $^ > $@
 
-qualityOfLife.ttl: qualityOfLife.ta qualityOfLife-definitions.xslx util/TAnode.js util/TAparser.js util/TAprocessor.js
-	NODE_PATH=util node util/TAnode.js qualityOfLife.ta qualityOfLife-definitions.xslx > $@
+qualityOfLife.ttl: qualityOfLife.ta qualityOfLife-definitions.xlsx util/TAnode.js util/TAparser.js util/TAprocessor.js
+	NODE_PATH=util node util/TAnode.js qualityOfLife.ta qualityOfLife-definitions.xlsx > $@
 
 # debug by running:
 #   node-inspector&
@@ -30,8 +30,8 @@ t_qualityOfLife: qualityOfLife.ttl
 RheumatoidArthritis.ta: RheumatoidArthritis.tapp
 	gcc -E -x c -P -C $^ > $@
 
-RheumatoidArthritis.ttl: RheumatoidArthritis.ta RheumatoidArthritis-definitions.xslx util/TAnode.js util/TAparser.js util/TAprocessor.js
-	NODE_PATH=util node util/TAnode.js RheumatoidArthritis.ta RheumatoidArthritis-definitions.xslx > $@
+RheumatoidArthritis.ttl: RheumatoidArthritis.ta RheumatoidArthritis-definitions.xlsx util/TAnode.js util/TAparser.js util/TAprocessor.js
+	NODE_PATH=util node util/TAnode.js RheumatoidArthritis.ta RheumatoidArthritis-definitions.xlsx > $@
 
 t_RheumatoidArthritis: RheumatoidArthritis.ttl
 	sparql -d RheumatoidArthritis.ttl -q
