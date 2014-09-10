@@ -125,7 +125,6 @@ var makeDefinitions = function (data) {
 
 var CSVparser = function (path, delim, func) {
     var defsFile = FS.readFileSync(path, "utf8");
-    var data = CSVToArray(defsFile, delim);
     func(makeDefinitions(CSVToArray(defsFile, delim)));
 };
 
@@ -138,16 +137,18 @@ var XSLSparser = function (path, func) {
 };
 
 var processParsedData = function (defns) {
-    console.log(turtlify(ta, taParser.yy.name, taParser.yy.type, taParser.yy.imports, allEndpoints, defined, defns,
-                         function () { console.warn.apply(null, arguments); },
-                         function (file, line, column) {
-                             var ret = file + ":" + line;
-                             if (column !== undefined)
-                                 ret += ":"+(column+1);
-                             ret += ": warning: ";
-                             return ret;
-                         })
-               )
+    console.log(
+        turtlify(
+            ta, taParser.yy.name, taParser.yy.type, taParser.yy.imports, allEndpoints, defined, defns,
+            function () { console.warn.apply(null, arguments); },
+            function (file, line, column) {
+                var ret = file + ":" + line;
+                if (column !== undefined)
+                    ret += ":"+(column+1);
+                ret += ": warning: ";
+                return ret;
+            })
+    )
 }
 
 var Defns = PATH.normalize(process.argv[3]);

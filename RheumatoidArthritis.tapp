@@ -1,5 +1,5 @@
 TA: RheumatoidArthritis
-IMPORT: "cns.tapp" AS: cns:
+IMPORT: "qualityOfLife.tapp" AS: qol:
 
 ENDPOINT: DiseaseActivityScoreEndpoint @"Disease Activity Score (DAS28)" DAS28_OutcomeAssessment({DAS28_Assessment})
 ASSESSMENT: DAS28_Assessment @"Disease Activity Score (DAS28)" [0 10]
@@ -26,13 +26,13 @@ ASSESSMENT: ACRn_Assessment @"American College of Rheumatology score (ACRn)"
                              PatientGlobalAssessmentOfDiseaseActivityObservation
                              PatientPainAssessmentObservation
                              PhysicianGlobalAssessmentOfDiseaseActivityObservation
-                             {cns:HAQ-DI_Assessment}
+                             {qol:HAQ-DI_Assessment}
 
 SSX: PatientPainAssessmentObservation @"Visual Analog Scale (VAS) for Patient Pain Assessment"
 SSX: PhysicianGlobalAssessmentOfDiseaseActivityObservation @"Visual Analog Scale (VAS) for Physician Global Assessment"
 
 
-ENDPOINT: PhysicalFunctionEndpoint @"PF: Physical Function" HAQ-DI_OutcomeAssessment({cns:HAQ-DI_Assessment})
+ENDPOINT: PhysicalFunctionEndpoint @"PF: Physical Function" HAQ-DI_OutcomeAssessment({qol:HAQ-DI_Assessment})
 
 ENDPOINT: HealthRelatedQualityOfLifeEndpoint @"Health Related Quality Of Life (HRQoL)"  HRQoL_OutcomeAssessment({SF-36_Assessment})
 ASSESSMENT: SF-36_Assessment @"Short Form (SF-36)"

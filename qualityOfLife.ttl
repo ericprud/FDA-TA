@@ -1,5 +1,5 @@
-# cns ontology generated Tue Sep 09 2014 04:50:57 GMT-0400 (EDT)
-#   by keyword.html:1.3 edited by markd on 1999/12/23 21:59:22
+# cns ontology generated Tue Sep 09 2014 08:12:19 GMT-0400 (EDT)
+#   by TAprocessor.js V1.12 edited by eric on 2014-09-09 08:58:36
 #
 # ericP at the keyboard
 
@@ -33,8 +33,7 @@
         [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_GripAssessment ] ,
         [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_ActivitiesAssessment ] ;
     rdfs:label "HAQ-DI" ;
-    skos:definition """A standardized questionnaire developed by James F. Fries in 1983, which is originally used to measure outcome in patients with Rheumatoid Arthritis. The HAQ-DI is a generic instrument which focuses on self-reported, patient-oriented outcome measures. The questionnaire contains 8 categories of 46 items; dressing and grooming, arising, eating, walking, hygiene, reaching, grip, and activities. 
-A 0-3 grade scale is used, where grade 0 represents category performed without any difficulty and grade 3 represents category performed with the greatest difficulty (unable to do).""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-C106699 ] .
 :HAQ-DI_DressingAndGroomingAssessment a owl:Class ;
     rdfs:subClassOf 
@@ -43,7 +42,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_DressingAndGrooming_shampooObservation ] ,
         [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_DressingAndGrooming_aidsObservation ] ;
     rdfs:label "dressing & grooming" ;
-    skos:definition """2 questions to assess ability to dress and groom one's self. 2 questions: one question on help of devices and one on help of a person.""" .
+    skos:definition """undefined""" .
 :HAQ-DI_DressingAndGrooming_dressObservation a owl:Class ;
     rdfs:subClassOf 
         core:SignsAndSymptoms ,
@@ -55,7 +54,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
             owl:withRestrictions ( [ xsd:minInclusive 0 ] [ xsd:maxInclusive 3 ] )
         ] ] ;
     rdfs:label "dressing & grooming x - dress" ;
-    skos:definition """to dress""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448078 ] .
 :DefinedHAQ-DI_DressingAndGrooming_dressObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -70,7 +69,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
             owl:withRestrictions ( [ xsd:minInclusive 0 ] [ xsd:maxInclusive 3 ] )
         ] ] ;
     rdfs:label "dressing & grooming x - shampoo" ;
-    skos:definition """to shampoo""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448079 ] .
 :DefinedHAQ-DI_DressingAndGrooming_shampooObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -85,7 +84,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
             owl:withRestrictions ( [ xsd:minInclusive 0 ] [ xsd:maxInclusive 3 ] )
         ] ] ;
     rdfs:label "dressing & grooming x - aids" ;
-    skos:definition """aids of a person or device""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448094 ] .
 :DefinedHAQ-DI_DressingAndGrooming_aidsObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -96,14 +95,14 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Arising_bedObservation ] ,
         [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Arising_aidsObservation ] ;
     rdfs:label "arising" ;
-    skos:definition """2 questions to assess ability to get up out of bed or a chair. 2 questions: one question on help of devices and one on help of a person.""" .
+    skos:definition """undefined""" .
 :HAQ-DI_Arising_chairObservation a owl:Class ;
     rdfs:subClassOf 
         core:SignsAndSymptoms ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Arising_chairObservation ] ;
     rdfs:label "arising x - chair" ;
-    skos:definition """from chair""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-C1290946 ] .
 :DefinedHAQ-DI_Arising_chairObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -113,7 +112,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Arising_bedObservation ] ;
     rdfs:label "arising x - bed" ;
-    skos:definition """from bed""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-C0439549 ] .
 :DefinedHAQ-DI_Arising_bedObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -123,7 +122,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Arising_aidsObservation ] ;
     rdfs:label "arising x - aids" ;
-    skos:definition """aids of a person or device""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448094 ] .
 :DefinedHAQ-DI_Arising_aidsObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -135,14 +134,14 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Eating_liftObservation ] ,
         [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Eating_aidsObservation ] ;
     rdfs:label "eating" ;
-    skos:definition """3 questions to assess ability to use utencils, lift a glass or open a milk carton. 2 questions: one question on help of devices and one on help of a person.""" .
+    skos:definition """undefined""" .
 :HAQ-DI_Eating_cutObservation a owl:Class ;
     rdfs:subClassOf 
         core:SignsAndSymptoms ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Eating_cutObservation ] ;
     rdfs:label "eating x - cut" ;
-    skos:definition """cut meat""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448082 ] .
 :DefinedHAQ-DI_Eating_cutObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -152,7 +151,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Eating_openObservation ] ;
     rdfs:label "eating x - open" ;
-    skos:definition """milk carton""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448084 ] .
 :DefinedHAQ-DI_Eating_openObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -162,7 +161,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Eating_liftObservation ] ;
     rdfs:label "eating x - lift" ;
-    skos:definition """glass to mouth""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448083 ] .
 :DefinedHAQ-DI_Eating_liftObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -172,7 +171,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Eating_aidsObservation ] ;
     rdfs:label "eating x - aids" ;
-    skos:definition """aids of a person or device""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448094 ] .
 :DefinedHAQ-DI_Eating_aidsObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -183,14 +182,14 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Walking_walkObservation ] ,
         [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Walking_aidsObservation ] ;
     rdfs:label "walking" ;
-    skos:definition """2 questions to assess ability walking on flat grounds and climbs up stairs. 2 questions: one question on help of devices and one on help of a person.""" .
+    skos:definition """undefined""" .
 :HAQ-DI_Walking_climbStepsObservation a owl:Class ;
     rdfs:subClassOf 
         core:SignsAndSymptoms ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Walking_climbStepsObservation ] ;
     rdfs:label "walking x - climb steps" ;
-    skos:definition """climb steps""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448086 ] .
 :DefinedHAQ-DI_Walking_climbStepsObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -200,7 +199,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Walking_walkObservation ] ;
     rdfs:label "walking x - walk" ;
-    skos:definition """walk outdoors on flat ground""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448085 ] .
 :DefinedHAQ-DI_Walking_walkObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -210,7 +209,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Walking_aidsObservation ] ;
     rdfs:label "walking x - aids" ;
-    skos:definition """aids of a person or device""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448094 ] .
 :DefinedHAQ-DI_Walking_aidsObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -222,14 +221,14 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Hygiene_toiletObservation ] ,
         [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Hygiene_aidsObservation ] ;
     rdfs:label "hygiene" ;
-    skos:definition """3 questions to assess ability to wash body, get off toilet and take a bath. 2 questions: one question on help of devices and one on help of a person.""" .
+    skos:definition """undefined""" .
 :HAQ-DI_Hygiene_bathObservation a owl:Class ;
     rdfs:subClassOf 
         core:SignsAndSymptoms ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Hygiene_bathObservation ] ;
     rdfs:label "hygiene x - bath" ;
-    skos:definition """take bath""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448101 ] .
 :DefinedHAQ-DI_Hygiene_bathObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -239,7 +238,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Hygiene_washObservation ] ;
     rdfs:label "hygiene x - wash" ;
-    skos:definition """wash and dry body""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448100 ] .
 :DefinedHAQ-DI_Hygiene_washObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -249,7 +248,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Hygiene_toiletObservation ] ;
     rdfs:label "hygiene x - toilet" ;
-    skos:definition """get off the toilet""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448102 ] .
 :DefinedHAQ-DI_Hygiene_toiletObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -259,7 +258,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Hygiene_aidsObservation ] ;
     rdfs:label "hygiene x - aids" ;
-    skos:definition """aids of a person or device""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448094 ] .
 :DefinedHAQ-DI_Hygiene_aidsObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -270,14 +269,14 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Reach_fromAboveObservation ] ,
         [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Reach_aidsObservation ] ;
     rdfs:label "reach" ;
-    skos:definition """2 questions to assess ability to lift 5 lb objects overhead or on the ground. 2 questions: one question on help of devices and one on help of a person.""" .
+    skos:definition """undefined""" .
 :HAQ-DI_Reach_pickUpObservation a owl:Class ;
     rdfs:subClassOf 
         core:SignsAndSymptoms ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Reach_pickUpObservation ] ;
     rdfs:label "reach x - pick up" ;
-    skos:definition """pick up from floor""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448104 ] .
 :DefinedHAQ-DI_Reach_pickUpObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -287,7 +286,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Reach_fromAboveObservation ] ;
     rdfs:label "reach x - from above" ;
-    skos:definition """object from above head""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448103 ] .
 :DefinedHAQ-DI_Reach_fromAboveObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -297,7 +296,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Reach_aidsObservation ] ;
     rdfs:label "reach x - aids" ;
-    skos:definition """aids of a person or device""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448094 ] .
 :DefinedHAQ-DI_Reach_aidsObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -309,14 +308,14 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Grip_jarsObservation ] ,
         [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Grip_aidsObservation ] ;
     rdfs:label "grip" ;
-    skos:definition """3 questions to assess ability to open car doors or previously opened jars. 2 questions: one question on help of devices and one on help of a person.""" .
+    skos:definition """undefined""" .
 :HAQ-DI_Grip_faucetsObservation a owl:Class ;
     rdfs:subClassOf 
         core:SignsAndSymptoms ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Grip_faucetsObservation ] ;
     rdfs:label "grip x - faucets" ;
-    skos:definition """faucets""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448107 ] .
 :DefinedHAQ-DI_Grip_faucetsObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -326,7 +325,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Grip_carDoorsObservation ] ;
     rdfs:label "grip x - car doors" ;
-    skos:definition """open car doors""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448105 ] .
 :DefinedHAQ-DI_Grip_carDoorsObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -336,7 +335,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Grip_jarsObservation ] ;
     rdfs:label "grip x - jars" ;
-    skos:definition """open jars""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448106 ] .
 :DefinedHAQ-DI_Grip_jarsObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -346,7 +345,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Grip_aidsObservation ] ;
     rdfs:label "grip x - aids" ;
-    skos:definition """aids of a person or device""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448094 ] .
 :DefinedHAQ-DI_Grip_aidsObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -358,14 +357,14 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Activities_outOfCarObservation ] ,
         [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :HAQ-DI_Activities_aidsObservation ] ;
     rdfs:label "common daily activities" ;
-    skos:definition """3 questions to assess ability to perform common errands, getting in and out of cars, or doing light chores. 2 questions: one question on help of devices and one on help of a person.""" .
+    skos:definition """undefined""" .
 :HAQ-DI_Activities_vacuumObservation a owl:Class ;
     rdfs:subClassOf 
         core:SignsAndSymptoms ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Activities_vacuumObservation ] ;
     rdfs:label "common daily activities x - vacuum" ;
-    skos:definition """vacuum""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448110 ] .
 :DefinedHAQ-DI_Activities_vacuumObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -375,7 +374,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Activities_errandsObservation ] ;
     rdfs:label "common daily activities x - errands" ;
-    skos:definition """errands""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448108 ] .
 :DefinedHAQ-DI_Activities_errandsObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -385,7 +384,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Activities_outOfCarObservation ] ;
     rdfs:label "common daily activities x - out of car" ;
-    skos:definition """get out of the car""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448109 ] .
 :DefinedHAQ-DI_Activities_outOfCarObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -395,7 +394,7 @@ A 0-3 grade scale is used, where grade 0 represents category performed without a
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHAQ-DI_Activities_aidsObservation ] ;
     rdfs:label "common daily activities x - aids" ;
-    skos:definition """aids of a person or device""" ;
+    skos:definition """undefined""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-CL448094 ] .
 :DefinedHAQ-DI_Activities_aidsObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 

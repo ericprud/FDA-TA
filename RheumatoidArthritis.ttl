@@ -1,4 +1,5 @@
-# $Id: RheumatoidArthritis.ttl,v 1.16 2014-08-26 11:10:42 eric Exp $
+# RheumatoidArthritis ontology generated Tue Sep 09 2014 08:31:57 GMT-0400 (EDT)
+#   by TAprocessor.js V1.12 edited by eric on 2014-09-09 08:58:36
 #
 # ericP at the keyboard
 
@@ -28,7 +29,7 @@
         [ a owl:Restriction ; owl:onProperty core:evaluates ; owl:someValuesFrom :DAS28_OutcomeAssessment ] ;
     rdfs:label "Disease Activity Score (DAS28)" ;
     skos:definition """Disease Activity Score 28 is a mathematically calculated, continuous, composite endpoint with differential weighting given to each of the following components: tender joint count (28 joints), swollen joint count (28 joints), acute phase reactant, and patient global assessment of arthritis.""" ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :FDA-Guidance-C2711347 ] .
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-C2711347 ] .
 :DAS28_OutcomeAssessment a owl:Class ;
     rdfs:subClassOf 
         core:SingleOutcomeAssessment ,
@@ -49,7 +50,7 @@
         ] ] ;
     rdfs:label "Disease Activity Score (DAS28)" ;
     skos:definition """Disease Activity Score 28 is a mathematically calculated, continuous, composite endpoint with differential weighting given to each of the following components: tender joint count (28 joints), swollen joint count (28 joints), acute phase reactant, and patient global assessment of arthritis.""" ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :FDA-Guidance-C2711347 ] .
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-C2711347 ] .
 :SwollenJointCountObservation a owl:Class ;
     rdfs:subClassOf 
         core:QuantitativeMeasurement ,
@@ -76,7 +77,7 @@
             owl:withRestrictions ( [ xsd:minInclusive 0 ] [ xsd:maxInclusive 68 ] )
         ] ] ;
     rdfs:label "Tender joint count" ;
-    skos:definition """ # of joints evaluated for upon pressure or motion""" ;
+    skos:definition """# of joints evaluated for upon pressure or motion""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-C0451530 ] .
 :DefinedTenderJointCountObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
@@ -97,7 +98,7 @@
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedErythrociteSedimentationRateObservation ] ;
     rdfs:label "ESR - Erythrocyte Sedimentation Rate" ;
     skos:definition """Laboratory Test result for ESR""" ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :LOINC-30341-2 ] .
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-30341-2 ] .
 :DefinedErythrociteSedimentationRateObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
 :PatientGlobalAssessmentOfDiseaseActivityObservation a owl:Class ;
@@ -105,9 +106,9 @@
         core:SignsAndSymptoms ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedPatientGlobalAssessmentOfDiseaseActivityObservation ] ;
-    rdfs:label "Visual Analog Scale (VAS) for Patient Global Assessment " ;
+    rdfs:label "Visual Analog Scale (VAS) for Patient Global Assessment" ;
     skos:definition """Scales maybe recorded using a 0-10 scale or a visual analog scale 0-100 mm, or may be recorded using descriptors such as "well" or "poor".""" ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :ACR-C21120 ] .
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-C21120 ] .
 :DefinedPatientGlobalAssessmentOfDiseaseActivityObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
 :AmericanCollegeOfRheumatologyEndpoint a owl:Class ;
@@ -120,7 +121,7 @@ composite endpoint indicating the proportion of patients with at least 20 (where
 number of tender and swollen joints, and in three out of the remaining five ACR core-set measures: patient pain,
 patient global assessment of disease, physician global assessment of disease, physical functioning assessment
 (Health Assessment Questionnaire-Disability Index (HAQ-DI)), and acute phase reactants""" ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :FDA-Guidance-C3273740 ] .
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-C3273740 ] .
 :ACRn_OutcomeAssessment a owl:Class ;
     rdfs:subClassOf 
         core:SingleOutcomeAssessment ,
@@ -143,7 +144,7 @@ composite endpoint indicating the proportion of patients with at least 20 (where
 number of tender and swollen joints, and in three out of the remaining five ACR core-set measures: patient pain,
 patient global assessment of disease, physician global assessment of disease, physical functioning assessment
 (Health Assessment Questionnaire-Disability Index (HAQ-DI)), and acute phase reactants""" ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :FDA-Guidance-C3273740 ] .
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-C3273740 ] .
 :PatientPainAssessmentObservation a owl:Class ;
     rdfs:subClassOf 
         core:SignsAndSymptoms ,
@@ -151,7 +152,7 @@ patient global assessment of disease, physician global assessment of disease, ph
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedPatientPainAssessmentObservation ] ;
     rdfs:label "Visual Analog Scale (VAS) for Patient Pain Assessment" ;
     skos:definition """May be recorded using a 0-10 scale, or a visual analog scale 0-100 mm.""" ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :ACR-C21120 ] .
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-C21120 ] .
 :DefinedPatientPainAssessmentObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
 :PhysicianGlobalAssessmentOfDiseaseActivityObservation a owl:Class ;
@@ -161,7 +162,7 @@ patient global assessment of disease, physician global assessment of disease, ph
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedPhysicianGlobalAssessmentOfDiseaseActivityObservation ] ;
     rdfs:label "Visual Analog Scale (VAS) for Physician Global Assessment" ;
     skos:definition """Maybe recorded using a 0-10 scale or a visual analog scale 0-100 mm, or may be recorded using descriptors such as “remission, low disease activity, moderate disease activity or high disease activity”. The Physician global assessment can take into account several factors such as the presence of joint pain, duration of morning stiffness, degree of fatigue, functional status, objective evidence of disease activity (i.e., synovitis, as assessed by tender and swollen joint counts, and the erythrocyte sedimentation rate (ESR) or C-reactive protein (CRP) level), mechanical joint problems (i.e., loss of motion, crepitus, instability, malalignment, and/or deformity), the presence of extraarticular disease, and the presence of radiographic damage.""" ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :ACR-C21120 ] .
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-C21120 ] .
 :DefinedPhysicianGlobalAssessmentOfDiseaseActivityObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
 :PhysicalFunctionEndpoint a owl:Class ;
@@ -177,6 +178,7 @@ SCALE: lowest - very limited in performing all physical activities, including ba
         core:SingleOutcomeAssessment ,
         [ a owl:Restriction ; owl:onProperty core:beforeIntervention ; owl:someValuesFrom cns:HAQ-DI_Assessment ] ,
         [ a owl:Restriction ; owl:onProperty core:afterIntervention ; owl:someValuesFrom cns:HAQ-DI_Assessment ] .
+# external reference to cns:
 :HealthRelatedQualityOfLifeEndpoint a owl:Class ;
     rdfs:subClassOf 
         core:EfficacyEndpoint ,
@@ -184,7 +186,7 @@ SCALE: lowest - very limited in performing all physical activities, including ba
     rdfs:label "Health Related Quality Of Life (HRQoL)" ;
     skos:definition """Health-related quality of life (HRQOL) and its determinants encompass those aspects of overall quality of life that can be clearly shown to affect health—either physical or mental. On the individual level, this includes physical and mental health perceptions and their correlates—including health risks and conditions, functional status, social support, and socioeconomic status. On the community level, HRQOL includes resources, conditions, policies, and practices that influence a population’s health perceptions and functional status.
 HRQoL questions about perceived physical and mental health and function have become an important component of health surveillance and are generally considered valid indicators of service needs and intervention outcomes.""" ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :CDC-C0451401 ] .
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-C0451401 ] .
 :HRQoL_OutcomeAssessment a owl:Class ;
     rdfs:subClassOf 
         core:SingleOutcomeAssessment ,
@@ -204,7 +206,7 @@ HRQoL questions about perceived physical and mental health and function have bec
         [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :SF-36_PhysicalComponentSummaryAssessment ] ,
         [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :SF-36_MentalComponentSummaryAssessment ] ;
     rdfs:label "Short Form (SF-36)" ;
-    skos:definition """A 36 question survey for measuring health status and outcomes from the patient's point of view. Designed for use in surveys of general and specific populations, health policy evaluations, and clinical practice and research. Measures 8 health concepts: 1) Limitations in physical activities because of health problems, 2) Limitations in usual role activities because of physical health problems, 3) Bodily pain, 4) General health perceptions, 5) Vitality (energy and fatigue), 6) Limitations in social activities because of physical or emotional problems, 7) Limitations in usual role activities because of emotional problems, 8) Mental health (psychological distress and well-being). """ ;
+    skos:definition """A 36 question survey for measuring health status and outcomes from the patient's point of view. Designed for use in surveys of general and specific populations, health policy evaluations, and clinical practice and research. Measures 8 health concepts: 1) Limitations in physical activities because of health problems, 2) Limitations in usual role activities because of physical health problems, 3) Bodily pain, 4) General health perceptions, 5) Vitality (energy and fatigue), 6) Limitations in social activities because of physical or emotional problems, 7) Limitations in usual role activities because of emotional problems, 8) Mental health (psychological distress and well-being).""" ;
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-C101879 ] .
 :SF-36_PhysicalFunctionObservation a owl:Class ;
     rdfs:subClassOf 
@@ -336,16 +338,15 @@ SCALE:lowest - frequent psychological distress, social and role disability due t
         [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :ErosionScoreObservation ] ,
         [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :JointSpaceNarrowingScoreObservation ] ;
     rdfs:label "Radiographic Score" ;
-    skos:definition """It is a calculation that supports Radiographic Response outcome measure and is derived from  two components: joint space narrowing and erosion. Examples of  most common scoring methods are  Sharp score, Van der Heijde score, modified Van der Heijde score and Genant score.""" ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :unknownSystem-not-found ] .
+    skos:definition """It is a calculation that supports Radiographic Response outcome measure and is derived from  two components: joint space narrowing and erosion. Examples of  most common scoring methods are  Sharp score, Van der Heijde score, modified Van der Heijde score and Genant score.""" .
 :ErosionScoreObservation a owl:Class ;
     rdfs:subClassOf 
         core:SignsAndSymptoms ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedErosionScoreObservation ] ;
     rdfs:label "Erosion Score" ;
-    skos:definition """A result of a calculation method based on the radiographic obervation and measurments of the joints' damage. """ ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-C0587240 ] .
+    skos:definition """A result of a calculation method based on the radiographic obervation and measurments of the joints' damage.""" ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-C0587240 ] .
 :DefinedErosionScoreObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
 :JointSpaceNarrowingScoreObservation a owl:Class ;
@@ -354,8 +355,8 @@ SCALE:lowest - frequent psychological distress, social and role disability due t
         [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
         [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedJointSpaceNarrowingScoreObservation ] ;
     rdfs:label "Joint Space Narrowing (JSN) Score" ;
-    skos:definition """A result of a calculation method based on the radiographic obervation and measurments of the joints' damage. """ ;
-    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-C1859695 ] .
+    skos:definition """A result of a calculation method based on the radiographic obervation and measurments of the joints' damage.""" ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-C1859695 ] .
 :DefinedJointSpaceNarrowingScoreObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
 :Organizer a owl:Class . # organizer for the RheumatoidArthritis Therapeutic Area .
@@ -375,19 +376,29 @@ SCALE:lowest - frequent psychological distress, social and role disability due t
         [ a owl:Restriction ; owl:onProperty :hasEndpoint ; owl:someValuesFrom :AllEndpoints ] .
 
 
-:FDA-Guidance-C2711347 a owl:Class ;
-  rdfs:subClassOf :CDCoding ;
+:NCI-EVS-refined-C2711347 a owl:Class ;
+  rdfs:subClassOf :CDCoding ,
+    [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C2711347" ]
+       ) ] ;
    owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
-       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-Guidance> ]
-       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C2711347" ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-C2711347" ]
        ) ] .
-:FDA-Guidance-C2711347 a owl:Class ;
-  rdfs:subClassOf :CDCoding ;
+:NCI-EVS-refined-C2711347 a owl:Class ;
+  rdfs:subClassOf :CDCoding ,
+    [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C2711347" ]
+       ) ] ;
    owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
-       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-Guidance> ]
-       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C2711347" ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-C2711347" ]
        ) ] .
 :NCI-EVS-C0451521 a owl:Class ;
   rdfs:subClassOf :CDCoding ;
@@ -410,54 +421,84 @@ SCALE:lowest - frequent psychological distress, social and role disability due t
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C0856624" ]
        ) ] .
-:LOINC-30341-2 a owl:Class ;
+:NCI-EVS-30341-2 a owl:Class ;
   rdfs:subClassOf :CDCoding ;
    owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
-       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <oid:2.16.840.1.113883.6.1> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "30341-2" ]
        ) ] .
-:ACR-C21120 a owl:Class ;
-  rdfs:subClassOf :CDCoding ;
-   owl:equivalentClass [ a owl:Class ;
+:NCI-EVS-refined-C21120 a owl:Class ;
+  rdfs:subClassOf :CDCoding ,
+    [ a owl:Class ;
      owl:intersectionOf (
-       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@ACR> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C21120" ]
-       ) ] .
-:FDA-Guidance-C3273740 a owl:Class ;
-  rdfs:subClassOf :CDCoding ;
+       ) ] ;
    owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
-       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-Guidance> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-C21120" ]
+       ) ] .
+:NCI-EVS-refined-C3273740 a owl:Class ;
+  rdfs:subClassOf :CDCoding ,
+    [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C3273740" ]
-       ) ] .
-:FDA-Guidance-C3273740 a owl:Class ;
-  rdfs:subClassOf :CDCoding ;
+       ) ] ;
    owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
-       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-Guidance> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-C3273740" ]
+       ) ] .
+:NCI-EVS-refined-C3273740 a owl:Class ;
+  rdfs:subClassOf :CDCoding ,
+    [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C3273740" ]
-       ) ] .
-:ACR-C21120 a owl:Class ;
-  rdfs:subClassOf :CDCoding ;
+       ) ] ;
    owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
-       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@ACR> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-C3273740" ]
+       ) ] .
+:NCI-EVS-refined-C21120 a owl:Class ;
+  rdfs:subClassOf :CDCoding ,
+    [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C21120" ]
-       ) ] .
-:ACR-C21120 a owl:Class ;
-  rdfs:subClassOf :CDCoding ;
+       ) ] ;
    owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
-       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@ACR> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-C21120" ]
+       ) ] .
+:NCI-EVS-refined-C21120 a owl:Class ;
+  rdfs:subClassOf :CDCoding ,
+    [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C21120" ]
-       ) ] .
-:CDC-C0451401 a owl:Class ;
-  rdfs:subClassOf :CDCoding ;
+       ) ] ;
    owl:equivalentClass [ a owl:Class ;
      owl:intersectionOf (
-       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@CDC> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-C21120" ]
+       ) ] .
+:NCI-EVS-refined-C0451401 a owl:Class ;
+  rdfs:subClassOf :CDCoding ,
+    [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C0451401" ]
+       ) ] ;
+   owl:equivalentClass [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-C0451401" ]
        ) ] .
 :NCI-EVS-C101879 a owl:Class ;
   rdfs:subClassOf :CDCoding ;
@@ -466,25 +507,28 @@ SCALE:lowest - frequent psychological distress, social and role disability due t
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C101879" ]
        ) ] .
-:unknownSystem-not-found a owl:Class ;
-  rdfs:subClassOf :CDCoding ;
-   owl:equivalentClass [ a owl:Class ;
-     owl:intersectionOf (
-       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@unknown> ]
-       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "not-found" ]
-       ) ] .
-:NCI-EVS-C0587240 a owl:Class ;
-  rdfs:subClassOf :CDCoding ;
-   owl:equivalentClass [ a owl:Class ;
+:NCI-EVS-refined-C0587240 a owl:Class ;
+  rdfs:subClassOf :CDCoding ,
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C0587240" ]
-       ) ] .
-:NCI-EVS-C1859695 a owl:Class ;
-  rdfs:subClassOf :CDCoding ;
+       ) ] ;
    owl:equivalentClass [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-C0587240" ]
+       ) ] .
+:NCI-EVS-refined-C1859695 a owl:Class ;
+  rdfs:subClassOf :CDCoding ,
+    [ a owl:Class ;
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C1859695" ]
+       ) ] ;
+   owl:equivalentClass [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-C1859695" ]
        ) ] .
 
