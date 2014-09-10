@@ -1,4 +1,5 @@
-# $Id: Osteoporosis.ttl,v 1.7 2014-08-06 08:51:59 eric Exp $
+# Osteoporosis.ta ontology generated Wed Sep 10 2014 05:45:07 GMT-0400 (EDT)
+#   by TAprocessor.js V1.15 edited by eric on 2014-09-10 09:44:52
 #
 # ericP at the keyboard
 
@@ -31,6 +32,7 @@
         core:SingleOutcomeAssessment ,
         [ a owl:Restriction ; owl:onProperty core:beforeIntervention ; owl:someValuesFrom skel:NonVertabralFractureRadiographicAssessment ] ,
         [ a owl:Restriction ; owl:onProperty core:afterIntervention ; owl:someValuesFrom skel:NonVertabralFractureRadiographicAssessment ] .
+# external reference to skel:
 :VertebralFractureEndpoint a owl:Class ;
     rdfs:subClassOf 
         core:EfficacyEndpoint ,
@@ -40,6 +42,7 @@
         core:SingleOutcomeAssessment ,
         [ a owl:Restriction ; owl:onProperty core:beforeIntervention ; owl:someValuesFrom skel:VertabralFractureRadiographicAssessment ] ,
         [ a owl:Restriction ; owl:onProperty core:afterIntervention ; owl:someValuesFrom skel:VertabralFractureRadiographicAssessment ] .
+# external reference to skel:
 :BoneMineralDensityEndpoint a owl:Class ;
     rdfs:subClassOf 
         core:EfficacyEndpoint ,

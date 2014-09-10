@@ -1,5 +1,5 @@
-# RheumatoidArthritis ontology generated Tue Sep 09 2014 08:31:57 GMT-0400 (EDT)
-#   by TAprocessor.js V1.12 edited by eric on 2014-09-09 08:58:36
+# RheumatoidArthritis.ta ontology generated Wed Sep 10 2014 05:45:10 GMT-0400 (EDT)
+#   by TAprocessor.js V1.15 edited by eric on 2014-09-10 09:44:52
 #
 # ericP at the keyboard
 
@@ -15,11 +15,11 @@
 @prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .
 @prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
 @prefix hl7: <http://hl7.org/owl/metadata#> .
-@prefix cns: <http://www.w3.org/2013/12/FDA-TA/cns#> .
+@prefix qol: <http://www.w3.org/2013/12/FDA-TA/qualityOfLife#> .
 
 <http://www.w3.org/2013/12/FDA-TA/RheumatoidArthritis> a owl:Ontology ;
     owl:imports <http://www.w3.org/2013/12/FDA-TA/core> ,
-                <http://www.w3.org/2013/12/FDA-TA/cns> .
+                <http://www.w3.org/2013/12/FDA-TA/qualityOfLife> .
 
 :Assessment a owl:Class ; rdfs:subClassOf core:Assessment .
 :CDCoding a owl:Class ; rdfs:subClassOf dt:CDCoding .
@@ -137,7 +137,7 @@ patient global assessment of disease, physician global assessment of disease, ph
         [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :PatientGlobalAssessmentOfDiseaseActivityObservation ] ,
         [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :PatientPainAssessmentObservation ] ,
         [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :PhysicianGlobalAssessmentOfDiseaseActivityObservation ] ,
-        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom cns:HAQ-DI_Assessment ] ;
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom qol:HAQ-DI_Assessment ] ;
     rdfs:label "American College of Rheumatology score (ACRn)" ;
     skos:definition """American College of Rheumatology response criteria is a dichotomous
 composite endpoint indicating the proportion of patients with at least 20 (where n=20) percent improvement in the
@@ -176,9 +176,9 @@ SCALE: lowest - very limited in performing all physical activities, including ba
 :HAQ-DI_OutcomeAssessment a owl:Class ;
     rdfs:subClassOf 
         core:SingleOutcomeAssessment ,
-        [ a owl:Restriction ; owl:onProperty core:beforeIntervention ; owl:someValuesFrom cns:HAQ-DI_Assessment ] ,
-        [ a owl:Restriction ; owl:onProperty core:afterIntervention ; owl:someValuesFrom cns:HAQ-DI_Assessment ] .
-# external reference to cns:
+        [ a owl:Restriction ; owl:onProperty core:beforeIntervention ; owl:someValuesFrom qol:HAQ-DI_Assessment ] ,
+        [ a owl:Restriction ; owl:onProperty core:afterIntervention ; owl:someValuesFrom qol:HAQ-DI_Assessment ] .
+# external reference to qol:
 :HealthRelatedQualityOfLifeEndpoint a owl:Class ;
     rdfs:subClassOf 
         core:EfficacyEndpoint ,
