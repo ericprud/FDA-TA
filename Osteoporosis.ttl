@@ -1,5 +1,5 @@
-# Osteoporosis.ta ontology generated Wed Sep 10 2014 05:45:07 GMT-0400 (EDT)
-#   by TAprocessor.js V1.15 edited by eric on 2014-09-10 09:44:52
+# Osteoporosis.ta ontology generated Wed Sep 10 2014 08:39:50 GMT-0400 (EDT)
+#   by TAprocessor.js V1.16 edited by eric on 2014-09-10 12:39:16
 #
 # ericP at the keyboard
 
@@ -82,7 +82,7 @@
 :Organizer a owl:Class . # organizer for the Osteoporosis Therapeutic Area .
 :Subject a owl:Class ; rdfs:subClassOf :Organizer .
 :Protocol a owl:Class ; rdfs:subClassOf :Organizer .
-:AllEndpoints a owl:Class ; rdfs:subClassOf :Organizer ;
+:AllEfficacyEndpoints a owl:Class ; rdfs:subClassOf :Organizer ;
     owl:equivalentClass [ a owl:Class ; owl:unionOf (
         :NonVertebralFractureEndpoint 
         :VertebralFractureEndpoint 
@@ -91,7 +91,7 @@
 
 :Protocol a owl:Class ;
     rdfs:subClassOf :Organizer, core:TAProtocol ,
-        [ a owl:Restriction ; owl:onProperty :hasEndpoint ; owl:someValuesFrom :AllEndpoints ] .
+        [ a owl:Restriction ; owl:onProperty :hasEfficacyEndpoint ; owl:someValuesFrom :AllEfficacyEndpoints ] .
 
 
 

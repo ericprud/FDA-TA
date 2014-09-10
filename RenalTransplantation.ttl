@@ -1,4 +1,4 @@
-# $Id: RenalTransplantation.ttl,v 1.17 2014-07-21 16:12:39 eric Exp $
+# $Id: RenalTransplantation.ttl,v 1.18 2014-09-10 12:41:23 eric Exp $
 #
 # ericP at the keyboard
 
@@ -206,12 +206,12 @@
 :Organizer a owl:Class . # organizer for RenalTransplantation .
 :Subject rdfs:subClassOf :Organizer .
 :Protocol rdfs:subClassOf :Organizer .
-:AllEndpoints rdfs:subClassOf :Organizer ;
+:AllEfficacyEndpoints rdfs:subClassOf :Organizer ;
     owl:equivalentClass [ owl:unionOf (
         :GraftSurvival :GraftLoss :AcuteRejection core:Death core:LTFU #  :DecreasingGFR :IncreasingSCr 
     ) ] .
 
 :Protocol 
     rdfs:subClassOf :Organizer, core:TAProtocol ,
-        [ owl:onProperty :hasEndpoint ; owl:someValuesFrom :AllEndpoints ] .
+        [ owl:onProperty :hasEfficacyEndpoint ; owl:someValuesFrom :AllEfficacyEndpoints ] .
 

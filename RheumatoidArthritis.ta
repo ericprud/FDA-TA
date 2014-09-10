@@ -1,7 +1,7 @@
 TA: RheumatoidArthritis
 IMPORT: "qualityOfLife.tapp" AS: qol:
 
-ENDPOINT: DiseaseActivityScoreEndpoint @"Disease Activity Score (DAS28)" DAS28_OutcomeAssessment({DAS28_Assessment})
+EFFICACY: DiseaseActivityScoreEndpoint @"Disease Activity Score (DAS28)" DAS28_OutcomeAssessment({DAS28_Assessment})
 ASSESSMENT: DAS28_Assessment @"Disease Activity Score (DAS28)" [0 10]
                              SwollenJointCountObservation
                              TenderJointCountObservation
@@ -17,7 +17,7 @@ QUANT: ErythrociteSedimentationRateObservation @"ESR - Erythrocyte Sedimentation
 SSX: PatientGlobalAssessmentOfDiseaseActivityObservation @"Visual Analog Scale (VAS) for Patient Global Assessment"
 
 
-ENDPOINT: AmericanCollegeOfRheumatologyEndpoint @"American College of Rheumatology score (ACRn)" ACRn_OutcomeAssessment({ACRn_Assessment})
+EFFICACY: AmericanCollegeOfRheumatologyEndpoint @"American College of Rheumatology score (ACRn)" ACRn_OutcomeAssessment({ACRn_Assessment})
 ASSESSMENT: ACRn_Assessment @"American College of Rheumatology score (ACRn)"
                              SwollenJointCountObservation
                              TenderJointCountObservation
@@ -32,9 +32,9 @@ SSX: PatientPainAssessmentObservation @"Visual Analog Scale (VAS) for Patient Pa
 SSX: PhysicianGlobalAssessmentOfDiseaseActivityObservation @"Visual Analog Scale (VAS) for Physician Global Assessment"
 
 
-ENDPOINT: PhysicalFunctionEndpoint @"PF: Physical Function" HAQ-DI_OutcomeAssessment({qol:HAQ-DI_Assessment})
+EFFICACY: PhysicalFunctionEndpoint @"PF: Physical Function" HAQ-DI_OutcomeAssessment({qol:HAQ-DI_Assessment})
 
-ENDPOINT: HealthRelatedQualityOfLifeEndpoint @"Health Related Quality Of Life (HRQoL)" HRQoL_OutcomeAssessment({SF-36_Assessment})
+EFFICACY: HealthRelatedQualityOfLifeEndpoint @"Health Related Quality Of Life (HRQoL)" HRQoL_OutcomeAssessment({SF-36_Assessment})
 ASSESSMENT: SF-36_Assessment @"Short Form (SF-36)"
          SF-36_PhysicalFunctionObservation
                               SF-36_SocialFunctionObservation
@@ -75,7 +75,7 @@ ASSESSMENT: SF-36_MentalComponentSummaryAssessment @"Mental Component Summary (M
                               SF-36_BodilyPainObservation
 
 
-ENDPOINT: RadiographicResponseEndpoint @"Radiographic response" RadiographicScoreOutcomeAssessment({RadiographicScoreAssessment})
+EFFICACY: RadiographicResponseEndpoint @"Radiographic response" RadiographicScoreOutcomeAssessment({RadiographicScoreAssessment})
 ASSESSMENT: RadiographicScoreAssessment @"Radiographic Score"
                              ErosionScoreObservation
                              JointSpaceNarrowingScoreObservation

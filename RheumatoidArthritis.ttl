@@ -1,5 +1,5 @@
-# RheumatoidArthritis.ta ontology generated Wed Sep 10 2014 05:45:10 GMT-0400 (EDT)
-#   by TAprocessor.js V1.15 edited by eric on 2014-09-10 09:44:52
+# RheumatoidArthritis.ta ontology generated Wed Sep 10 2014 08:39:59 GMT-0400 (EDT)
+#   by TAprocessor.js V1.16 edited by eric on 2014-09-10 12:39:16
 #
 # ericP at the keyboard
 
@@ -362,7 +362,7 @@ SCALE:lowest - frequent psychological distress, social and role disability due t
 :Organizer a owl:Class . # organizer for the RheumatoidArthritis Therapeutic Area .
 :Subject a owl:Class ; rdfs:subClassOf :Organizer .
 :Protocol a owl:Class ; rdfs:subClassOf :Organizer .
-:AllEndpoints a owl:Class ; rdfs:subClassOf :Organizer ;
+:AllEfficacyEndpoints a owl:Class ; rdfs:subClassOf :Organizer ;
     owl:equivalentClass [ a owl:Class ; owl:unionOf (
         :DiseaseActivityScoreEndpoint 
         :AmericanCollegeOfRheumatologyEndpoint 
@@ -373,7 +373,7 @@ SCALE:lowest - frequent psychological distress, social and role disability due t
 
 :Protocol a owl:Class ;
     rdfs:subClassOf :Organizer, core:TAProtocol ,
-        [ a owl:Restriction ; owl:onProperty :hasEndpoint ; owl:someValuesFrom :AllEndpoints ] .
+        [ a owl:Restriction ; owl:onProperty :hasEfficacyEndpoint ; owl:someValuesFrom :AllEfficacyEndpoints ] .
 
 
 :NCI-EVS-refined-C2711347 a owl:Class ;
