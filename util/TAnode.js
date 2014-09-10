@@ -5,10 +5,10 @@ var taFilename = process.argv[2];
 var definitionsFilename = process.argv[3];
 
 var taParser = require("./TAparser").parser;
-var allEndpoints = [];
+var allEfficacyEndpoints = [];
 taParser.yy = {
     log: function (s) { console.log(">>" + s + "<<"); },
-    allEndpoints: allEndpoints,
+    allEfficacyEndpoints: allEfficacyEndpoints,
     name: null,
     type: null,
     file: taFilename
@@ -142,7 +142,7 @@ var XSLSparser = function (path, func) {
 var processParsedData = function (defns) {
     console.log(
         turtlify(
-            ta, taParser.yy.file, taParser.yy.type, taParser.yy.imports, allEndpoints, defined, defns,
+            ta, taParser.yy.file, taParser.yy.type, taParser.yy.imports, allEfficacyEndpoints, defined, defns,
             function () { console.warn.apply(null, arguments); },
             function (file, line, column) {
                 var ret = file + ":" + line;

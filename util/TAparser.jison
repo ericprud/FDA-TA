@@ -47,7 +47,8 @@ COMMENT			'//' [^\u000a\u000d]*
 [Ll][Ii][Bb][Rr][Aa][Rr][Yy]':'			return 'LIBRARY'
 [Ii][Mm][Pp][Oo][Rr][Tt]':'			return 'IMPORT'
 [Aa][Ss]':'					return 'AS'
-[Ee][Nn][Dd][Pp][Oo][Ii][Nn][Tt]':'		return 'ENDPOINT'
+[Ee][Ff][Ff][Ii][Cc][Aa][Cc][Yy]':'		return 'EFFICACY'
+[Ss][Aa][Ff][Ee][Tt][Yy]':'			return 'SAFETY'
 [Oo][Uu][Tt][Cc][Oo][Mm][Ee]':'			return 'OUTCOME'
 [Aa][Ss][Ss][Ee][Ss][Ss][Mm][Ee][Nn][Tt]':'	return 'ASSESSMENT'
 [Qq][Uu][Aa][Nn][Tt]':'				return 'OBSERVATION'
@@ -101,8 +102,8 @@ PREP		: { yy.decls = {};
                       ob.line = line;
                       ob.column = column;
 		      yy.decls[name] = ob;
-		      if (type == 'ENDPOINT' && 'allEndpoints' in yy)
-			yy.allEndpoints.push(name);
+		      if (type == 'EFFICACY' && 'allEfficacyEndpoints' in yy)
+			yy.allEfficacyEndpoints.push(name);
 		      return name;
                     } ;
 		  };
@@ -125,7 +126,7 @@ CovariateStar	:					{ $$ = null; }
 Covariate       : 'CONCOMITANT' Medication_Star         { $$ = $2; }
                 | 'HISTORY' Medication_Star             { $$ = $1; } ;
 
-EndpointDecl	: 'ENDPOINT' Name Definition Outcome
+EndpointDecl	: ('SAFETY'|'EFFICACY') Name Definition Outcome
 							{ $$ = yy.decl($1, $2, { definition:$3, outcome:$4 }, @1.first_line, @1.first_column); } ;
 
 OutcomeDecl	: 'OUTCOME' Name Outcome_Def		{ $$ = yy.decl($1, $2, $3, @1.first_line, @1.first_column); } ;
