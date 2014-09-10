@@ -161,10 +161,10 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
             var endpoint = endpoints[i];
             allEndpoints.push(endpoint);
         }
-	var ver = "$Id: TAprocessor.js,v 1.14 2014-09-10 09:36:15 eric Exp $";
+	var ver = "$Id: TAprocessor.js,v 1.15 2014-09-10 09:44:52 eric Exp $";
 	var cvsFile = "$RCSfile: TAprocessor.js,v $"; cvsFile = cvsFile.substr(10, cvsFile.length-10-4);
-	var cvsRev = "$Revision: 1.14 $"; cvsRev = cvsRev.substr(11, cvsRev.length-11-2);
-	var cvsDate = "$Date: 2014-09-10 09:36:15 $"; cvsDate = cvsDate.substr(7, cvsDate.length-7-2);
+	var cvsRev = "$Revision: 1.15 $"; cvsRev = cvsRev.substr(11, cvsRev.length-11-2);
+	var cvsDate = "$Date: 2014-09-10 09:44:52 $"; cvsDate = cvsDate.substr(7, cvsDate.length-7-2);
 	var cvsAuthor = "$Author: eric $"; cvsAuthor = cvsAuthor.substr(9, cvsAuthor.length-9-2);
         var base = name.substr(0,name.lastIndexOf('.'));
         var ret = ""+
@@ -201,7 +201,7 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
             ret += allEndpoints.map(function (e) {
                     return endpoint_toTurtle(e, recursive, ta[e]);
                 }).join("")+
-                ":Organizer a owl:Class . # organizer for the "+name+" Therapeutic Area .\n"+
+                ":Organizer a owl:Class . # organizer for the "+base+" Therapeutic Area .\n"+
                 ":Subject a owl:Class ; rdfs:subClassOf :Organizer .\n"+
                 ":Protocol a owl:Class ; rdfs:subClassOf :Organizer .\n"+
                 ":AllEndpoints a owl:Class ; rdfs:subClassOf :Organizer ;\n"+
