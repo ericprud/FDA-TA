@@ -1,4 +1,4 @@
-# $Id: core.ttl,v 1.13 2014-08-26 11:10:06 eric Exp $
+# $Id: core.ttl,v 1.14 2014-09-13 22:07:52 eric Exp $
 #
 # ericP at the keyboard
 
@@ -342,7 +342,62 @@
 
 :DeathAssessment a owl:Class ; rdfs:subClassOf :SingleOutcomeAssessment ;
     rdfs:label "death assessment" ;
-    skos:definition "attests that hasObservation identifies evidence of a subject's death." .
+    skos:definition "attests that hasObservation identifies evidence of a subject's death." ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:oneOf ( :Deceased :LostToFollowup :AdministrativeWithdrawl :ConsentWithdrawl ) ] .
+
+:CardioVascularDeath a owl:Class ; rdfs:subClassOf :DeathAssessment ;
+    owl:equivalentClass [ a owl:Class ;
+        owl:oneOf ( 
+:HeartFailure :MyocardialInfarction :Stroke :CardiovascularHemorrhage :SuddenCardiacDeath :CardiovascularProcedures :Non-CNSSystemicEmbolism :CardiacTamponade :DocumentedAsystole :SystemicArterialEmbolicEvent :PulmonaryEmbolism :OtherCardiovascular 
+     ) ] .
+
+:HeartFailure a owl:Class ; rdfs:subClassOf :CardioVascularDeath .
+:MyocardialInfarction a owl:Class ; rdfs:subClassOf :CardioVascularDeath .
+:Stroke a owl:Class ; rdfs:subClassOf :CardioVascularDeath .
+:CardiovascularHemorrhage a owl:Class ; rdfs:subClassOf :CardioVascularDeath .
+:SuddenCardiacDeath a owl:Class ; rdfs:subClassOf :CardioVascularDeath .
+:CardiovascularProcedures a owl:Class ; rdfs:subClassOf :CardioVascularDeath .
+:Non-CNSSystemicEmbolism a owl:Class ; rdfs:subClassOf :CardioVascularDeath .
+:CardiacTamponade a owl:Class ; rdfs:subClassOf :CardioVascularDeath .
+:DocumentedAsystole a owl:Class ; rdfs:subClassOf :CardioVascularDeath .
+:SystemicArterialEmbolicEvent a owl:Class ; rdfs:subClassOf :CardioVascularDeath .
+:PulmonaryEmbolism a owl:Class ; rdfs:subClassOf :CardioVascularDeath .
+:OtherCardiovascular a owl:Class ; rdfs:subClassOf :CardioVascularDeath .
+#:OtherCardiac
+
+:NonCardioVascularDeath a owl:Class ; rdfs:subClassOf :DeathAssessment ;
+    owl:equivalentClass [ a owl:Class ;
+        owl:oneOf ( 
+:PulmonaryDeath :RenalDeath :GastrointestinalDeath :HepatobiliaryDeath :PancreaticDeath :InfectionDeath :InflammatoryDeath :Hemorrhage_OtherDeath :CardiovascularBleedingOrStrokeDeath :Non-CVProcedureOrSurgeryDeath :TraumaDeath :SuicideDeath :NonPrescriptionDrugReactionOrOverdoseDeath :PrescriptionDrugReactionOverdoseOrAnaphylaxisDeath :Neurological_non-cardiovascularDeath :CancerDeath :TraumaDeath :InfectionDeath :RespiratoryFailureDeath :Non-bleedingStudyDrugToxicityDeath :Non-CNSBleedingDeath :CNSBleedingDeath :PeripheralEmbolismDeath :AorticDissectionOrRupture :OtherDeath
+    ) ] .
+
+:PulmonaryDeath a owl:Class ; rdfs:subClassOf :NonCardioVascularDeath .
+:RenalDeath a owl:Class ; rdfs:subClassOf :NonCardioVascularDeath .
+:GastrointestinalDeath a owl:Class ; rdfs:subClassOf :NonCardioVascularDeath .
+:HepatobiliaryDeath a owl:Class ; rdfs:subClassOf :NonCardioVascularDeath .
+:PancreaticDeath a owl:Class ; rdfs:subClassOf :NonCardioVascularDeath .
+:InfectionDeath a owl:Class ; rdfs:subClassOf :NonCardioVascularDeath .
+:InflammatoryDeath a owl:Class ; rdfs:subClassOf :NonCardioVascularDeath .
+:Hemorrhage_OtherDeath a owl:Class ; rdfs:subClassOf :NonCardioVascularDeath .
+:CardiovascularBleedingOrStrokeDeath a owl:Class ; rdfs:subClassOf :NonCardioVascularDeath .
+:Non-CVProcedureOrSurgeryDeath a owl:Class ; rdfs:subClassOf :NonCardioVascularDeath .
+:TraumaDeath a owl:Class ; rdfs:subClassOf :NonCardioVascularDeath .
+:SuicideDeath a owl:Class ; rdfs:subClassOf :NonCardioVascularDeath .
+:NonPrescriptionDrugReactionOrOverdoseDeath a owl:Class ; rdfs:subClassOf :NonCardioVascularDeath .
+:PrescriptionDrugReactionOverdoseOrAnaphylaxisDeath a owl:Class ; rdfs:subClassOf :NonCardioVascularDeath .
+:Neurological_non-cardiovascularDeath a owl:Class ; rdfs:subClassOf :NonCardioVascularDeath .
+:CancerDeath a owl:Class ; rdfs:subClassOf :NonCardioVascularDeath .
+:TraumaDeath a owl:Class ; rdfs:subClassOf :NonCardioVascularDeath .
+:InfectionDeath a owl:Class ; rdfs:subClassOf :NonCardioVascularDeath .
+:RespiratoryFailureDeath a owl:Class ; rdfs:subClassOf :NonCardioVascularDeath .
+:Non-bleedingStudyDrugToxicityDeath a owl:Class ; rdfs:subClassOf :NonCardioVascularDeath .
+:Non-CNSBleedingDeath a owl:Class ; rdfs:subClassOf :NonCardioVascularDeath .
+:CNSBleedingDeath a owl:Class ; rdfs:subClassOf :NonCardioVascularDeath .
+:PeripheralEmbolismDeath a owl:Class ; rdfs:subClassOf :NonCardioVascularDeath .
+:AorticDissectionOrRuptureDeath a owl:Class ; rdfs:subClassOf :NonCardioVascularDeath .
+:OtherDeath a owl:Class ; rdfs:subClassOf :NonCardioVascularDeath .
+
 
 :CardiacDeath    a owl:Class ; rdfs:subClassOf :DeathAssessment ;
     skos:defintion "Death defined as the irreversible cessation of circulatory and respiratory functions. Death is declared in accordance with hospital policy and applicable state and local statues or regulation." .
