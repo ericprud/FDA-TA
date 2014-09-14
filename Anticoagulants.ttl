@@ -1,0 +1,459 @@
+# Anticoagulants.ta ontology generated Sun Sep 14 2014 06:28:18 GMT-0400 (EDT)
+#   by TAprocessor.js V1.17 edited by eric on 2014-09-13 22:10:25
+#
+# ericP at the keyboard
+
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+@prefix dt: <http://www.hl7.org/owl/iso-dt-2.0#> .
+@prefix bridg: <http://www.bridgmodel.org/owl#> .
+
+@prefix : <http://www.w3.org/2013/12/FDA-TA/Anticoagulants#> .
+@prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .
+@prefix data: <http://www.w3.org/2013/12/FDA-TA/datatypes#> .
+@prefix hl7: <http://hl7.org/owl/metadata#> .
+@prefix core: <http://www.w3.org/2013/12/FDA-TA/core#> .
+@prefix hema: <http://www.w3.org/2013/12/FDA-TA/hematapoietic#> .
+
+<http://www.w3.org/2013/12/FDA-TA/Anticoagulants> a owl:Ontology ;
+    owl:imports <http://www.w3.org/2013/12/FDA-TA/core> ,
+                <http://www.w3.org/2013/12/FDA-TA/core> ,
+                <http://www.w3.org/2013/12/FDA-TA/hematapoietic> .
+
+:Assessment a owl:Class ; rdfs:subClassOf core:Assessment .
+:CDCoding a owl:Class ; rdfs:subClassOf dt:CDCoding .
+:TimeToNonCNSSystemEmbolismEndpoint a owl:Class ;
+    rdfs:subClassOf 
+        core:EfficacyEndpoint ,
+        [ a owl:Restriction ; owl:onProperty core:evaluates ; owl:someValuesFrom :NonCNSSystemEmbolismOutcomeAssessment ] ;
+    rdfs:label "Time to the first occurrence of Non-CNS systemic embolism (SEE)" ;
+    skos:definition """The date and time of the first instance of SEE following the start of the randomization period.""" .
+:NonCNSSystemEmbolismOutcomeAssessment a owl:Class ;
+    rdfs:subClassOf 
+        core:SingleOutcomeAssessment ,
+        [ a owl:Restriction ; owl:onProperty core:beforeIntervention ; owl:someValuesFrom :NonCNSSystemEmbolismAssessment ] ,
+        [ a owl:Restriction ; owl:onProperty core:afterIntervention ; owl:someValuesFrom :NonCNSSystemEmbolismAssessment ] .
+:NonCNSSystemEmbolismAssessment a owl:Class ;
+    rdfs:subClassOf 
+        :Assessment ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :ScintigraphyObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :AngiographyObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :UltrasoundObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :AutopsyObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :InfarctionDueToIschemiaObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :SurgicalEvidenceOfEmbolismObservation ] ;
+    rdfs:label "CRF: Non-CNS systemic embolism (SEE)" ;
+    skos:definition """The term myocardial infarction (MI) should be used when there is evidence of myocardial necrosis in a clinical setting consistent with myocardial ischemia. 
+
+In general, the diagnosis of MI requires the combination of: 
+• Evidence of myocardial necrosis (either changes in cardiac biomarkers or post-mortem pathological findings); and 
+• Supporting information derived from the clinical presentation, electrocardiographic changes, or the results of myocardial or coronary artery imaging 
+
+The totality of the clinical, electrocardiographic, and cardiac biomarker information should be considered to determine whether or not a MI has occurred. Specifically, timing and trends in cardiac biomarkers and electrocardiographic information require careful analysis. The adjudication of MI should also take into account the clinical setting in which the event occurs. MI may be adjudicated for an event that has characteristics of a MI but which does not meet the strict definition because biomarker or electrocardiographic results are not available.""" .
+:ScintigraphyObservation a owl:Class ;
+    rdfs:subClassOf 
+        core:DiagnosticProcedure ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedScintigraphyObservation ] ;
+    rdfs:label "Scintigraphy" ;
+    skos:definition """Nuclear medicine imaging procedure""" .
+:DefinedScintigraphyObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+
+:AngiographyObservation a owl:Class ;
+    rdfs:subClassOf 
+        core:DiagnosticProcedure ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedAngiographyObservation ] .
+:DefinedAngiographyObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+
+:UltrasoundObservation a owl:Class ;
+    rdfs:subClassOf 
+        core:DiagnosticProcedure ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedUltrasoundObservation ] .
+:DefinedUltrasoundObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+
+:AutopsyObservation a owl:Class ;
+    rdfs:subClassOf 
+        core:DiagnosticProcedure ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedAutopsyObservation ] .
+:DefinedAutopsyObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+
+:InfarctionDueToIschemiaObservation a owl:Class ;
+    rdfs:subClassOf 
+        core:DiagnosticProcedure ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedInfarctionDueToIschemiaObservation ] .
+:DefinedInfarctionDueToIschemiaObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+
+:SurgicalEvidenceOfEmbolismObservation a owl:Class ;
+    rdfs:subClassOf 
+        core:DiagnosticProcedure ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedSurgicalEvidenceOfEmbolismObservation ] .
+:DefinedSurgicalEvidenceOfEmbolismObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+
+:TimeToHemorrhagicStrokeEndpoint a owl:Class ;
+    rdfs:subClassOf 
+        core:EfficacyEndpoint ,
+        [ a owl:Restriction ; owl:onProperty core:evaluates ; owl:someValuesFrom :HemorrhagicStrokeOutcomeAssessment ] .
+:HemorrhagicStrokeOutcomeAssessment a owl:Class ;
+    rdfs:subClassOf 
+        core:SingleOutcomeAssessment ,
+        [ a owl:Restriction ; owl:onProperty core:beforeIntervention ; owl:someValuesFrom :HemorrhagicStrokeAssessment ] ,
+        [ a owl:Restriction ; owl:onProperty core:afterIntervention ; owl:someValuesFrom :HemorrhagicStrokeAssessment ] .
+:HemorrhagicStrokeAssessment a owl:Class ;
+    rdfs:subClassOf 
+        :Assessment ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :AcuteFocalNeurologicalDeficitObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :ComputedTomographyObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :MagneticResonanceImagingObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :VascularImagingObservation ] .
+:AcuteFocalNeurologicalDeficitObservation a owl:Class ;
+    rdfs:subClassOf 
+        core:DiagnosticProcedure ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedAcuteFocalNeurologicalDeficitObservation ] .
+:DefinedAcuteFocalNeurologicalDeficitObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+
+:ComputedTomographyObservation a owl:Class ;
+    rdfs:subClassOf 
+        core:DiagnosticProcedure ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedComputedTomographyObservation ] .
+:DefinedComputedTomographyObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+
+:MagneticResonanceImagingObservation a owl:Class ;
+    rdfs:subClassOf 
+        core:DiagnosticProcedure ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedMagneticResonanceImagingObservation ] .
+:DefinedMagneticResonanceImagingObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+
+:VascularImagingObservation a owl:Class ;
+    rdfs:subClassOf 
+        core:DiagnosticProcedure ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedVascularImagingObservation ] .
+:DefinedVascularImagingObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+
+:TimeToIschemicStrokeEndpoint a owl:Class ;
+    rdfs:subClassOf 
+        core:EfficacyEndpoint ,
+        [ a owl:Restriction ; owl:onProperty core:evaluates ; owl:someValuesFrom :IschemicStrokeOutcomeAssessment ] .
+:IschemicStrokeOutcomeAssessment a owl:Class ;
+    rdfs:subClassOf 
+        core:SingleOutcomeAssessment ,
+        [ a owl:Restriction ; owl:onProperty core:beforeIntervention ; owl:someValuesFrom :IschemicStrokeAssessment ] ,
+        [ a owl:Restriction ; owl:onProperty core:afterIntervention ; owl:someValuesFrom :IschemicStrokeAssessment ] .
+:IschemicStrokeAssessment a owl:Class ;
+    rdfs:subClassOf 
+        :Assessment ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :AcuteFocalNeurologicalDeficitObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :ComputedTomographyObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :MagneticResonanceImagingObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :VascularImagingObservation ] .
+:TimeToUncertainStrokeEndpoint a owl:Class ;
+    rdfs:subClassOf 
+        core:EfficacyEndpoint ,
+        [ a owl:Restriction ; owl:onProperty core:evaluates ; owl:someValuesFrom :UncertainStrokeOutcomeAssessment ] .
+:UncertainStrokeOutcomeAssessment a owl:Class ;
+    rdfs:subClassOf 
+        core:SingleOutcomeAssessment ,
+        [ a owl:Restriction ; owl:onProperty core:beforeIntervention ; owl:someValuesFrom :UncertainStrokeAssessment ] ,
+        [ a owl:Restriction ; owl:onProperty core:afterIntervention ; owl:someValuesFrom :UncertainStrokeAssessment ] .
+:UncertainStrokeAssessment a owl:Class ;
+    rdfs:subClassOf 
+        :Assessment ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :AcuteFocalNeurologicalDeficitObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :ComputedTomographyObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :MagneticResonanceImagingObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :VascularImagingObservation ] .
+:SecondaryTransientIschemicAttacksEndpoint a owl:Class ;
+    rdfs:subClassOf 
+        core:EfficacyEndpoint ,
+        [ a owl:Restriction ; owl:onProperty core:evaluates ; owl:someValuesFrom :TransientIschemicAttacksOutcomeAssessment ] .
+:TransientIschemicAttacksOutcomeAssessment a owl:Class ;
+    rdfs:subClassOf 
+        core:SingleOutcomeAssessment ,
+        [ a owl:Restriction ; owl:onProperty core:beforeIntervention ; owl:someValuesFrom :TransientIschemicAttacksAssessment ] ,
+        [ a owl:Restriction ; owl:onProperty core:afterIntervention ; owl:someValuesFrom :TransientIschemicAttacksAssessment ] .
+:TransientIschemicAttacksAssessment a owl:Class ;
+    rdfs:subClassOf 
+        :Assessment ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :ComputedTomographyObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :MagneticResonanceImagingObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :VascularImagingObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :ChangeInCognitionObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :DurationOfSignsAndSymptomsObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :Numbness-SensoryLossObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :ChangeInConsciousnessLevelObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :Weakness-ParalysisObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :CerebellarSignsObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :AphasiaObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :SensoryNeglectObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :HemianopiaObservation ] ;
+    rdfs:label "CRF: Transient ischemic attacks (TIAs)" ;
+    skos:definition """Brief reversible episodes of focal, nonconvulsive ischemic dysfunction of the brain having a duration of less than 24 hours, and usually less than one hour, caused by transient thrombotic or embolic blood vessel occlusion or stenosis. Events may be classified by arterial distribution, temporal pattern, or etiology (e.g., embolic vs. thrombotic).""" ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-C0007787 ] .
+:ChangeInCognitionObservation a owl:Class ;
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedChangeInCognitionObservation ] .
+:DefinedChangeInCognitionObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+
+:DurationOfSignsAndSymptomsObservation a owl:Class ;
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedDurationOfSignsAndSymptomsObservation ] .
+:DefinedDurationOfSignsAndSymptomsObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+
+:Numbness-SensoryLossObservation a owl:Class ;
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedNumbness-SensoryLossObservation ] .
+:DefinedNumbness-SensoryLossObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+
+:ChangeInConsciousnessLevelObservation a owl:Class ;
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedChangeInConsciousnessLevelObservation ] .
+:DefinedChangeInConsciousnessLevelObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+
+:Weakness-ParalysisObservation a owl:Class ;
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedWeakness-ParalysisObservation ] .
+:DefinedWeakness-ParalysisObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+
+:CerebellarSignsObservation a owl:Class ;
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedCerebellarSignsObservation ] .
+:DefinedCerebellarSignsObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+
+:AphasiaObservation a owl:Class ;
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedAphasiaObservation ] .
+:DefinedAphasiaObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+
+:SensoryNeglectObservation a owl:Class ;
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedSensoryNeglectObservation ] .
+:DefinedSensoryNeglectObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+
+:HemianopiaObservation a owl:Class ;
+    rdfs:subClassOf 
+        core:SignsAndSymptoms ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHemianopiaObservation ] .
+:DefinedHemianopiaObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+
+:SecondaryAcuteMyocardialInfarctionEndpoint a owl:Class ;
+    rdfs:subClassOf 
+        core:EfficacyEndpoint ,
+        [ a owl:Restriction ; owl:onProperty core:evaluates ; owl:someValuesFrom :AcuteMyocardialInfarctionOutcomeAssessment ] .
+:AcuteMyocardialInfarctionOutcomeAssessment a owl:Class ;
+    rdfs:subClassOf 
+        core:SingleOutcomeAssessment ,
+        [ a owl:Restriction ; owl:onProperty core:beforeIntervention ; owl:someValuesFrom :AcuteMyocardialInfarctionAssessment ] ,
+        [ a owl:Restriction ; owl:onProperty core:afterIntervention ; owl:someValuesFrom :AcuteMyocardialInfarctionAssessment ] .
+:AcuteMyocardialInfarctionAssessment a owl:Class ;
+    rdfs:subClassOf 
+        :Assessment ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :ComputedTomographyObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :MagneticResonanceImagingObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :VascularImagingObservation ] ;
+    rdfs:label "CRF: Myocardial infarction (MI)" ;
+    skos:definition """Gross necrosis of the myocardium, as a result of interruption of the blood supply to the area, as in coronary thrombosis.""" ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-C0027051 ] .
+:SecondaryNonCNSSystemEmbolismEndpoint a owl:Class ;
+    rdfs:subClassOf 
+        core:EfficacyEndpoint ,
+        [ a owl:Restriction ; owl:onProperty core:evaluates ; owl:someValuesFrom :NonCNSSystemEmbolismOutcomeAssessment ] .
+:SecondaryHemorrhagicStrokeEndpoint a owl:Class ;
+    rdfs:subClassOf 
+        core:EfficacyEndpoint ,
+        [ a owl:Restriction ; owl:onProperty core:evaluates ; owl:someValuesFrom :HemorrhagicStrokeOutcomeAssessment ] .
+:SecondaryIschemicStrokeEndpoint a owl:Class ;
+    rdfs:subClassOf 
+        core:EfficacyEndpoint ,
+        [ a owl:Restriction ; owl:onProperty core:evaluates ; owl:someValuesFrom :IschemicStrokeOutcomeAssessment ] .
+:SecondaryUncertainStrokeEndpoint a owl:Class ;
+    rdfs:subClassOf 
+        core:EfficacyEndpoint ,
+        [ a owl:Restriction ; owl:onProperty core:evaluates ; owl:someValuesFrom :UncertainStrokeOutcomeAssessment ] .
+:SecondaryPulmonaryEmbolismEndpoint a owl:Class ;
+    rdfs:subClassOf 
+        core:EfficacyEndpoint ,
+        [ a owl:Restriction ; owl:onProperty core:evaluates ; owl:someValuesFrom :PulmonaryEmbolismOutcomeAssessment ] .
+:PulmonaryEmbolismOutcomeAssessment a owl:Class ;
+    rdfs:subClassOf 
+        core:SingleOutcomeAssessment ,
+        [ a owl:Restriction ; owl:onProperty core:beforeIntervention ; owl:someValuesFrom :PulmonaryEmbolismAssessment ] ,
+        [ a owl:Restriction ; owl:onProperty core:afterIntervention ; owl:someValuesFrom :PulmonaryEmbolismAssessment ] .
+:PulmonaryEmbolismAssessment a owl:Class ;
+    rdfs:subClassOf 
+        :Assessment ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :ComputedTomographyObservation ] ;
+    rdfs:label "CRF: Pulmonary embolism (PE)" ;
+    skos:definition """A sudden blockage in a lung artery. The cause is usually a blood clot in the leg called a deep vein thrombosis that breaks loose and travels through the bloodstream to the lung""" ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-C0034065 ] .
+:SecondaryDeathEndpoint a owl:Class ;
+    rdfs:subClassOf 
+        core:EfficacyEndpoint ,
+        [ a owl:Restriction ; owl:onProperty core:evaluates ; owl:someValuesFrom :DeathOutcomeAssessment ] ;
+    rdfs:label "CRF: Death" ;
+    skos:definition """Irreversible cessation of all bodily functions, manifested by absence of spontaneous breathing and total loss of cardiovascular and cerebral functions.""" ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-C0011065 ] .
+:DeathOutcomeAssessment a owl:Class ;
+    rdfs:subClassOf 
+        core:SingleOutcomeAssessment ,
+        [ a owl:Restriction ; owl:onProperty core:beforeIntervention ; owl:someValuesFrom core:DeathObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:afterIntervention ; owl:someValuesFrom core:DeathObservation ] .
+# external reference to core:
+:HepatotoxicityEndpoint a owl:Class ;
+    rdfs:subClassOf 
+        core:SafetyEndpoint ,
+        [ a owl:Restriction ; owl:onProperty core:evaluates ; owl:someValuesFrom :HepatotoxicityOutcomeAssessment ] ;
+    rdfs:label "Hepatotoxicity" ;
+    skos:definition """Impairment or disruption of liver function.""" ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-C0235378 ] .
+:HepatotoxicityOutcomeAssessment a owl:Class ;
+    rdfs:subClassOf 
+        core:SingleOutcomeAssessment ,
+        [ a owl:Restriction ; owl:onProperty core:beforeIntervention ; owl:someValuesFrom :LiverFunctionTest ] ,
+        [ a owl:Restriction ; owl:onProperty core:afterIntervention ; owl:someValuesFrom :LiverFunctionTest ] .
+:LiverFunctionTest a owl:Class ;
+    rdfs:subClassOf 
+        core:QuantitativeMeasurement ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedLiverFunctionTest ] ;
+    rdfs:label "Liver function test (LFT)" ;
+    skos:definition """The quantitative measurement of liver enzymes in the blood, which is useful in assessing the functional state of a patient's liver. Liver function tests include the measurement of albumin, alanine transaminase, aspartate transaminase, alkaline phosphatase, bilirubin, and gamma glutamyl transferase.""" ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-C0023901 ] .
+:DefinedLiverFunctionTest a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+
+:IncidenceOfBleedingEventsEndpoint a owl:Class ;
+    rdfs:subClassOf 
+        core:SafetyEndpoint ,
+        [ a owl:Restriction ; owl:onProperty core:evaluates ; owl:someValuesFrom :BleedingEventsOutcomeAssessment ] ;
+    rdfs:label "Incidence of bleeding events" ;
+    skos:definition """New cases of bleeding events.""" .
+:BleedingEventsOutcomeAssessment a owl:Class ;
+    rdfs:subClassOf 
+        core:SingleOutcomeAssessment ,
+        [ a owl:Restriction ; owl:onProperty core:beforeIntervention ; owl:someValuesFrom :BleedingEventsAssessment ] ,
+        [ a owl:Restriction ; owl:onProperty core:afterIntervention ; owl:someValuesFrom :BleedingEventsAssessment ] .
+:BleedingEventsAssessment a owl:Class ;
+    rdfs:subClassOf 
+        :Assessment ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :HemoglobinObservation ] ,
+        [ a owl:Restriction ; owl:onProperty core:hasObservation ; owl:someValuesFrom :TransfusionObservation ] ;
+    rdfs:label "Bleeding events" ;
+    skos:definition """Bleeding is the loss of blood. It can happen inside or outside the body. Bleeding can be a reaction to a cut or other wound. It can also result from an injury to internal organs. There are many situations in which you might bleed. A bruise is bleeding under the skin. Some strokes are caused by bleeding in the brain. Other bleeding, such as gastrointestinal bleeding, coughing up blood, or vaginal bleeding, can be a symptom of a disease. Normally, when you bleed, your blood forms clots to stop the bleeding. Severe bleeding may require first aid or a trip to the emergency room. If you have a bleeding disorder, your blood does not form clots normally.""" ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-C0019080 ] .
+:HemoglobinObservation a owl:Class ;
+    rdfs:subClassOf 
+        core:DiagnosticProcedure ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedHemoglobinObservation ] .
+:DefinedHemoglobinObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+
+:TransfusionObservation a owl:Class ;
+    rdfs:subClassOf 
+        core:QuantitativeMeasurement ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedTransfusionObservation ] .
+:DefinedTransfusionObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+
+:Organizer a owl:Class . # organizer for the Anticoagulants Therapeutic Area .
+:Subject a owl:Class ; rdfs:subClassOf :Organizer .
+:Protocol a owl:Class ; rdfs:subClassOf :Organizer .
+:AllEndpoints a owl:Class ; rdfs:subClassOf :Organizer ;
+    owl:equivalentClass [ a owl:Class ; owl:unionOf (
+        :TimeToNonCNSSystemEmbolismEndpoint 
+        :TimeToHemorrhagicStrokeEndpoint 
+        :TimeToIschemicStrokeEndpoint 
+        :TimeToUncertainStrokeEndpoint 
+        :SecondaryTransientIschemicAttacksEndpoint 
+        :SecondaryAcuteMyocardialInfarctionEndpoint 
+        :SecondaryNonCNSSystemEmbolismEndpoint 
+        :SecondaryHemorrhagicStrokeEndpoint 
+        :SecondaryIschemicStrokeEndpoint 
+        :SecondaryUncertainStrokeEndpoint 
+        :SecondaryPulmonaryEmbolismEndpoint 
+        :SecondaryDeathEndpoint 
+        :HepatotoxicityEndpoint 
+        :IncidenceOfBleedingEventsEndpoint 
+    ) ] .
+
+:Protocol a owl:Class ;
+    rdfs:subClassOf :Organizer, core:TAProtocol ,
+        [ a owl:Restriction ; owl:onProperty :hasEfficacyEndpoint ; owl:someValuesFrom :AllEndpoints ] .
+
+
+:NCI-EVS-C0007787 a owl:Class ;
+  rdfs:subClassOf :CDCoding ;
+   owl:equivalentClass [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C0007787" ]
+       ) ] .
+:NCI-EVS-C0027051 a owl:Class ;
+  rdfs:subClassOf :CDCoding ;
+   owl:equivalentClass [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C0027051" ]
+       ) ] .
+:NCI-EVS-C0034065 a owl:Class ;
+  rdfs:subClassOf :CDCoding ;
+   owl:equivalentClass [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C0034065" ]
+       ) ] .
+:NCI-EVS-C0011065 a owl:Class ;
+  rdfs:subClassOf :CDCoding ;
+   owl:equivalentClass [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C0011065" ]
+       ) ] .
+:NCI-EVS-C0235378 a owl:Class ;
+  rdfs:subClassOf :CDCoding ;
+   owl:equivalentClass [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C0235378" ]
+       ) ] .
+:NCI-EVS-C0023901 a owl:Class ;
+  rdfs:subClassOf :CDCoding ;
+   owl:equivalentClass [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C0023901" ]
+       ) ] .
+:NCI-EVS-C0019080 a owl:Class ;
+  rdfs:subClassOf :CDCoding ;
+   owl:equivalentClass [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C0019080" ]
+       ) ] .
+

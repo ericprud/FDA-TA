@@ -1,0 +1,105 @@
+TA: Anticoagulants
+IMPORT: "core.ttl" AS: core:
+IMPORT: "hematapoietic.ta" AS: hema:
+
+EFFICACY: TimeToNonCNSSystemEmbolismEndpoint @"Time to the first occurrence of Non-CNS systemic embolism (SEE)"
+   NonCNSSystemEmbolismOutcomeAssessment({NonCNSSystemEmbolismAssessment})
+ASSESSMENT: NonCNSSystemEmbolismAssessment @"CRF: Non-CNS systemic embolism (SEE)"
+                                           ScintigraphyObservation
+                                           AngiographyObservation
+                                           UltrasoundObservation
+                                           AutopsyObservation
+                                           InfarctionDueToIschemiaObservation
+                                           SurgicalEvidenceOfEmbolismObservation
+
+DIAGPROC: ScintigraphyObservation "Scintigraphy" """Nuclear medicine imaging procedure"""
+DIAGPROC: AngiographyObservation
+DIAGPROC: UltrasoundObservation
+DIAGPROC: AutopsyObservation
+DIAGPROC: InfarctionDueToIschemiaObservation
+DIAGPROC: SurgicalEvidenceOfEmbolismObservation
+
+
+EFFICACY: TimeToHemorrhagicStrokeEndpoint HemorrhagicStrokeOutcomeAssessment({HemorrhagicStrokeAssessment})
+ASSESSMENT: HemorrhagicStrokeAssessment
+                                        AcuteFocalNeurologicalDeficitObservation
+                                        ComputedTomographyObservation
+                                        MagneticResonanceImagingObservation
+                                        VascularImagingObservation
+
+EFFICACY: TimeToIschemicStrokeEndpoint IschemicStrokeOutcomeAssessment({IschemicStrokeAssessment})
+ASSESSMENT: IschemicStrokeAssessment
+                                     AcuteFocalNeurologicalDeficitObservation
+                                     ComputedTomographyObservation
+                                     MagneticResonanceImagingObservation
+                                     VascularImagingObservation
+
+EFFICACY: TimeToUncertainStrokeEndpoint UncertainStrokeOutcomeAssessment({UncertainStrokeAssessment})
+ASSESSMENT: UncertainStrokeAssessment
+                                      AcuteFocalNeurologicalDeficitObservation
+                                      ComputedTomographyObservation
+                                      MagneticResonanceImagingObservation
+                                      VascularImagingObservation
+                             
+DIAGPROC: AcuteFocalNeurologicalDeficitObservation
+DIAGPROC: ComputedTomographyObservation
+DIAGPROC: MagneticResonanceImagingObservation
+DIAGPROC: VascularImagingObservation
+
+
+EFFICACY: SecondaryTransientIschemicAttacksEndpoint TransientIschemicAttacksOutcomeAssessment({TransientIschemicAttacksAssessment})
+ASSESSMENT: TransientIschemicAttacksAssessment @"CRF: Transient ischemic attacks (TIAs)"
+                                      ComputedTomographyObservation
+                                      MagneticResonanceImagingObservation
+                                      VascularImagingObservation
+                                      // These are labeled as "components" vs. "diagnosed by":
+                                      ChangeInCognitionObservation
+                                      DurationOfSignsAndSymptomsObservation
+                                      Numbness-SensoryLossObservation
+                                      ChangeInConsciousnessLevelObservation
+                                      Weakness-ParalysisObservation
+                                      CerebellarSignsObservation
+                                      AphasiaObservation
+                                      SensoryNeglectObservation
+                                      HemianopiaObservation
+
+SSX: ChangeInCognitionObservation
+SSX: DurationOfSignsAndSymptomsObservation
+SSX: Numbness-SensoryLossObservation
+SSX: ChangeInConsciousnessLevelObservation
+SSX: Weakness-ParalysisObservation
+SSX: CerebellarSignsObservation
+SSX: AphasiaObservation
+SSX: SensoryNeglectObservation
+SSX: HemianopiaObservation
+
+EFFICACY: SecondaryAcuteMyocardialInfarctionEndpoint AcuteMyocardialInfarctionOutcomeAssessment({AcuteMyocardialInfarctionAssessment})
+ASSESSMENT: AcuteMyocardialInfarctionAssessment @"CRF: Myocardial infarction (MI)"
+                                      ComputedTomographyObservation
+                                      MagneticResonanceImagingObservation
+                                      VascularImagingObservation
+
+EFFICACY: SecondaryNonCNSSystemEmbolismEndpoint NonCNSSystemEmbolismOutcomeAssessment
+EFFICACY: SecondaryHemorrhagicStrokeEndpoint HemorrhagicStrokeOutcomeAssessment
+EFFICACY: SecondaryIschemicStrokeEndpoint IschemicStrokeOutcomeAssessment
+EFFICACY: SecondaryUncertainStrokeEndpoint UncertainStrokeOutcomeAssessment
+EFFICACY: SecondaryPulmonaryEmbolismEndpoint PulmonaryEmbolismOutcomeAssessment({PulmonaryEmbolismAssessment})
+
+ASSESSMENT: PulmonaryEmbolismAssessment @"CRF: Pulmonary embolism (PE)"
+                                        ComputedTomographyObservation
+
+EFFICACY: SecondaryDeathEndpoint @"CRF: Death" DeathOutcomeAssessment (core:DeathObservation)
+
+
+SAFETY: HepatotoxicityEndpoint @"Hepatotoxicity" HepatotoxicityOutcomeAssessment(LiverFunctionTest)
+QUANT: LiverFunctionTest @"Liver function test (LFT)"
+                                     
+
+SAFETY: IncidenceOfBleedingEventsEndpoint @"Incidence of bleeding events" BleedingEventsOutcomeAssessment({BleedingEventsAssessment})
+ASSESSMENT: BleedingEventsAssessment @"Bleeding events"
+                                     HemoglobinObservation
+                                     TransfusionObservation
+
+DIAGPROC: HemoglobinObservation
+QUANT:    TransfusionObservation
+

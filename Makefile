@@ -55,6 +55,15 @@ Osteoporosis.ttl: Osteoporosis.ta Osteoporosis-definitions.xlsx util/TAnode.js u
 t_Osteoporosis: Osteoporosis.ttl
 	sparql -d Osteoporosis.ttl -q
 
+
+
+Anticoagulants.ttl: Anticoagulants.ta Anticoagulants-definitions.xlsx util/TAnode.js util/TAparser.js util/TAprocessor.js
+	NODE_PATH=util node util/TAnode.js Anticoagulants.ta Anticoagulants-definitions.xlsx > $@
+
+t_Anticoagulants: Anticoagulants.ttl
+	sparql -d Anticoagulants.ttl -q
+
+
 # import hierarchy
 RheumatoidArthritis.ttl: qualityOfLife.ttl
 Osteoporosis.ttl: skeletal.ttl
