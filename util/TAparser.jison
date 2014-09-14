@@ -102,8 +102,8 @@ PREP		: { yy.decls = {};
                       ob.line = line;
                       ob.column = column;
 		      yy.decls[name] = ob;
-		      if (type == 'EFFICACY' && 'allEfficacyEndpoints' in yy)
-			yy.allEfficacyEndpoints.push(name);
+		      if ((type == 'SAFETY' || type == 'EFFICACY') && 'allEndpoints' in yy)
+			yy.allEndpoints.push(name);
 		      return name;
                     } ;
 		  };
@@ -126,8 +126,10 @@ CovariateStar	:					{ $$ = null; }
 Covariate       : 'CONCOMITANT' Medication_Star         { $$ = $2; }
                 | 'HISTORY' Medication_Star             { $$ = $1; } ;
 
-EndpointDecl	: ('SAFETY'|'EFFICACY') Name Definition Outcome
+EndpointDecl	: EndpointType Name Definition Outcome
 							{ $$ = yy.decl($1, $2, { definition:$3, outcome:$4 }, @1.first_line, @1.first_column); } ;
+EndpointType	: 'SAFETY'
+                | 'EFFICACY';
 
 OutcomeDecl	: 'OUTCOME' Name Outcome_Def		{ $$ = yy.decl($1, $2, $3, @1.first_line, @1.first_column); } ;
 Outcome		: Name Outcome_Def_Opt			{ $$ = $2 ? yy.decl('OUTCOME', $1, $2, @1.first_line, @1.first_column) : $1; } ;

@@ -3,18 +3,23 @@ var PATH = require('path');
 
 var taFilename = process.argv[2];
 var definitionsFilename = process.argv[3];
+var dump = process.argv[4];
 
 var taParser = require("./TAparser").parser;
-var allEfficacyEndpoints = [];
+var allEndpoints = [];
 taParser.yy = {
     log: function (s) { console.log(">>" + s + "<<"); },
-    allEfficacyEndpoints: allEfficacyEndpoints,
+    allEndpoints: allEndpoints,
     name: null,
     type: null,
     file: taFilename
 };
 var taFile = FS.readFileSync(PATH.normalize(taFilename), "utf8");
 var ta = taParser.parse(taFile); // console.warn(ta);
+if (dump == "ta") {
+    console.log(JSON.stringify(ta));
+    return 0;
+}
 var turtlify = require("./TAprocessor").toTurtle;
 var defined = [];
 
@@ -139,10 +144,14 @@ var XSLSparser = function (path, func) {
     });
 };
 
+var dumpDefns = function (defns) {
+    console.log(JSON.stringify(defns));
+}
+
 var processParsedData = function (defns) {
     console.log(
         turtlify(
-            ta, taParser.yy.file, taParser.yy.type, taParser.yy.imports, allEfficacyEndpoints, defined, defns,
+            ta, taParser.yy.file, taParser.yy.type, taParser.yy.imports, allEndpoints, defined, defns,
             function () { console.warn.apply(null, arguments); },
             function (file, line, column) {
                 var ret = file + ":" + line;
@@ -161,5 +170,5 @@ var Parse =
       ? function (path, func) { return CSVparser(path, "\t", func) ; }
     : function (path, func) { return CSVparser(path, ",", func) ; };
 
-Parse(Defns, processParsedData);
+Parse(Defns, dump == "defns" ? dumpDefns : processParsedData);
 

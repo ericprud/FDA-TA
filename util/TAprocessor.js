@@ -1,5 +1,5 @@
 
-exports.toTurtle = function (ta, name, type, imports, efficacyEndpoints, defined, termDefinitions, warn, errStr) {
+exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDefinitions, warn, errStr) {
 
     function system (str) {
         if (str == "NCI EVS")
@@ -156,15 +156,15 @@ exports.toTurtle = function (ta, name, type, imports, efficacyEndpoints, defined
         return ret;
     }
     function ta_toTurtle (recursive) {
-        var allEfficacyEndpoints = [];
-        for (var i = 0; i < efficacyEndpoints.length; ++i) {
-            var endpoint = efficacyEndpoints[i];
-            allEfficacyEndpoints.push(endpoint);
+        var allEndpoints = [];
+        for (var i = 0; i < endpoints.length; ++i) {
+            var endpoint = endpoints[i];
+            allEndpoints.push(endpoint);
         }
-	var ver = "$Id: TAprocessor.js,v 1.16 2014-09-10 12:39:16 eric Exp $";
+	var ver = "$Id: TAprocessor.js,v 1.17 2014-09-13 22:10:25 eric Exp $";
 	var cvsFile = "$RCSfile: TAprocessor.js,v $"; cvsFile = cvsFile.substr(10, cvsFile.length-10-4);
-	var cvsRev = "$Revision: 1.16 $"; cvsRev = cvsRev.substr(11, cvsRev.length-11-2);
-	var cvsDate = "$Date: 2014-09-10 12:39:16 $"; cvsDate = cvsDate.substr(7, cvsDate.length-7-2);
+	var cvsRev = "$Revision: 1.17 $"; cvsRev = cvsRev.substr(11, cvsRev.length-11-2);
+	var cvsDate = "$Date: 2014-09-13 22:10:25 $"; cvsDate = cvsDate.substr(7, cvsDate.length-7-2);
 	var cvsAuthor = "$Author: eric $"; cvsAuthor = cvsAuthor.substr(9, cvsAuthor.length-9-2);
         var base = name.substr(0,name.lastIndexOf('.'));
         var ret = ""+
@@ -198,22 +198,22 @@ exports.toTurtle = function (ta, name, type, imports, efficacyEndpoints, defined
             "\n:Assessment a owl:Class ; rdfs:subClassOf core:Assessment .\n"+
             ":CDCoding a owl:Class ; rdfs:subClassOf dt:CDCoding .\n";
         if (type == 'TA') {
-            ret += allEfficacyEndpoints.map(function (e) {
+            ret += allEndpoints.map(function (e) {
                     return endpoint_toTurtle(e, recursive, ta[e]);
                 }).join("")+
                 ":Organizer a owl:Class . # organizer for the "+base+" Therapeutic Area .\n"+
                 ":Subject a owl:Class ; rdfs:subClassOf :Organizer .\n"+
                 ":Protocol a owl:Class ; rdfs:subClassOf :Organizer .\n"+
-                ":AllEfficacyEndpoints a owl:Class ; rdfs:subClassOf :Organizer ;\n"+
+                ":AllEndpoints a owl:Class ; rdfs:subClassOf :Organizer ;\n"+
                 "    owl:equivalentClass [ a owl:Class ; owl:unionOf (\n"+
-                allEfficacyEndpoints.map(function (e) {
+                allEndpoints.map(function (e) {
                     return "        :" + e + " \n";
                 }).join("")+
                 "    ) ] .\n"+
                 "\n"+
                 ":Protocol a owl:Class ;\n"+
                 "    rdfs:subClassOf :Organizer, core:TAProtocol ,\n"+
-                "        [ a owl:Restriction ; owl:onProperty :hasEfficacyEndpoint ; owl:someValuesFrom :AllEfficacyEndpoints ] .\n"+
+                "        [ a owl:Restriction ; owl:onProperty :hasEfficacyEndpoint ; owl:someValuesFrom :AllEndpoints ] .\n"+
                 "";
         } else {
             for (e in ta) {
@@ -235,9 +235,10 @@ exports.toTurtle = function (ta, name, type, imports, efficacyEndpoints, defined
         if (e in ta && !(e in defined)) {
             defined[e] = true;
             var endpoint = ta[e];
+            var rdfType = ta[e]._ == "EFFICACY" ? "core:EfficacyEndpoint" : "core:SafetyEndpoint";
             ret += ":"+e+" a owl:Class ;\n"
                 + "    rdfs:subClassOf \n"
-                + "        core:EfficacyEndpoint ,\n"
+                + "        "+rdfType+" ,\n"
                 + "        [ a owl:Restriction ; owl:onProperty core:evaluates ; owl:someValuesFrom :"+endpoint.outcome+" ] "
             ret += definition_toTurtle(endpoint.definition, endpoint);
             ret += ".\n";
