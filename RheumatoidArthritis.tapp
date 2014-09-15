@@ -1,6 +1,7 @@
 TA: RheumatoidArthritis
 IMPORT: "qualityOfLife.tapp" AS: qol:
 
+
 EFFICACY: DiseaseActivityScoreEndpoint @"Disease Activity Score (DAS28)" DAS28_OutcomeAssessment({DAS28_Assessment})
 ASSESSMENT: DAS28_Assessment @"Disease Activity Score (DAS28)" [0 10]
                              SwollenJointCountObservation
@@ -10,7 +11,7 @@ ASSESSMENT: DAS28_Assessment @"Disease Activity Score (DAS28)" [0 10]
                              PatientGlobalAssessmentOfDiseaseActivityObservation
 
 // We can include the clinical assessments as either assessments of 28 observations or as simple observations.
-QUANT:  SwollenJointCountObservation @"Swollen joint count" [0 66]
+QUANT: SwollenJointCountObservation @"Swollen joint count" [0 66]
 QUANT: TenderJointCountObservation @"Tender joint count" [0 68]
 QUANT: CReactiveProteinObservation @"CRP - C reactive peptide Level"
 QUANT: ErythrociteSedimentationRateObservation @"ESR - Erythrocyte Sedimentation Rate"
@@ -34,7 +35,7 @@ SSX: PhysicianGlobalAssessmentOfDiseaseActivityObservation @"Visual Analog Scale
 
 EFFICACY: PhysicalFunctionEndpoint @"PF: Physical Function" HAQ-DI_OutcomeAssessment({qol:HAQ-DI_Assessment})
 
-EFFICACY: HealthRelatedQualityOfLifeEndpoint @"Health Related Quality Of Life (HRQoL)"  HRQoL_OutcomeAssessment({SF-36_Assessment})
+EFFICACY: HealthRelatedQualityOfLifeEndpoint @"Health Related Quality Of Life (HRQoL)" HRQoL_OutcomeAssessment({SF-36_Assessment})
 ASSESSMENT: SF-36_Assessment @"Short Form (SF-36)"
 			      SF-36_PhysicalFunctionObservation
                               SF-36_SocialFunctionObservation
@@ -83,4 +84,19 @@ ASSESSMENT: RadiographicScoreAssessment @"Radiographic Score"
 SSX: ErosionScoreObservation @"Erosion Score"
 SSX: JointSpaceNarrowingScoreObservation @"Joint Space Narrowing (JSN) Score"
 
+
+CONCOMITANT: OralCorticosteroid OralDisease-modifyingAntirheumaticDrug TNFInhibitorsBiologics NonTNFInhibitorBiologics MTX
+MEDICATION: OralCorticosteroid "Oral corticosteroid"
+MEDICATION: OralDisease-modifyingAntirheumaticDrug "Oral disease-modifying antirheumatic drug"
+MEDICATION: TNFInhibitorsBiologics "TNF inhibitors biologics"
+MEDICATION: NonTNFInhibitorBiologics "non-TNF inhibitors biologics"
+MEDICATION: MTX "???"
+
+HISTORY: OralCorticosteroid OralDisease-modifyingAntirheumaticDrug TNFInhibitorsBiologics NonTNFInhibitorBiologics MTX
+
+COVARIATE: RheumatoidFactorObservation Anti-cyclicCitrullinatedPeptideObservation
+
+QUANT: RheumatoidFactorObservation @"Rheumatoid Factor"
+
+QUANT: Anti-cyclicCitrullinatedPeptideObservation @"Anti-CCP"
 

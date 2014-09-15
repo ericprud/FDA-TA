@@ -1,5 +1,5 @@
 
-exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDefinitions, warn, errStr) {
+exports.toTurtle = function (ta, name, type, imports, covariates, medHistory, concomitants, endpoints, defined, termDefinitions, warn, errStr) {
 
     function system (str) {
         if (str == "NCI EVS")
@@ -161,14 +161,14 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
             var endpoint = endpoints[i];
             allEndpoints.push(endpoint);
         }
-	var ver = "$Id: TAprocessor.js,v 1.17 2014-09-13 22:10:25 eric Exp $";
+	var ver = "$Id: TAprocessor.js,v 1.18 2014-09-15 10:41:34 eric Exp $";
 	var cvsFile = "$RCSfile: TAprocessor.js,v $"; cvsFile = cvsFile.substr(10, cvsFile.length-10-4);
-	var cvsRev = "$Revision: 1.17 $"; cvsRev = cvsRev.substr(11, cvsRev.length-11-2);
-	var cvsDate = "$Date: 2014-09-13 22:10:25 $"; cvsDate = cvsDate.substr(7, cvsDate.length-7-2);
+	var cvsRev = "$Revision: 1.18 $"; cvsRev = cvsRev.substr(11, cvsRev.length-11-2);
+	var cvsDate = "$Date: 2014-09-15 10:41:34 $"; cvsDate = cvsDate.substr(7, cvsDate.length-7-2);
 	var cvsAuthor = "$Author: eric $"; cvsAuthor = cvsAuthor.substr(9, cvsAuthor.length-9-2);
         var base = name.substr(0,name.lastIndexOf('.'));
         var ret = ""+
-            "# " + name + " ontology generated " + Date() + "\n"+
+            "# " + name + " ontology"/*" generated " + Date()*/ + "\n"+
             "#   by "+cvsFile+" V"+cvsRev+" edited by "+cvsAuthor+" on "+cvsDate+"\n"+
             "#\n"+
             "# ericP at the keyboard\n"+
@@ -372,6 +372,38 @@ exports.toTurtle = function (ta, name, type, imports, endpoints, defined, termDe
         var pat = new RegExp("ValuesFrom :"+imp[0], 'g');
         ret = ret.replace(pat, "ValuesFrom "+imp[0]);
     });    
+
+    // covariates, medHistory, concomitants
+    for (var i in covariates) {
+        var covariate = covariates[i][1];
+        if (covariate in ta) {
+            if (!(covariate in defined)) {
+                defined[covariate] = true;
+            }
+        } else {
+            warn(errStr(covariate.file, covariate.line, covariate.column), "covariate "+covariate+" referenced but not defined");
+        }
+    }
+    for (var i in medHistory) {
+        var medication = medHistory[i];
+        if (medication in ta) {
+            if (!(medication in defined)) {
+                defined[medication] = true;
+            }
+        } else {
+            warn(errStr(medication.file, medication.line, medication.column), "referenced but not defined");
+        }
+    }
+    for (var i in concomitants) {
+        var concomitant = concomitants[i];
+        if (concomitant in ta) {
+            if (!(concomitant in defined)) {
+                defined[concomitant] = true;
+            }
+        } else {
+            warn(errStr(concomitant.file, concomitant.line, concomitant.column), "referenced but not defined");
+        }
+    }
 
     for (declaration in ta)
         if (!(declaration in defined)) {

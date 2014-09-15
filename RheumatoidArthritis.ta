@@ -1,6 +1,7 @@
 TA: RheumatoidArthritis
 IMPORT: "qualityOfLife.tapp" AS: qol:
 
+
 EFFICACY: DiseaseActivityScoreEndpoint @"Disease Activity Score (DAS28)" DAS28_OutcomeAssessment({DAS28_Assessment})
 ASSESSMENT: DAS28_Assessment @"Disease Activity Score (DAS28)" [0 10]
                              SwollenJointCountObservation
@@ -36,7 +37,7 @@ EFFICACY: PhysicalFunctionEndpoint @"PF: Physical Function" HAQ-DI_OutcomeAssess
 
 EFFICACY: HealthRelatedQualityOfLifeEndpoint @"Health Related Quality Of Life (HRQoL)" HRQoL_OutcomeAssessment({SF-36_Assessment})
 ASSESSMENT: SF-36_Assessment @"Short Form (SF-36)"
-         SF-36_PhysicalFunctionObservation
+			      SF-36_PhysicalFunctionObservation
                               SF-36_SocialFunctionObservation
                               SF-36_Role-physicalObservation
                               SF-36_Role-emotionalObservation
@@ -56,7 +57,7 @@ SSX: SF-36_MentalHealthObservation @"MH: Mental Health"
 SSX: SF-36_VitalityObservation @"VT: Vitality"
 SSX: SF-36_BodilyPainObservation @"BP: Bodily Pain"
 ASSESSMENT: SF-36_PhysicalComponentSummaryAssessment @"Physical Component Summary (PCS)"
-         SF-36_PhysicalFunctionObservation
+			      SF-36_PhysicalFunctionObservation
                               SF-36_SocialFunctionObservation
                               SF-36_Role-physicalObservation
                               SF-36_Role-emotionalObservation
@@ -65,7 +66,7 @@ ASSESSMENT: SF-36_PhysicalComponentSummaryAssessment @"Physical Component Summar
                               SF-36_VitalityObservation
                               SF-36_BodilyPainObservation
 ASSESSMENT: SF-36_MentalComponentSummaryAssessment @"Mental Component Summary (MCS)"
-         SF-36_PhysicalFunctionObservation
+			      SF-36_PhysicalFunctionObservation
                               SF-36_SocialFunctionObservation
                               SF-36_Role-physicalObservation
                               SF-36_Role-emotionalObservation
@@ -82,3 +83,20 @@ ASSESSMENT: RadiographicScoreAssessment @"Radiographic Score"
 
 SSX: ErosionScoreObservation @"Erosion Score"
 SSX: JointSpaceNarrowingScoreObservation @"Joint Space Narrowing (JSN) Score"
+
+
+CONCOMITANTS: OralCorticosteroid OralDisease-modifyingAntirheumaticDrug TNFInhibitorsBiologics NonTNFInhibitorBiologics MTX
+MEDICATION: OralCorticosteroid "Oral corticosteroid"
+MEDICATION: OralDisease-modifyingAntirheumaticDrug "Oral disease-modifying antirheumatic drug"
+MEDICATION: TNFInhibitorsBiologics "TNF inhibitors biologics"
+MEDICATION: NonTNFInhibitorBiologics "non-TNF inhibitors biologics"
+MEDICATION: MTX "???"
+
+MEDHISTORY: OralCorticosteroid OralDisease-modifyingAntirheumaticDrug TNFInhibitorsBiologics NonTNFInhibitorBiologics MTX
+
+COVARIATES: RheumatoidFactorObservation Anti-cyclicCitrullinatedPeptideObservation
+
+QUANT: RheumatoidFactorObservation @"RheumatoidFactor"
+
+QUANT: Anti-cyclicCitrullinatedPeptideObservation @"Anti-CCP"
+

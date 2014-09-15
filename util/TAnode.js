@@ -1,23 +1,75 @@
 var FS = require('fs');
 var PATH = require('path');
 
-var taFilename = process.argv[2];
-var definitionsFilename = process.argv[3];
+var taFilename = null;
+var definitionsFilename = null;
 var dump = process.argv[4];
+var Ds = {};
+var m;
+
+for (var i = 2; i < process.argv.length; ++i) {
+    if ((m = process.argv[i].match("^-D([a-zA-Z0-9_]+)")))
+        Ds[m[1]] = true;
+    else if ((m = process.argv[i].match("^--dump")))
+        dump = process.argv[++i];
+    else if (taFilename === null)
+        taFilename = process.argv[i];
+    else
+        definitionsFilename = process.argv[i];
+}
+
+if (dump == "D") {
+    console.log(JSON.stringify(Ds));
+    return 0;
+}
 
 var taParser = require("./TAparser").parser;
 var allEndpoints = [];
 taParser.yy = {
     log: function (s) { console.log(">>" + s + "<<"); },
     allEndpoints: allEndpoints,
+    concomitants: [],
+    medHistory: [],
+    covariates: [],
     name: null,
     type: null,
     file: taFilename
 };
 var taFile = FS.readFileSync(PATH.normalize(taFilename), "utf8");
+
+/* Cheap reprocessor replacing
+ *   gcc -E -x c -P -C $^ > $@
+ * which inexplicably started emiting C comments. */
+var lines = taFile.split(/\n/);
+var ifdef = /#[ \t]*(ifdef)(?:\/\*(?:[^*]|\*[^\/])*\*\/|[ \t])*([A-Za-z_0-9]+)(?:\/\*(?:[^*]|\*[^\/])*\*\/|[ \t])*/;
+var _else = /#[ \t]*(else)(?:\/\*(?:[^*]|\*[^\/])*\*\/|[ \t])*/;
+var endif = /#[ \t]*(endif)(?:\/\*(?:[^*]|\*[^\/])*\*\/|[ \t])*/;
+var ifstack = [true];
+for (var lineNo = 0; lineNo < lines.length; ++lineNo) {
+    var line = lines[lineNo];
+    if (m = line.match(ifdef))
+        ifstack.push(m[2] in Ds);
+    else if (line.match(_else))
+        ifstack[ifstack.length-1] = !ifstack[ifstack.length-1];
+    else if (line.match(endif))
+        ifstack.pop();
+    else if (!ifstack[ifstack.length-1])
+        lines[lineNo] = '';
+}
+if (ifstack.length > 1)
+    console.warn("There were " + (ifstack.length - 1) + " unclosed ifdefs at the end of the TA file.");
+taFile = lines.join("\n");
+
+if (dump == "E") {
+    console.log(taFile);
+    return 0;
+}
 var ta = taParser.parse(taFile); // console.warn(ta);
 if (dump == "ta") {
-    console.log(JSON.stringify(ta));
+    console.log("= TA =\n" + JSON.stringify(ta));
+    console.log("= CONCOMITANTS =\n" + JSON.stringify(taParser.yy.concomitants));
+    console.log("= MEDHISTORY =\n"   + JSON.stringify(taParser.yy.medHistory));
+    console.log("= COVARIATES =\n"   + JSON.stringify(taParser.yy.covariates));
     return 0;
 }
 var turtlify = require("./TAprocessor").toTurtle;
@@ -151,7 +203,7 @@ var dumpDefns = function (defns) {
 var processParsedData = function (defns) {
     console.log(
         turtlify(
-            ta, taParser.yy.file, taParser.yy.type, taParser.yy.imports, allEndpoints, defined, defns,
+            ta, taParser.yy.file, taParser.yy.type, taParser.yy.imports, taParser.yy.covariates, taParser.yy.medHistory, taParser.yy.concomitants, allEndpoints, defined, defns,
             function () { console.warn.apply(null, arguments); },
             function (file, line, column) {
                 var ret = file + ":" + line;

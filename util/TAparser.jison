@@ -54,8 +54,13 @@ COMMENT			'//' [^\u000a\u000d]*
 [Qq][Uu][Aa][Nn][Tt]':'				return 'OBSERVATION'
 [Ss][Ss][Xx]':'					return 'OBSERVATION'
 [Dd][Ii][Aa][Gg][Pp][Rr][Oo][Cc]':'		return 'OBSERVATION'
+
+[Mm][Ee][Dd][Ii][Cc][Aa][Tt][Ii][Oo][Nn]':'	return 'MEDICATION'
+
+[Mm][Ee][Dd][Hh][Ii][Ss][Tt][Oo][Rr][Yy]':'	return 'MEDHISTORY'
 [Cc][Oo][Vv][Aa][Rr][Ii][Aa][Tt][Ee][Ss]':'     return 'COVARIATES'
-[Cc][Oo][Nn][Cc][Oo][Mm][Ii][Tt][Aa][Nn][Tt]':' return 'CONCOMITANT'
+[Cc][Oo][Nn][Cc][Oo][Mm][Ii][Tt][Aa][Nn][Tt][Ss]':'	return 'CONCOMITANTS'
+
 {IRIREF}					return 'IRIREF'
 {PNAME_LN}					return 'PNAME_LN'
 {PNAME_NS}					return 'PNAME_NS'
@@ -118,13 +123,22 @@ Decl		: IMPORT STRING_LITERAL2 AS PNAME_NS	{ yy.imports.push([$4, $2]); $$ = $4;
 		| OutcomeDecl				{ $$ = $1; }
 		| AssessmentDecl			{ $$ = $1; }
 		| ObservationDecl			{ $$ = $1; }
-		| CovariatesList			{ $$ = $1; } ;
+		| CovariatesList			{ $$ = $1; }
+		| ConcomitantsList			{ $$ = $1; }
+		| MedHistoryList			{ $$ = $1; }
+		| MedicationDecl			{ $$ = $1; } ;
 
-CovariatesList  : 'COVARIATES' Covariate_Star           { $$ = $1; } ;
-CovariateStar	:					{ $$ = null; }
-		| CovariateStar Covariate		{ $$ = $1 + $2; } ;
-Covariate       : 'CONCOMITANT' Medication_Star         { $$ = $2; }
-                | 'HISTORY' Medication_Star             { $$ = $1; } ;
+CovariatesList	: 'COVARIATES' Observation_Or_Assessment_Plus
+		{ yy.covariates = yy.covariates.concat($2); $$ = $2; } ;
+MedHistoryList	: 'MEDHISTORY' Name_Plus
+		{ yy.medHistory = yy.medHistory.concat($2); $$ = $2; } ;
+ConcomitantsList	: 'CONCOMITANTS' Name_Plus
+		{ yy.concomitants = yy.concomitants.concat($2); $$ = $2; } ;
+Name_Plus	: Name				{ $$ = [ $1 ]; }
+		| Name_Plus Name			{ $1.push($2); $$ = $1; } ;
+MedicationDecl	: 'MEDICATION' Name Medication_Def	{ $$ = yy.decl($1, $2, $3, @1.first_line, @1.first_column); } ;
+Medication_Def	: Definition				{ $$ = { definition:$1 }; } ;
+
 
 EndpointDecl	: EndpointType Name Definition Outcome
 							{ $$ = yy.decl($1, $2, { definition:$3, outcome:$4 }, @1.first_line, @1.first_column); } ;
@@ -155,7 +169,7 @@ ObservationDecl	: 'OBSERVATION' Name Observation_Def	{ $$ = yy.decl($1, $2, $3, 
 Observation	: Name Observation_Def_Opt		{ $$ = $2 ? yy.decl('OBSERVATION', $1, $2, @1.first_line, @1.first_column) : $1; } ;
 Observation_Def_Opt: '(' Observation_Def ')'		{ $$ = $2; }
 		|					{ $$ = null; } ;
-Observation_Def : Definition	{ $$ = { definition:$1 }; } ;
+Observation_Def : Definition				{ $$ = { definition:$1 }; } ;
 
 Name		: NAME					{ $$ = $1; }
 		| Iri					{ $$ = $1; } ;
