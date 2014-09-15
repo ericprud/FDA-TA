@@ -134,8 +134,8 @@ MedHistoryList	: 'MEDHISTORY' Name_Plus
 		{ yy.medHistory = yy.medHistory.concat($2); $$ = $2; } ;
 ConcomitantsList	: 'CONCOMITANTS' Name_Plus
 		{ yy.concomitants = yy.concomitants.concat($2); $$ = $2; } ;
-Name_Plus	: Name				{ $$ = [ $1 ]; }
-		| Name_Plus Name			{ $1.push($2); $$ = $1; } ;
+Name_Plus	: Name				{ $$ = [ [$1, yy.file, @1.first_line, @1.first_column] ]; }
+		| Name_Plus Name			{ $1.push([$2, yy.file, @1.first_line, @1.first_column]); $$ = $1; } ;
 MedicationDecl	: 'MEDICATION' Name Medication_Def	{ $$ = yy.decl($1, $2, $3, @1.first_line, @1.first_column); } ;
 Medication_Def	: Definition				{ $$ = { definition:$1 }; } ;
 
@@ -162,8 +162,8 @@ Observation_Or_Assessment_Plus:
 		| Observation_Or_Assessment_Plus Observation_Or_Assessment
 							{ $1.push($2); $$ = $1; } ;
 Observation_Or_Assessment:
-		  Observation				{ $$ = [false, $1]; }
-		| '{' Assessment '}'			{ $$ = [true, $2]; } ;
+		  Observation				{ $$ = [false, $1, yy.file, @1.first_line, @1.first_column]; }
+		| '{' Assessment '}'			{ $$ = [true, $2, yy.file, @1.first_line, @1.first_column]; } ;
 
 ObservationDecl	: 'OBSERVATION' Name Observation_Def	{ $$ = yy.decl($1, $2, $3, @1.first_line, @1.first_column); } ;
 Observation	: Name Observation_Def_Opt		{ $$ = $2 ? yy.decl('OBSERVATION', $1, $2, @1.first_line, @1.first_column) : $1; } ;

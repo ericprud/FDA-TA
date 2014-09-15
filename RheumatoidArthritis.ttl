@@ -1,5 +1,5 @@
 # RheumatoidArthritis.ta ontology
-#   by TAprocessor.js V1.17 edited by eric on 2014-09-13 22:10:25
+#   by TAprocessor.js V1.18 edited by eric on 2014-09-15 10:41:34
 #
 # ericP at the keyboard
 
@@ -359,10 +359,71 @@ SCALE:lowest - frequent psychological distress, social and role disability due t
     rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-C1859695 ] .
 :DefinedJointSpaceNarrowingScoreObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
 
+:RheumatoidFactorObservation a owl:Class ;
+    rdfs:subClassOf 
+        core:QuantitativeMeasurement ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedRheumatoidFactorObservation ] ;
+    rdfs:label "Rheumatoid Factor" ;
+    skos:definition """Rheumatoid factor (RF or RhF) is a blood test performed in patients with suspected rheumatoid arthritis (RA). It is an auto-antibody directed against the Fc portion of IgG, which is itself an antibody. RF and IgG form immune complexes, which are part of the disease process (serum sickness) of various rheumatological diseases.""" ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-C0035448 ] .
+:DefinedRheumatoidFactorObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+
+:Anti-cyclicCitrullinatedPeptideObservation a owl:Class ;
+    rdfs:subClassOf 
+        core:QuantitativeMeasurement ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedObservation.resultedPerformedObservationResult ; owl:someValuesFrom bridg:PerformedClinicalResult ] ,
+        [ a owl:Restriction ; owl:onProperty bridg:PerformedActivity.instantiatedDefinedActivity ; owl:hasValue :DefinedAnti-cyclicCitrullinatedPeptideObservation ] ;
+    rdfs:label "Anti-CCP" ;
+    skos:definition """Anti-citrullinated protein/peptide antibodies are autoantibodies (antibodies directed against one or more of the individual’s own proteins) frequently detected in rheumatoid arthritis patients. During inflammation, citrulline is incorporated enzymatically into proteins[1], what is called citrullination. Recently, these ACPAs have turned up as powerful biomarkers, which are accepted as a major diagnostic tool in diagnosing rheumatoid arthritis (RA) already in a very early stage of disease.""" ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-C1138934 ] .
+:DefinedAnti-cyclicCitrullinatedPeptideObservation a owl:Class ; rdfs:subClassOf bridg:DefinedObservation .
+
+:OralCorticosteroid a owl:Class ;
+    rdfs:subClassOf 
+        bridg:PerformedSubstanceAdministration ;
+    rdfs:label "Oral corticosteroids" ;
+    skos:definition """Group of drugs, steroid hormones, that are administered orally to suppress inflammation and immunity.""" ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-C0001617 ] .
+:DefinedOralCorticosteroid a owl:Class ; rdfs:subClassOf bridg:DefinedMedication .
+
+:OralDisease-modifyingAntirheumaticDrug a owl:Class ;
+    rdfs:subClassOf 
+        bridg:PerformedSubstanceAdministration ;
+    rdfs:label "Oral Disease-modifying antirheumatic drug" ;
+    skos:definition """Each disease-modifying anti­rheumatic drug (DMARD) works in different ways to slow or stop the inflammatory process that can damage the joints and internal organs.""" ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-C0242708 ] .
+:DefinedOralDisease-modifyingAntirheumaticDrug a owl:Class ; rdfs:subClassOf bridg:DefinedMedication .
+
+:TNFInhibitorsBiologics a owl:Class ;
+    rdfs:subClassOf 
+        bridg:PerformedSubstanceAdministration ;
+    rdfs:label "TNF inhibitors biologics" ;
+    skos:definition """Biologics are genetically engineered proteins derived from human genes. They are designed to inhibit specific components of the immune system that play pivotal roles in fueling inflammation, which is a central feature of rheumatoid arthritis. They differ significantly from traditional drugs used to treat rheumatoid arthritis in that they target specific components of the immune system instead of broadly affecting many areas of the immune system.
+TNF inhibitors are drugs that inhibit the production or activity of a Tumor Necrosis Factor. This process may result also in inhibition of some functions of mature immune cells, including polymorphonuclear chemotaxis and monocyte phagocytosis. Tumor Necrosis Factor suppression is intended to favorably modulate functions of the immune system.""" ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-refined-C1519686 ] .
+:DefinedTNFInhibitorsBiologics a owl:Class ; rdfs:subClassOf bridg:DefinedMedication .
+
+:NonTNFInhibitorBiologics a owl:Class ;
+    rdfs:subClassOf 
+        bridg:PerformedSubstanceAdministration ;
+    rdfs:label "Non TNF inhibitor biologics" ;
+    skos:definition """Biologics are genetically engineered proteins derived from human genes. They are designed to inhibit specific components of the immune system that play pivotal roles in fueling inflammation, which is a central feature of rheumatoid arthritis. They differ significantly from traditional drugs used to treat rheumatoid arthritis in that they target specific components of the immune system instead of broadly affecting many areas of the immune system.
+Non-TNF inhibitor biologics are the drugs that target other than TNF immune response components .""" .
+:DefinedNonTNFInhibitorBiologics a owl:Class ; rdfs:subClassOf bridg:DefinedMedication .
+
+:MTX a owl:Class ;
+    rdfs:subClassOf 
+        bridg:PerformedSubstanceAdministration ;
+    rdfs:label "MTX (Methotrexate)" ;
+    skos:definition """An antimetabolite and antifolate agent with antineoplastic and immunosuppressant activities. Methotrexate binds to and inhibits the enzyme dihydrofolate reductase, resulting in inhibition of purine nucleotide and thymidylate synthesis and, subsequently, inhibition of DNA and RNA syntheses. Methotrexate also exhibits potent immunosuppressant activity although the mechanism(s) of actions is unclear.""" ;
+    rdfs:subClassOf [ a owl:Restriction ; owl:onProperty hl7:coding ; owl:hasValue :NCI-EVS-C0025677 ] .
+:DefinedMTX a owl:Class ; rdfs:subClassOf bridg:DefinedMedication .
+
 :Organizer a owl:Class . # organizer for the RheumatoidArthritis Therapeutic Area .
 :Subject a owl:Class ; rdfs:subClassOf :Organizer .
 :Protocol a owl:Class ; rdfs:subClassOf :Organizer .
-:AllEndpoints a owl:Class ; rdfs:subClassOf :Organizer ;
+:AllEndpoints a owl:Class ;
     owl:equivalentClass [ a owl:Class ; owl:unionOf (
         :DiseaseActivityScoreEndpoint 
         :AmericanCollegeOfRheumatologyEndpoint 
@@ -371,9 +432,36 @@ SCALE:lowest - frequent psychological distress, social and role disability due t
         :RadiographicResponseEndpoint 
     ) ] .
 
+:AllCovariates a owl:Class ;
+    owl:equivalentClass [ a owl:Class ; owl:unionOf (
+        :RheumatoidFactorObservation 
+        :Anti-cyclicCitrullinatedPeptideObservation 
+    ) ] .
+
+:AllMedicalHistory a owl:Class ;
+    owl:equivalentClass [ a owl:Class ; owl:unionOf (
+        :OralCorticosteroid 
+        :OralDisease-modifyingAntirheumaticDrug 
+        :TNFInhibitorsBiologics 
+        :NonTNFInhibitorBiologics 
+        :MTX 
+    ) ] .
+
+:AllConcomitantMedications a owl:Class ;
+    owl:equivalentClass [ a owl:Class ; owl:unionOf (
+        :OralCorticosteroid 
+        :OralDisease-modifyingAntirheumaticDrug 
+        :TNFInhibitorsBiologics 
+        :NonTNFInhibitorBiologics 
+        :MTX 
+    ) ] .
+
 :Protocol a owl:Class ;
     rdfs:subClassOf :Organizer, core:TAProtocol ,
-        [ a owl:Restriction ; owl:onProperty :hasEfficacyEndpoint ; owl:someValuesFrom :AllEndpoints ] .
+        [ a owl:Restriction ; owl:onProperty :hasEfficacyEndpoint ; owl:someValuesFrom :AllEndpoints ] ,
+        [ a owl:Restriction ; owl:onProperty :hasCovariate ; owl:someValuesFrom :AllCovariates ] ,
+        [ a owl:Restriction ; owl:onProperty :hasMedicalHistory ; owl:someValuesFrom :AllMedicalHistory ] ,
+        [ a owl:Restriction ; owl:onProperty :hasConcomitantMedication ; owl:someValuesFrom :AllConcomitantMedications ] .
 
 
 :NCI-EVS-refined-C2711347 a owl:Class ;
@@ -530,5 +618,57 @@ SCALE:lowest - frequent psychological distress, social and role disability due t
      owl:intersectionOf (
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
        [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-C1859695" ]
+       ) ] .
+:NCI-EVS-C0035448 a owl:Class ;
+  rdfs:subClassOf :CDCoding ;
+   owl:equivalentClass [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C0035448" ]
+       ) ] .
+:NCI-EVS-C1138934 a owl:Class ;
+  rdfs:subClassOf :CDCoding ;
+   owl:equivalentClass [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C1138934" ]
+       ) ] .
+:NCI-EVS-refined-C0001617 a owl:Class ;
+  rdfs:subClassOf :CDCoding ,
+    [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C0001617" ]
+       ) ] ;
+   owl:equivalentClass [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-C0001617" ]
+       ) ] .
+:NCI-EVS-C0242708 a owl:Class ;
+  rdfs:subClassOf :CDCoding ;
+   owl:equivalentClass [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C0242708" ]
+       ) ] .
+:NCI-EVS-refined-C1519686 a owl:Class ;
+  rdfs:subClassOf :CDCoding ,
+    [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C1519686" ]
+       ) ] ;
+   owl:equivalentClass [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@FDA-TA> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "refined-C1519686" ]
+       ) ] .
+:NCI-EVS-C0025677 a owl:Class ;
+  rdfs:subClassOf :CDCoding ;
+   owl:equivalentClass [ a owl:Class ;
+     owl:intersectionOf (
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.codeSystem ; owl:hasValue <http://example.org/@@NCI-EVS> ]
+       [ a owl:Restriction ; owl:onProperty dt:CDCoding.code       ; owl:hasValue "C0025677" ]
        ) ] .
 

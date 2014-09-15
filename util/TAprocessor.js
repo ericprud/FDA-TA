@@ -55,7 +55,7 @@ exports.toTurtle = function (ta, name, type, imports, covariates, medHistory, co
     };
 
     function definition_toTurtle (def, parent) {
-        ret = "";
+        var ret = "";
         var range = null;
         var name = null;
         var defn = null;
@@ -161,10 +161,10 @@ exports.toTurtle = function (ta, name, type, imports, covariates, medHistory, co
             var endpoint = endpoints[i];
             allEndpoints.push(endpoint);
         }
-	var ver = "$Id: TAprocessor.js,v 1.18 2014-09-15 10:41:34 eric Exp $";
+	var ver = "$Id: TAprocessor.js,v 1.19 2014-09-15 20:34:39 eric Exp $";
 	var cvsFile = "$RCSfile: TAprocessor.js,v $"; cvsFile = cvsFile.substr(10, cvsFile.length-10-4);
-	var cvsRev = "$Revision: 1.18 $"; cvsRev = cvsRev.substr(11, cvsRev.length-11-2);
-	var cvsDate = "$Date: 2014-09-15 10:41:34 $"; cvsDate = cvsDate.substr(7, cvsDate.length-7-2);
+	var cvsRev = "$Revision: 1.19 $"; cvsRev = cvsRev.substr(11, cvsRev.length-11-2);
+	var cvsDate = "$Date: 2014-09-15 20:34:39 $"; cvsDate = cvsDate.substr(7, cvsDate.length-7-2);
 	var cvsAuthor = "$Author: eric $"; cvsAuthor = cvsAuthor.substr(9, cvsAuthor.length-9-2);
         var base = name.substr(0,name.lastIndexOf('.'));
         var ret = ""+
@@ -201,19 +201,71 @@ exports.toTurtle = function (ta, name, type, imports, covariates, medHistory, co
             ret += allEndpoints.map(function (e) {
                     return endpoint_toTurtle(e, recursive, ta[e]);
                 }).join("")+
+                // covariates, medHistory, concomitants
+                covariates.map(function (c) {
+                    var covariate = c[1];
+                    if (covariate in ta) {
+                        var definedAsAssessment = ta[covariate]._ == 'ASSESSMENT';
+                        return definedAsAssessment
+                            ? assessment_toTurtle(covariate, true, {file:ta[covariate].file, line:ta[covariate].line, column:ta[covariate].column}) // We didn't bother to record an object for the covariates.
+                            : observation_toTurtle(covariate, true, {file:ta[covariate].file, line:ta[covariate].line, column:ta[covariate].column});
+                    } else {
+                        warn(errStr(covariates[i][2], covariates[i][3], covariates[i][4]), "covariate "+covariate+" referenced but not defined");
+                    }
+                }).join("")+
+                medHistory.map(function (m) {
+                    var medication = m[0];
+                    if (medication in ta)
+                        return medication_toTurtle(medication, true, {file:ta[medication].file, line:ta[medication].line, column:ta[medication].column})
+                    else
+                        warn(errStr(m[1], m[2], m[3]), medication + " referenced but not defined");
+                }).join("")+
+                concomitants.map(function (m) {
+                    var medication = m[0];
+                    if (medication in ta)
+                        return medication_toTurtle(medication, true, {file:ta[medication].file, line:ta[medication].line, column:ta[medication].column})
+                    else
+                        warn(errStr(m[1], m[2], m[3]), medication + " referenced but not defined");
+                }).join("")+
                 ":Organizer a owl:Class . # organizer for the "+base+" Therapeutic Area .\n"+
                 ":Subject a owl:Class ; rdfs:subClassOf :Organizer .\n"+
                 ":Protocol a owl:Class ; rdfs:subClassOf :Organizer .\n"+
-                ":AllEndpoints a owl:Class ; rdfs:subClassOf :Organizer ;\n"+
+                ":AllEndpoints a owl:Class ;\n"+
                 "    owl:equivalentClass [ a owl:Class ; owl:unionOf (\n"+
                 allEndpoints.map(function (e) {
                     return "        :" + e + " \n";
                 }).join("")+
                 "    ) ] .\n"+
                 "\n"+
+                // covariates, med history, concomitant meds
+                ":AllCovariates a owl:Class ;\n"+
+                "    owl:equivalentClass [ a owl:Class ; owl:unionOf (\n"+
+                covariates.map(function (e) {
+                    return "        :" + e[1] + " \n";
+                }).join("")+
+                "    ) ] .\n"+
+                "\n"+
+                ":AllMedicalHistory a owl:Class ;\n"+
+                "    owl:equivalentClass [ a owl:Class ; owl:unionOf (\n"+
+                medHistory.map(function (e) {
+                    return "        :" + e[0] + " \n";
+                }).join("")+
+                "    ) ] .\n"+
+                "\n"+
+                ":AllConcomitantMedications a owl:Class ;\n"+
+                "    owl:equivalentClass [ a owl:Class ; owl:unionOf (\n"+
+                concomitants.map(function (e) {
+                    return "        :" + e[0] + " \n";
+                }).join("")+
+                "    ) ] .\n"+
+                "\n"+
+                // define the protocol template
                 ":Protocol a owl:Class ;\n"+
                 "    rdfs:subClassOf :Organizer, core:TAProtocol ,\n"+
-                "        [ a owl:Restriction ; owl:onProperty :hasEfficacyEndpoint ; owl:someValuesFrom :AllEndpoints ] .\n"+
+                "        [ a owl:Restriction ; owl:onProperty :hasEfficacyEndpoint ; owl:someValuesFrom :AllEndpoints ] ,\n"+
+                "        [ a owl:Restriction ; owl:onProperty :hasCovariate ; owl:someValuesFrom :AllCovariates ] ,\n"+
+                "        [ a owl:Restriction ; owl:onProperty :hasMedicalHistory ; owl:someValuesFrom :AllMedicalHistory ] ,\n"+
+                "        [ a owl:Restriction ; owl:onProperty :hasConcomitantMedication ; owl:someValuesFrom :AllConcomitantMedications ] .\n"+
                 "";
         } else {
             for (e in ta) {
@@ -366,44 +418,30 @@ exports.toTurtle = function (ta, name, type, imports, covariates, medHistory, co
         return ret;
     }
 
+    function medication_toTurtle (e, recurse, parent) {
+        var ret = '';
+        // if (e.lastIndexOf(MED) != e.length-MED.length)
+        //     warn(errStr(parent.file, parent.line, parent.column) + e, "should end with", OBS);
+        if (e in ta && !(e in defined)) {
+            defined[e] = true;
+            var medication = ta[e];
+            ret += ":"+e+" a owl:Class ;\n"
+                + "    rdfs:subClassOf \n"
+                + "        bridg:PerformedSubstanceAdministration "
+                + definition_toTurtle(medication.definition, medication)
+                + ".\n:Defined"+e+" a owl:Class ; rdfs:subClassOf bridg:DefinedMedication "
+                // + definition_toTurtle(medication.definition, medication) -- duplicates term definitions @@factor
+                + ".\n\n";
+        }
+        return ret;
+    }
+
     ret = ta_toTurtle(true)+"\n\n"+auxilliaryTaxonomy.toString();
 
     imports.map(function (imp) { /* vulgar hack until terms have a toString or toURI method */
         var pat = new RegExp("ValuesFrom :"+imp[0], 'g');
         ret = ret.replace(pat, "ValuesFrom "+imp[0]);
     });    
-
-    // covariates, medHistory, concomitants
-    for (var i in covariates) {
-        var covariate = covariates[i][1];
-        if (covariate in ta) {
-            if (!(covariate in defined)) {
-                defined[covariate] = true;
-            }
-        } else {
-            warn(errStr(covariate.file, covariate.line, covariate.column), "covariate "+covariate+" referenced but not defined");
-        }
-    }
-    for (var i in medHistory) {
-        var medication = medHistory[i];
-        if (medication in ta) {
-            if (!(medication in defined)) {
-                defined[medication] = true;
-            }
-        } else {
-            warn(errStr(medication.file, medication.line, medication.column), "referenced but not defined");
-        }
-    }
-    for (var i in concomitants) {
-        var concomitant = concomitants[i];
-        if (concomitant in ta) {
-            if (!(concomitant in defined)) {
-                defined[concomitant] = true;
-            }
-        } else {
-            warn(errStr(concomitant.file, concomitant.line, concomitant.column), "referenced but not defined");
-        }
-    }
 
     for (declaration in ta)
         if (!(declaration in defined)) {
