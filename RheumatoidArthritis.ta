@@ -86,17 +86,17 @@ SSX: JointSpaceNarrowingScoreObservation @"Joint Space Narrowing (JSN) Score"
 
 
 CONCOMITANTS: OralCorticosteroid OralDisease-modifyingAntirheumaticDrug TNFInhibitorsBiologics NonTNFInhibitorBiologics MTX
-MEDICATION: OralCorticosteroid "Oral corticosteroid"
-MEDICATION: OralDisease-modifyingAntirheumaticDrug "Oral disease-modifying antirheumatic drug"
-MEDICATION: TNFInhibitorsBiologics "TNF inhibitors biologics"
-MEDICATION: NonTNFInhibitorBiologics "non-TNF inhibitors biologics"
-MEDICATION: MTX "???"
+MEDICATION: OralCorticosteroid @"Oral corticosteroids"
+MEDICATION: OralDisease-modifyingAntirheumaticDrug @"Oral Disease-modifying antirheumatic drug"
+MEDICATION: TNFInhibitorsBiologics @"TNF inhibitors biologics"
+MEDICATION: NonTNFInhibitorBiologics @"Non TNF inhibitor biologics"
+MEDICATION: MTX @"MTX (Methotrexate)"
 
 MEDHISTORY: OralCorticosteroid OralDisease-modifyingAntirheumaticDrug TNFInhibitorsBiologics NonTNFInhibitorBiologics MTX
 
 COVARIATES: RheumatoidFactorObservation Anti-cyclicCitrullinatedPeptideObservation
 
-QUANT: RheumatoidFactorObservation @"RheumatoidFactor"
+QUANT: RheumatoidFactorObservation @"Rheumatoid Factor"
 
 QUANT: Anti-cyclicCitrullinatedPeptideObservation @"Anti-CCP"
 
